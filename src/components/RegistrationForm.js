@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getFormData } from '../actions/registration';
+import { getFormData, submitRegistration } from '../actions/registration';
 
 class RegistrationForm extends Component {
     state = {
@@ -24,7 +24,8 @@ class RegistrationForm extends Component {
     static propTypes = {
         auth: PropTypes.object,
         registration: PropTypes.object,
-        getFormData: PropTypes.func
+        getFormData: PropTypes.func,
+        submitRegistration: PropTypes.func
     };
 
     onChange = e => {
@@ -77,7 +78,7 @@ class RegistrationForm extends Component {
             meals,
             note
         };
-        // this.props.subm(newUser);
+        this.props.submitRegistration(registration);
     };
 
     dataIsEmpty = () => {
@@ -178,13 +179,12 @@ class RegistrationForm extends Component {
                             <FormGroup>
                                 <Label for='phone'>Telefon</Label>
                                 <Input
-                                    type='tel'
+                                    type='text'
                                     name='phone'
                                     id='phone'
                                     placeholder='Telefon'
                                     value={this.state.phone}
                                     onChange={this.onChange}
-                                    pattern={/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$/}
                                 />
                             </FormGroup>
                         </Col>
@@ -384,7 +384,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    getFormData
+    getFormData,
+    submitRegistration
 };
 
 export default connect(
