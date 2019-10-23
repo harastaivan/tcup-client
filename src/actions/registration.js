@@ -15,11 +15,24 @@ export const getFormData = () => async dispatch => {
 };
 
 export const getRegistration = () => async (dispatch, getState) => {
-    const res = await axios.get(`${API_ENDPOINT}/api/registration`, tokenConfig(getState));
-    dispatch({
-        type: GET_REGISTRATION,
-        payload: res.data
-    });
+    try {
+        const res = await axios.get(`${API_ENDPOINT}/api/registration`, tokenConfig(getState));
+        dispatch({
+            type: GET_REGISTRATION,
+            payload: {
+                registration: res.data,
+                isRegistered: true
+            }
+        });
+    } catch (e) {
+        dispatch({
+            type: GET_REGISTRATION,
+            payload: {
+                registration: {},
+                isRegistered: false
+            }
+        });
+    }
 };
 
 export const submitRegistration = registration => async (dispatch, getState) => {
@@ -27,7 +40,10 @@ export const submitRegistration = registration => async (dispatch, getState) => 
         const res = await axios.post(`${API_ENDPOINT}/api/registration`, registration, tokenConfig(getState));
         dispatch({
             type: SUBMIT_REGISTRATION,
-            payload: res.data
+            payload: {
+                registration: res.data,
+                isRegistered: true
+            }
         });
     } catch (err) {
         dispatch(returnErrors(err));
