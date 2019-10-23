@@ -4,8 +4,18 @@ import RegistrationForm from './RegistrationForm';
 import EditRegistrationForm from './EditRegistrationForm';
 import Login from './Login';
 import { Alert } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { getRegistration } from '../actions/registration';
 
 class Registration extends Component {
+    static propTypes = {
+        getRegistration: PropTypes.func
+    };
+
+    componentDidMount() {
+        this.props.getRegistration();
+    }
+
     render() {
         return (
             <div>
@@ -31,7 +41,9 @@ const mapStateToProps = state => ({
     registration: state.registration
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    getRegistration
+};
 
 export default connect(
     mapStateToProps,
