@@ -12,3 +12,5 @@ export const GET_NEWS = 'GET_NEWS';
 export const ADD_NEWS = 'ADD_NEWS';
 export const DELETE_NEWS = 'DELETE_NEWS';
 export const NEWS_LOADING = 'NEWS_LOADING';
+export const FORM_DATA_LOADING = 'FORM_DATA_LOADING';
+export const GET_FORM_DATA = 'GET_FORM_DATA';
