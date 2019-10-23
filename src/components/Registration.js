@@ -25,12 +25,10 @@ class Registration extends Component {
                         <Login />
                     </div>
                 )}
-                {this.props.isAuthenticated && this.props.registration && this.props.registration.isRegistered && (
-                    <EditRegistrationForm disabled={true} />
+                {this.props.isAuthenticated && this.props.registration.isRegistered && (
+                    <EditRegistrationForm edit={false} />
                 )}
-                {this.props.isAuthenticated && !(this.props.registration && this.props.registration.isRegistered) && (
-                    <RegistrationForm />
-                )}
+                {this.props.isAuthenticated && !this.props.registration.isRegistered && <RegistrationForm />}
             </div>
         );
     }

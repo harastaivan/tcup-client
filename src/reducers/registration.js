@@ -2,6 +2,7 @@ import { GET_FORM_DATA, FORM_DATA_LOADING, GET_REGISTRATION, SUBMIT_REGISTRATION
 
 const initialState = {
     registration: {},
+    isRegistered: false,
     formData: {
         accomodationTypes: [],
         competitionClasses: [],
@@ -27,12 +28,14 @@ export default (state = initialState, action) => {
         case GET_REGISTRATION:
             return {
                 ...state,
-                registration: action.payload
+                registration: action.payload.registration,
+                isRegistered: action.payload.isRegistered
             };
         case SUBMIT_REGISTRATION:
             return {
                 ...state,
-                registration: action.payload
+                registration: action.payload.registration,
+                isRegistered: action.payload.isRegistered
             };
         case FORM_DATA_LOADING:
             return {
