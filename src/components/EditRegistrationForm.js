@@ -34,7 +34,7 @@ class EditRegistrationForm extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const {
+        /*const {
             birthDate,
             phone,
             aeroclub,
@@ -69,12 +69,11 @@ class EditRegistrationForm extends Component {
             meals,
             note
         };
-        // this.props.submitRegistration(registration);
+        this.props.updateRegistration(registration);*/
     };
 
     dataIsEmpty = () => {
         const {
-            birthDate,
             phone,
             aeroclub,
             region,
@@ -83,10 +82,7 @@ class EditRegistrationForm extends Component {
             startNumber,
             competitionClass,
             logger,
-            accomodationType,
-            quantity,
-            meals,
-            note
+            accomodationType
         } = this.state;
         return !(
             phone &&
