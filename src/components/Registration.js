@@ -12,7 +12,7 @@ class Registration extends Component {
         getRegistration: PropTypes.func
     };
 
-    componentDidMount() {
+    componentDidUpdate() {
         this.props.getRegistration();
     }
 
