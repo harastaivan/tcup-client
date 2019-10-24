@@ -34,13 +34,6 @@ class RegistrationForm extends Component {
         });
     };
 
-    onChangeSelect = e => {
-        console.log(e.target.value);
-        this.setState({
-            [e.target.name]: e.target.key
-        });
-    };
-
     onSubmit = e => {
         e.preventDefault();
         const {
