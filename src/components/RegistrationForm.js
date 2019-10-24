@@ -76,7 +76,6 @@ class RegistrationForm extends Component {
 
     dataIsEmpty = () => {
         const {
-            birthDate,
             phone,
             aeroclub,
             region,
@@ -85,10 +84,7 @@ class RegistrationForm extends Component {
             startNumber,
             competitionClass,
             logger,
-            accomodationType,
-            quantity,
-            meals,
-            note
+            accomodationType
         } = this.state;
         return !(
             phone &&
