@@ -12,6 +12,10 @@ class Registration extends Component {
         getRegistration: PropTypes.func
     };
 
+    componentDidMount() {
+        this.props.getRegistration();
+    }
+
     componentDidUpdate(previousProps) {
         if (previousProps.isAuthenticated !== this.props.isAuthenticated) {
             this.props.getRegistration();
