@@ -6,9 +6,9 @@ class Home extends Component {
 		const newsMessage = { before: 'Dnes nebyly publikovány ', in: 'žádné novinky', end: '.' };
 		return (
 			<div>
-				<h1>{process.env.REACT_APP_TITLE}</h1>
+				<h1 style={{ fontSize: '4rem' }}>{process.env.REACT_APP_TITLE}</h1>
 				{/*<img src='/img/homepage.jpg' alt='Společná fotka soutěžících' className='homepage'></img>*/}
-				<h4 className='mt-5 mb-5'>Letošní tcup se bude konat {process.env.REACT_APP_FROM_TO} v Toužimi.</h4>
+				<h2 className='mt-5 mb-5'>Letošní tcup se bude konat {process.env.REACT_APP_FROM_TO} v Toužimi.</h2>
 				<p>Je přihlášeno 0 pilotů.</p>
 				<p>
 					{newsMessage.before}

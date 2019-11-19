@@ -13,7 +13,7 @@ class Logout extends Component {
 		this.props.history.push('/');
 	};
 
-	componentWillMount() {
+	componentDidMount() {
 		this.logout();
 	}
 

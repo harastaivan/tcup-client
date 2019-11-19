@@ -27,6 +27,6 @@ img.homepage {
 	color: #53a6ff;
 }
 
-.min-vh-120 {
-	min-height: 120vh !important;
+.min-vh-container {
+	min-height: calc(100vh - 56px - 176px);
 }

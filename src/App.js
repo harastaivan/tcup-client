@@ -37,7 +37,7 @@ class App extends Component {
 				<Router>
 					<div className='App'>
 						<AppNavbar />
-						<Container className='p-3 min-vh-100 transparent-background'>
+						<Container className='p-3 min-vh-container transparent-background'>
 							{process.env.REACT_APP_TEST_MODE && (
 								<Alert color='warning'>
 									Aplikace je v testovacím režimu. Nemusí vše fungovat tak, jak má.{' '}
