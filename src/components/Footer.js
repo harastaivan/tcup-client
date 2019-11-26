@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { Container } from 'reactstrap';
+import { version } from '../../package.json';
 
 class Footer extends Component {
 	render() {
@@ -9,7 +10,7 @@ class Footer extends Component {
 			<Container className='transparent-background'>
 				<footer className={`p-5 py-4 text-center text-small`}>
 					<p>
-						© {process.env.REACT_APP_TITLE} <b>verze {process.env.REACT_APP_VERSION}</b>
+						© {process.env.REACT_APP_TITLE} <b>verze {version}</b>
 					</p>
 					<p>
 						by{' '}
