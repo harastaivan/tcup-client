@@ -117,7 +117,7 @@ class AppNavbar extends Component {
 								</DropdownToggle>
 								<DropdownMenu right className='bg-dark'>
 									<DropdownItem className='bg-dark'>
-										<NavLink tag={Link} to='/documents' activeClassName='active' disabled>
+										<NavLink tag={Link} to='/documents' activeClassName='active'>
 											Dokumenty
 										</NavLink>
 									</DropdownItem>
