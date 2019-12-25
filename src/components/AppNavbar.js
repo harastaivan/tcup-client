@@ -38,10 +38,10 @@ class AppNavbar extends Component {
 		const authLinks = (
 			<Fragment>
 				<NavItem>
-					<span className="navbar-text mr-3">
+					<span className='navbar-text mr-3'>
 						<strong>{user ? `${user.name} ${user.surname}` : ''}</strong>
 						{user && user.admin ? (
-							<Badge color="danger" className="ml-2">
+							<Badge color='danger' className='ml-2'>
 								Admin
 							</Badge>
 						) : (
@@ -50,7 +50,7 @@ class AppNavbar extends Component {
 					</span>
 				</NavItem>
 				<NavItem>
-					<NavLink tag={Link} to="/logout" activeClassName="active">
+					<NavLink tag={Link} to='/logout' activeClassName='active'>
 						Odhlásit se
 					</NavLink>
 				</NavItem>
@@ -60,12 +60,12 @@ class AppNavbar extends Component {
 		const guestLinks = (
 			<Fragment>
 				<NavItem>
-					<NavLink tag={Link} to="/login" activeClassName="active">
+					<NavLink tag={Link} to='/login' activeClassName='active'>
 						Přihlásit se
 					</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink tag={Link} to="/signup" activeClassName="active">
+					<NavLink tag={Link} to='/signup' activeClassName='active'>
 						Registrace
 					</NavLink>
 				</NavItem>
@@ -73,57 +73,57 @@ class AppNavbar extends Component {
 		);
 		return (
 			<Fragment>
-				<Navbar color="dark" dark expand="lg">
-					<NavbarBrand tag={Link} to="/">
+				<Navbar color='dark' dark expand='lg'>
+					<NavbarBrand tag={Link} to='/'>
 						{process.env.REACT_APP_TITLE}
 					</NavbarBrand>
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.open} navbar>
-						<Nav className="ml-auto" navbar>
+						<Nav className='ml-auto' navbar>
 							<NavItem>
-								<NavLink tag={Link} to="/news" activeClassName="active">
+								<NavLink tag={Link} to='/news' activeClassName='active'>
 									Novinky
 								</NavLink>
 							</NavItem>
 							<NavItem>
-								<NavLink tag={Link} to="/statuses" activeClassName="active">
+								<NavLink tag={Link} to='/statuses' activeClassName='active' disabled>
 									Statusy soutěžících
 								</NavLink>
 							</NavItem>
 							<NavItem>
-								<NavLink tag={Link} to="/starting-list" activeClassName="active">
+								<NavLink tag={Link} to='/starting-list' activeClassName='active' disabled>
 									Startovní listina
 								</NavLink>
 							</NavItem>
 							<NavItem>
-								<NavLink tag={Link} to="/results" activeClassName="active">
+								<NavLink tag={Link} to='/results' activeClassName='active' disabled>
 									Úlohy a výsledky
 								</NavLink>
 							</NavItem>
 							<NavItem>
-								<NavLink tag={Link} to="/registration" activeClassName="active">
+								<NavLink tag={Link} to='/registration' activeClassName='active'>
 									Přihláška
 								</NavLink>
 							</NavItem>
 							<NavItem />
 							<NavItem>
-								<NavLink tag={Link} to="/igc" activeClassName="active">
+								<NavLink tag={Link} to='/igc' activeClassName='active' disabled>
 									Odeslat IGC
 								</NavLink>
 							</NavItem>
-							<UncontrolledDropdown nav inNavbar className="bg-dark mr-4">
+							<UncontrolledDropdown nav inNavbar className='bg-dark mr-4'>
 								<DropdownToggle nav caret>
 									Další
 								</DropdownToggle>
-								<DropdownMenu right className="bg-dark">
-									<DropdownItem className="bg-dark">
-										<NavLink tag={Link} to="/documents" activeClassName="active">
+								<DropdownMenu right className='bg-dark'>
+									<DropdownItem className='bg-dark'>
+										<NavLink tag={Link} to='/documents' activeClassName='active' disabled>
 											Dokumenty
 										</NavLink>
 									</DropdownItem>
-									<DropdownItem className="bg-dark">
+									<DropdownItem className='bg-dark'>
 										<NavItem>
-											<NavLink tag={Link} to="/contacts" activeClassName="active">
+											<NavLink tag={Link} to='/contacts' activeClassName='active'>
 												Kontakty
 											</NavLink>
 										</NavItem>
@@ -139,7 +139,7 @@ class AppNavbar extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		auth: state.auth
 	};
