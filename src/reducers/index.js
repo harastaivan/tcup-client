@@ -6,9 +6,9 @@ import registrationReducer from './registration';
 import documentReducer from './document';
 
 export default combineReducers({
-	error: errorReducer,
-	auth: authReducer,
-	news: newsReducer,
-	registration: registrationReducer,
-	document: documentReducer
+    error: errorReducer,
+    auth: authReducer,
+    news: newsReducer,
+    registration: registrationReducer,
+    document: documentReducer
 });
