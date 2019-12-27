@@ -10,77 +10,77 @@ import { getDocuments, deleteDocument, setDocumentsLoading } from '../actions/do
 import fileSize from '../utils/fileSize';
 
 class Documents extends Component {
-	static propTypes = {
-		getDocuments: PropTypes.func.isRequired,
-		setDocumentsLoading: PropTypes.func.isRequired,
-		deleteDocument: PropTypes.func.isRequired,
-		document: PropTypes.object.isRequired,
-		isAuthenticated: PropTypes.bool.isRequired
-	};
-	onDeleteClick = id => {
-		this.props.deleteDocument(id);
-	};
+    static propTypes = {
+        getDocuments: PropTypes.func.isRequired,
+        setDocumentsLoading: PropTypes.func.isRequired,
+        deleteDocument: PropTypes.func.isRequired,
+        document: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool.isRequired
+    };
+    onDeleteClick = (id) => {
+        this.props.deleteDocument(id);
+    };
 
-	componentDidMount() {
-		this.props.setDocumentsLoading();
-		this.props.getDocuments();
-	}
+    componentDidMount() {
+        this.props.setDocumentsLoading();
+        this.props.getDocuments();
+    }
 
-	render() {
-		const { documents, loading } = this.props.document;
-		const spinner = <Spinner type='grow' color='secondary' className='m-3' />;
-		return (
-			<Container>
-				<h1>Dokumenty</h1>
-				<AddDocument />
-				{loading ? spinner : null}
-				<Table>
-					<thead>
-						<tr>
-							<th>název</th>
-							<th>datum poslední úpravy</th>
-							<th>velikost</th>
-							<th> </th>
-						</tr>
-					</thead>
-					<tbody>
-						{documents.map(document => (
-							<tr key={document._id}>
-								<td>
-									<a href={document.path}>{document.name}</a>
-								</td>
-								<td>
-									<Moment format={'dddd D. M. YYYY HH:mm'} locale='cs'>
-										{document.updatedAt}
-									</Moment>
-								</td>
-								<td>{fileSize(document.size, true)}</td>
-								<td>
-									<Button href={document.path} color='primary' className='mb-1'>
-										download
-									</Button>{' '}
-									{this.props.isAuthenticated && (
-										<Button
-											color='danger'
-											className='mb-1'
-											onClick={this.onDeleteClick.bind(this, document._id)}
-										>
-											smazat
-										</Button>
-									)}
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</Table>
-			</Container>
-		);
-	}
+    render() {
+        const { documents, loading } = this.props.document;
+        const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
+        return (
+            <Container>
+                <h1>Dokumenty</h1>
+                <AddDocument />
+                {loading ? spinner : null}
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>název</th>
+                            <th>datum poslední úpravy</th>
+                            <th>velikost</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {documents.map((document) => (
+                            <tr key={document._id}>
+                                <td>
+                                    <a href={document.path}>{document.name}</a>
+                                </td>
+                                <td>
+                                    <Moment format={'dddd D. M. YYYY HH:mm'} locale="cs">
+                                        {document.updatedAt}
+                                    </Moment>
+                                </td>
+                                <td>{fileSize(document.size, true)}</td>
+                                <td>
+                                    <Button href={document.path} color="primary" className="mb-1">
+                                        download
+                                    </Button>{' '}
+                                    {this.props.isAuthenticated && (
+                                        <Button
+                                            color="danger"
+                                            className="mb-1"
+                                            onClick={this.onDeleteClick.bind(this, document._id)}
+                                        >
+                                            smazat
+                                        </Button>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </Container>
+        );
+    }
 }
 
-const mapStateToProps = state => ({
-	document: state.document,
-	isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+    document: state.document,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getDocuments, deleteDocument, setDocumentsLoading })(Documents);

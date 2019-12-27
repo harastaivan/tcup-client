@@ -5,7 +5,7 @@ import { returnErrors } from './error';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
-export const getNews = () => async dispatch => {
+export const getNews = () => async (dispatch) => {
     dispatch(setNewsLoading);
     const res = await axios.get(`${API_ENDPOINT}/api/news`);
     dispatch({
@@ -14,7 +14,7 @@ export const getNews = () => async dispatch => {
     });
 };
 
-export const addNews = news => async (dispatch, getState) => {
+export const addNews = (news) => async (dispatch, getState) => {
     try {
         const res = await axios.post(`${API_ENDPOINT}/api/news`, news, tokenConfig(getState));
         dispatch({
@@ -26,7 +26,7 @@ export const addNews = news => async (dispatch, getState) => {
     }
 };
 
-export const deleteNews = id => async (dispatch, getState) => {
+export const deleteNews = (id) => async (dispatch, getState) => {
     try {
         await axios.delete(`${API_ENDPOINT}/api/news/${id}`, tokenConfig(getState));
         dispatch({

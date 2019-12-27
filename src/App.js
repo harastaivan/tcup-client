@@ -28,43 +28,43 @@ import Results from './components/Results';
 import { Alert } from 'reactstrap';
 
 class App extends Component {
-	componentDidMount() {
-		store.dispatch(loadUser());
-	}
-	render() {
-		return (
-			<Provider store={store}>
-				<Router>
-					<div className='App'>
-						<AppNavbar />
-						<Container className='p-3 min-vh-container transparent-background'>
-							{process.env.REACT_APP_TEST_MODE && (
-								<Alert color='warning'>
-									Aplikace se právě testuje. Nemusí vše fungovat tak, jak má.{' '}
-									<a href='https://gitreports.com/issue/harastaivan/tcup-client'>Chyby hlašte zde</a>.
-								</Alert>
-							)}
-							<Switch>
-								<Route path='/' component={Home} exact />
-								<Route path='/news' component={News} />
-								<Route path='/registration' component={Registration} />
-								<Route path='/login' component={Login} />
-								<Route path='/signup' component={Signup} />
-								<Route path='/logout' component={Logout} />
-								<Route path='/statuses' component={Statuses} />
-								<Route path='/starting-list' component={StartingList} />
-								<Route path='/results' component={Results} />
-								<Route path='/documents' component={Documents} />
-								<Route path='/contacts' component={Contacts} />
-								<Route path='/igc' component={SendIgc} />
-							</Switch>
-						</Container>
-						<Footer />
-					</div>
-				</Router>
-			</Provider>
-		);
-	}
+    componentDidMount() {
+        store.dispatch(loadUser());
+    }
+    render() {
+        return (
+            <Provider store={store}>
+                <Router>
+                    <div className="App">
+                        <AppNavbar />
+                        <Container className="p-3 min-vh-container transparent-background">
+                            {process.env.REACT_APP_TEST_MODE && (
+                                <Alert color="warning">
+                                    Aplikace se právě testuje. Nemusí vše fungovat tak, jak má.{' '}
+                                    <a href="https://gitreports.com/issue/harastaivan/tcup-client">Chyby hlašte zde</a>.
+                                </Alert>
+                            )}
+                            <Switch>
+                                <Route path="/" component={Home} exact />
+                                <Route path="/news" component={News} />
+                                <Route path="/registration" component={Registration} />
+                                <Route path="/login" component={Login} />
+                                <Route path="/signup" component={Signup} />
+                                <Route path="/logout" component={Logout} />
+                                <Route path="/statuses" component={Statuses} />
+                                <Route path="/starting-list" component={StartingList} />
+                                <Route path="/results" component={Results} />
+                                <Route path="/documents" component={Documents} />
+                                <Route path="/contacts" component={Contacts} />
+                                <Route path="/igc" component={SendIgc} />
+                            </Switch>
+                        </Container>
+                        <Footer />
+                    </div>
+                </Router>
+            </Provider>
+        );
+    }
 }
 
 export default App;

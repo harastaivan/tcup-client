@@ -4,23 +4,23 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Logout extends Component {
-	static propTypes = {
-		logout: PropTypes.func.isRequired,
-		history: PropTypes.object.isRequired
-	};
+    static propTypes = {
+        logout: PropTypes.func.isRequired,
+        history: PropTypes.object.isRequired
+    };
 
-	logout = () => {
-		this.props.logout();
-		this.props.history.push('/');
-	};
+    logout = () => {
+        this.props.logout();
+        this.props.history.push('/');
+    };
 
-	componentDidMount() {
-		this.logout();
-	}
+    componentDidMount() {
+        this.logout();
+    }
 
-	render() {
-		return <Fragment />;
-	}
+    render() {
+        return <Fragment />;
+    }
 }
 
 export default connect(null, { logout })(Logout);

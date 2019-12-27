@@ -5,7 +5,7 @@ import { returnErrors } from './error';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
-export const getFormData = () => async dispatch => {
+export const getFormData = () => async (dispatch) => {
     dispatch(setFormDataLoading);
     const res = await axios.get(`${API_ENDPOINT}/api/registration/form`);
     dispatch({
@@ -35,7 +35,7 @@ export const getRegistration = () => async (dispatch, getState) => {
     }
 };
 
-export const submitRegistration = registration => async (dispatch, getState) => {
+export const submitRegistration = (registration) => async (dispatch, getState) => {
     try {
         const res = await axios.post(`${API_ENDPOINT}/api/registration`, registration, tokenConfig(getState));
         dispatch({
