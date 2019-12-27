@@ -13,7 +13,7 @@ class AddNews extends React.Component {
 
     static propTypes = {
         addNews: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired
+        isAuthenticated: PropTypes.bool
     };
 
     onChange = (e) => {

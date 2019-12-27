@@ -14,7 +14,7 @@ class News extends Component {
         setNewsLoading: PropTypes.func.isRequired,
         deleteNews: PropTypes.func.isRequired,
         news: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired
+        isAuthenticated: PropTypes.bool
     };
 
     onDeleteClick = (id) => {

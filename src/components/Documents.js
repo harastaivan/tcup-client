@@ -15,7 +15,7 @@ class Documents extends Component {
         setDocumentsLoading: PropTypes.func.isRequired,
         deleteDocument: PropTypes.func.isRequired,
         document: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired
+        isAuthenticated: PropTypes.bool
     };
     onDeleteClick = (id) => {
         this.props.deleteDocument(id);

@@ -27,7 +27,7 @@ export default class Contacts extends Component {
     ];
 
     formatLine(line) {
-        return <p>{line}</p>;
+        return <p key={line}>{line}</p>;
     }
 
     render() {

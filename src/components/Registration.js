@@ -11,7 +11,8 @@ class Registration extends Component {
     static propTypes = {
         getRegistration: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.func.isRequired,
-        registration: PropTypes.object.isRequired
+        registration: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
     };
 
     componentDidMount() {
@@ -30,7 +31,7 @@ class Registration extends Component {
                 {!this.props.isAuthenticated && (
                     <div>
                         <Alert color="info">Pro vytvoření přihlášky se přihlaste.</Alert>
-                        <Login />
+                        <Login history={this.props.history} />
                     </div>
                 )}
                 {this.props.isAuthenticated && this.props.registration.isRegistered && (
