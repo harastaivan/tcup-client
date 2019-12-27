@@ -6,8 +6,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-	const documentsWithoutPayload = state.documents.filter(item => item._id !== action.payload._id);
-
 	switch (action.type) {
 		case GET_DOCUMENTS:
 			return {
@@ -23,12 +21,12 @@ export default (state = initialState, action) => {
 		case ADD_DOCUMENT:
 			return {
 				...state,
-				documents: [action.payload, ...documentsWithoutPayload]
+				documents: [action.payload, ...state.documents.filter(item => item._id !== action.payload._id)]
 			};
 		case DELETE_DOCUMENT:
 			return {
 				...state,
-				documents: documentsWithoutPayload
+				documents: state.documents.filter(item => item._id !== action.payload._id)
 			};
 		default:
 			return state;
