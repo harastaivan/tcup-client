@@ -12,7 +12,7 @@ class AddDocument extends React.Component {
 
     static propTypes = {
         addDocument: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired
+        isAuthenticated: PropTypes.bool
     };
 
     onChange = (e) => {
