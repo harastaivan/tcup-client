@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Table, Button, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
@@ -9,6 +10,13 @@ import { getDocuments, deleteDocument, setDocumentsLoading } from '../actions/do
 import fileSize from '../utils/fileSize';
 
 class Documents extends Component {
+	static propTypes = {
+		getDocuments: PropTypes.func.isRequired,
+		setDocumentsLoading: PropTypes.func.isRequired,
+		deleteDocument: PropTypes.func.isRequired,
+		document: PropTypes.object.isRequired,
+		isAuthenticated: PropTypes.bool.isRequired
+	};
 	onDeleteClick = id => {
 		this.props.deleteDocument(id);
 	};

@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-	Card,
-	CardBody,
-	CardFooter,
-	CardHeader,
-	CardText,
-	Button,
-	Spinner
-} from 'reactstrap';
+import { Card, CardBody, CardFooter, CardHeader, CardText, Button, Spinner } from 'reactstrap';
 import Moment from 'react-moment';
 import 'moment/locale/cs';
 
@@ -18,10 +10,11 @@ import AddNews from './AddNews';
 
 class News extends Component {
 	static propTypes = {
-		news: PropTypes.object.isRequired,
 		getNews: PropTypes.func.isRequired,
-		isAuthenticated: PropTypes.bool,
-		deleteNews: PropTypes.func.isRequired
+		setNewsLoading: PropTypes.func.isRequired,
+		deleteNews: PropTypes.func.isRequired,
+		news: PropTypes.object.isRequired,
+		isAuthenticated: PropTypes.bool.isRequired
 	};
 
 	onDeleteClick = id => {
@@ -35,9 +28,7 @@ class News extends Component {
 
 	render() {
 		const { news, loading } = this.props.news;
-		const spinner = (
-			<Spinner type='grow' color='secondary' className='m-3' />
-		);
+		const spinner = <Spinner type='grow' color='secondary' className='m-3' />;
 		return (
 			<div>
 				<h1>Novinky</h1>
@@ -53,10 +44,7 @@ class News extends Component {
 										className='remove-btn float-right'
 										color='danger'
 										size='sm'
-										onClick={this.onDeleteClick.bind(
-											this,
-											one._id
-										)}
+										onClick={this.onDeleteClick.bind(this, one._id)}
 									>
 										Smazat novinku
 									</Button>
@@ -69,14 +57,8 @@ class News extends Component {
 							})}
 						</CardBody>
 						<CardFooter>
-							<strong>{`${one.author.name} ${
-								one.author.surname
-							} `}</strong>
-							<Moment
-								format={'dddd D. M. YYYY HH:mm'}
-								locale='cs'
-								className='float-right'
-							>
+							<strong>{`${one.author.name} ${one.author.surname} `}</strong>
+							<Moment format={'dddd D. M. YYYY HH:mm'} locale='cs' className='float-right'>
 								{one.updatedAt}
 							</Moment>
 						</CardFooter>
@@ -92,7 +74,4 @@ const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-	mapStateToProps,
-	{ getNews, deleteNews, setNewsLoading }
-)(News);
+export default connect(mapStateToProps, { getNews, deleteNews, setNewsLoading })(News);

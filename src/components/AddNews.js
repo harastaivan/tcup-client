@@ -12,7 +12,8 @@ class AddNews extends React.Component {
 	};
 
 	static propTypes = {
-		isAuthenticated: PropTypes.bool
+		addNews: PropTypes.func.isRequired,
+		isAuthenticated: PropTypes.bool.isRequired
 	};
 
 	onChange = e => {
@@ -77,7 +78,4 @@ const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(
-	mapStateToProps,
-	{ addNews }
-)(AddNews);
+export default connect(mapStateToProps, { addNews })(AddNews);

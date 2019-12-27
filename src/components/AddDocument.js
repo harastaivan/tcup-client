@@ -11,7 +11,8 @@ class AddDocument extends React.Component {
 	};
 
 	static propTypes = {
-		isAuthenticated: PropTypes.bool
+		addDocument: PropTypes.func.isRequired,
+		isAuthenticated: PropTypes.bool.isRequired
 	};
 
 	onChange = e => {

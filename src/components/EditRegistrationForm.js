@@ -23,7 +23,10 @@ class EditRegistrationForm extends Component {
     };
 
     static propTypes = {
-        edit: PropTypes.bool.isRequired
+        getFormData: PropTypes.func.isRequired,
+        edit: PropTypes.bool.isRequired,
+        registration: PropTypes.object.isRequired,
+        auth: PropTypes.object.isRequired
     };
 
     onChange = e => {

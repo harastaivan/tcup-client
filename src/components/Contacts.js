@@ -36,7 +36,7 @@ export default class Contacts extends Component {
 				<h1>Kontakty</h1>
 				{this.contacts.map(contact => {
 					return (
-						<Fragment>
+						<Fragment key={contact.heading}>
 							<h2>{contact.heading}</h2>
 							{contact.lines.map(line => this.formatLine(line))}
 						</Fragment>
