@@ -22,10 +22,10 @@ class RegistrationForm extends Component {
     };
 
     static propTypes = {
-        auth: PropTypes.object,
-        registration: PropTypes.object,
         getFormData: PropTypes.func,
-        submitRegistration: PropTypes.func
+        submitRegistration: PropTypes.func,
+        auth: PropTypes.object,
+        registration: PropTypes.object
     };
 
     onChange = e => {

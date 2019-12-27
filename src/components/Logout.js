@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 
 class Logout extends Component {
 	static propTypes = {
-		logout: PropTypes.func.isRequired
+		logout: PropTypes.func.isRequired,
+		history: PropTypes.object.isRequired
 	};
 
 	logout = () => {

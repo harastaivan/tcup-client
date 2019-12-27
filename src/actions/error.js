@@ -11,19 +11,11 @@ const parseError = error => {
 	} else if (error.request) {
 		// `error.request` is an instance of XMLHttpRequest in the browser and an instance of
 		// http.ClientRequest in node.js
-		console.error('The request was made but no response was received', {
-			error: error.toJSON(),
-			request: error.request
-		});
 		return {
 			msg: error.message,
 			status: error.request.status
 		};
 	} else {
-		console.error('Something happened in setting up the request that triggered an Error', {
-			error: error,
-			message: error.message
-		});
 		return {
 			msg: error.message,
 			status: 500
