@@ -23,7 +23,10 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "lint": "eslint --ignore-path .gitignore .",
-        "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json)\""
+        "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
+        "format": "npm run prettier -- --write",
+        "format:check": "npm run prettier -- --list-different",
+        "validate": "npm run format:check && npm run lint && npm run build"
     },
     "bugs": {
         "url": "https://gitreports.com/issue/harastaivan/tcup-client"
