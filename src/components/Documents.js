@@ -28,6 +28,7 @@ class Documents extends Component {
 
     render() {
         const { documents, loading } = this.props.document;
+        const { isAuthenticated } = this.props;
         const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
         return (
             <Container>
@@ -59,7 +60,7 @@ class Documents extends Component {
                                     <Button href={document.path} color="primary" className="mb-1">
                                         download
                                     </Button>{' '}
-                                    {this.props.isAuthenticated && (
+                                    {isAuthenticated && (
                                         <Button
                                             color="danger"
                                             className="mb-1"

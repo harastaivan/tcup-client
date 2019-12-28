@@ -33,14 +33,14 @@ class AppNavbar extends Component {
     };
 
     render() {
-        const { isAuthenticated, user } = this.props.auth;
+        const { isAuthenticated, isAdmin, user } = this.props.auth;
 
         const authLinks = (
             <Fragment>
                 <NavItem>
                     <span className="navbar-text mr-3">
                         <strong>{user ? `${user.name} ${user.surname}` : ''}</strong>
-                        {user && user.admin ? (
+                        {isAdmin ? (
                             <Badge color="danger" className="ml-2">
                                 Admin
                             </Badge>

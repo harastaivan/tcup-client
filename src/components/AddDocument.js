@@ -33,9 +33,10 @@ class AddDocument extends React.Component {
     };
 
     render() {
+        const { isAuthenticated } = this.props;
         return (
             <Fragment>
-                {this.props.isAuthenticated ? (
+                {isAuthenticated ? (
                     <Fragment>
                         <h2>Nahrát nový soubor</h2>
                         <Form onSubmit={this.onSubmit}>
