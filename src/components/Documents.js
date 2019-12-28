@@ -15,7 +15,7 @@ class Documents extends Component {
         setDocumentsLoading: PropTypes.func.isRequired,
         deleteDocument: PropTypes.func.isRequired,
         document: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool
+        isAdmin: PropTypes.bool
     };
     onDeleteClick = (id) => {
         this.props.deleteDocument(id);
@@ -28,7 +28,7 @@ class Documents extends Component {
 
     render() {
         const { documents, loading } = this.props.document;
-        const { isAuthenticated } = this.props;
+        const { isAdmin } = this.props;
         const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
         return (
             <Container>
@@ -60,7 +60,7 @@ class Documents extends Component {
                                     <Button href={document.path} color="primary" className="mb-1">
                                         download
                                     </Button>{' '}
-                                    {isAuthenticated && (
+                                    {isAdmin && (
                                         <Button
                                             color="danger"
                                             className="mb-1"
@@ -81,7 +81,7 @@ class Documents extends Component {
 
 const mapStateToProps = (state) => ({
     document: state.document,
-    isAuthenticated: state.auth.isAuthenticated
+    isAdmin: state.auth.isAdmin
 });
 
 export default connect(mapStateToProps, { getDocuments, deleteDocument, setDocumentsLoading })(Documents);
