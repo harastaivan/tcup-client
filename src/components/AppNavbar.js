@@ -91,7 +91,7 @@ class AppNavbar extends Component {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to="/starting-list" activeClassName="active" disabled>
+                                <NavLink tag={Link} to="/starting-list" activeClassName="active">
                                     Startovní listina
                                 </NavLink>
                             </NavItem>
