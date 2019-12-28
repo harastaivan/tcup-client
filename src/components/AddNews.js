@@ -13,7 +13,7 @@ class AddNews extends React.Component {
 
     static propTypes = {
         addNews: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool
+        isAdmin: PropTypes.bool
     };
 
     onChange = (e) => {
@@ -34,7 +34,7 @@ class AddNews extends React.Component {
     render() {
         return (
             <Fragment>
-                {this.props.isAuthenticated ? (
+                {this.props.isAdmin ? (
                     <Fragment>
                         <h2>Přidat novinku</h2>
                         <Form onSubmit={this.onSubmit}>
@@ -75,7 +75,7 @@ class AddNews extends React.Component {
 
 const mapStateToProps = (state) => ({
     news: state.news,
-    isAuthenticated: state.auth.isAuthenticated
+    isAdmin: state.auth.isAdmin
 });
 
 export default connect(mapStateToProps, { addNews })(AddNews);

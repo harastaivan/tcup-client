@@ -14,7 +14,7 @@ class News extends Component {
         setNewsLoading: PropTypes.func.isRequired,
         deleteNews: PropTypes.func.isRequired,
         news: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool
+        isAdmin: PropTypes.bool
     };
 
     onDeleteClick = (id) => {
@@ -39,7 +39,7 @@ class News extends Component {
                         <CardHeader>
                             <h3>
                                 {one.title}
-                                {this.props.isAuthenticated ? (
+                                {this.props.isAdmin ? (
                                     <Button
                                         className="remove-btn float-right"
                                         color="danger"
@@ -71,7 +71,7 @@ class News extends Component {
 
 const mapStateToProps = (state) => ({
     news: state.news,
-    isAuthenticated: state.auth.isAuthenticated
+    isAdmin: state.auth.isAdmin
 });
 
 export default connect(mapStateToProps, { getNews, deleteNews, setNewsLoading })(News);
