@@ -11,7 +11,8 @@ import {
 
 const initialState = {
     token: localStorage.getItem('token'),
-    isAuthenticated: null,
+    isAuthenticated: false,
+    isAdmin: false,
     isLoading: false,
     user: null
 };
@@ -28,6 +29,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: true,
+                isAdmin: action.payload.admin,
                 isLoading: false,
                 user: action.payload
             };
@@ -38,6 +40,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 ...action.payload,
+                isAdmin: action.payload.user.admin,
                 isAuthenticated: true,
                 isLoading: false
             };
@@ -51,6 +54,7 @@ export default function(state = initialState, action) {
                 ...state,
                 token: null,
                 user: null,
+                isAdmin: false,
                 isAuthenticated: false,
                 isLoading: false
             };
