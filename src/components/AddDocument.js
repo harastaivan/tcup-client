@@ -12,7 +12,7 @@ class AddDocument extends React.Component {
 
     static propTypes = {
         addDocument: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool
+        isAdmin: PropTypes.bool
     };
 
     onChange = (e) => {
@@ -33,10 +33,10 @@ class AddDocument extends React.Component {
     };
 
     render() {
-        const { isAuthenticated } = this.props;
+        const { isAdmin } = this.props;
         return (
             <Fragment>
-                {isAuthenticated ? (
+                {isAdmin ? (
                     <Fragment>
                         <h2>Nahrát nový soubor</h2>
                         <Form onSubmit={this.onSubmit}>
@@ -57,7 +57,7 @@ class AddDocument extends React.Component {
 
 const mapStateToProps = (state) => ({
     document: state.document,
-    isAuthenticated: state.auth.isAuthenticated
+    isAdmin: state.auth.isAdmin
 });
 
 export default connect(mapStateToProps, { addDocument })(AddDocument);
