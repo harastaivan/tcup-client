@@ -41,7 +41,7 @@ class Documents extends Component {
                             <th>název</th>
                             <th>datum poslední úpravy</th>
                             <th>velikost</th>
-                            <th> </th>
+                            <th className="d-none d-md-table-cell"> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,7 +56,7 @@ class Documents extends Component {
                                     </Moment>
                                 </td>
                                 <td>{fileSize(document.size, true)}</td>
-                                <td>
+                                <td className="d-none d-md-table-cell">
                                     <Button href={document.path} color="primary" className="mb-1">
                                         download
                                     </Button>{' '}
