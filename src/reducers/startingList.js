@@ -1,4 +1,4 @@
-import { GET_STARTING_LIST, STARTING_LIST_LOADING } from '../actions/types';
+import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION } from '../actions/types';
 
 const initialState = {
     classes: [],
@@ -17,6 +17,19 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loading: true
+            };
+        case PAY_REGISTRATION:
+            return {
+                ...state,
+                classes: state.classes.map((one) => {
+                    one.registrations = one.registrations.map((registration) => {
+                        if (registration._id === action.payload.registrationId) {
+                            registration.paid = action.payload.paid;
+                        }
+                        return registration;
+                    });
+                    return one;
+                })
             };
         default:
             return state;
