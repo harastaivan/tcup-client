@@ -46,7 +46,7 @@ class News extends Component {
                                         size="sm"
                                         onClick={this.onDeleteClick.bind(this, one._id)}
                                     >
-                                        Smazat novinku
+                                        smazat novinku
                                     </Button>
                                 ) : null}
                             </h3>
