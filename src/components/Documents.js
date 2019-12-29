@@ -57,7 +57,7 @@ class Documents extends Component {
                                 </td>
                                 <td>{fileSize(document.size, true)}</td>
                                 <td className="d-none d-md-table-cell">
-                                    <Button href={document.path} color="primary" className="mb-1">
+                                    <Button href={document.path} color="primary" className="mb-1" size="sm">
                                         download
                                     </Button>{' '}
                                     {isAdmin && (
@@ -65,6 +65,7 @@ class Documents extends Component {
                                             color="danger"
                                             className="mb-1"
                                             onClick={this.onDeleteClick.bind(this, document._id)}
+                                            size="sm"
                                         >
                                             smazat
                                         </Button>
