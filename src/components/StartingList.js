@@ -1,17 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Table, Spinner } from 'reactstrap';
+import { Button, Container, Table, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import 'moment/locale/cs';
 
-import { getStartingList, setStartingListLoading } from '../actions/startingList';
+import { getStartingList, setStartingListLoading, markPaid } from '../actions/startingList';
 
 class StartingList extends Component {
     static propTypes = {
         getStartingList: PropTypes.func.isRequired,
         setStartingListLoading: PropTypes.func.isRequired,
-        startingList: PropTypes.object.isRequired
+        startingList: PropTypes.object.isRequired,
+        markPaid: PropTypes.func.isRequired,
+        isAdmin: PropTypes.bool
     };
 
     componentDidMount() {
@@ -19,8 +21,14 @@ class StartingList extends Component {
         this.props.getStartingList();
     }
 
+    markPaid = (registrationId, nowPaid) => {
+        const paid = !nowPaid;
+        this.props.markPaid(registrationId, paid);
+    };
+
     render() {
         const { classes, loading } = this.props.startingList;
+        const { isAdmin } = this.props;
         const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
         return (
             <Container>
@@ -40,6 +48,7 @@ class StartingList extends Component {
                                         <th>typ</th>
                                         <th>imatrikulace</th>
                                         <th className="d-none d-md-table-cell">zaplaceno</th>
+                                        <th className="d-none d-md-table-cell"> </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,6 +69,24 @@ class StartingList extends Component {
                                             ) : (
                                                 <td className="d-none d-md-table-cell text-danger">ne</td>
                                             )}
+                                            <td className="d-none d-md-table-cell">
+                                                {isAdmin && (
+                                                    <Button
+                                                        color={registration.paid ? 'danger' : 'success'}
+                                                        className="mb-1"
+                                                        onClick={this.markPaid.bind(
+                                                            this,
+                                                            registration._id,
+                                                            registration.paid
+                                                        )}
+                                                        size="sm"
+                                                    >
+                                                        {registration.paid
+                                                            ? 'označit jako nezaplacené'
+                                                            : 'označit jako zaplacené'}
+                                                    </Button>
+                                                )}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -75,7 +102,8 @@ class StartingList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    startingList: state.startingList
+    startingList: state.startingList,
+    isAdmin: state.auth.isAdmin
 });
 
-export default connect(mapStateToProps, { getStartingList, setStartingListLoading })(StartingList);
+export default connect(mapStateToProps, { getStartingList, setStartingListLoading, markPaid })(StartingList);
