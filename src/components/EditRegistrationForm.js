@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getFormData, submitRegistration } from '../actions/registration';
+import { getFormData, updateRegistration } from '../actions/registration';
 
 class EditRegistrationForm extends Component {
     state = {
@@ -25,6 +25,7 @@ class EditRegistrationForm extends Component {
     static propTypes = {
         getFormData: PropTypes.func.isRequired,
         edit: PropTypes.bool.isRequired,
+        updateRegistration: PropTypes.func.isRequired,
         registration: PropTypes.object.isRequired,
         auth: PropTypes.object.isRequired
     };
@@ -37,7 +38,7 @@ class EditRegistrationForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        /*const {
+        const {
             birthDate,
             phone,
             aeroclub,
@@ -72,7 +73,8 @@ class EditRegistrationForm extends Component {
             meals,
             note
         };
-        this.props.updateRegistration(registration);*/
+        this.props.updateRegistration(registration);
+        this.toggleEdit();
     };
 
     dataIsEmpty = () => {
@@ -104,10 +106,22 @@ class EditRegistrationForm extends Component {
         this.props.getFormData();
     }
 
+    toggleEdit = () => {
+        this.setState({
+            edit: !this.state.edit
+        });
+    };
+
     render() {
         return (
             <div>
                 <h1>Přihláška</h1>
+                {!this.state.edit && (
+                    <Button color="primary" className="mb-3" onClick={this.toggleEdit}>
+                        upravit přihlášku
+                    </Button>
+                )}
+
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>
                         <Col md={6}>
@@ -159,7 +173,6 @@ class EditRegistrationForm extends Component {
                                     type="date"
                                     name="birthDate"
                                     id="birthDate"
-                                    placeholder="DD/MM/YYYY"
                                     value={this.state.birthDate}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -395,7 +408,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     getFormData,
-    submitRegistration
+    updateRegistration
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditRegistrationForm);

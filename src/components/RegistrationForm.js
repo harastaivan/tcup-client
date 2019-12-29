@@ -158,7 +158,6 @@ class RegistrationForm extends Component {
                                     type="date"
                                     name="birthDate"
                                     id="birthDate"
-                                    placeholder="DD/MM/YYYY"
                                     value={this.state.birthDate}
                                     onChange={this.onChange}
                                 />

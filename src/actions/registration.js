@@ -1,4 +1,4 @@
-import { FORM_DATA_LOADING, GET_FORM_DATA, SUBMIT_REGISTRATION, GET_REGISTRATION } from './types';
+import { FORM_DATA_LOADING, GET_FORM_DATA, SUBMIT_REGISTRATION, UPDATE_REGISTRATION, GET_REGISTRATION } from './types';
 import axios from 'axios';
 import { tokenConfig } from './auth';
 import { returnErrors } from './error';
@@ -40,6 +40,21 @@ export const submitRegistration = (registration) => async (dispatch, getState) =
         const res = await axios.post(`${API_ENDPOINT}/api/registration`, registration, tokenConfig(getState));
         dispatch({
             type: SUBMIT_REGISTRATION,
+            payload: {
+                registration: res.data,
+                isRegistered: true
+            }
+        });
+    } catch (err) {
+        dispatch(returnErrors(err));
+    }
+};
+
+export const updateRegistration = (registration) => async (dispatch, getState) => {
+    try {
+        const res = await axios.put(`${API_ENDPOINT}/api/registration`, registration, tokenConfig(getState));
+        dispatch({
+            type: UPDATE_REGISTRATION,
             payload: {
                 registration: res.data,
                 isRegistered: true

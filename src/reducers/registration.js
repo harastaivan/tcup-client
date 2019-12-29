@@ -1,4 +1,10 @@
-import { GET_FORM_DATA, FORM_DATA_LOADING, GET_REGISTRATION, SUBMIT_REGISTRATION } from '../actions/types';
+import {
+    GET_FORM_DATA,
+    FORM_DATA_LOADING,
+    GET_REGISTRATION,
+    SUBMIT_REGISTRATION,
+    UPDATE_REGISTRATION
+} from '../actions/types';
 
 const initialState = {
     registration: {},
@@ -32,6 +38,7 @@ export default (state = initialState, action) => {
                 isRegistered: action.payload.isRegistered
             };
         case SUBMIT_REGISTRATION:
+        case UPDATE_REGISTRATION:
             return {
                 ...state,
                 registration: action.payload.registration,
