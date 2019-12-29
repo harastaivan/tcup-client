@@ -1,5 +1,7 @@
-import { STARTING_LIST_LOADING, GET_STARTING_LIST } from './types';
+import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION } from './types';
 import axios from 'axios';
+import { tokenConfig } from './auth';
+import { returnErrors } from './error';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
@@ -16,4 +18,23 @@ export const setStartingListLoading = () => {
     return {
         type: STARTING_LIST_LOADING
     };
+};
+
+export const markPaid = (registrationId, paid) => async (dispatch, getState) => {
+    try {
+        const res = await axios.put(
+            `${API_ENDPOINT}/api/registration/pay/${registrationId}`,
+            { paid },
+            tokenConfig(getState)
+        );
+        dispatch({
+            type: PAY_REGISTRATION,
+            payload: {
+                registrationId: res.data._id,
+                paid: res.data.paid
+            }
+        });
+    } catch (err) {
+        dispatch(returnErrors(err));
+    }
 };
