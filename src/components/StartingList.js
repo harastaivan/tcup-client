@@ -28,7 +28,6 @@ class StartingList extends Component {
     };
 
     exportStartingList = () => {
-        alert('works');
         this.props.exportRegistrations();
     };
 

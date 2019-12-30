@@ -44,7 +44,7 @@ export const exportRegistrations = () => async (dispatch, getState) => {
         const res = await axios.get(`${API_ENDPOINT}/api/starting-list/export`, tokenConfig(getState));
         dispatch({
             type: EXPORT_REGISTRATIONS,
-            payload: res.data
+            payload: res
         });
     } catch (err) {
         dispatch(returnErrors(err));
