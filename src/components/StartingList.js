@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import 'moment/locale/cs';
 
-import { getStartingList, setStartingListLoading, markPaid } from '../actions/startingList';
+import { getStartingList, setStartingListLoading, markPaid, exportRegistrations } from '../actions/startingList';
 
 class StartingList extends Component {
     static propTypes = {
@@ -13,6 +13,7 @@ class StartingList extends Component {
         setStartingListLoading: PropTypes.func.isRequired,
         startingList: PropTypes.object.isRequired,
         markPaid: PropTypes.func.isRequired,
+        exportRegistrations: PropTypes.func.isRequired,
         isAdmin: PropTypes.bool
     };
 
@@ -26,6 +27,11 @@ class StartingList extends Component {
         this.props.markPaid(registrationId, paid);
     };
 
+    exportStartingList = () => {
+        alert('works');
+        this.props.exportRegistrations();
+    };
+
     render() {
         const { classes, loading } = this.props.startingList;
         const { isAdmin } = this.props;
@@ -34,6 +40,11 @@ class StartingList extends Component {
             <Container>
                 <h1>Startovní listina</h1>
                 {loading ? spinner : null}
+                {isAdmin && (
+                    <Button color="primary" className="mb-3" onClick={this.exportStartingList}>
+                        export přihlášek
+                    </Button>
+                )}
                 {classes.map((one) => (
                     <Fragment key={one._id}>
                         <h2>{one.name}</h2>
@@ -106,4 +117,6 @@ const mapStateToProps = (state) => ({
     isAdmin: state.auth.isAdmin
 });
 
-export default connect(mapStateToProps, { getStartingList, setStartingListLoading, markPaid })(StartingList);
+export default connect(mapStateToProps, { getStartingList, setStartingListLoading, markPaid, exportRegistrations })(
+    StartingList
+);
