@@ -1,4 +1,4 @@
-import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION } from './types';
+import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from './types';
 import axios from 'axios';
 import { tokenConfig } from './auth';
 import { returnErrors } from './error';
@@ -33,6 +33,18 @@ export const markPaid = (registrationId, paid) => async (dispatch, getState) => 
                 registrationId: res.data._id,
                 paid: res.data.paid
             }
+        });
+    } catch (err) {
+        dispatch(returnErrors(err));
+    }
+};
+
+export const exportRegistrations = () => async (dispatch, getState) => {
+    try {
+        const res = await axios.get(`${API_ENDPOINT}/api/starting-list/export`, tokenConfig(getState));
+        dispatch({
+            type: EXPORT_REGISTRATIONS,
+            payload: res.data
         });
     } catch (err) {
         dispatch(returnErrors(err));
