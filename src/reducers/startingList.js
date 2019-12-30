@@ -1,4 +1,4 @@
-import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION } from '../actions/types';
+import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../actions/types';
 
 const initialState = {
     classes: [],
@@ -31,6 +31,9 @@ export default (state = initialState, action) => {
                     return one;
                 })
             };
+        case EXPORT_REGISTRATIONS:
+            console.log(action.payload);
+            return state;
         default:
             return state;
     }
