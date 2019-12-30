@@ -1,4 +1,7 @@
+import { saveAs } from 'file-saver';
+
 import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../actions/types';
+import formatDate from '../utils/formatDate';
 
 const initialState = {
     classes: [],
@@ -31,9 +34,14 @@ export default (state = initialState, action) => {
                     return one;
                 })
             };
-        case EXPORT_REGISTRATIONS:
-            console.log(action.payload);
+        case EXPORT_REGISTRATIONS: {
+            const data = new TextEncoder('utf-8').encode(action.payload.data);
+            const filename = `export-${formatDate()}.csv`;
+            saveAs(new Blob([data], { type: action.payload.headers['content-type'] }), filename, {
+                autoBom: true
+            });
             return state;
+        }
         default:
             return state;
     }
