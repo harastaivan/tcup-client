@@ -248,7 +248,7 @@ class EditRegistrationForm extends Component {
                                     {this.props.registration.formData.gliderTypes.map((gliderType) => {
                                         return (
                                             <option key={gliderType._id} value={gliderType._id}>
-                                                {gliderType.name}
+                                                {gliderType.name} ({gliderType.index})
                                             </option>
                                         );
                                     })}
