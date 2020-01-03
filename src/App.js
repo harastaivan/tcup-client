@@ -40,7 +40,7 @@ class App extends Component {
                         <Container className="p-3 min-vh-container transparent-background">
                             {process.env.REACT_APP_TEST_MODE && (
                                 <Alert color="warning">
-                                    Aplikace se právě testuje. Nemusí vše fungovat tak, jak má.{' '}
+                                    Aplikace se právě testuje. Nemusí vše fungovat správně.{' '}
                                     <a href="https://gitreports.com/issue/harastaivan/tcup-client">Chyby hlašte zde</a>.
                                 </Alert>
                             )}
