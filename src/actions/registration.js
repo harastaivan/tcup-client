@@ -1,4 +1,11 @@
-import { FORM_DATA_LOADING, GET_FORM_DATA, SUBMIT_REGISTRATION, UPDATE_REGISTRATION, GET_REGISTRATION } from './types';
+import {
+    FORM_DATA_LOADING,
+    GET_FORM_DATA,
+    SUBMIT_REGISTRATION,
+    UPDATE_REGISTRATION,
+    GET_REGISTRATION,
+    REGISTRATION_LOADING
+} from './types';
 import axios from 'axios';
 import { tokenConfig } from './auth';
 import { returnErrors } from './error';
@@ -6,7 +13,9 @@ import { returnErrors } from './error';
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 export const getFormData = () => async (dispatch) => {
-    dispatch(setFormDataLoading);
+    dispatch({
+        type: FORM_DATA_LOADING
+    });
     const res = await axios.get(`${API_ENDPOINT}/api/registration/form`);
     dispatch({
         type: GET_FORM_DATA,
@@ -15,6 +24,9 @@ export const getFormData = () => async (dispatch) => {
 };
 
 export const getRegistration = () => async (dispatch, getState) => {
+    dispatch({
+        type: REGISTRATION_LOADING
+    });
     try {
         const res = await axios.get(`${API_ENDPOINT}/api/registration`, tokenConfig(getState));
         dispatch({

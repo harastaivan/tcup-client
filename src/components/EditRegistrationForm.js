@@ -131,10 +131,6 @@ class EditRegistrationForm extends Component {
         });
     };
 
-    componentDidMount() {
-        this.props.getFormData();
-    }
-
     toggleEdit = () => {
         this.setState({
             edit: !this.state.edit
