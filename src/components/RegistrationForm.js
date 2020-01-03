@@ -9,16 +9,42 @@ class RegistrationForm extends Component {
         birthDate: '',
         phone: '',
         aeroclub: '',
-        region: 'Region',
-        gliderType: 'Typ kluzáku',
+        region: '',
+        gliderType: '',
         registrationNumber: '',
         startNumber: '',
-        competitionClass: 'Třída',
+        competitionClass: '',
         logger: '',
-        accomodationType: 'Typ ubytování',
+        accomodationType: '',
         quantity: '',
         meals: '',
-        note: ''
+        note: '',
+        birthDateValid: true,
+        phoneValid: false,
+        aeroclubValid: false,
+        regionValid: false,
+        gliderTypeValid: false,
+        registrationNumberValid: false,
+        startNumberValid: false,
+        competitionClassValid: false,
+        loggerValid: false,
+        accomodationTypeValid: false,
+        quantityValid: false,
+        mealsValid: false,
+        noteValid: true,
+        birthDateVisited: false,
+        phoneVisited: false,
+        aeroclubVisited: false,
+        regionVisited: false,
+        gliderTypeVisited: false,
+        registrationNumberVisited: false,
+        startNumberVisited: false,
+        competitionClassVisited: false,
+        loggerVisited: false,
+        accomodationTypeVisited: false,
+        quantityVisited: false,
+        mealsVisited: false,
+        noteVisited: false
     };
 
     static propTypes = {
@@ -32,6 +58,7 @@ class RegistrationForm extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+        this.validateField(e);
     };
 
     onSubmit = (e) => {
@@ -75,28 +102,30 @@ class RegistrationForm extends Component {
     };
 
     dataIsEmpty = () => {
-        const {
-            phone,
-            aeroclub,
-            region,
-            gliderType,
-            registrationNumber,
-            startNumber,
-            competitionClass,
-            logger,
-            accomodationType
-        } = this.state;
-        return !(
-            phone &&
-            aeroclub &&
-            region &&
-            gliderType !== 'Typ kluzáku' &&
-            registrationNumber &&
-            startNumber &&
-            competitionClass !== 'Třída' &&
-            logger &&
-            accomodationType !== 'Typ ubytování'
+        return (
+            !this.state.birthDateValid ||
+            !this.state.phoneValid ||
+            !this.state.aeroclubValid ||
+            !this.state.regionValid ||
+            !this.state.gliderTypeValid ||
+            !this.state.registrationNumberValid ||
+            !this.state.startNumberValid ||
+            !this.state.competitionClassValid ||
+            !this.state.loggerValid ||
+            !this.state.accomodationTypeValid ||
+            !this.state.quantityValid ||
+            !this.state.mealsValid ||
+            !this.state.noteValid
         );
+    };
+
+    validateField = (e) => {
+        const valid = e.target.name + 'Valid';
+        const visited = e.target.name + 'Visited';
+        this.setState({
+            [valid]: !e.target.required || e.target.value,
+            [visited]: true
+        });
     };
 
     componentDidMount() {
@@ -160,6 +189,9 @@ class RegistrationForm extends Component {
                                     id="birthDate"
                                     value={this.state.birthDate}
                                     onChange={this.onChange}
+                                    onBlur={this.validateField}
+                                    valid={this.state.birthDateValid && this.state.birthDateVisited}
+                                    invalid={!this.state.birthDateValid && this.state.birthDateVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -173,6 +205,10 @@ class RegistrationForm extends Component {
                                     placeholder="Telefon"
                                     value={this.state.phone}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.phoneValid && this.state.phoneVisited}
+                                    invalid={!this.state.phoneValid && this.state.phoneVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -188,6 +224,10 @@ class RegistrationForm extends Component {
                                     placeholder="Aeroklub"
                                     value={this.state.aeroclub}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.aeroclubValid && this.state.aeroclubVisited}
+                                    invalid={!this.state.aeroclubValid && this.state.aeroclubVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -200,6 +240,10 @@ class RegistrationForm extends Component {
                                     id="region"
                                     value={this.state.region}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.regionValid && this.state.regionVisited}
+                                    invalid={!this.state.regionValid && this.state.regionVisited}
                                 >
                                     <option value="">Region</option>
                                     {this.props.registration.formData.regions.map((region) => {
@@ -222,6 +266,10 @@ class RegistrationForm extends Component {
                                     name="gliderType"
                                     id="gliderType"
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.gliderTypeValid && this.state.gliderTypeVisited}
+                                    invalid={!this.state.gliderTypeValid && this.state.gliderTypeVisited}
                                     value={this.state.gliderType}
                                 >
                                     <option value="">Typ kluzáku</option>
@@ -245,6 +293,12 @@ class RegistrationForm extends Component {
                                     placeholder="Registrace"
                                     value={this.state.registrationNumber}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.registrationNumberValid && this.state.registrationNumberVisited}
+                                    invalid={
+                                        !this.state.registrationNumberValid && this.state.registrationNumberVisited
+                                    }
                                 />
                             </FormGroup>
                         </Col>
@@ -258,6 +312,10 @@ class RegistrationForm extends Component {
                                     placeholder="Startovní číslo"
                                     value={this.state.startNumber}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.startNumberValid && this.state.startNumberVisited}
+                                    invalid={!this.state.startNumberValid && this.state.startNumberVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -272,6 +330,10 @@ class RegistrationForm extends Component {
                                     id="competitionClass"
                                     value={this.state.competitionClass}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.competitionClassValid && this.state.competitionClassVisited}
+                                    invalid={!this.state.competitionClassValid && this.state.competitionClassVisited}
                                 >
                                     <option value="">Třída</option>
                                     {this.props.registration.formData.competitionClasses.map((competitionClass) => {
@@ -294,6 +356,10 @@ class RegistrationForm extends Component {
                                     placeholder="Logger"
                                     value={this.state.logger}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.loggerValid && this.state.loggerVisited}
+                                    invalid={!this.state.loggerValid && this.state.loggerVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -308,6 +374,10 @@ class RegistrationForm extends Component {
                                     id="accomodationType"
                                     value={this.state.accomodationType}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
+                                    invalid={!this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
                                 >
                                     <option value="">Typ ubytování</option>
                                     {this.props.registration.formData.accomodationTypes.map((accomodationType) => {
@@ -330,6 +400,10 @@ class RegistrationForm extends Component {
                                     placeholder="Počet osob"
                                     value={this.state.quantity}
                                     onChange={this.onChange}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.quantityValid && this.state.quantityVisited}
+                                    invalid={!this.state.quantityValid && this.state.quantityVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -344,6 +418,10 @@ class RegistrationForm extends Component {
                             placeholder="Počet osob"
                             value={this.state.meals}
                             onChange={this.onChange}
+                            required
+                            onBlur={this.validateField}
+                            valid={this.state.mealsValid && this.state.mealsVisited}
+                            invalid={!this.state.mealsValid && this.state.mealsVisited}
                         />
                     </FormGroup>
                     <FormGroup>
@@ -355,6 +433,9 @@ class RegistrationForm extends Component {
                             placeholder="Poznámka"
                             value={this.state.note}
                             onChange={this.onChange}
+                            onBlur={this.validateField}
+                            valid={this.state.noteValid && this.state.noteVisited}
+                            invalid={!this.state.noteValid && this.state.noteVisited}
                         />
                     </FormGroup>
                     <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.dataIsEmpty()} block>
