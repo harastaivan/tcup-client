@@ -3,7 +3,8 @@ import {
     FORM_DATA_LOADING,
     GET_REGISTRATION,
     SUBMIT_REGISTRATION,
-    UPDATE_REGISTRATION
+    UPDATE_REGISTRATION,
+    REGISTRATION_LOADING
 } from '../actions/types';
 
 const initialState = {
@@ -15,7 +16,9 @@ const initialState = {
         gliderTypes: [],
         regions: []
     },
-    loading: false
+    loading: false,
+    formDataLoading: false,
+    registrationLoading: false
 };
 
 export default (state = initialState, action) => {
@@ -29,13 +32,16 @@ export default (state = initialState, action) => {
                     gliderTypes: action.payload.gliderTypes,
                     regions: action.payload.regions
                 },
-                loading: false
+                formDataLoading: false,
+                loading: false || state.registrationLoading
             };
         case GET_REGISTRATION:
             return {
                 ...state,
                 registration: action.payload.registration,
-                isRegistered: action.payload.isRegistered
+                isRegistered: action.payload.isRegistered,
+                registrationLoading: false,
+                loading: false || state.formDataLoading
             };
         case SUBMIT_REGISTRATION:
         case UPDATE_REGISTRATION:
@@ -44,9 +50,16 @@ export default (state = initialState, action) => {
                 registration: action.payload.registration,
                 isRegistered: action.payload.isRegistered
             };
+        case REGISTRATION_LOADING:
+            return {
+                ...state,
+                registrationLoading: true,
+                loading: true
+            };
         case FORM_DATA_LOADING:
             return {
                 ...state,
+                formDataLoading: true,
                 loading: true
             };
         default:

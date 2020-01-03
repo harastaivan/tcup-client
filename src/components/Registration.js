@@ -1,22 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import RegistrationForm from './RegistrationForm';
 import EditRegistrationForm from './EditRegistrationForm';
 import Login from './Login';
-import { Alert } from 'reactstrap';
+import { Alert, Spinner } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { getRegistration } from '../actions/registration';
+import { getRegistration, getFormData } from '../actions/registration';
 
 class Registration extends Component {
     static propTypes = {
         getRegistration: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.func.isRequired,
+        getFormData: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool.isRequired,
         registration: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired
     };
 
     componentDidMount() {
         this.props.getRegistration();
+        this.props.getFormData();
     }
 
     componentDidUpdate(previousProps) {
@@ -26,18 +28,27 @@ class Registration extends Component {
     }
 
     render() {
+        const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
+        const { loading } = this.props.registration;
         return (
             <div>
-                {!this.props.isAuthenticated && (
-                    <div>
-                        <Alert color="info">Pro vytvoření přihlášky se přihlaste.</Alert>
-                        <Login history={this.props.history} />
-                    </div>
+                {loading ? (
+                    spinner
+                ) : (
+                    <Fragment>
+                        {!this.props.isAuthenticated && (
+                            <div>
+                                <Alert color="info">Pro vytvoření přihlášky se přihlaste.</Alert>
+                                <Login history={this.props.history} />
+                            </div>
+                        )}
+
+                        {this.props.isAuthenticated && this.props.registration.isRegistered && (
+                            <EditRegistrationForm edit={false} />
+                        )}
+                        {this.props.isAuthenticated && !this.props.registration.isRegistered && <RegistrationForm />}
+                    </Fragment>
                 )}
-                {this.props.isAuthenticated && this.props.registration.isRegistered && (
-                    <EditRegistrationForm edit={false} />
-                )}
-                {this.props.isAuthenticated && !this.props.registration.isRegistered && <RegistrationForm />}
             </div>
         );
     }
@@ -49,7 +60,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getRegistration
+    getRegistration,
+    getFormData
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

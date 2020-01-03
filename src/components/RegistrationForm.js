@@ -128,10 +128,6 @@ class RegistrationForm extends Component {
         });
     };
 
-    componentDidMount() {
-        this.props.getFormData();
-    }
-
     render() {
         return (
             <div>
