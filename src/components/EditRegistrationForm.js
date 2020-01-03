@@ -19,7 +19,33 @@ class EditRegistrationForm extends Component {
         accomodationType: this.props.registration.registration.accomodation.accomodationType._id,
         quantity: this.props.registration.registration.accomodation.quantity,
         meals: this.props.registration.registration.meals,
-        note: this.props.registration.registration.note
+        note: this.props.registration.registration.note,
+        birthDateValid: true,
+        phoneValid: true,
+        aeroclubValid: true,
+        regionValid: true,
+        gliderTypeValid: true,
+        registrationNumberValid: true,
+        startNumberValid: true,
+        competitionClassValid: true,
+        loggerValid: true,
+        accomodationTypeValid: true,
+        quantityValid: true,
+        mealsValid: true,
+        noteValid: true,
+        birthDateVisited: false,
+        phoneVisited: false,
+        aeroclubVisited: false,
+        regionVisited: false,
+        gliderTypeVisited: false,
+        registrationNumberVisited: false,
+        startNumberVisited: false,
+        competitionClassVisited: false,
+        loggerVisited: false,
+        accomodationTypeVisited: false,
+        quantityVisited: false,
+        mealsVisited: false,
+        noteVisited: false
     };
 
     static propTypes = {
@@ -34,6 +60,7 @@ class EditRegistrationForm extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+        this.validateField(e);
     };
 
     onSubmit = (e) => {
@@ -78,28 +105,30 @@ class EditRegistrationForm extends Component {
     };
 
     dataIsEmpty = () => {
-        const {
-            phone,
-            aeroclub,
-            region,
-            gliderType,
-            registrationNumber,
-            startNumber,
-            competitionClass,
-            logger,
-            accomodationType
-        } = this.state;
-        return !(
-            phone &&
-            aeroclub &&
-            region &&
-            gliderType !== 'Typ kluzáku' &&
-            registrationNumber &&
-            startNumber &&
-            competitionClass !== 'Třída' &&
-            logger &&
-            accomodationType !== 'Typ ubytování'
+        return (
+            !this.state.birthDateValid ||
+            !this.state.phoneValid ||
+            !this.state.aeroclubValid ||
+            !this.state.regionValid ||
+            !this.state.gliderTypeValid ||
+            !this.state.registrationNumberValid ||
+            !this.state.startNumberValid ||
+            !this.state.competitionClassValid ||
+            !this.state.loggerValid ||
+            !this.state.accomodationTypeValid ||
+            !this.state.quantityValid ||
+            !this.state.mealsValid ||
+            !this.state.noteValid
         );
+    };
+
+    validateField = (e) => {
+        const valid = e.target.name + 'Valid';
+        const visited = e.target.name + 'Visited';
+        this.setState({
+            [valid]: !e.target.required || e.target.value,
+            [visited]: true
+        });
     };
 
     componentDidMount() {
@@ -176,6 +205,9 @@ class EditRegistrationForm extends Component {
                                     value={this.state.birthDate}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    onBlur={this.validateField}
+                                    valid={this.state.birthDateValid && this.state.birthDateVisited}
+                                    invalid={!this.state.birthDateValid && this.state.birthDateVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -190,6 +222,10 @@ class EditRegistrationForm extends Component {
                                     value={this.state.phone}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.phoneValid && this.state.phoneVisited}
+                                    invalid={!this.state.phoneValid && this.state.phoneVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -206,6 +242,10 @@ class EditRegistrationForm extends Component {
                                     value={this.state.aeroclub}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.aeroclubValid && this.state.aeroclubVisited}
+                                    invalid={!this.state.aeroclubValid && this.state.aeroclubVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -219,6 +259,10 @@ class EditRegistrationForm extends Component {
                                     value={this.state.region}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.regionValid && this.state.regionVisited}
+                                    invalid={!this.state.regionValid && this.state.regionVisited}
                                 >
                                     <option value="">Region</option>
                                     {this.props.registration.formData.regions.map((region) => {
@@ -243,6 +287,10 @@ class EditRegistrationForm extends Component {
                                     onChange={this.onChange}
                                     value={this.state.gliderType}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.gliderTypeValid && this.state.gliderTypeVisited}
+                                    invalid={!this.state.gliderTypeValid && this.state.gliderTypeVisited}
                                 >
                                     <option value="">Typ kluzáku</option>
                                     {this.props.registration.formData.gliderTypes.map((gliderType) => {
@@ -266,6 +314,12 @@ class EditRegistrationForm extends Component {
                                     value={this.state.registrationNumber}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.registrationNumberValid && this.state.registrationNumberVisited}
+                                    invalid={
+                                        !this.state.registrationNumberValid && this.state.registrationNumberVisited
+                                    }
                                 />
                             </FormGroup>
                         </Col>
@@ -280,6 +334,10 @@ class EditRegistrationForm extends Component {
                                     value={this.state.startNumber}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.startNumberValid && this.state.startNumberVisited}
+                                    invalid={!this.state.startNumberValid && this.state.startNumberVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -295,6 +353,10 @@ class EditRegistrationForm extends Component {
                                     value={this.state.competitionClass}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.competitionClassValid && this.state.competitionClassVisited}
+                                    invalid={!this.state.competitionClassValid && this.state.competitionClassVisited}
                                 >
                                     <option value="">Třída</option>
                                     {this.props.registration.formData.competitionClasses.map((competitionClass) => {
@@ -318,6 +380,10 @@ class EditRegistrationForm extends Component {
                                     value={this.state.logger}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.loggerValid && this.state.loggerVisited}
+                                    invalid={!this.state.loggerValid && this.state.loggerVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -333,6 +399,10 @@ class EditRegistrationForm extends Component {
                                     value={this.state.accomodationType}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
+                                    invalid={!this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
                                 >
                                     <option value="">Typ ubytování</option>
                                     {this.props.registration.formData.accomodationTypes.map((accomodationType) => {
@@ -356,6 +426,10 @@ class EditRegistrationForm extends Component {
                                     value={this.state.quantity}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
+                                    required
+                                    onBlur={this.validateField}
+                                    valid={this.state.quantityValid && this.state.quantityVisited}
+                                    invalid={!this.state.quantityValid && this.state.quantityVisited}
                                 />
                             </FormGroup>
                         </Col>
@@ -371,6 +445,10 @@ class EditRegistrationForm extends Component {
                             value={this.state.meals}
                             onChange={this.onChange}
                             disabled={!this.state.edit}
+                            required
+                            onBlur={this.validateField}
+                            valid={this.state.mealsValid && this.state.mealsVisited}
+                            invalid={!this.state.mealsValid && this.state.mealsVisited}
                         />
                     </FormGroup>
                     <FormGroup>
@@ -383,6 +461,9 @@ class EditRegistrationForm extends Component {
                             value={this.state.note}
                             onChange={this.onChange}
                             disabled={!this.state.edit}
+                            onBlur={this.validateField}
+                            valid={this.state.noteValid && this.state.noteVisited}
+                            invalid={!this.state.noteValid && this.state.noteVisited}
                         />
                     </FormGroup>
                     {this.state.edit && (
