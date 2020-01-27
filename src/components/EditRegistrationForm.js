@@ -463,12 +463,7 @@ class EditRegistrationForm extends Component {
                         />
                     </FormGroup>
                     {this.state.edit && (
-                        <Button
-                            color="dark"
-                            style={{ marginTop: '2rem' }}
-                            disabled={!this.state.edit && this.dataIsEmpty()}
-                            block
-                        >
+                        <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.dataIsEmpty()} block>
                             Editovat přihlášku
                         </Button>
                     )}
