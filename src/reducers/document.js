@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
         case DELETE_DOCUMENT:
             return {
                 ...state,
-                documents: state.documents.filter((item) => item._id !== action.payload._id)
+                documents: state.documents.filter((item) => item._id !== action.payload)
             };
         default:
             return state;
