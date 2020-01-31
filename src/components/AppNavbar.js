@@ -50,9 +50,11 @@ class AppNavbar extends Component {
                     </DropdownToggle>
                     <DropdownMenu right className="bg-dark">
                         <DropdownItem className="bg-dark">
-                            <NavLink tag={Link} to="/user-profile" activeClassName="active" disabled>
-                                Profil
-                            </NavLink>
+                            <NavItem>
+                                <NavLink tag={Link} to="/user-profile" activeClassName="active">
+                                    Profil
+                                </NavLink>
+                            </NavItem>
                         </DropdownItem>
                         <DropdownItem className="bg-dark">
                             <NavItem>

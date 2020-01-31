@@ -26,6 +26,7 @@ import Logout from './components/Logout';
 import Results from './components/Results';
 
 import { Alert } from 'reactstrap';
+import UserSettings from './components/UserSettings';
 
 class App extends Component {
     componentDidMount() {
@@ -57,6 +58,7 @@ class App extends Component {
                                 <Route path="/documents" component={Documents} />
                                 <Route path="/contacts" component={Contacts} />
                                 <Route path="/igc" component={SendIgc} />
+                                <Route path="/user-profile" component={UserSettings} />
                             </Switch>
                         </Container>
                         <Footer />
