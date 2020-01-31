@@ -37,8 +37,8 @@ class AppNavbar extends Component {
 
         const authLinks = (
             <Fragment>
-                <NavItem>
-                    <span className="navbar-text mr-3">
+                <UncontrolledDropdown nav inNavbar className="bg-dark mr-4">
+                    <DropdownToggle nav caret>
                         <strong>{user ? `${user.name} ${user.surname}` : ''}</strong>
                         {isAdmin ? (
                             <Badge color="danger" className="ml-2">
@@ -47,8 +47,22 @@ class AppNavbar extends Component {
                         ) : (
                             ''
                         )}
-                    </span>
-                </NavItem>
+                    </DropdownToggle>
+                    <DropdownMenu right className="bg-dark">
+                        <DropdownItem className="bg-dark">
+                            <NavLink tag={Link} to="/user-profile" activeClassName="active" disabled>
+                                Profil
+                            </NavLink>
+                        </DropdownItem>
+                        <DropdownItem className="bg-dark">
+                            <NavItem>
+                                <NavLink tag={Link} to="/change-password" activeClassName="active" disabled>
+                                    Změnit heslo
+                                </NavLink>
+                            </NavItem>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </UncontrolledDropdown>
                 <NavItem>
                     <NavLink tag={Link} to="/logout" activeClassName="active">
                         Odhlásit se
