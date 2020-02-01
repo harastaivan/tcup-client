@@ -58,7 +58,7 @@ class AppNavbar extends Component {
                         </DropdownItem>
                         <DropdownItem className="bg-dark">
                             <NavItem>
-                                <NavLink tag={Link} to="/change-password" activeClassName="active" disabled>
+                                <NavLink tag={Link} to="/change-password" activeClassName="active">
                                     Změnit heslo
                                 </NavLink>
                             </NavItem>
