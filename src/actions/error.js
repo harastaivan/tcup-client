@@ -5,19 +5,19 @@ const parseError = (error) => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         return {
-            msg: error.response.data,
+            msg: error.response.data.msg,
             status: error.response.status
         };
     } else if (error.request) {
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
         return {
-            msg: error.message,
+            msg: error.message, // .msg ?
             status: error.request.status
         };
     } else {
         return {
-            msg: error.message,
+            msg: error.message, // .msg ?
             status: 500
         };
     }
