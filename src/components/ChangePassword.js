@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import { Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { clearErrors } from '../actions/error';
+import { changePassword } from '../actions/auth';
 
 class ChangePassword extends Component {
     state = {
         oldPassword: '',
         newPassword: '',
-        msg: null,
         saved: false
     };
 
     static propTypes = {
         isAuthenticated: PropTypes.bool,
         error: PropTypes.object.isRequired,
-        clearErrors: PropTypes.func.isRequired
+        success: PropTypes.object.isRequired,
+        clearErrors: PropTypes.func.isRequired,
+        changePassword: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
@@ -28,19 +30,20 @@ class ChangePassword extends Component {
         e.preventDefault();
         const { oldPassword, newPassword } = this.state;
 
-        console.log({ oldPassword, newPassword });
+        this.props.changePassword({ oldPassword, newPassword });
 
-        this.setState({ saved: true });
+        this.setState({ errorMsg: null, saved: true });
     };
 
     isDisabled = () => {
-        return this.state.saved || !this.state.oldPassword || !this.state.newPassword;
+        return this.props.success.msg || !this.state.oldPassword || !this.state.newPassword;
     };
 
     render() {
         return (
             <Fragment>
-                {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+                {this.props.error.msg ? <Alert color="danger">{this.props.error.msg}</Alert> : null}
+                {this.props.success.msg ? <Alert color="success">{this.props.success.msg}</Alert> : null}
                 <h1>Změnit heslo</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <FormGroup>
@@ -76,7 +79,8 @@ class ChangePassword extends Component {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    error: state.error
+    error: state.error,
+    success: state.success
 });
 
-export default connect(mapStateToProps, { clearErrors })(ChangePassword);
+export default connect(mapStateToProps, { clearErrors, changePassword })(ChangePassword);

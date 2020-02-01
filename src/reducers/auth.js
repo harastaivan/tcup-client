@@ -7,7 +7,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_FAIL,
-    USER_CHANGED
+    USER_CHANGED,
+    USER_PASSWORD_CHANGED
 } from '../actions/types';
 
 const initialState = {
@@ -64,6 +65,11 @@ export default function(state = initialState, action) {
                 ...state,
                 user: action.payload,
                 isAdmin: action.payload.admin
+            };
+        case USER_PASSWORD_CHANGED:
+            return {
+                ...state,
+                token: action.payload.token
             };
 
         default:
