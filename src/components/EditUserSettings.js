@@ -3,20 +3,23 @@ import PropTypes from 'prop-types';
 import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { clearErrors } from '../actions/error';
+import { changeUserInfo } from '../actions/auth';
 
 class EditUserSettings extends Component {
     state = {
         name: this.props.auth.user.name,
         surname: this.props.auth.user.surname,
         email: this.props.auth.user.email,
-        msg: null
+        msg: null,
+        saved: false
     };
 
     static propTypes = {
         isAuthenticated: PropTypes.bool,
         auth: PropTypes.object.isRequired,
         error: PropTypes.object.isRequired,
-        clearErrors: PropTypes.func.isRequired
+        clearErrors: PropTypes.func.isRequired,
+        changeUserInfo: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
@@ -35,7 +38,13 @@ class EditUserSettings extends Component {
             email
         };
 
-        console.log(newUser);
+        this.props.changeUserInfo(newUser);
+
+        this.setState({ saved: true });
+    };
+
+    isDisabled = () => {
+        return this.state.saved || !this.state.name || !this.state.surname || !this.state.email;
     };
 
     render() {
@@ -83,12 +92,7 @@ class EditUserSettings extends Component {
                             onChange={this.onChange}
                         />
                     </FormGroup>
-                    <Button
-                        color="dark"
-                        style={{ marginTop: '2rem' }}
-                        disabled={!this.state.name || !this.state.surname || !this.state.email}
-                        block
-                    >
+                    <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.isDisabled()} block>
                         Změnit
                     </Button>
                 </Form>
@@ -103,4 +107,4 @@ const mapStateToProps = (state) => ({
     error: state.error
 });
 
-export default connect(mapStateToProps, { clearErrors })(EditUserSettings);
+export default connect(mapStateToProps, { clearErrors, changeUserInfo })(EditUserSettings);
