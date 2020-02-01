@@ -7,7 +7,9 @@ import {
     REGISTER_FAIL,
     LOGOUT_SUCCESS,
     LOGIN_SUCCESS,
-    LOGIN_FAIL
+    LOGIN_FAIL,
+    USER_CHANGED,
+    USER_CHANGE_ERROR
 } from './types';
 import { returnErrors } from './error';
 
@@ -25,6 +27,16 @@ export const loadUser = () => (dispatch, getState) => {
             dispatch(returnErrors(err));
             dispatch({ type: AUTH_ERROR });
         });
+};
+
+export const changeUserInfo = ({ name, surname, email }) => async (dispatch, getState) => {
+    try {
+        const res = await axios.put(`${API_ENDPOINT}/api/users`, { name, surname, email }, tokenConfig(getState));
+        dispatch({ type: USER_CHANGED, payload: res.data });
+    } catch (err) {
+        dispatch(returnErrors(err));
+        dispatch({ type: USER_CHANGE_ERROR });
+    }
 };
 
 // Register User

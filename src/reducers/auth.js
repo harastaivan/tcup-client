@@ -6,7 +6,8 @@ import {
     AUTH_ERROR,
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    USER_CHANGED
 } from '../actions/types';
 
 const initialState = {
@@ -57,6 +58,12 @@ export default function(state = initialState, action) {
                 isAdmin: false,
                 isAuthenticated: false,
                 isLoading: false
+            };
+        case USER_CHANGED:
+            return {
+                ...state,
+                user: action.payload,
+                isAdmin: action.payload.admin
             };
 
         default:
