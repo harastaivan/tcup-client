@@ -9,9 +9,12 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     USER_CHANGED,
-    USER_CHANGE_ERROR
+    USER_CHANGE_ERROR,
+    USER_PASSWORD_CHANGED,
+    USER_PASSWORD_CHANGE_ERROR
 } from './types';
 import { returnErrors } from './error';
+import { returnSuccess } from './success';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
@@ -36,6 +39,21 @@ export const changeUserInfo = ({ name, surname, email }) => async (dispatch, get
     } catch (err) {
         dispatch(returnErrors(err));
         dispatch({ type: USER_CHANGE_ERROR });
+    }
+};
+
+export const changePassword = ({ oldPassword, newPassword }) => async (dispatch, getState) => {
+    try {
+        const res = await axios.post(
+            `${API_ENDPOINT}/api/auth/change-password`,
+            { oldPassword, newPassword },
+            tokenConfig(getState)
+        );
+        dispatch({ type: USER_PASSWORD_CHANGED, payload: res.data });
+        dispatch(returnSuccess('Heslo bylo změněno', USER_PASSWORD_CHANGED));
+    } catch (err) {
+        dispatch(returnErrors(err, USER_PASSWORD_CHANGE_ERROR));
+        dispatch({ type: USER_PASSWORD_CHANGE_ERROR });
     }
 };
 
