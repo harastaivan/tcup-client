@@ -30,6 +30,7 @@ class Login extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        this.props.clearErrors();
         const { email, password } = this.state;
         const user = { email, password };
         this.props.login(user);
@@ -38,17 +39,8 @@ class Login extends Component {
         });
     };
 
-    componentDidUpdate(previousProps) {
-        const { error, isAuthenticated } = this.props;
-        if (error !== previousProps.error) {
-            // Check for register error
-            if (error.id === 'LOGIN_FAIL') {
-                this.setState({ msg: error.msg.msg });
-            } else {
-                this.setState({ msg: null });
-            }
-        }
-        if (isAuthenticated) {
+    componentDidUpdate() {
+        if (this.props.isAuthenticated) {
             this.props.clearErrors();
             this.props.history.push('/');
         }
@@ -57,7 +49,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+                {this.props.error.msg ? <Alert color="danger">{this.props.error.msg}</Alert> : null}
                 <h1>Přihlásit se</h1>
                 <Form onSubmit={this.onSubmit}>
                     <FormGroup>
