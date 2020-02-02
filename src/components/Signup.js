@@ -45,17 +45,8 @@ class Signup extends Component {
         });
     };
 
-    componentDidUpdate(previousProps) {
-        const { error, isAuthenticated } = this.props;
-        if (error !== previousProps.error) {
-            // Check for register error
-            if (error.id === 'REGISTER_FAIL') {
-                this.setState({ msg: error.msg.msg });
-            } else {
-                this.setState({ msg: null });
-            }
-        }
-        if (isAuthenticated) {
+    componentDidUpdate() {
+        if (this.props.isAuthenticated) {
             this.props.clearErrors();
             this.props.history.push('/');
         }
@@ -64,7 +55,7 @@ class Signup extends Component {
     render() {
         return (
             <div>
-                {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+                {this.props.error.msg ? <Alert color="danger">{this.props.error.msg}</Alert> : null}
                 <h1>Registrovat se</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>
