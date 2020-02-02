@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import { clearSuccess } from '../actions/success';
 import { clearErrors } from '../actions/error';
 import { changePassword } from '../actions/auth';
 
@@ -16,18 +17,22 @@ class ChangePassword extends Component {
         isAuthenticated: PropTypes.bool,
         error: PropTypes.object.isRequired,
         success: PropTypes.object.isRequired,
+        clearSuccess: PropTypes.func.isRequired,
         clearErrors: PropTypes.func.isRequired,
         changePassword: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            saved: false
         });
     };
 
     onSubmit = (e) => {
         e.preventDefault();
+        this.props.clearSuccess();
+        this.props.clearErrors();
         const { oldPassword, newPassword } = this.state;
 
         this.props.changePassword({ oldPassword, newPassword });
@@ -36,7 +41,7 @@ class ChangePassword extends Component {
     };
 
     isDisabled = () => {
-        return this.props.success.msg || !this.state.oldPassword || !this.state.newPassword;
+        return this.state.saved || !this.state.oldPassword || !this.state.newPassword;
     };
 
     render() {
@@ -83,4 +88,4 @@ const mapStateToProps = (state) => ({
     success: state.success
 });
 
-export default connect(mapStateToProps, { clearErrors, changePassword })(ChangePassword);
+export default connect(mapStateToProps, { clearSuccess, clearErrors, changePassword })(ChangePassword);
