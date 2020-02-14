@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 
-export default class Contacts extends Component {
-    contacts = [
+const Contacts = (): JSX.Element => {
+    const contacts = [
         {
             heading: 'Pořadatel',
             lines: [
@@ -26,23 +26,25 @@ export default class Contacts extends Component {
         }
     ];
 
-    formatLine(line) {
+    const formatLine = (line: string): JSX.Element => {
         return <p key={line}>{line}</p>;
-    }
+    };
 
-    render() {
-        return (
-            <div>
-                <h1>Kontakty</h1>
-                {this.contacts.map((contact) => {
+    return (
+        <div>
+            <h1>Kontakty</h1>
+            {contacts.map(
+                (contact): JSX.Element => {
                     return (
                         <Fragment key={contact.heading}>
                             <h2>{contact.heading}</h2>
-                            {contact.lines.map((line) => this.formatLine(line))}
+                            {contact.lines.map((line): JSX.Element => formatLine(line))}
                         </Fragment>
                     );
-                })}
-            </div>
-        );
-    }
-}
+                }
+            )}
+        </div>
+    );
+};
+
+export default Contacts;
