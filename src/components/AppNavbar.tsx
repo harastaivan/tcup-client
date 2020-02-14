@@ -18,6 +18,7 @@ import { useSelector } from 'react-redux';
 
 const AppNavbar = (): JSX.Element => {
     const [open, setOpen] = useState(false);
+    // TODO: Fix types
     // @ts-ignore
     // eslint-disable-next-line
     const auth = useSelector((state): any => state.auth);
