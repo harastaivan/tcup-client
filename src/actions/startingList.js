@@ -5,6 +5,12 @@ import { returnErrors } from './error';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
+export const setStartingListLoading = () => {
+    return {
+        type: STARTING_LIST_LOADING
+    };
+};
+
 export const getStartingList = () => async (dispatch) => {
     dispatch(setStartingListLoading);
     const res = await axios.get(`${API_ENDPOINT}/api/starting-list`);
@@ -12,12 +18,6 @@ export const getStartingList = () => async (dispatch) => {
         type: GET_STARTING_LIST,
         payload: res.data
     });
-};
-
-export const setStartingListLoading = () => {
-    return {
-        type: STARTING_LIST_LOADING
-    };
 };
 
 export const markPaid = (registrationId, paid) => async (dispatch, getState) => {

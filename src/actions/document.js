@@ -5,6 +5,12 @@ import { returnErrors } from './error';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
+export const setDocumentsLoading = () => {
+    return {
+        type: DOCUMENTS_LOADING
+    };
+};
+
 export const getDocuments = () => async (dispatch) => {
     dispatch(setDocumentsLoading);
     const res = await axios.get(`${API_ENDPOINT}/api/documents`);
@@ -42,10 +48,4 @@ export const deleteDocument = (id) => async (dispatch, getState) => {
     } catch (err) {
         dispatch(returnErrors(err));
     }
-};
-
-export const setDocumentsLoading = () => {
-    return {
-        type: DOCUMENTS_LOADING
-    };
 };

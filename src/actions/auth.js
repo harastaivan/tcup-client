@@ -18,6 +18,23 @@ import { returnSuccess } from './success';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
+// Setup config/headers and token
+export const tokenConfig = (getState, contentType = 'application/json') => {
+    // Get token from localStorage
+    const token = getState().auth.token;
+
+    // Headers
+    const config = {
+        headers: {
+            'Content-Type': contentType
+        }
+    };
+
+    if (token) config.headers['x-auth-token'] = token;
+
+    return config;
+};
+
 // Check token & load user
 export const loadUser = () => async (dispatch, getState) => {
     try {
@@ -105,21 +122,4 @@ export const logout = () => {
     return {
         type: LOGOUT_SUCCESS
     };
-};
-
-// Setup config/headers and token
-export const tokenConfig = (getState, contentType = 'application/json') => {
-    // Get token from localStorage
-    const token = getState().auth.token;
-
-    // Headers
-    const config = {
-        headers: {
-            'Content-Type': contentType
-        }
-    };
-
-    if (token) config.headers['x-auth-token'] = token;
-
-    return config;
 };

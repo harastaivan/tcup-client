@@ -5,6 +5,12 @@ import { returnErrors } from './error';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
+export const setNewsLoading = () => {
+    return {
+        type: NEWS_LOADING
+    };
+};
+
 export const getNews = () => async (dispatch) => {
     dispatch(setNewsLoading);
     const res = await axios.get(`${API_ENDPOINT}/api/news`);
@@ -36,10 +42,4 @@ export const deleteNews = (id) => async (dispatch, getState) => {
     } catch (err) {
         dispatch(returnErrors(err));
     }
-};
-
-export const setNewsLoading = () => {
-    return {
-        type: NEWS_LOADING
-    };
 };
