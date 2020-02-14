@@ -10,8 +10,27 @@ import {
     USER_CHANGED,
     USER_PASSWORD_CHANGED
 } from '../actions/types';
+import { AnyAction } from 'redux';
 
-const initialState = {
+type Token = string | null;
+
+interface User {
+    id: string;
+    name: string;
+    surname: string;
+    email: string;
+    admin: boolean;
+}
+
+interface AuthState {
+    token: Token;
+    isAuthenticated: boolean;
+    isAdmin: boolean;
+    isLoading: boolean;
+    user: User | null;
+}
+
+const initialState: AuthState = {
     token: localStorage.getItem('token'),
     isAuthenticated: false,
     isAdmin: false,
@@ -19,7 +38,9 @@ const initialState = {
     user: null
 };
 
-export default function(state = initialState, action) {
+// TODO: Don't use type AnyAction
+
+export default function(state = initialState, action: AnyAction): AuthState {
     switch (action.type) {
         case USER_LOADING:
             return {
