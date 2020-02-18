@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { register } from '../actions/auth';
 import { clearErrors } from '../actions/error';
+import GdprConsent from './GdprConsent';
 
 class Signup extends Component {
     state = {
@@ -108,6 +109,7 @@ class Signup extends Component {
                             onChange={this.onChange}
                         />
                     </FormGroup>
+                    <GdprConsent action="Zaregistrováním se" />
                     <Button
                         color="dark"
                         style={{ marginTop: '2rem' }}
