@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 export default function GdprConsent(props) {
     return (
@@ -21,3 +22,7 @@ export default function GdprConsent(props) {
         </Fragment>
     );
 }
+
+GdprConsent.propTypes = {
+    action: PropTypes.string.isRequired
+};
