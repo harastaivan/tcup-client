@@ -53,10 +53,15 @@ class Signup extends Component {
         }
     }
 
+    signupDisabled() {
+        return true;
+    }
+
     render() {
         return (
             <div>
                 {this.props.error.msg ? <Alert color="danger">{this.props.error.msg}</Alert> : null}
+                {this.signupDisabled() && <Alert color="info">Již není možná registrace, máme plnou kapacitu.</Alert>}
                 <h1>Registrovat se</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>
@@ -70,6 +75,7 @@ class Signup extends Component {
                                     placeholder="Jméno"
                                     value={this.state.name}
                                     onChange={this.onChange}
+                                    disabled={this.signupDisabled()}
                                 />
                             </FormGroup>
                         </Col>
@@ -83,6 +89,7 @@ class Signup extends Component {
                                     placeholder="Příjmení"
                                     value={this.state.surname}
                                     onChange={this.onChange}
+                                    disabled={this.signupDisabled()}
                                 />
                             </FormGroup>
                         </Col>
@@ -96,6 +103,7 @@ class Signup extends Component {
                             placeholder="Email"
                             value={this.state.email}
                             onChange={this.onChange}
+                            disabled={this.signupDisabled()}
                         />
                     </FormGroup>
                     <FormGroup>
@@ -107,9 +115,10 @@ class Signup extends Component {
                             placeholder="Heslo"
                             value={this.state.password}
                             onChange={this.onChange}
+                            disabled={this.signupDisabled()}
                         />
                     </FormGroup>
-                    <GdprConsent action="Zaregistrováním se" />
+                    {!this.signupDisabled() && <GdprConsent action="Zaregistrováním se" />}
                     <Button
                         color="dark"
                         style={{ marginTop: '2rem' }}
