@@ -3,6 +3,7 @@ import { Form, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getFormData, submitRegistration } from '../actions/registration';
+import GdprConsent from './GdprConsent';
 
 class RegistrationForm extends Component {
     state = {
@@ -434,6 +435,7 @@ class RegistrationForm extends Component {
                             invalid={!this.state.noteValid && this.state.noteVisited}
                         />
                     </FormGroup>
+                    <GdprConsent action="Vytvořením přihlášky" />
                     <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.dataIsEmpty()} block>
                         Vytvořit přihlášku
                     </Button>
