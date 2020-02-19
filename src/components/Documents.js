@@ -4,6 +4,7 @@ import { Container, Table, Button, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import 'moment/locale/cs';
+import { withTranslation } from 'react-i18next';
 
 import AddDocument from './AddDocument';
 import { getDocuments, deleteDocument, setDocumentsLoading } from '../actions/document';
@@ -15,7 +16,8 @@ class Documents extends Component {
         setDocumentsLoading: PropTypes.func.isRequired,
         deleteDocument: PropTypes.func.isRequired,
         document: PropTypes.object.isRequired,
-        isAdmin: PropTypes.bool
+        isAdmin: PropTypes.bool,
+        t: PropTypes.func.isRequired
     };
     onDeleteClick = (id) => {
         this.props.deleteDocument(id);
@@ -30,17 +32,18 @@ class Documents extends Component {
         const { documents, loading } = this.props.document;
         const { isAdmin } = this.props;
         const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
+        const t = this.props.t;
         return (
             <Container>
-                <h1>Dokumenty</h1>
+                <h1>{t('Dokumenty')}</h1>
                 <AddDocument />
                 {loading ? spinner : null}
                 <Table>
                     <thead>
                         <tr>
-                            <th>název</th>
-                            <th>datum poslední úpravy</th>
-                            <th>velikost</th>
+                            <th>{t('název')}</th>
+                            <th>{t('datum poslední úpravy')}</th>
+                            <th>{t('velikost')}</th>
                             <th className="d-none d-md-table-cell"> </th>
                         </tr>
                     </thead>
@@ -58,7 +61,7 @@ class Documents extends Component {
                                 <td>{fileSize(document.size, true)}</td>
                                 <td className="d-none d-md-table-cell">
                                     <Button href={document.path} color="primary" className="mb-1" size="sm">
-                                        download
+                                        {t('download')}
                                     </Button>{' '}
                                     {isAdmin && (
                                         <Button
@@ -67,7 +70,7 @@ class Documents extends Component {
                                             onClick={this.onDeleteClick.bind(this, document._id)}
                                             size="sm"
                                         >
-                                            smazat
+                                            {t('smazat')}
                                         </Button>
                                     )}
                                 </td>
@@ -85,4 +88,6 @@ const mapStateToProps = (state) => ({
     isAdmin: state.auth.isAdmin
 });
 
-export default connect(mapStateToProps, { getDocuments, deleteDocument, setDocumentsLoading })(Documents);
+export default connect(mapStateToProps, { getDocuments, deleteDocument, setDocumentsLoading })(
+    withTranslation()(Documents)
+);
