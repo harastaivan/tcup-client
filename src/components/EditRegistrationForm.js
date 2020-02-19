@@ -3,6 +3,7 @@ import { Form, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getFormData, updateRegistration } from '../actions/registration';
+import { withTranslation } from 'react-i18next';
 
 class EditRegistrationForm extends Component {
     state = {
@@ -53,7 +54,8 @@ class EditRegistrationForm extends Component {
         edit: PropTypes.bool.isRequired,
         updateRegistration: PropTypes.func.isRequired,
         registration: PropTypes.object.isRequired,
-        auth: PropTypes.object.isRequired
+        auth: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
@@ -138,12 +140,13 @@ class EditRegistrationForm extends Component {
     };
 
     render() {
+        const t = this.props.t;
         return (
             <div>
-                <h1>Přihláška</h1>
+                <h1>{t('Přihláška')}</h1>
                 {!this.state.edit && (
                     <Button color="primary" className="mb-3" onClick={this.toggleEdit}>
-                        upravit přihlášku
+                        {t('upravit přihlášku')}
                     </Button>
                 )}
 
@@ -151,12 +154,12 @@ class EditRegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="name">Jméno</Label>
+                                <Label for="name">{t('Jméno')}</Label>
                                 <Input
                                     type="text"
                                     name="name"
                                     id="name"
-                                    placeholder="Jméno"
+                                    placeholder={t('Jméno')}
                                     value={this.props.auth.user.name}
                                     onChange={this.onChange}
                                     disabled
@@ -165,12 +168,12 @@ class EditRegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="surname">Příjmení</Label>
+                                <Label for="surname">{t('Příjmení')}</Label>
                                 <Input
                                     type="text"
                                     name="surname"
                                     id="surname"
-                                    placeholder="Příjmení"
+                                    placeholder={t('Příjmení')}
                                     value={this.props.auth.user.surname}
                                     onChange={this.onChange}
                                     disabled
@@ -179,12 +182,12 @@ class EditRegistrationForm extends Component {
                         </Col>
                     </Row>
                     <FormGroup>
-                        <Label for="email">Email</Label>
+                        <Label for="email">{t('Email')}</Label>
                         <Input
                             type="email"
                             name="email"
                             id="email"
-                            placeholder="Email"
+                            placeholder={t('Email')}
                             value={this.props.auth.user.email}
                             onChange={this.onChange}
                             disabled
@@ -193,7 +196,7 @@ class EditRegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="birthDate">Datum narození</Label>
+                                <Label for="birthDate">{t('Datum narození')}</Label>
                                 <Input
                                     type="date"
                                     name="birthDate"
@@ -209,12 +212,12 @@ class EditRegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="phone">Telefon</Label>
+                                <Label for="phone">{t('Telefon')}</Label>
                                 <Input
                                     type="text"
                                     name="phone"
                                     id="phone"
-                                    placeholder="Telefon"
+                                    placeholder={t('Telefon')}
                                     value={this.state.phone}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -229,12 +232,12 @@ class EditRegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="aeroclub">Aeroklub</Label>
+                                <Label for="aeroclub">{t('Aeroklub')}</Label>
                                 <Input
                                     type="text"
                                     name="aeroclub"
                                     id="aeroclub"
-                                    placeholder="Aeroklub"
+                                    placeholder={t('Aeroklub')}
                                     value={this.state.aeroclub}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -247,7 +250,7 @@ class EditRegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="region">Region</Label>
+                                <Label for="region">{t('Region')}</Label>
                                 <Input
                                     type="select"
                                     name="region"
@@ -260,11 +263,11 @@ class EditRegistrationForm extends Component {
                                     valid={this.state.regionValid && this.state.regionVisited}
                                     invalid={!this.state.regionValid && this.state.regionVisited}
                                 >
-                                    <option value="">Region</option>
+                                    <option value="">{t('Region')}</option>
                                     {this.props.registration.formData.regions.map((region) => {
                                         return (
                                             <option key={region._id} value={region._id}>
-                                                {region.name}
+                                                {t(region.name)}
                                             </option>
                                         );
                                     })}
@@ -275,7 +278,7 @@ class EditRegistrationForm extends Component {
                     <Row form>
                         <Col md={4}>
                             <FormGroup>
-                                <Label for="gliderType">Typ kluzáku</Label>
+                                <Label for="gliderType">{t('Typ kluzáku')}</Label>
                                 <Input
                                     type="select"
                                     name="gliderType"
@@ -288,7 +291,7 @@ class EditRegistrationForm extends Component {
                                     valid={this.state.gliderTypeValid && this.state.gliderTypeVisited}
                                     invalid={!this.state.gliderTypeValid && this.state.gliderTypeVisited}
                                 >
-                                    <option value="">Typ kluzáku</option>
+                                    <option value="">{t('Typ kluzáku')}</option>
                                     {this.props.registration.formData.gliderTypes.map((gliderType) => {
                                         return (
                                             <option key={gliderType._id} value={gliderType._id}>
@@ -301,12 +304,12 @@ class EditRegistrationForm extends Component {
                         </Col>
                         <Col md={4}>
                             <FormGroup>
-                                <Label for="registrationNumber">Registrace</Label>
+                                <Label for="registrationNumber">{t('Registrace')}</Label>
                                 <Input
                                     type="text"
                                     name="registrationNumber"
                                     id="registrationNumber"
-                                    placeholder="Registrace"
+                                    placeholder={t('Registrace')}
                                     value={this.state.registrationNumber}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -321,12 +324,12 @@ class EditRegistrationForm extends Component {
                         </Col>
                         <Col md={4}>
                             <FormGroup>
-                                <Label for="startNumber">Startovní číslo</Label>
+                                <Label for="startNumber">{t('Startovní číslo')}</Label>
                                 <Input
                                     type="text"
                                     name="startNumber"
                                     id="startNumber"
-                                    placeholder="Startovní číslo"
+                                    placeholder={t('Startovní číslo')}
                                     value={this.state.startNumber}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -341,7 +344,7 @@ class EditRegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="competitionClass">Třída</Label>
+                                <Label for="competitionClass">{t('Třída')}</Label>
                                 <Input
                                     type="select"
                                     name="competitionClass"
@@ -354,7 +357,7 @@ class EditRegistrationForm extends Component {
                                     valid={this.state.competitionClassValid && this.state.competitionClassVisited}
                                     invalid={!this.state.competitionClassValid && this.state.competitionClassVisited}
                                 >
-                                    <option value="">Třída</option>
+                                    <option value="">{t('Třída')}</option>
                                     {this.props.registration.formData.competitionClasses.map((competitionClass) => {
                                         return (
                                             <option key={competitionClass._id} value={competitionClass._id}>
@@ -367,12 +370,12 @@ class EditRegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="logger">Logger</Label>
+                                <Label for="logger">{t('Logger')}</Label>
                                 <Input
                                     type="text"
                                     name="logger"
                                     id="logger"
-                                    placeholder="Logger"
+                                    placeholder={t('Logger')}
                                     value={this.state.logger}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -387,7 +390,7 @@ class EditRegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="accomodationType">Typ ubytování</Label>
+                                <Label for="accomodationType">{t('Typ ubytování')}</Label>
                                 <Input
                                     type="select"
                                     name="accomodationType"
@@ -400,7 +403,7 @@ class EditRegistrationForm extends Component {
                                     valid={this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
                                     invalid={!this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
                                 >
-                                    <option value="">Typ ubytování</option>
+                                    <option value="">{t('Typ ubytování')}</option>
                                     {this.props.registration.formData.accomodationTypes.map((accomodationType) => {
                                         return (
                                             <option key={accomodationType._id} value={accomodationType._id}>
@@ -413,12 +416,12 @@ class EditRegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="quantity">Počet osob pro ubytování</Label>
+                                <Label for="quantity">{t('Počet osob pro ubytování')}</Label>
                                 <Input
                                     type="number"
                                     name="quantity"
                                     id="quantity"
-                                    placeholder="Počet osob"
+                                    placeholder={t('Počet osob')}
                                     value={this.state.quantity}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -432,12 +435,12 @@ class EditRegistrationForm extends Component {
                     </Row>
 
                     <FormGroup>
-                        <Label for="meals">Počet osob pro jídlo</Label>
+                        <Label for="meals">{t('Počet osob pro jídlo')}</Label>
                         <Input
                             type="number"
                             name="meals"
                             id="meals"
-                            placeholder="Počet osob"
+                            placeholder={t('Počet osob')}
                             value={this.state.meals}
                             onChange={this.onChange}
                             disabled={!this.state.edit}
@@ -448,12 +451,12 @@ class EditRegistrationForm extends Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="note">Poznámka</Label>
+                        <Label for="note">{t('Poznámka')}</Label>
                         <Input
                             type="text"
                             name="note"
                             id="note"
-                            placeholder="Poznámka"
+                            placeholder={t('Poznámka')}
                             value={this.state.note}
                             onChange={this.onChange}
                             disabled={!this.state.edit}
@@ -464,7 +467,7 @@ class EditRegistrationForm extends Component {
                     </FormGroup>
                     {this.state.edit && (
                         <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.dataIsEmpty()} block>
-                            Editovat přihlášku
+                            {t('Editovat přihlášku')}
                         </Button>
                     )}
                 </Form>
@@ -483,4 +486,4 @@ const mapDispatchToProps = {
     updateRegistration
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditRegistrationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(EditRegistrationForm));
