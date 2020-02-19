@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 const AddDocument = () => {
     const [file, setFile] = useState(null);
 
-    const document = useSelector((state) => state.document);
     const isAdmin = useSelector((state) => state.auth.isAdmin);
     const dispatch = useDispatch();
     const { t } = useTranslation();
