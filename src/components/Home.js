@@ -9,7 +9,8 @@ class Home extends Component {
                 </h1>
                 {/*<img src='/img/homepage.jpg' alt='Společná fotka soutěžících' className='homepage'></img>*/}
                 <h2 className="mt-5 mb-5" style={{ fontSize: '3rem', textAlign: 'center' }}>
-                    Letošní tcup se bude konat 11. 7. – 19. 7. 2020 v Toužimi.
+                    Letošní tcup se bude konat <br />
+                    11. 7. – 19. 7. 2020 v Toužimi.
                 </h2>
             </div>
         );
