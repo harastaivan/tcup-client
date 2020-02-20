@@ -25,7 +25,7 @@ i18n
         lng: 'cs',
         debug: true,
         whitelist: languages,
-
+        keySeparator: false,
         interpolation: {
             escapeValue: false // not needed for react as it escapes by default
         }
