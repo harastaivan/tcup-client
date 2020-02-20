@@ -3,6 +3,8 @@ import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
+
 import { login } from '../actions/auth';
 import { clearErrors } from '../actions/error';
 
@@ -19,7 +21,8 @@ class Login extends Component {
         login: PropTypes.func.isRequired,
         error: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool
+        isAuthenticated: PropTypes.bool,
+        t: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
@@ -47,29 +50,30 @@ class Login extends Component {
     }
 
     render() {
+        const t = this.props.t;
         return (
             <div>
-                {this.props.error.msg ? <Alert color="danger">{this.props.error.msg}</Alert> : null}
-                <h1>Přihlásit se</h1>
+                {this.props.error.msg ? <Alert color="danger">{t(this.props.error.msg)}</Alert> : null}
+                <h1>{t('Přihlásit se')}</h1>
                 <Form onSubmit={this.onSubmit}>
                     <FormGroup>
-                        <Label for="email">Email</Label>
+                        <Label for="email">{t('Email')}</Label>
                         <Input
                             type="email"
                             name="email"
                             id="email"
-                            placeholder="Email"
+                            placeholder={t('Email')}
                             value={this.state.email}
                             onChange={this.onChange}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="Password">Heslo</Label>
+                        <Label for="Password">{t('Heslo')}</Label>
                         <Input
                             type="password"
                             name="password"
                             id="Password"
-                            placeholder="Heslo"
+                            placeholder={t('Heslo')}
                             value={this.state.password}
                             onChange={this.onChange}
                         />
@@ -80,11 +84,11 @@ class Login extends Component {
                         block
                         disabled={!this.state.email || !this.state.password}
                     >
-                        Přihlásit se
+                        {t('Přihlásit se')}
                     </Button>
                 </Form>
                 <Alert color="light" style={{ marginTop: '2rem' }}>
-                    Nemáte účet? <Link to="/signup">Vytvořte si ho.</Link>
+                    {t('Nemáte účet?')} <Link to="/signup">{t('Vytvořte si ho.')}</Link>
                 </Alert>
             </div>
         );
@@ -96,4 +100,4 @@ const mapStateToProps = (state) => ({
     error: state.error
 });
 
-export default connect(mapStateToProps, { login, clearErrors })(Login);
+export default connect(mapStateToProps, { login, clearErrors })(withTranslation()(Login));
