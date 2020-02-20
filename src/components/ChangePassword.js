@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
+
 import { clearSuccess } from '../actions/success';
 import { clearErrors } from '../actions/error';
 import { changePassword } from '../actions/auth';
@@ -19,7 +21,8 @@ class ChangePassword extends Component {
         success: PropTypes.object.isRequired,
         clearSuccess: PropTypes.func.isRequired,
         clearErrors: PropTypes.func.isRequired,
-        changePassword: PropTypes.func.isRequired
+        changePassword: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
@@ -45,36 +48,37 @@ class ChangePassword extends Component {
     };
 
     render() {
+        const t = this.props.t;
         return (
             <Fragment>
                 {this.props.error.msg ? <Alert color="danger">{this.props.error.msg}</Alert> : null}
                 {this.props.success.msg ? <Alert color="success">{this.props.success.msg}</Alert> : null}
-                <h1>Změnit heslo</h1>
+                <h1>{t('Změnit heslo')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <FormGroup>
-                        <Label for="oldPassword">Staré heslo</Label>
+                        <Label for="oldPassword">{t('Staré heslo')}</Label>
                         <Input
                             type="password"
                             name="oldPassword"
                             id="oldPassword"
-                            placeholder="Staré heslo"
+                            placeholder={t('Staré heslo')}
                             value={this.state.oldPassword}
                             onChange={this.onChange}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="newPassword">Nové heslo</Label>
+                        <Label for="newPassword">{t('Nové heslo')}</Label>
                         <Input
                             type="password"
                             name="newPassword"
                             id="newPassword"
-                            placeholder="Nové heslo"
+                            placeholder={t('Nové heslo')}
                             value={this.state.newPassword}
                             onChange={this.onChange}
                         />
                     </FormGroup>
                     <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.isDisabled()} block>
-                        Změnit
+                        {t('Změnit')}
                     </Button>
                 </Form>
             </Fragment>
@@ -88,4 +92,6 @@ const mapStateToProps = (state) => ({
     success: state.success
 });
 
-export default connect(mapStateToProps, { clearSuccess, clearErrors, changePassword })(ChangePassword);
+export default connect(mapStateToProps, { clearSuccess, clearErrors, changePassword })(
+    withTranslation()(ChangePassword)
+);
