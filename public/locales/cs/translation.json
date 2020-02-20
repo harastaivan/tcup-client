@@ -57,5 +57,11 @@
     "Letošní tcup se bude konat": "Letošní tcup se bude konat",
     "11. 7. – 19. 7. 2020 v Toužimi": "11. 7. – 19. 7. 2020 v Toužimi",
     "Staré heslo": "Staré heslo",
-    "Nové heslo": "Nové heslo"
+    "Nové heslo": "Nové heslo",
+    "User does not exist": "Uživatel neexistuje",
+    "Invalid credentials": "Špatný email nebo heslo",
+    "Please enter all fields": "Prosím vyplňte všechna pole",
+    "Heslo": "Heslo",
+    "Nemáte účet?": "Nemáte účet?",
+    "Vytvořte si ho.": "Vytvořte si ho."
 }
