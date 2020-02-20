@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
+
 import { clearErrors } from '../actions/error';
 import { changeUserInfo } from '../actions/auth';
 
@@ -19,7 +21,8 @@ class EditUserSettings extends Component {
         auth: PropTypes.object.isRequired,
         error: PropTypes.object.isRequired,
         clearErrors: PropTypes.func.isRequired,
-        changeUserInfo: PropTypes.func.isRequired
+        changeUserInfo: PropTypes.func.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
@@ -48,20 +51,21 @@ class EditUserSettings extends Component {
     };
 
     render() {
+        const t = this.props.t;
         return (
             <div>
                 {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
-                <h1>Změnit mé údaje</h1>
+                <h1>{t('Změnit mé údaje')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="name">Jméno</Label>
+                                <Label for="name">{t('Jméno')}</Label>
                                 <Input
                                     type="text"
                                     name="name"
                                     id="name"
-                                    placeholder="Jméno"
+                                    placeholder={t('Jméno')}
                                     value={this.state.name}
                                     onChange={this.onChange}
                                 />
@@ -69,12 +73,12 @@ class EditUserSettings extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="surname">Příjmení</Label>
+                                <Label for="surname">{t('Příjmení')}</Label>
                                 <Input
                                     type="text"
                                     name="surname"
                                     id="surname"
-                                    placeholder="Příjmení"
+                                    placeholder={t('Příjmení')}
                                     value={this.state.surname}
                                     onChange={this.onChange}
                                 />
@@ -82,18 +86,18 @@ class EditUserSettings extends Component {
                         </Col>
                     </Row>
                     <FormGroup>
-                        <Label for="email">Email</Label>
+                        <Label for="email">{t('Email')}</Label>
                         <Input
                             type="email"
                             name="email"
                             id="email"
-                            placeholder="Email"
+                            placeholder={t('Email')}
                             value={this.state.email}
                             onChange={this.onChange}
                         />
                     </FormGroup>
                     <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.isDisabled()} block>
-                        Změnit
+                        {t('Změnit')}
                     </Button>
                 </Form>
             </div>
@@ -107,4 +111,4 @@ const mapStateToProps = (state) => ({
     error: state.error
 });
 
-export default connect(mapStateToProps, { clearErrors, changeUserInfo })(EditUserSettings);
+export default connect(mapStateToProps, { clearErrors, changeUserInfo })(withTranslation()(EditUserSettings));
