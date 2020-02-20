@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Form, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
+
 import { getFormData, submitRegistration } from '../actions/registration';
 import GdprConsent from './GdprConsent';
 
@@ -52,7 +54,8 @@ class RegistrationForm extends Component {
         getFormData: PropTypes.func,
         submitRegistration: PropTypes.func,
         auth: PropTypes.object,
-        registration: PropTypes.object
+        registration: PropTypes.object,
+        t: PropTypes.func.isRequired
     };
 
     onChange = (e) => {
@@ -130,19 +133,21 @@ class RegistrationForm extends Component {
     };
 
     render() {
+        const t = this.props.t;
+
         return (
             <div>
-                <h1>Vytvoření přihlášky</h1>
+                <h1>{t('Vytvoření přihlášky')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="name">Jméno</Label>
+                                <Label for="name">{t('Jméno')}</Label>
                                 <Input
                                     type="text"
                                     name="name"
                                     id="name"
-                                    placeholder="Jméno"
+                                    placeholder={t('Jméno')}
                                     value={this.props.auth.user.name}
                                     onChange={this.onChange}
                                     disabled
@@ -151,12 +156,12 @@ class RegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="surname">Příjmení</Label>
+                                <Label for="surname">{t('Příjmení')}</Label>
                                 <Input
                                     type="text"
                                     name="surname"
                                     id="surname"
-                                    placeholder="Příjmení"
+                                    placeholder={t('Příjmení')}
                                     value={this.props.auth.user.surname}
                                     onChange={this.onChange}
                                     disabled
@@ -165,12 +170,12 @@ class RegistrationForm extends Component {
                         </Col>
                     </Row>
                     <FormGroup>
-                        <Label for="email">Email</Label>
+                        <Label for="email">{t('Email')}</Label>
                         <Input
                             type="email"
                             name="email"
                             id="email"
-                            placeholder="Email"
+                            placeholder={t('Email')}
                             value={this.props.auth.user.email}
                             onChange={this.onChange}
                             disabled
@@ -179,7 +184,7 @@ class RegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="birthDate">Datum narození</Label>
+                                <Label for="birthDate">{t('Datum narození')}</Label>
                                 <Input
                                     type="date"
                                     name="birthDate"
@@ -194,12 +199,12 @@ class RegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="phone">Telefon</Label>
+                                <Label for="phone">{t('Telefon')}</Label>
                                 <Input
                                     type="text"
                                     name="phone"
                                     id="phone"
-                                    placeholder="Telefon"
+                                    placeholder={t('Telefon')}
                                     value={this.state.phone}
                                     onChange={this.onChange}
                                     required
@@ -213,12 +218,12 @@ class RegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="aeroclub">Aeroklub</Label>
+                                <Label for="aeroclub">{t('Aeroklub')}</Label>
                                 <Input
                                     type="text"
                                     name="aeroclub"
                                     id="aeroclub"
-                                    placeholder="Aeroklub"
+                                    placeholder={t('Aeroklub')}
                                     value={this.state.aeroclub}
                                     onChange={this.onChange}
                                     required
@@ -230,7 +235,7 @@ class RegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="region">Region</Label>
+                                <Label for="region">{t('Region')}</Label>
                                 <Input
                                     type="select"
                                     name="region"
@@ -242,11 +247,11 @@ class RegistrationForm extends Component {
                                     valid={this.state.regionValid && this.state.regionVisited}
                                     invalid={!this.state.regionValid && this.state.regionVisited}
                                 >
-                                    <option value="">Region</option>
+                                    <option value="">{t('Region')}</option>
                                     {this.props.registration.formData.regions.map((region) => {
                                         return (
                                             <option key={region._id} value={region._id}>
-                                                {region.name}
+                                                {t(region.name)}
                                             </option>
                                         );
                                     })}
@@ -257,7 +262,7 @@ class RegistrationForm extends Component {
                     <Row form>
                         <Col md={4}>
                             <FormGroup>
-                                <Label for="gliderType">Typ kluzáku</Label>
+                                <Label for="gliderType">{t('Typ kluzáku')}</Label>
                                 <Input
                                     type="select"
                                     name="gliderType"
@@ -269,7 +274,7 @@ class RegistrationForm extends Component {
                                     invalid={!this.state.gliderTypeValid && this.state.gliderTypeVisited}
                                     value={this.state.gliderType}
                                 >
-                                    <option value="">Typ kluzáku</option>
+                                    <option value="">{t('Typ kluzáku')}</option>
                                     {this.props.registration.formData.gliderTypes.map((gliderType) => {
                                         return (
                                             <option key={gliderType._id} value={gliderType._id}>
@@ -282,12 +287,12 @@ class RegistrationForm extends Component {
                         </Col>
                         <Col md={4}>
                             <FormGroup>
-                                <Label for="registrationNumber">Registrace</Label>
+                                <Label for="registrationNumber">{t('Registrace')}</Label>
                                 <Input
                                     type="text"
                                     name="registrationNumber"
                                     id="registrationNumber"
-                                    placeholder="Registrace"
+                                    placeholder={t('Registrace')}
                                     value={this.state.registrationNumber}
                                     onChange={this.onChange}
                                     required
@@ -301,12 +306,12 @@ class RegistrationForm extends Component {
                         </Col>
                         <Col md={4}>
                             <FormGroup>
-                                <Label for="startNumber">Startovní číslo</Label>
+                                <Label for="startNumber">{t('Startovní číslo')}</Label>
                                 <Input
                                     type="text"
                                     name="startNumber"
                                     id="startNumber"
-                                    placeholder="Startovní číslo"
+                                    placeholder={t('Startovní číslo')}
                                     value={this.state.startNumber}
                                     onChange={this.onChange}
                                     required
@@ -320,7 +325,7 @@ class RegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="competitionClass">Třída</Label>
+                                <Label for="competitionClass">{t('Třída')}</Label>
                                 <Input
                                     type="select"
                                     name="competitionClass"
@@ -332,7 +337,7 @@ class RegistrationForm extends Component {
                                     valid={this.state.competitionClassValid && this.state.competitionClassVisited}
                                     invalid={!this.state.competitionClassValid && this.state.competitionClassVisited}
                                 >
-                                    <option value="">Třída</option>
+                                    <option value="">{t('Třída')}</option>
                                     {this.props.registration.formData.competitionClasses.map((competitionClass) => {
                                         return (
                                             <option key={competitionClass._id} value={competitionClass._id}>
@@ -345,12 +350,12 @@ class RegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="logger">Logger</Label>
+                                <Label for="logger">{t('Logger')}</Label>
                                 <Input
                                     type="text"
                                     name="logger"
                                     id="logger"
-                                    placeholder="Logger"
+                                    placeholder={t('Logger')}
                                     value={this.state.logger}
                                     onChange={this.onChange}
                                     required
@@ -364,7 +369,7 @@ class RegistrationForm extends Component {
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="accomodationType">Typ ubytování</Label>
+                                <Label for="accomodationType">{t('Typ ubytování')}</Label>
                                 <Input
                                     type="select"
                                     name="accomodationType"
@@ -376,11 +381,11 @@ class RegistrationForm extends Component {
                                     valid={this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
                                     invalid={!this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
                                 >
-                                    <option value="">Typ ubytování</option>
+                                    <option value="">{t('Typ ubytování')}</option>
                                     {this.props.registration.formData.accomodationTypes.map((accomodationType) => {
                                         return (
                                             <option key={accomodationType._id} value={accomodationType._id}>
-                                                {accomodationType.name}
+                                                {t(accomodationType.name)}
                                             </option>
                                         );
                                     })}
@@ -389,12 +394,12 @@ class RegistrationForm extends Component {
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="quantity">Počet osob pro ubytování</Label>
+                                <Label for="quantity">{t('Počet osob pro ubytování')}</Label>
                                 <Input
                                     type="number"
                                     name="quantity"
                                     id="quantity"
-                                    placeholder="Počet osob"
+                                    placeholder={t('Počet osob')}
                                     value={this.state.quantity}
                                     onChange={this.onChange}
                                     required
@@ -407,12 +412,12 @@ class RegistrationForm extends Component {
                     </Row>
 
                     <FormGroup>
-                        <Label for="meals">Počet osob pro jídlo</Label>
+                        <Label for="meals">{t('Počet osob pro jídlo')}</Label>
                         <Input
                             type="number"
                             name="meals"
                             id="meals"
-                            placeholder="Počet osob"
+                            placeholder={t('Počet osob')}
                             value={this.state.meals}
                             onChange={this.onChange}
                             required
@@ -422,12 +427,12 @@ class RegistrationForm extends Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="note">Poznámka</Label>
+                        <Label for="note">{t('Poznámka')}</Label>
                         <Input
                             type="text"
                             name="note"
                             id="note"
-                            placeholder="Poznámka"
+                            placeholder={t('Poznámka')}
                             value={this.state.note}
                             onChange={this.onChange}
                             onBlur={this.validateField}
@@ -437,7 +442,7 @@ class RegistrationForm extends Component {
                     </FormGroup>
                     <GdprConsent action="Vytvořením přihlášky" />
                     <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.dataIsEmpty()} block>
-                        Vytvořit přihlášku
+                        {t('Vytvořit přihlášku')}
                     </Button>
                 </Form>
             </div>
@@ -455,4 +460,4 @@ const mapDispatchToProps = {
     submitRegistration
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(RegistrationForm));
