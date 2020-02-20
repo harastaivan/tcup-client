@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Alert, Spinner } from 'reactstrap';
+import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
+
 import RegistrationForm from './RegistrationForm';
 import EditRegistrationForm from './EditRegistrationForm';
 import Login from './Login';
-import { Alert, Spinner } from 'reactstrap';
-import PropTypes from 'prop-types';
 import { getRegistration, getFormData } from '../actions/registration';
 
 class Registration extends Component {
@@ -13,7 +15,8 @@ class Registration extends Component {
         getFormData: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.bool.isRequired,
         registration: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired
+        history: PropTypes.object.isRequired,
+        t: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -30,6 +33,7 @@ class Registration extends Component {
     render() {
         const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
         const { loading } = this.props.registration;
+        const t = this.props.t;
         return (
             <div>
                 {loading ? (
@@ -38,7 +42,7 @@ class Registration extends Component {
                     <Fragment>
                         {!this.props.isAuthenticated && (
                             <div>
-                                <Alert color="info">Pro vytvoření přihlášky se přihlaste.</Alert>
+                                <Alert color="info">{t('Pro vytvoření přihlášky se přihlaste.')}</Alert>
                                 <Login history={this.props.history} />
                             </div>
                         )}
@@ -64,4 +68,4 @@ const mapDispatchToProps = {
     getFormData
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Registration);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Registration));
