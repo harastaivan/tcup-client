@@ -407,7 +407,7 @@ class EditRegistrationForm extends Component {
                                     {this.props.registration.formData.accomodationTypes.map((accomodationType) => {
                                         return (
                                             <option key={accomodationType._id} value={accomodationType._id}>
-                                                {accomodationType.name}
+                                                {t(accomodationType.name)}
                                             </option>
                                         );
                                     })}
