@@ -86,5 +86,9 @@
     "ne": "ne",
     "označit jako nezaplacené": "označit jako nezaplacené",
     "označit jako zaplacené": "označit jako zaplacené",
-    "Nikdo z této třídy nemá podanou přihlášku.": "Nikdo z této třídy nemá podanou přihlášku."
+    "Nikdo z této třídy nemá podanou přihlášku.": "Nikdo z této třídy nemá podanou přihlášku.",
+    "Aplikace se právě testuje. Nemusí vše fungovat správně.": "Aplikace se právě testuje. Nemusí vše fungovat správně.",
+    "Chyby hlašte zde": "Chyby hlašte zde",
+    "Klub": "Klub",
+    "Kombi": "Kombi"
 }

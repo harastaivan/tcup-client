@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function GdprConsent(props) {
     return (
         <Fragment>
-            <p>
+            <div>
                 {props.action} souhlasíte:
                 <ul>
                     <li>se zpracováním osobních údajů se vztahem k soutěži,</li>
@@ -17,7 +17,7 @@ export default function GdprConsent(props) {
                         s dalšími podmínkami uvedenými v propozicích soutěže (sekce <a href="/documents">Dokumenty</a>).
                     </li>
                 </ul>
-            </p>
+            </div>
             <p>Správcem osobních údajů je Aeroklub Toužim.</p>
         </Fragment>
     );
