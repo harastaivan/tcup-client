@@ -96,5 +96,8 @@
     "Registration already exists by this user": "Registration already exists by this user",
     "User is not admin": "User is not admin",
     "Soubor": "File",
-    "Heslo bylo změněno": "Password was successfully changed"
+    "Heslo bylo změněno": "Password",
+    "Přidat novinku": "Add news",
+    "Nadpis": "Title",
+    "Novinka": "News body"
 }

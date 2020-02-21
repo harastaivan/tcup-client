@@ -1,81 +1,67 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { Fragment, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, FormGroup, Button, Input } from 'reactstrap';
 
 import { addNews } from '../actions/news';
+import { useTranslation } from 'react-i18next';
 
-class AddNews extends React.Component {
-    state = {
-        title: '',
-        body: ''
-    };
+const AddNews = () => {
+    const [title, setTitle] = useState('');
+    const [body, setBody] = useState('');
 
-    static propTypes = {
-        addNews: PropTypes.func.isRequired,
-        isAdmin: PropTypes.bool
-    };
+    const isAdmin = useSelector((state) => state.auth.isAdmin);
+    const dispatch = useDispatch();
 
-    onChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    };
+    const { t } = useTranslation();
 
-    onSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         const newNews = {
-            title: this.state.title,
-            body: this.state.body
+            title,
+            body
         };
-        this.props.addNews(newNews);
+
+        dispatch(addNews(newNews));
+
+        setTitle('');
+        setBody('');
     };
 
-    render() {
-        return (
-            <Fragment>
-                {this.props.isAdmin ? (
-                    <Fragment>
-                        <h2>Přidat novinku</h2>
-                        <Form onSubmit={this.onSubmit}>
-                            <FormGroup>
-                                <Input
-                                    type="text"
-                                    name="title"
-                                    id="title"
-                                    placeholder="Nadpis"
-                                    onChange={this.onChange}
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Input
-                                    type="textarea"
-                                    name="body"
-                                    id="body"
-                                    placeholder="Novinka"
-                                    onChange={this.onChange}
-                                    style={{ height: '150px' }}
-                                />
-                            </FormGroup>
-                            <Button
-                                color="dark"
-                                style={{ marginTop: '2rem' }}
-                                disabled={!this.state.title || !this.state.body}
-                                block
-                            >
-                                Přidat novinku
-                            </Button>
-                        </Form>
-                    </Fragment>
-                ) : null}
-            </Fragment>
-        );
-    }
-}
+    return (
+        <Fragment>
+            {isAdmin ? (
+                <Fragment>
+                    <h2>{t('Přidat novinku')}</h2>
+                    <Form onSubmit={onSubmit}>
+                        <FormGroup>
+                            <Input
+                                type="text"
+                                name="title"
+                                id="title"
+                                value={title}
+                                placeholder={t('Nadpis')}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input
+                                type="textarea"
+                                name="body"
+                                id="body"
+                                value={body}
+                                placeholder={t('Novinka')}
+                                onChange={(e) => setBody(e.target.value)}
+                                style={{ height: '150px' }}
+                            />
+                        </FormGroup>
+                        <Button color="dark" style={{ marginTop: '2rem' }} disabled={!title || !body} block>
+                            {t('Přidat novinku')}
+                        </Button>
+                    </Form>
+                </Fragment>
+            ) : null}
+        </Fragment>
+    );
+};
 
-const mapStateToProps = (state) => ({
-    news: state.news,
-    isAdmin: state.auth.isAdmin
-});
-
-export default connect(mapStateToProps, { addNews })(AddNews);
+export default AddNews;
