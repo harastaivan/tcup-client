@@ -48,7 +48,9 @@ class StartingList extends Component {
                 )}
                 {classes.map((one) => (
                     <Fragment key={one._id}>
-                        <h2>{t(one.name)}</h2>
+                        <h2>
+                            {t(one.name)} {one.registrations.length ? `(${one.registrations.length})` : null}
+                        </h2>
                         {one.registrations.length ? (
                             <Table>
                                 <thead>
