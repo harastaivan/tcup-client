@@ -440,7 +440,7 @@ class RegistrationForm extends Component {
                             invalid={!this.state.noteValid && this.state.noteVisited}
                         />
                     </FormGroup>
-                    <GdprConsent action="Vytvořením přihlášky" />
+                    <GdprConsent action="Vytvořením přihlášky souhlasíte" />
                     <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.dataIsEmpty()} block>
                         {t('Vytvořit přihlášku')}
                     </Button>

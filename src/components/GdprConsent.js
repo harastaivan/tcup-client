@@ -1,24 +1,30 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 export default function GdprConsent(props) {
+    const { t } = useTranslation();
+
     return (
         <Fragment>
             <div>
-                {props.action} souhlasíte:
+                {t(props.action)}:
                 <ul>
-                    <li>se zpracováním osobních údajů se vztahem k soutěži,</li>
+                    <li>{t('se zpracováním osobních údajů se vztahem k soutěži')},</li>
                     <li>
-                        se zveřejňováním těchto osobních údajů na <a href="/">této</a> a jiných stránkách (
-                        <a href="https://www.soaringspot.com/">soaringspot.com</a>),
+                        {t('se zveřejňováním těchto osobních údajů na')} <a href="/">{t('této')}</a>{' '}
+                        {t('a jiných stránkách')} (<a href="https://www.soaringspot.com/">soaringspot.com</a>),
                     </li>
-                    <li>se zasíláním informačních e-mailů týkajících se soutěže na uvedenou e-mailovou adresu,</li>
                     <li>
-                        s dalšími podmínkami uvedenými v propozicích soutěže (sekce <a href="/documents">Dokumenty</a>).
+                        {t('se zasíláním informačních e-mailů týkajících se soutěže na uvedenou e-mailovou adresu')},
+                    </li>
+                    <li>
+                        {t('s dalšími podmínkami uvedenými v propozicích soutěže (sekce')}{' '}
+                        <a href="/documents">{t('Dokumenty')}</a>).
                     </li>
                 </ul>
             </div>
-            <p>Správcem osobních údajů je Aeroklub Toužim.</p>
+            <p>{t('Správcem osobních údajů je Aeroklub Toužim')}.</p>
         </Fragment>
     );
 }

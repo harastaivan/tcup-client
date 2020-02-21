@@ -124,7 +124,7 @@ class Signup extends Component {
                             disabled={this.signupDisabled()}
                         />
                     </FormGroup>
-                    {!this.signupDisabled() && <GdprConsent action="Zaregistrováním se" />}
+                    {!this.signupDisabled() && <GdprConsent action="Zaregistrováním se souhlasíte" />}
                     <Button
                         color="dark"
                         style={{ marginTop: '2rem' }}
