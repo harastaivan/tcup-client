@@ -292,7 +292,7 @@ class RegistrationForm extends Component {
                                     type="text"
                                     name="registrationNumber"
                                     id="registrationNumber"
-                                    placeholder={t('OK-1234')}
+                                    placeholder={'OK-1234'}
                                     value={this.state.registrationNumber}
                                     onChange={this.onChange}
                                     required

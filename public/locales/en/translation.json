@@ -86,5 +86,9 @@
     "ne": "no",
     "označit jako nezaplacené": "mark as not paid",
     "označit jako zaplacené": "mark as paid",
-    "Nikdo z této třídy nemá podanou přihlášku.": "Nobody from this class submitted an entry form."
+    "Nikdo z této třídy nemá podanou přihlášku.": "Nobody from this class submitted an entry form.",
+    "Aplikace se právě testuje. Nemusí vše fungovat správně.": "The application is being tested. It may not work properly.",
+    "Chyby hlašte zde": "Report bugs here",
+    "Klub": "Club",
+    "Kombi": "Kombi"
 }

@@ -309,7 +309,7 @@ class EditRegistrationForm extends Component {
                                     type="text"
                                     name="registrationNumber"
                                     id="registrationNumber"
-                                    placeholder={'OK-1234'}
+                                    placeholder={'OK-1235'}
                                     value={this.state.registrationNumber}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -361,7 +361,7 @@ class EditRegistrationForm extends Component {
                                     {this.props.registration.formData.competitionClasses.map((competitionClass) => {
                                         return (
                                             <option key={competitionClass._id} value={competitionClass._id}>
-                                                {competitionClass.name}
+                                                {t(competitionClass.name)}
                                             </option>
                                         );
                                     })}
