@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Statuses extends Component {
-    render() {
-        return <div>Statusy soutěžících</div>;
-    }
-}
+const Statuses = () => {
+    return <div>Statusy soutěžících</div>;
+};
+
+export default Statuses;

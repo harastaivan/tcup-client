@@ -94,5 +94,7 @@
     "Invalid old password": "Invalid old password",
     "Registration does not exist for this user": "Registration does not exist for this user",
     "Registration already exists by this user": "Registration already exists by this user",
-    "User is not admin": "User is not admin"
+    "User is not admin": "User is not admin",
+    "Soubor": "File",
+    "Heslo bylo změněno": "Password was successfully changed"
 }

@@ -3,19 +3,10 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavLi
 import ReactCountryFlag from 'react-country-flag';
 import { useTranslation } from 'react-i18next';
 
+import getCountryCode from '../utils/countryCode';
+
 export default function SelectLanguage() {
     const { i18n } = useTranslation();
-
-    const getCountryCode = (lng) => {
-        switch (lng) {
-            case 'cs':
-                return 'cz';
-            case 'en':
-                return 'gb';
-            default:
-                return 'cz';
-        }
-    };
 
     return (
         <UncontrolledDropdown nav inNavbar className="bg-dark mr-4">

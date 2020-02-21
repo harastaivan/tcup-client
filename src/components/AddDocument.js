@@ -28,7 +28,7 @@ const AddDocument = () => {
                     <h2>{t('Nahrát nový soubor')}</h2>
                     <Form onSubmit={onSubmit}>
                         <FormGroup>
-                            <Label for="file">Soubor</Label>
+                            <Label for="file">{t('Soubor')}</Label>
                             <Input type="file" name="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
                         </FormGroup>
                         <Button color="dark" style={{ marginTop: '2rem' }} disabled={!file} block>
