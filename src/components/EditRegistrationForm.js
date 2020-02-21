@@ -304,12 +304,12 @@ class EditRegistrationForm extends Component {
                         </Col>
                         <Col md={4}>
                             <FormGroup>
-                                <Label for="registrationNumber">{t('Registrace')}</Label>
+                                <Label for="registrationNumber">{t('Imatrikulace')}</Label>
                                 <Input
                                     type="text"
                                     name="registrationNumber"
                                     id="registrationNumber"
-                                    placeholder={t('Registrace')}
+                                    placeholder={'OK-1234'}
                                     value={this.state.registrationNumber}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}
@@ -329,7 +329,7 @@ class EditRegistrationForm extends Component {
                                     type="text"
                                     name="startNumber"
                                     id="startNumber"
-                                    placeholder={t('Startovní číslo')}
+                                    placeholder={'HI'}
                                     value={this.state.startNumber}
                                     onChange={this.onChange}
                                     disabled={!this.state.edit}

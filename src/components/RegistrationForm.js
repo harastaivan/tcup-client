@@ -287,12 +287,12 @@ class RegistrationForm extends Component {
                         </Col>
                         <Col md={4}>
                             <FormGroup>
-                                <Label for="registrationNumber">{t('Registrace')}</Label>
+                                <Label for="registrationNumber">{t('Imatrikulace')}</Label>
                                 <Input
                                     type="text"
                                     name="registrationNumber"
                                     id="registrationNumber"
-                                    placeholder={t('Registrace')}
+                                    placeholder={t('OK-1234')}
                                     value={this.state.registrationNumber}
                                     onChange={this.onChange}
                                     required
@@ -311,7 +311,7 @@ class RegistrationForm extends Component {
                                     type="text"
                                     name="startNumber"
                                     id="startNumber"
-                                    placeholder={t('Startovní číslo')}
+                                    placeholder={'HI'}
                                     value={this.state.startNumber}
                                     onChange={this.onChange}
                                     required

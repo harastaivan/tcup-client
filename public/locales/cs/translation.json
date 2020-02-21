@@ -39,6 +39,7 @@
     "Čechy 1.": "Čechy 1.",
     "Čechy 2.": "Čechy 2.",
     "Typ kluzáku": "Typ kluzáku",
+    "Imatrikulace": "Imatrikulace",
     "Startovní číslo": "Startovní číslo",
     "Třída": "Třída",
     "Logger": "Logger",
@@ -72,5 +73,18 @@
     "Registrovat se": "Registrovat se",
     "Již máte účet?": "Již máte účet?",
     "Přihlaste se.": "Přihlaste se.",
-    "User already exists": "Uživatel již existuje"
+    "User already exists": "Uživatel již existuje",
+    "export přihlášek": "export přihlášek",
+    "jméno": "jméno",
+    "datum narození": "datum narození",
+    "aeroklub": "aeroklub",
+    "startovní číslo": "startovní číslo",
+    "typ": "typ",
+    "imatrikulace": "imatrikulace",
+    "zaplaceno": "zaplaceno",
+    "ano": "ano",
+    "ne": "ne",
+    "označit jako nezaplacené": "označit jako nezaplacené",
+    "označit jako zaplacené": "označit jako zaplacené",
+    "Nikdo z této třídy nemá podanou přihlášku.": "Nikdo z této třídy nemá podanou přihlášku."
 }
