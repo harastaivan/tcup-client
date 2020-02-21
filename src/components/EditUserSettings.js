@@ -54,7 +54,7 @@ class EditUserSettings extends Component {
         const t = this.props.t;
         return (
             <div>
-                {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+                {this.state.msg ? <Alert color="danger">{t(this.state.msg)}</Alert> : null}
                 <h1>{t('Změnit mé údaje')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class SendIgc extends Component {
-    render() {
-        return <div>Poslat IGC</div>;
-    }
-}
+const SendIgc = () => {
+    return <div>Poslat IGC</div>;
+};
+
+export default SendIgc;

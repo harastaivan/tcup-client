@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react';
-import { logout } from '../actions/auth';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { logout } from '../actions/auth';
 
 class Logout extends Component {
     static propTypes = {
@@ -19,7 +20,7 @@ class Logout extends Component {
     }
 
     render() {
-        return <Fragment />;
+        return null;
     }
 }
 

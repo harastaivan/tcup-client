@@ -341,7 +341,7 @@ class RegistrationForm extends Component {
                                     {this.props.registration.formData.competitionClasses.map((competitionClass) => {
                                         return (
                                             <option key={competitionClass._id} value={competitionClass._id}>
-                                                {competitionClass.name}
+                                                {t(competitionClass.name)}
                                             </option>
                                         );
                                     })}
