@@ -90,5 +90,9 @@
     "Aplikace se právě testuje. Nemusí vše fungovat správně.": "The application is being tested. It may not work properly.",
     "Chyby hlašte zde": "Report bugs here",
     "Klub": "Club",
-    "Kombi": "Kombi"
+    "Kombi": "Kombi",
+    "Invalid old password": "Invalid old password",
+    "Registration does not exist for this user": "Registration does not exist for this user",
+    "Registration already exists by this user": "Registration already exists by this user",
+    "User is not admin": "User is not admin"
 }
