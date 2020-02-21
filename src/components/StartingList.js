@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Container, Table, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
+import { withTranslation } from 'react-i18next';
 import 'moment/locale/cs';
 
 import { getStartingList, setStartingListLoading, markPaid, exportRegistrations } from '../actions/startingList';
@@ -14,7 +15,8 @@ class StartingList extends Component {
         startingList: PropTypes.object.isRequired,
         markPaid: PropTypes.func.isRequired,
         exportRegistrations: PropTypes.func.isRequired,
-        isAdmin: PropTypes.bool
+        isAdmin: PropTypes.bool,
+        t: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -33,31 +35,31 @@ class StartingList extends Component {
 
     render() {
         const { classes, loading } = this.props.startingList;
-        const { isAdmin } = this.props;
+        const { isAdmin, t } = this.props;
         const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
         return (
             <Container>
-                <h1>Startovní listina</h1>
+                <h1>{t('Startovní listina')}</h1>
                 {loading ? spinner : null}
                 {isAdmin && (
                     <Button color="primary" className="mb-3" onClick={this.exportStartingList}>
-                        export přihlášek
+                        {t('export přihlášek')}
                     </Button>
                 )}
                 {classes.map((one) => (
                     <Fragment key={one._id}>
-                        <h2>{one.name}</h2>
+                        <h2>{t(one.name)}</h2>
                         {one.registrations.length ? (
                             <Table>
                                 <thead>
                                     <tr>
-                                        <th>jméno</th>
-                                        <th className="d-none d-md-table-cell">datum narození</th>
-                                        <th>aeroklub</th>
-                                        <th>startovní číslo</th>
-                                        <th>typ</th>
-                                        <th>imatrikulace</th>
-                                        <th className="d-none d-md-table-cell">zaplaceno</th>
+                                        <th>{t('jméno')}</th>
+                                        <th className="d-none d-md-table-cell">{t('datum narození')}</th>
+                                        <th>{t('aeroklub')}</th>
+                                        <th>{t('startovní číslo')}</th>
+                                        <th>{t('typ')}</th>
+                                        <th>{t('imatrikulace')}</th>
+                                        <th className="d-none d-md-table-cell">{t('zaplaceno')}</th>
                                         <th className="d-none d-md-table-cell"> </th>
                                     </tr>
                                 </thead>
@@ -75,9 +77,9 @@ class StartingList extends Component {
                                             <td>{registration.gliderType}</td>
                                             <td>{registration.registrationNumber}</td>
                                             {registration.paid ? (
-                                                <td className="d-none d-md-table-cell text-success">ano</td>
+                                                <td className="d-none d-md-table-cell text-success">{t('ano')}</td>
                                             ) : (
-                                                <td className="d-none d-md-table-cell text-danger">ne</td>
+                                                <td className="d-none d-md-table-cell text-danger">{t('ne')}</td>
                                             )}
                                             <td className="d-none d-md-table-cell">
                                                 {isAdmin && (
@@ -92,8 +94,8 @@ class StartingList extends Component {
                                                         size="sm"
                                                     >
                                                         {registration.paid
-                                                            ? 'označit jako nezaplacené'
-                                                            : 'označit jako zaplacené'}
+                                                            ? t('označit jako nezaplacené')
+                                                            : t('označit jako zaplacené')}
                                                     </Button>
                                                 )}
                                             </td>
@@ -102,7 +104,7 @@ class StartingList extends Component {
                                 </tbody>
                             </Table>
                         ) : (
-                            'Nikdo z této třídy nemá podanou přihlášku.'
+                            t('Nikdo z této třídy nemá podanou přihlášku.')
                         )}
                     </Fragment>
                 ))}
@@ -117,5 +119,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getStartingList, setStartingListLoading, markPaid, exportRegistrations })(
-    StartingList
+    withTranslation()(StartingList)
 );

@@ -39,6 +39,7 @@
     "Čechy 1.": "Czechia 1.",
     "Čechy 2.": "Czechia 2.",
     "Typ kluzáku": "Glider type",
+    "Imatrikulace": "Aircraft registration",
     "Startovní číslo": "Start number",
     "Třída": "Competition class",
     "Logger": "Logger",
@@ -72,5 +73,18 @@
     "Registrovat se": "Sign up",
     "Již máte účet?": "Do you already have an account?",
     "Přihlaste se.": "Log in.",
-    "User already exists": "User already exists"
+    "User already exists": "User already exists",
+    "export přihlášek": "starting list export",
+    "jméno": "name",
+    "datum narození": "birth date",
+    "aeroklub": "aeroclub",
+    "startovní číslo": "start number",
+    "typ": "type",
+    "imatrikulace": "registration n.",
+    "zaplaceno": "paid",
+    "ano": "yes",
+    "ne": "no",
+    "označit jako nezaplacené": "mark as not paid",
+    "označit jako zaplacené": "mark as paid",
+    "Nikdo z této třídy nemá podanou přihlášku.": "Nobody from this class submitted an entry form."
 }
