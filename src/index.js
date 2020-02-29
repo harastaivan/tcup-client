@@ -1,3 +1,4 @@
+import 'react-app-polyfill/ie9';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Spinner } from 'reactstrap';
