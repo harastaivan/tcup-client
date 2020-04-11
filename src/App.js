@@ -6,22 +6,22 @@ import { Alert, Container } from 'reactstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import AppNavbar from './components/AppNavbar';
-import Home from './components/Home';
-import News from './components/News';
-import Registration from './components/Registration';
-import Login from './components/Login';
-import Statuses from './components/Statuses';
-import StartingList from './components/StartingList';
-import Documents from './components/Documents';
-import Contacts from './components/Contacts';
-import SendIgc from './components/SendIgc';
-import Signup from './components/Signup';
-import Footer from './components/Footer';
-import Logout from './components/Logout';
-import Results from './components/Results';
-import UserSettings from './components/UserSettings';
-import ChangePassword from './components/ChangePassword';
+import AppNavbar from './containers/AppNavbar';
+import Home from './containers/Home';
+import News from './containers/News';
+import Registration from './containers/Registration';
+import Login from './containers/Login';
+import Statuses from './containers/Statuses';
+import StartingList from './containers/StartingList';
+import Documents from './containers/Documents';
+import Contacts from './containers/Contacts';
+import SendIgc from './containers/SendIgc';
+import Signup from './containers/Signup';
+import Footer from './containers/Footer';
+import Logout from './containers/Logout';
+import Results from './containers/Results';
+import UserSettings from './containers/UserSettings';
+import ChangePassword from './containers/ChangePassword';
 
 import { loadUser } from './actions/auth';
 
