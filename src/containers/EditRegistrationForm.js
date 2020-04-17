@@ -116,16 +116,20 @@ const EditRegistrationForm = (props) => {
                         </FormGroup>
                     </Col>
                 </Row>
-                <FormGroup>
-                    <ValidatedInput
-                        type="email"
-                        name="email"
-                        label={t('Email')}
-                        value={auth.user.email}
-                        setValue={() => {}}
-                        disabled
-                    ></ValidatedInput>
-                </FormGroup>
+                <Row form>
+                    <Col md={12}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="email"
+                                name="email"
+                                label={t('Email')}
+                                value={auth.user.email}
+                                setValue={() => {}}
+                                disabled
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
                 <Row form>
                     <Col md={6}>
                         <FormGroup>
@@ -291,28 +295,36 @@ const EditRegistrationForm = (props) => {
                         </FormGroup>
                     </Col>
                 </Row>
-                <FormGroup>
-                    <ValidatedInput
-                        type="number"
-                        name="meals"
-                        label={t('Počet osob pro jídlo')}
-                        placeholder={t('Počet osob')}
-                        value={meals}
-                        setValue={setMeals}
-                        disabled={!edit}
-                        required
-                    ></ValidatedInput>
-                </FormGroup>
-                <FormGroup>
-                    <ValidatedInput
-                        type="text"
-                        name="note"
-                        label={t('Poznámka')}
-                        value={note}
-                        setValue={setNote}
-                        disabled={!edit}
-                    ></ValidatedInput>
-                </FormGroup>
+                <Row form>
+                    <Col md={12}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="number"
+                                name="meals"
+                                label={t('Počet osob pro jídlo')}
+                                placeholder={t('Počet osob')}
+                                value={meals}
+                                setValue={setMeals}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row form>
+                    <Col md={12}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="note"
+                                label={t('Poznámka')}
+                                value={note}
+                                setValue={setNote}
+                                disabled={!edit}
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
                 {edit && (
                     <Button color="dark" style={{ marginTop: '2rem' }} disabled={!isFormValid()} block>
                         {t('Editovat přihlášku')}
