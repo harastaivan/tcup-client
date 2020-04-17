@@ -3,7 +3,7 @@ import { Form, Row, Col, FormGroup } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
-import ValidatedInput, { TRANSLATED, GLIDER_TYPE } from './ValidatedInput';
+import ValidatedInput, { TRANSLATED, GLIDER_TYPE } from '../containers/ValidatedInput';
 
 const RegistrationForm = (props) => {
     const { t } = useTranslation();
