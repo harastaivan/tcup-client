@@ -1,87 +1,53 @@
-import React, { Component } from 'react';
-import { Form, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { Form, Row, Col, FormGroup, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getFormData, updateRegistration } from '../actions/registration';
-import { withTranslation } from 'react-i18next';
 
-class EditRegistrationForm extends Component {
-    state = {
-        edit: this.props.edit,
-        birthDate: this.props.registration.registration.birthDate,
-        phone: this.props.registration.registration.phone,
-        aeroclub: this.props.registration.registration.aeroclub,
-        region: this.props.registration.registration.region._id,
-        gliderType: this.props.registration.registration.glider.gliderType._id,
-        registrationNumber: this.props.registration.registration.glider.registrationNumber,
-        startNumber: this.props.registration.registration.glider.startNumber,
-        competitionClass: this.props.registration.registration.competitionClass._id,
-        logger: this.props.registration.registration.logger,
-        accomodationType: this.props.registration.registration.accomodation.accomodationType._id,
-        quantity: this.props.registration.registration.accomodation.quantity,
-        meals: this.props.registration.registration.meals,
-        note: this.props.registration.registration.note,
-        birthDateValid: true,
-        phoneValid: true,
-        aeroclubValid: true,
-        regionValid: true,
-        gliderTypeValid: true,
-        registrationNumberValid: true,
-        startNumberValid: true,
-        competitionClassValid: true,
-        loggerValid: true,
-        accomodationTypeValid: true,
-        quantityValid: true,
-        mealsValid: true,
-        noteValid: true,
-        birthDateVisited: false,
-        phoneVisited: false,
-        aeroclubVisited: false,
-        regionVisited: false,
-        gliderTypeVisited: false,
-        registrationNumberVisited: false,
-        startNumberVisited: false,
-        competitionClassVisited: false,
-        loggerVisited: false,
-        accomodationTypeVisited: false,
-        quantityVisited: false,
-        mealsVisited: false,
-        noteVisited: false
+import ValidatedInput, { TRANSLATED, GLIDER_TYPE } from './ValidatedInput';
+import { updateRegistration } from '../actions/registration';
+import isEmpty from '../utils/isEmpty';
+
+const EditRegistrationForm = (props) => {
+    const auth = useSelector((state) => state.auth);
+    const registration = useSelector((state) => state.registration.registration);
+    const formData = useSelector((state) => state.registration.formData);
+
+    const dispatch = useDispatch();
+
+    const [edit, setEdit] = useState(props.edit);
+    const [birthDate, setBirthDate] = useState(registration.birthDate);
+    const [phone, setPhone] = useState(registration.phone);
+    const [aeroclub, setAeroclub] = useState(registration.aeroclub);
+    const [region, setRegion] = useState(registration.region._id);
+    const [gliderType, setGliderType] = useState(registration.glider.gliderType._id);
+    const [registrationNumber, setRegistrationNumber] = useState(registration.glider.registrationNumber);
+    const [startNumber, setStartNumber] = useState(registration.glider.startNumber);
+    const [competitionClass, setCompetitionClass] = useState(registration.competitionClass._id);
+    const [logger, setLogger] = useState(registration.logger);
+    const [accomodationType, setAccomodationType] = useState(registration.accomodation.accomodationType._id);
+    const [quantity, setQuantity] = useState(registration.accomodation.quantity);
+    const [meals, setMeals] = useState(registration.meals);
+    const [note, setNote] = useState(registration.note);
+
+    const isFormValid = () => {
+        return (
+            !isEmpty(phone) &&
+            !isEmpty(aeroclub) &&
+            !isEmpty(region) &&
+            !isEmpty(gliderType) &&
+            !isEmpty(registrationNumber) &&
+            !isEmpty(startNumber) &&
+            !isEmpty(competitionClass) &&
+            !isEmpty(logger) &&
+            !isEmpty(accomodationType) &&
+            !isEmpty(quantity) &&
+            !isEmpty(meals)
+        );
     };
 
-    static propTypes = {
-        getFormData: PropTypes.func.isRequired,
-        edit: PropTypes.bool.isRequired,
-        updateRegistration: PropTypes.func.isRequired,
-        registration: PropTypes.object.isRequired,
-        auth: PropTypes.object.isRequired,
-        t: PropTypes.func.isRequired
-    };
-
-    onChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-        this.validateField(e);
-    };
-
-    onSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        const {
-            birthDate,
-            phone,
-            aeroclub,
-            region,
-            gliderType,
-            registrationNumber,
-            startNumber,
-            competitionClass,
-            logger,
-            accomodationType,
-            quantity,
-            meals,
-            note
-        } = this.state;
 
         const registration = {
             birthDate,
@@ -102,388 +68,263 @@ class EditRegistrationForm extends Component {
             meals,
             note
         };
-        this.props.updateRegistration(registration);
-        this.toggleEdit();
+        dispatch(updateRegistration(registration));
+        setEdit(!edit);
     };
 
-    dataIsEmpty = () => {
-        return (
-            !this.state.birthDateValid ||
-            !this.state.phoneValid ||
-            !this.state.aeroclubValid ||
-            !this.state.regionValid ||
-            !this.state.gliderTypeValid ||
-            !this.state.registrationNumberValid ||
-            !this.state.startNumberValid ||
-            !this.state.competitionClassValid ||
-            !this.state.loggerValid ||
-            !this.state.accomodationTypeValid ||
-            !this.state.quantityValid ||
-            !this.state.mealsValid ||
-            !this.state.noteValid
-        );
-    };
+    const { t } = useTranslation();
 
-    validateField = (e) => {
-        const valid = e.target.name + 'Valid';
-        const visited = e.target.name + 'Visited';
-        this.setState({
-            [valid]: !e.target.required || e.target.value,
-            [visited]: true
-        });
-    };
+    return (
+        <div>
+            <h1>{t('Přihláška')}</h1>
+            {!edit && (
+                <Button
+                    color="primary"
+                    className="mb-3"
+                    onClick={() => {
+                        setEdit(!edit);
+                    }}
+                >
+                    {t('upravit přihlášku')}
+                </Button>
+            )}
 
-    toggleEdit = () => {
-        this.setState({
-            edit: !this.state.edit
-        });
-    };
-
-    render() {
-        const t = this.props.t;
-        return (
-            <div>
-                <h1>{t('Přihláška')}</h1>
-                {!this.state.edit && (
-                    <Button color="primary" className="mb-3" onClick={this.toggleEdit}>
-                        {t('upravit přihlášku')}
+            <Form onSubmit={onSubmit} autoComplete={'off'}>
+                <Row form>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="name"
+                                label={t('Jméno')}
+                                value={auth.user.name}
+                                setValue={() => {}}
+                                disabled
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="surname"
+                                label={t('Příjmení')}
+                                value={auth.user.surname}
+                                setValue={() => {}}
+                                disabled
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <FormGroup>
+                    <ValidatedInput
+                        type="email"
+                        name="email"
+                        label={t('Email')}
+                        value={auth.user.email}
+                        setValue={() => {}}
+                        disabled
+                    ></ValidatedInput>
+                </FormGroup>
+                <Row form>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="date"
+                                name="birthDate"
+                                label={t('Datum narození')}
+                                value={birthDate}
+                                setValue={setBirthDate}
+                                disabled={!edit}
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="phone"
+                                label={t('Telefon')}
+                                value={phone}
+                                setValue={setPhone}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row form>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="aeroclub"
+                                label={t('Aeroklub')}
+                                value={aeroclub}
+                                setValue={setAeroclub}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="select"
+                                name="region"
+                                label={t('Region')}
+                                value={region}
+                                setValue={setRegion}
+                                select
+                                selectData={formData.regions}
+                                selectDataType={TRANSLATED}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row form>
+                    <Col md={4}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="select"
+                                name="gliderType"
+                                label={t('Typ kluzáku')}
+                                value={gliderType}
+                                setValue={setGliderType}
+                                select
+                                selectData={formData.gliderTypes}
+                                selectDataType={GLIDER_TYPE}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                    <Col md={4}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="registrationNumber"
+                                label={t('Imatrikulace')}
+                                value={registrationNumber}
+                                setValue={setRegistrationNumber}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                    <Col md={4}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="startNumber"
+                                label={t('Startovní číslo')}
+                                value={startNumber}
+                                setValue={setStartNumber}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row form>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="select"
+                                name="competitionClass"
+                                label={t('Třída')}
+                                value={competitionClass}
+                                setValue={setCompetitionClass}
+                                select
+                                selectData={formData.competitionClasses}
+                                selectDataType={TRANSLATED}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="logger"
+                                label={t('Logger')}
+                                value={logger}
+                                setValue={setLogger}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row form>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="select"
+                                name="accomodationType"
+                                label={t('Typ ubytování')}
+                                value={accomodationType}
+                                setValue={setAccomodationType}
+                                select
+                                selectData={formData.accomodationTypes}
+                                selectDataType={TRANSLATED}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="number"
+                                name="quantity"
+                                label={t('Počet osob pro ubytování')}
+                                placeholder={t('Počet osob')}
+                                value={quantity}
+                                setValue={setQuantity}
+                                disabled={!edit}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <FormGroup>
+                    <ValidatedInput
+                        type="number"
+                        name="meals"
+                        label={t('Počet osob pro jídlo')}
+                        placeholder={t('Počet osob')}
+                        value={meals}
+                        setValue={setMeals}
+                        disabled={!edit}
+                        required
+                    ></ValidatedInput>
+                </FormGroup>
+                <FormGroup>
+                    <ValidatedInput
+                        type="text"
+                        name="note"
+                        label={t('Poznámka')}
+                        value={note}
+                        setValue={setNote}
+                        disabled={!edit}
+                    ></ValidatedInput>
+                </FormGroup>
+                {edit && (
+                    <Button color="dark" style={{ marginTop: '2rem' }} disabled={!isFormValid()} block>
+                        {t('Editovat přihlášku')}
                     </Button>
                 )}
-
-                <Form onSubmit={this.onSubmit} autoComplete={'off'}>
-                    <Row form>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="name">{t('Jméno')}</Label>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    placeholder={t('Jméno')}
-                                    value={this.props.auth.user.name}
-                                    onChange={this.onChange}
-                                    disabled
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="surname">{t('Příjmení')}</Label>
-                                <Input
-                                    type="text"
-                                    name="surname"
-                                    id="surname"
-                                    placeholder={t('Příjmení')}
-                                    value={this.props.auth.user.surname}
-                                    onChange={this.onChange}
-                                    disabled
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <FormGroup>
-                        <Label for="email">{t('Email')}</Label>
-                        <Input
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder={t('Email')}
-                            value={this.props.auth.user.email}
-                            onChange={this.onChange}
-                            disabled
-                        />
-                    </FormGroup>
-                    <Row form>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="birthDate">{t('Datum narození')}</Label>
-                                <Input
-                                    type="date"
-                                    name="birthDate"
-                                    id="birthDate"
-                                    value={this.state.birthDate}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    onBlur={this.validateField}
-                                    valid={this.state.birthDateValid && this.state.birthDateVisited}
-                                    invalid={!this.state.birthDateValid && this.state.birthDateVisited}
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="phone">{t('Telefon')}</Label>
-                                <Input
-                                    type="text"
-                                    name="phone"
-                                    id="phone"
-                                    placeholder={t('Telefon')}
-                                    value={this.state.phone}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.phoneValid && this.state.phoneVisited}
-                                    invalid={!this.state.phoneValid && this.state.phoneVisited}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row form>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="aeroclub">{t('Aeroklub')}</Label>
-                                <Input
-                                    type="text"
-                                    name="aeroclub"
-                                    id="aeroclub"
-                                    placeholder={t('Aeroklub')}
-                                    value={this.state.aeroclub}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.aeroclubValid && this.state.aeroclubVisited}
-                                    invalid={!this.state.aeroclubValid && this.state.aeroclubVisited}
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="region">{t('Region')}</Label>
-                                <Input
-                                    type="select"
-                                    name="region"
-                                    id="region"
-                                    value={this.state.region}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.regionValid && this.state.regionVisited}
-                                    invalid={!this.state.regionValid && this.state.regionVisited}
-                                >
-                                    <option value="">{t('Region')}</option>
-                                    {this.props.registration.formData.regions.map((region) => {
-                                        return (
-                                            <option key={region._id} value={region._id}>
-                                                {t(region.name)}
-                                            </option>
-                                        );
-                                    })}
-                                </Input>
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row form>
-                        <Col md={4}>
-                            <FormGroup>
-                                <Label for="gliderType">{t('Typ kluzáku')}</Label>
-                                <Input
-                                    type="select"
-                                    name="gliderType"
-                                    id="gliderType"
-                                    onChange={this.onChange}
-                                    value={this.state.gliderType}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.gliderTypeValid && this.state.gliderTypeVisited}
-                                    invalid={!this.state.gliderTypeValid && this.state.gliderTypeVisited}
-                                >
-                                    <option value="">{t('Typ kluzáku')}</option>
-                                    {this.props.registration.formData.gliderTypes.map((gliderType) => {
-                                        return (
-                                            <option key={gliderType._id} value={gliderType._id}>
-                                                {gliderType.name} ({gliderType.index})
-                                            </option>
-                                        );
-                                    })}
-                                </Input>
-                            </FormGroup>
-                        </Col>
-                        <Col md={4}>
-                            <FormGroup>
-                                <Label for="registrationNumber">{t('Imatrikulace')}</Label>
-                                <Input
-                                    type="text"
-                                    name="registrationNumber"
-                                    id="registrationNumber"
-                                    placeholder={'OK-1235'}
-                                    value={this.state.registrationNumber}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.registrationNumberValid && this.state.registrationNumberVisited}
-                                    invalid={
-                                        !this.state.registrationNumberValid && this.state.registrationNumberVisited
-                                    }
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col md={4}>
-                            <FormGroup>
-                                <Label for="startNumber">{t('Startovní číslo')}</Label>
-                                <Input
-                                    type="text"
-                                    name="startNumber"
-                                    id="startNumber"
-                                    placeholder={'HI'}
-                                    value={this.state.startNumber}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.startNumberValid && this.state.startNumberVisited}
-                                    invalid={!this.state.startNumberValid && this.state.startNumberVisited}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row form>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="competitionClass">{t('Třída')}</Label>
-                                <Input
-                                    type="select"
-                                    name="competitionClass"
-                                    id="competitionClass"
-                                    value={this.state.competitionClass}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.competitionClassValid && this.state.competitionClassVisited}
-                                    invalid={!this.state.competitionClassValid && this.state.competitionClassVisited}
-                                >
-                                    <option value="">{t('Třída')}</option>
-                                    {this.props.registration.formData.competitionClasses.map((competitionClass) => {
-                                        return (
-                                            <option key={competitionClass._id} value={competitionClass._id}>
-                                                {t(competitionClass.name)}
-                                            </option>
-                                        );
-                                    })}
-                                </Input>
-                            </FormGroup>
-                        </Col>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="logger">{t('Logger')}</Label>
-                                <Input
-                                    type="text"
-                                    name="logger"
-                                    id="logger"
-                                    placeholder={t('Logger')}
-                                    value={this.state.logger}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.loggerValid && this.state.loggerVisited}
-                                    invalid={!this.state.loggerValid && this.state.loggerVisited}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row form>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="accomodationType">{t('Typ ubytování')}</Label>
-                                <Input
-                                    type="select"
-                                    name="accomodationType"
-                                    id="accomodationType"
-                                    value={this.state.accomodationType}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
-                                    invalid={!this.state.accomodationTypeValid && this.state.accomodationTypeVisited}
-                                >
-                                    <option value="">{t('Typ ubytování')}</option>
-                                    {this.props.registration.formData.accomodationTypes.map((accomodationType) => {
-                                        return (
-                                            <option key={accomodationType._id} value={accomodationType._id}>
-                                                {t(accomodationType.name)}
-                                            </option>
-                                        );
-                                    })}
-                                </Input>
-                            </FormGroup>
-                        </Col>
-                        <Col md={6}>
-                            <FormGroup>
-                                <Label for="quantity">{t('Počet osob pro ubytování')}</Label>
-                                <Input
-                                    type="number"
-                                    name="quantity"
-                                    id="quantity"
-                                    placeholder={t('Počet osob')}
-                                    value={this.state.quantity}
-                                    onChange={this.onChange}
-                                    disabled={!this.state.edit}
-                                    required
-                                    onBlur={this.validateField}
-                                    valid={this.state.quantityValid && this.state.quantityVisited}
-                                    invalid={!this.state.quantityValid && this.state.quantityVisited}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-
-                    <FormGroup>
-                        <Label for="meals">{t('Počet osob pro jídlo')}</Label>
-                        <Input
-                            type="number"
-                            name="meals"
-                            id="meals"
-                            placeholder={t('Počet osob')}
-                            value={this.state.meals}
-                            onChange={this.onChange}
-                            disabled={!this.state.edit}
-                            required
-                            onBlur={this.validateField}
-                            valid={this.state.mealsValid && this.state.mealsVisited}
-                            invalid={!this.state.mealsValid && this.state.mealsVisited}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="note">{t('Poznámka')}</Label>
-                        <Input
-                            type="text"
-                            name="note"
-                            id="note"
-                            placeholder={t('Poznámka')}
-                            value={this.state.note}
-                            onChange={this.onChange}
-                            disabled={!this.state.edit}
-                            onBlur={this.validateField}
-                            valid={this.state.noteValid && this.state.noteVisited}
-                            invalid={!this.state.noteValid && this.state.noteVisited}
-                        />
-                    </FormGroup>
-                    {this.state.edit && (
-                        <Button color="dark" style={{ marginTop: '2rem' }} disabled={this.dataIsEmpty()} block>
-                            {t('Editovat přihlášku')}
-                        </Button>
-                    )}
-                </Form>
-            </div>
-        );
-    }
-}
-
-const mapStateToProps = (state) => ({
-    auth: state.auth,
-    registration: state.registration
-});
-
-const mapDispatchToProps = {
-    getFormData,
-    updateRegistration
+            </Form>
+        </div>
+    );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(EditRegistrationForm));
+EditRegistrationForm.propTypes = {
+    edit: PropTypes.bool.isRequired
+};
+
+export default EditRegistrationForm;
