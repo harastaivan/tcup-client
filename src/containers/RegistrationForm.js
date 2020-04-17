@@ -101,16 +101,20 @@ const RegistrationForm = () => {
                         </FormGroup>
                     </Col>
                 </Row>
-                <FormGroup>
-                    <ValidatedInput
-                        type="email"
-                        name="email"
-                        label={t('Email')}
-                        value={auth.user.email}
-                        setValue={() => {}}
-                        disabled
-                    ></ValidatedInput>
-                </FormGroup>
+                <Row form>
+                    <Col md={12}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="email"
+                                name="email"
+                                label={t('Email')}
+                                value={auth.user.email}
+                                setValue={() => {}}
+                                disabled
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
                 <Row form>
                     <Col md={6}>
                         <FormGroup>
@@ -125,16 +129,14 @@ const RegistrationForm = () => {
                     </Col>
                     <Col md={6}>
                         <FormGroup>
-                            <FormGroup>
-                                <ValidatedInput
-                                    type="text"
-                                    name="phone"
-                                    label={t('Telefon')}
-                                    value={phone}
-                                    setValue={setPhone}
-                                    required
-                                ></ValidatedInput>
-                            </FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="phone"
+                                label={t('Telefon')}
+                                value={phone}
+                                setValue={setPhone}
+                                required
+                            ></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -267,27 +269,34 @@ const RegistrationForm = () => {
                         </FormGroup>
                     </Col>
                 </Row>
-
-                <FormGroup>
-                    <ValidatedInput
-                        type="number"
-                        name="meals"
-                        label={t('Počet osob pro jídlo')}
-                        placeholder={t('Počet osob')}
-                        value={meals}
-                        setValue={setMeals}
-                        required
-                    ></ValidatedInput>
-                </FormGroup>
-                <FormGroup>
-                    <ValidatedInput
-                        type="text"
-                        name="note"
-                        label={t('Poznámka')}
-                        value={note}
-                        setValue={setNote}
-                    ></ValidatedInput>
-                </FormGroup>
+                <Row form>
+                    <Col md={12}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="number"
+                                name="meals"
+                                label={t('Počet osob pro jídlo')}
+                                placeholder={t('Počet osob')}
+                                value={meals}
+                                setValue={setMeals}
+                                required
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row form>
+                    <Col md={12}>
+                        <FormGroup>
+                            <ValidatedInput
+                                type="text"
+                                name="note"
+                                label={t('Poznámka')}
+                                value={note}
+                                setValue={setNote}
+                            ></ValidatedInput>
+                        </FormGroup>
+                    </Col>
+                </Row>
                 <GdprConsent action="Vytvořením přihlášky souhlasíte" />
                 <Button color="dark" style={{ marginTop: '2rem' }} disabled={!isFormValid()} block>
                     {t('Vytvořit přihlášku')}
