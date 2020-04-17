@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { Form, Row, Col, FormGroup, Button } from 'reactstrap';
+import React, { useState, Fragment } from 'react';
+import { Button } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import ValidatedInput, { TRANSLATED, GLIDER_TYPE } from './ValidatedInput';
 import isEmpty from '../utils/isEmpty';
 import { submitRegistration } from '../actions/registration';
 import GdprConsent from './GdprConsent';
+
+import RegistrationFormTemplate from '../components/RegistrationForm';
 
 const RegistrationForm = () => {
     const auth = useSelector((state) => state.auth);
@@ -71,238 +72,54 @@ const RegistrationForm = () => {
         );
     };
 
+    const header = <h1>{t('Vytvoření přihlášky')}</h1>;
+
+    const footer = (
+        <Fragment>
+            <GdprConsent action="Vytvořením přihlášky souhlasíte" />
+            <Button color="dark" style={{ marginTop: '2rem' }} disabled={!isFormValid()} block>
+                {t('Vytvořit přihlášku')}
+            </Button>
+        </Fragment>
+    );
+
     return (
-        <div>
-            <h1>{t('Vytvoření přihlášky')}</h1>
-            <Form onSubmit={onSubmit} autoComplete={'off'}>
-                <Row form>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="text"
-                                name="name"
-                                label={t('Jméno')}
-                                value={auth.user.name}
-                                setValue={() => {}}
-                                disabled
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="text"
-                                name="surname"
-                                label={t('Příjmení')}
-                                value={auth.user.surname}
-                                setValue={() => {}}
-                                disabled
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row form>
-                    <Col md={12}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="email"
-                                name="email"
-                                label={t('Email')}
-                                value={auth.user.email}
-                                setValue={() => {}}
-                                disabled
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row form>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="date"
-                                name="birthDate"
-                                label={t('Datum narození')}
-                                value={birthDate}
-                                setValue={setBirthDate}
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="text"
-                                name="phone"
-                                label={t('Telefon')}
-                                value={phone}
-                                setValue={setPhone}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row form>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="text"
-                                name="aeroclub"
-                                label={t('Aeroklub')}
-                                value={aeroclub}
-                                setValue={setAeroclub}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="select"
-                                name="region"
-                                label={t('Region')}
-                                value={region}
-                                setValue={setRegion}
-                                select
-                                selectData={formData.regions}
-                                selectDataType={TRANSLATED}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row form>
-                    <Col md={4}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="select"
-                                name="gliderType"
-                                label={t('Typ kluzáku')}
-                                value={gliderType}
-                                setValue={setGliderType}
-                                select
-                                selectData={formData.gliderTypes}
-                                selectDataType={GLIDER_TYPE}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                    <Col md={4}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="text"
-                                name="registrationNumber"
-                                label={t('Imatrikulace')}
-                                value={registrationNumber}
-                                setValue={setRegistrationNumber}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                    <Col md={4}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="text"
-                                name="startNumber"
-                                label={t('Startovní číslo')}
-                                value={startNumber}
-                                setValue={setStartNumber}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row form>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="select"
-                                name="competitionClass"
-                                label={t('Třída')}
-                                value={competitionClass}
-                                setValue={setCompetitionClass}
-                                select
-                                selectData={formData.competitionClasses}
-                                selectDataType={TRANSLATED}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="text"
-                                name="logger"
-                                label={t('Logger')}
-                                value={logger}
-                                setValue={setLogger}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row form>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="select"
-                                name="accomodationType"
-                                label={t('Typ ubytování')}
-                                value={accomodationType}
-                                setValue={setAccomodationType}
-                                select
-                                selectData={formData.accomodationTypes}
-                                selectDataType={TRANSLATED}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="number"
-                                name="quantity"
-                                label={t('Počet osob pro ubytování')}
-                                placeholder={t('Počet osob')}
-                                value={quantity}
-                                setValue={setQuantity}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row form>
-                    <Col md={12}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="number"
-                                name="meals"
-                                label={t('Počet osob pro jídlo')}
-                                placeholder={t('Počet osob')}
-                                value={meals}
-                                setValue={setMeals}
-                                required
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row form>
-                    <Col md={12}>
-                        <FormGroup>
-                            <ValidatedInput
-                                type="text"
-                                name="note"
-                                label={t('Poznámka')}
-                                value={note}
-                                setValue={setNote}
-                            ></ValidatedInput>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <GdprConsent action="Vytvořením přihlášky souhlasíte" />
-                <Button color="dark" style={{ marginTop: '2rem' }} disabled={!isFormValid()} block>
-                    {t('Vytvořit přihlášku')}
-                </Button>
-            </Form>
-        </div>
+        <RegistrationFormTemplate
+            header={header}
+            onSubmit={onSubmit}
+            formData={formData}
+            disabled={false}
+            footer={footer}
+            name={auth.user.name}
+            surname={auth.user.surname}
+            email={auth.user.email}
+            birthDate={birthDate}
+            phone={phone}
+            aeroclub={aeroclub}
+            region={region}
+            gliderType={gliderType}
+            registrationNumber={registrationNumber}
+            startNumber={startNumber}
+            competitionClass={competitionClass}
+            logger={logger}
+            accomodationType={accomodationType}
+            quantity={quantity}
+            meals={meals}
+            note={note}
+            setBirthDate={setBirthDate}
+            setPhone={setPhone}
+            setAeroclub={setAeroclub}
+            setRegion={setRegion}
+            setGliderType={setGliderType}
+            setRegistrationNumber={setRegistrationNumber}
+            setStartNumber={setStartNumber}
+            setCompetitionClass={setCompetitionClass}
+            setLogger={setLogger}
+            setAccomodationType={setAccomodationType}
+            setQuantity={setQuantity}
+            setMeals={setMeals}
+            setNote={setNote}
+        />
     );
 };
 
