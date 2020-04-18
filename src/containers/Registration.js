@@ -1,71 +1,71 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouteMatch, useHistory, Switch, Route } from 'react-router-dom';
 import { Alert, Spinner } from 'reactstrap';
-import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import RegistrationForm from './RegistrationForm';
 import EditRegistrationForm from './EditRegistrationForm';
+import AdminRegistrationForm from './AdminRegistrationForm';
 import Login from './Login';
 import { getRegistration, getFormData } from '../actions/registration';
 
-class Registration extends Component {
-    static propTypes = {
-        getRegistration: PropTypes.func.isRequired,
-        getFormData: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool.isRequired,
-        registration: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequired,
-        t: PropTypes.func.isRequired
-    };
+const Registration = () => {
+    const { isAuthenticated, isAdmin } = useSelector((state) => state.auth);
+    const { loading, isRegistered } = useSelector((state) => state.registration);
 
-    componentDidMount() {
-        this.props.getRegistration();
-        this.props.getFormData();
-    }
+    const dispatch = useDispatch();
 
-    componentDidUpdate(previousProps) {
-        if (previousProps.isAuthenticated !== this.props.isAuthenticated) {
-            this.props.getRegistration();
-        }
-    }
+    const { t } = useTranslation();
+    const history = useHistory();
+    const match = useRouteMatch();
 
-    render() {
-        const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
-        const { loading } = this.props.registration;
-        const t = this.props.t;
-        return (
-            <div>
-                {loading ? (
-                    spinner
-                ) : (
-                    <Fragment>
-                        {!this.props.isAuthenticated && (
+    useEffect(() => {
+        dispatch(getRegistration());
+        dispatch(getFormData());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getRegistration());
+    }, [dispatch, isAuthenticated]);
+
+    const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
+
+    return (
+        <div>
+            {loading ? (
+                spinner
+            ) : (
+                <Switch>
+                    <Route path={`${match.path}/:registrationId`}>
+                        {(!isAuthenticated || !isAdmin) && (
                             <div>
-                                <Alert color="info">{t('Pro vytvoření přihlášky se přihlaste.')}</Alert>
-                                <Login history={this.props.history} />
+                                <Alert color="info">
+                                    {t('Pro upravení přihlášky uživatele se přihlaste jako admin.')}
+                                </Alert>
+                                <Login history={history} />
                             </div>
                         )}
 
-                        {this.props.isAuthenticated && this.props.registration.isRegistered && (
-                            <EditRegistrationForm edit={false} />
-                        )}
-                        {this.props.isAuthenticated && !this.props.registration.isRegistered && <RegistrationForm />}
-                    </Fragment>
-                )}
-            </div>
-        );
-    }
-}
+                        {isAuthenticated && isAdmin && <AdminRegistrationForm />}
+                    </Route>
+                    <Route path={match.path}>
+                        <Fragment>
+                            {!isAuthenticated && (
+                                <div>
+                                    <Alert color="info">{t('Pro vytvoření přihlášky se přihlaste.')}</Alert>
+                                    <Login history={history} />
+                                </div>
+                            )}
 
-const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    registration: state.registration
-});
-
-const mapDispatchToProps = {
-    getRegistration,
-    getFormData
+                            {isAuthenticated && isRegistered && <EditRegistrationForm edit={false} />}
+                            {isAuthenticated && !isRegistered && <RegistrationForm />}
+                        </Fragment>
+                    </Route>
+                </Switch>
+            )}
+        </div>
+    );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Registration));
+export default Registration;
