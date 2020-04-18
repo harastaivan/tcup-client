@@ -77,9 +77,11 @@ class StartingList extends Component {
                                             <tr key={registration._id}>
                                                 <td>{registration.fullName}</td>
                                                 <td className="d-none d-md-table-cell">
-                                                    <Moment format={'YYYY'} locale="cs">
-                                                        {registration.birthDate}
-                                                    </Moment>
+                                                    {registration.birthDate && (
+                                                        <Moment format={'YYYY'} locale="cs">
+                                                            {registration.birthDate}
+                                                        </Moment>
+                                                    )}
                                                 </td>
                                                 <td>{registration.aeroclub}</td>
                                                 <td>{registration.startNumber}</td>

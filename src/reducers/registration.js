@@ -2,6 +2,7 @@ import {
     GET_FORM_DATA,
     FORM_DATA_LOADING,
     GET_REGISTRATION,
+    GET_OTHER_REGISTRATION,
     SUBMIT_REGISTRATION,
     UPDATE_REGISTRATION,
     REGISTRATION_LOADING,
@@ -56,6 +57,13 @@ export default (state = initialState, action) => {
                 ...state,
                 registrationLoading: true,
                 loading: true
+            };
+        case GET_OTHER_REGISTRATION:
+            return {
+                ...state,
+                otherRegistration: action.payload.otherRegistration,
+                registrationLoading: false,
+                loading: false || state.formDataLoading
             };
         case RESET_REGISTRATION:
             return {

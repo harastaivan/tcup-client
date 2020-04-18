@@ -4,6 +4,7 @@ import {
     SUBMIT_REGISTRATION,
     UPDATE_REGISTRATION,
     GET_REGISTRATION,
+    GET_OTHER_REGISTRATION,
     REGISTRATION_LOADING,
     RESET_REGISTRATION
 } from './types';
@@ -43,6 +44,28 @@ export const getRegistration = () => async (dispatch, getState) => {
             payload: {
                 registration: {},
                 isRegistered: false
+            }
+        });
+    }
+};
+
+export const getOtherRegistration = (id) => async (dispatch, getState) => {
+    dispatch({
+        type: REGISTRATION_LOADING
+    });
+    try {
+        const res = await axios.get(`${API_ENDPOINT}/api/registration/${id}`, tokenConfig(getState));
+        dispatch({
+            type: GET_OTHER_REGISTRATION,
+            payload: {
+                otherRegistration: res.data
+            }
+        });
+    } catch (e) {
+        dispatch({
+            type: GET_OTHER_REGISTRATION,
+            payload: {
+                otherRegistration: {}
             }
         });
     }

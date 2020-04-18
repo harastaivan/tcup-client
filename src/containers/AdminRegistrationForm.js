@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, Alert } from 'reactstrap';
@@ -7,33 +7,27 @@ import PropTypes from 'prop-types';
 import RegistrationFormTemplate from '../components/RegistrationForm';
 import Login from './Login';
 import Spinner from '../components/Spinner';
-import { updateRegistration } from '../actions/registration';
+import { getOtherRegistration } from '../actions/registration';
 import isEmpty from '../utils/isEmpty';
 import { useParams, useHistory } from 'react-router-dom';
 
 const EditRegistrationForm = (props) => {
-    const { registrationId } = useParams();
-
-    const auth = useSelector((state) => state.auth);
-    const formData = useSelector((state) => state.registration.formData);
-    const { registration } = useSelector((state) => state.registration);
-
-    const dispatch = useDispatch();
+    const { otherRegistration, formData } = useSelector((state) => state.registration);
 
     const [edit, setEdit] = useState(props.edit);
-    const [birthDate, setBirthDate] = useState(registration.birthDate);
-    const [phone, setPhone] = useState(registration.phone);
-    const [aeroclub, setAeroclub] = useState(registration.aeroclub);
-    const [region, setRegion] = useState(registration.region._id);
-    const [gliderType, setGliderType] = useState(registration.glider.gliderType._id);
-    const [registrationNumber, setRegistrationNumber] = useState(registration.glider.registrationNumber);
-    const [startNumber, setStartNumber] = useState(registration.glider.startNumber);
-    const [competitionClass, setCompetitionClass] = useState(registration.competitionClass._id);
-    const [logger, setLogger] = useState(registration.logger);
-    const [accomodationType, setAccomodationType] = useState(registration.accomodation.accomodationType._id);
-    const [quantity, setQuantity] = useState(registration.accomodation.quantity);
-    const [meals, setMeals] = useState(registration.meals);
-    const [note, setNote] = useState(registration.note);
+    const [birthDate, setBirthDate] = useState(otherRegistration.birthDate);
+    const [phone, setPhone] = useState(otherRegistration.phone);
+    const [aeroclub, setAeroclub] = useState(otherRegistration.aeroclub);
+    const [region, setRegion] = useState(otherRegistration.region._id);
+    const [gliderType, setGliderType] = useState(otherRegistration.glider.gliderType._id);
+    const [registrationNumber, setRegistrationNumber] = useState(otherRegistration.glider.registrationNumber);
+    const [startNumber, setStartNumber] = useState(otherRegistration.glider.startNumber);
+    const [competitionClass, setCompetitionClass] = useState(otherRegistration.competitionClass._id);
+    const [logger, setLogger] = useState(otherRegistration.logger);
+    const [accomodationType, setAccomodationType] = useState(otherRegistration.accomodation.accomodationType._id);
+    const [quantity, setQuantity] = useState(otherRegistration.accomodation.quantity);
+    const [meals, setMeals] = useState(otherRegistration.meals);
+    const [note, setNote] = useState(otherRegistration.note);
 
     const isFormValid = () => {
         return (
@@ -73,7 +67,7 @@ const EditRegistrationForm = (props) => {
             meals,
             note
         };
-        dispatch(updateRegistration(registration));
+        // dispatch(updateRegistration(registration));
         setEdit(!edit);
     };
 
@@ -82,7 +76,7 @@ const EditRegistrationForm = (props) => {
     const header = (
         <Fragment>
             <h1>
-                {t('Úprava přihlášky')} id: {registrationId}
+                {t('Úprava přihlášky')} id: {otherRegistration._id}
             </h1>
             {!edit && (
                 <Button
@@ -115,9 +109,9 @@ const EditRegistrationForm = (props) => {
             formData={formData}
             disabled={!edit}
             footer={footer}
-            name={auth.user.name}
-            surname={auth.user.surname}
-            email={auth.user.email}
+            name={otherRegistration.user.name}
+            surname={otherRegistration.user.surname}
+            email={otherRegistration.user.email}
             birthDate={birthDate}
             phone={phone}
             aeroclub={aeroclub}
@@ -149,13 +143,23 @@ const EditRegistrationForm = (props) => {
 };
 
 const AdminRegistrationForm = (props) => {
-    const { loading, registration } = useSelector((state) => state.registration);
+    const { registrationId } = useParams();
+
+    const { loading, otherRegistration } = useSelector((state) => state.registration);
     const { isAdmin } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
 
     const { t } = useTranslation();
     const history = useHistory();
 
+    useEffect(() => {
+        dispatch(getOtherRegistration(registrationId));
+    }, [dispatch, registrationId]);
+
     const isEmpty = (obj) => {
+        if (!obj) {
+            return true;
+        }
         return Object.keys(obj).length === 0;
     };
 
@@ -176,8 +180,8 @@ const AdminRegistrationForm = (props) => {
         <Fragment>
             {loading && <Spinner />}
             {!loading && !isAdmin && loginAsAdmin}
-            {!loading && isAdmin && isEmpty(registration) && registrationIsEmpty}
-            {!loading && isAdmin && !isEmpty(registration) && <EditRegistrationForm edit={props.edit} />}
+            {!loading && isAdmin && isEmpty(otherRegistration) && registrationIsEmpty}
+            {!loading && isAdmin && !isEmpty(otherRegistration) && <EditRegistrationForm edit={props.edit} />}
         </Fragment>
     );
 };
