@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Card, CardBody, CardFooter, CardHeader, CardText, Button, Spinner } from 'reactstrap';
+import { Card, CardBody, CardFooter, CardHeader, CardText, Button } from 'reactstrap';
 import Moment from 'react-moment';
 import { withTranslation } from 'react-i18next';
 import 'moment/locale/cs';
 
 import { getNews, deleteNews, setNewsLoading } from '../actions/news';
 import AddNews from './AddNews';
+import Spinner from '../components/Spinner';
 
 class News extends Component {
     static propTypes = {
@@ -33,12 +34,11 @@ class News extends Component {
         const { news, loading } = this.props.news;
         const t = this.props.t;
         const i18n = this.props.i18n;
-        const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
         return (
             <div>
                 <h1>{t('Novinky')}</h1>
                 <AddNews />
-                {loading ? spinner : null}
+                {loading ? <Spinner /> : null}
                 {news.map((one) => (
                     <Card className="mt-4" key={one._id}>
                         <CardHeader>

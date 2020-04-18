@@ -255,11 +255,11 @@ const RegistrationForm = (props) => {
 };
 
 RegistrationForm.propTypes = {
-    header: PropTypes.func.isRequired,
+    header: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    formData: PropTypes.array.isRequired,
+    formData: PropTypes.object.isRequired,
     disabled: PropTypes.bool.isRequired,
-    footer: PropTypes.func.isRequired,
+    footer: PropTypes.object.isRequired,
     name: PropTypes.any.isRequired,
     surname: PropTypes.any.isRequired,
     email: PropTypes.any.isRequired,

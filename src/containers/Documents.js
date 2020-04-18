@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Table, Button, Spinner } from 'reactstrap';
+import { Container, Table, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import 'moment/locale/cs';
@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import AddDocument from './AddDocument';
 import { getDocuments, deleteDocument, setDocumentsLoading } from '../actions/document';
 import fileSize from '../utils/fileSize';
+import Spinner from '../components/Spinner';
 
 class Documents extends Component {
     static propTypes = {
@@ -31,13 +32,12 @@ class Documents extends Component {
     render() {
         const { documents, loading } = this.props.document;
         const { isAdmin } = this.props;
-        const spinner = <Spinner type="grow" color="secondary" className="m-3" />;
         const t = this.props.t;
         return (
             <Container>
                 <h1>{t('Dokumenty')}</h1>
                 <AddDocument />
-                {loading ? spinner : null}
+                {loading ? <Spinner /> : null}
                 <Table>
                     <thead>
                         <tr>
