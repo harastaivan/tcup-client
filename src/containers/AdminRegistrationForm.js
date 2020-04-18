@@ -166,10 +166,17 @@ const AdminRegistrationForm = (props) => {
         </div>
     );
 
+    const registrationIsEmpty = (
+        <div>
+            <Alert color="info">{t('Taková přihláška neexistuje.')}</Alert>
+        </div>
+    );
+
     return (
         <Fragment>
-            {(loading || isEmpty(registration)) && <Spinner />}
+            {loading && <Spinner />}
             {!loading && !isAdmin && loginAsAdmin}
+            {!loading && isAdmin && isEmpty(registration) && registrationIsEmpty}
             {!loading && isAdmin && !isEmpty(registration) && <EditRegistrationForm edit={props.edit} />}
         </Fragment>
     );

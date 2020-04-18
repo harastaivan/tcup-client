@@ -4,7 +4,8 @@ import {
     GET_REGISTRATION,
     SUBMIT_REGISTRATION,
     UPDATE_REGISTRATION,
-    REGISTRATION_LOADING
+    REGISTRATION_LOADING,
+    RESET_REGISTRATION
 } from '../actions/types';
 
 const initialState = {
@@ -55,6 +56,14 @@ export default (state = initialState, action) => {
                 ...state,
                 registrationLoading: true,
                 loading: true
+            };
+        case RESET_REGISTRATION:
+            return {
+                ...state,
+                registration: {},
+                isRegistered: false,
+                registrationLoading: false,
+                loading: false || state.formDataLoading
             };
         case FORM_DATA_LOADING:
             return {
