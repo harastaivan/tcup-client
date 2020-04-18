@@ -1,21 +1,22 @@
 import React, { useState, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'reactstrap';
+import { Button, Alert } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import RegistrationFormTemplate from '../components/RegistrationForm';
+import Login from './Login';
+import Spinner from '../components/Spinner';
 import { updateRegistration } from '../actions/registration';
 import isEmpty from '../utils/isEmpty';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
-const AdminRegistrationForm = (props) => {
+const EditRegistrationForm = (props) => {
     const { registrationId } = useParams();
-    console.log(registrationId);
 
     const auth = useSelector((state) => state.auth);
-    const registration = useSelector((state) => state.registration.registration);
     const formData = useSelector((state) => state.registration.formData);
+    const { registration } = useSelector((state) => state.registration);
 
     const dispatch = useDispatch();
 
@@ -81,7 +82,7 @@ const AdminRegistrationForm = (props) => {
     const header = (
         <Fragment>
             <h1>
-                {t('Přihláška')} id: {registrationId}
+                {t('Úprava přihlášky')} id: {registrationId}
             </h1>
             {!edit && (
                 <Button
@@ -145,6 +146,37 @@ const AdminRegistrationForm = (props) => {
             setNote={setNote}
         />
     );
+};
+
+const AdminRegistrationForm = (props) => {
+    const { loading, registration } = useSelector((state) => state.registration);
+    const { isAdmin } = useSelector((state) => state.auth);
+
+    const { t } = useTranslation();
+    const history = useHistory();
+
+    const isEmpty = (obj) => {
+        return Object.keys(obj).length === 0;
+    };
+
+    const loginAsAdmin = (
+        <div>
+            <Alert color="info">{t('Pro upravení přihlášky uživatele se přihlaste jako admin.')}</Alert>
+            <Login history={history} />
+        </div>
+    );
+
+    return (
+        <Fragment>
+            {(loading || isEmpty(registration)) && <Spinner />}
+            {!loading && !isAdmin && loginAsAdmin}
+            {!loading && isAdmin && !isEmpty(registration) && <EditRegistrationForm edit={props.edit} />}
+        </Fragment>
+    );
+};
+
+EditRegistrationForm.propTypes = {
+    edit: PropTypes.bool.isRequired
 };
 
 AdminRegistrationForm.propTypes = {
