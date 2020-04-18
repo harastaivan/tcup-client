@@ -4,7 +4,8 @@ import {
     SUBMIT_REGISTRATION,
     UPDATE_REGISTRATION,
     GET_REGISTRATION,
-    REGISTRATION_LOADING
+    REGISTRATION_LOADING,
+    RESET_REGISTRATION
 } from './types';
 import axios from 'axios';
 import { tokenConfig } from './auth';
@@ -75,6 +76,12 @@ export const updateRegistration = (registration) => async (dispatch, getState) =
     } catch (err) {
         dispatch(returnErrors(err));
     }
+};
+
+export const resetRegistration = () => {
+    return {
+        type: RESET_REGISTRATION
+    };
 };
 
 export const setFormDataLoading = () => {

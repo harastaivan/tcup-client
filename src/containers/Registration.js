@@ -8,7 +8,7 @@ import RegistrationForm from './RegistrationForm';
 import EditRegistrationForm from './EditRegistrationForm';
 import AdminRegistrationForm from './AdminRegistrationForm';
 import Login from './Login';
-import { getRegistration, getFormData } from '../actions/registration';
+import { getRegistration, getFormData, resetRegistration } from '../actions/registration';
 import Spinner from '../components/Spinner';
 
 const Registration = () => {
@@ -24,10 +24,16 @@ const Registration = () => {
     useEffect(() => {
         dispatch(getRegistration());
         dispatch(getFormData());
+        return () => {
+            dispatch(resetRegistration());
+        };
     }, [dispatch]);
 
     useEffect(() => {
         dispatch(getRegistration());
+        return () => {
+            dispatch(resetRegistration());
+        };
     }, [dispatch, isAuthenticated]);
 
     const loginAsUser = (
