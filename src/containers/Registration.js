@@ -22,15 +22,11 @@ const Registration = () => {
     const match = useRouteMatch();
 
     useEffect(() => {
-        dispatch(getRegistration());
-        dispatch(getFormData());
-        return () => {
-            dispatch(resetRegistration());
-        };
-    }, [dispatch]);
+        if (isAuthenticated) {
+            dispatch(getFormData());
+            dispatch(getRegistration());
+        }
 
-    useEffect(() => {
-        dispatch(getRegistration());
         return () => {
             dispatch(resetRegistration());
         };
