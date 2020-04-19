@@ -53,7 +53,6 @@ class Login extends Component {
         const t = this.props.t;
         return (
             <div>
-                {this.props.error.msg ? <Alert color="danger">{t(this.props.error.msg)}</Alert> : null}
                 <h1>{t('Přihlásit se')}</h1>
                 <Form onSubmit={this.onSubmit}>
                     <FormGroup>
