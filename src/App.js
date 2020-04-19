@@ -34,7 +34,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(loadUser());
-    }, []);
+    }, [dispatch]);
 
     const { t } = useTranslation();
 
