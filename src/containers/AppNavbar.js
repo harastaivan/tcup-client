@@ -132,6 +132,13 @@ const AppNavbar = () => {
                                         </NavLink>
                                     </NavItem>
                                 </DropdownItem>
+                                <DropdownItem className="bg-dark">
+                                    <NavItem>
+                                        <NavLink tag={Link} to="/archive" activeClassName="active">
+                                            {t('Archiv')}
+                                        </NavLink>
+                                    </NavItem>
+                                </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         {isAuthenticated ? authLinks : guestLinks}

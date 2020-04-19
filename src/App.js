@@ -22,6 +22,7 @@ import Logout from './containers/Logout';
 import Results from './containers/Results';
 import UserSettings from './containers/UserSettings';
 import ChangePassword from './containers/ChangePassword';
+import Archive from './components/Archive';
 
 import { loadUser } from './actions/auth';
 
@@ -64,6 +65,7 @@ const App = () => {
                         <Route path="/igc" component={SendIgc} />
                         <Route path="/user-profile" component={UserSettings} />
                         <Route path="/change-password" component={ChangePassword} />
+                        <Route path="/archive" component={Archive} />
                     </Switch>
                 </Container>
                 <Footer />
