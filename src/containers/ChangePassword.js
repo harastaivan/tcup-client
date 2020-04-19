@@ -51,7 +51,6 @@ class ChangePassword extends Component {
         const t = this.props.t;
         return (
             <Fragment>
-                {this.props.error.msg ? <Alert color="danger">{t(this.props.error.msg)}</Alert> : null}
                 {this.props.success.msg ? <Alert color="success">{t(this.props.success.msg)}</Alert> : null}
                 <h1>{t('Změnit heslo')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>

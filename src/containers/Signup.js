@@ -64,7 +64,6 @@ class Signup extends Component {
         const t = this.props.t;
         return (
             <div>
-                {this.props.error.msg ? <Alert color="danger">{t(this.props.error.msg)}</Alert> : null}
                 {this.signupDisabled() && (
                     <Alert color="info">{t('Již není možná registrace, máme plnou kapacitu.')}</Alert>
                 )}
