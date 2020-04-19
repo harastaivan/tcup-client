@@ -26,9 +26,6 @@ jobs:
                   name: lint
                   command: yarn lint
             - run:
-                  name: test
-                  command: yarn test
-            - run:
                   name: make-code-coverage-dir
                   command: mkdir .nyc_output
             - run:
