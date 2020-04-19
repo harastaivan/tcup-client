@@ -120,7 +120,7 @@ class StartingList extends Component {
                                                                 tag={Link}
                                                                 to={`/registration/${registration._id}`}
                                                             >
-                                                                úprava přihlášky
+                                                                {t('úprava přihlášky')}
                                                             </Button>
                                                         </td>
                                                     </Fragment>

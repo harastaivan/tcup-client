@@ -34,7 +34,7 @@ const Contacts = () => {
 
     return (
         <div>
-            <h1>Kontakty</h1>
+            <h1>{t('Kontakty')}</h1>
             {contacts.map((contact) => {
                 return (
                     <Fragment key={contact.heading}>
