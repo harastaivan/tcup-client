@@ -1,10 +1,13 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import { useTranslation } from 'react-i18next';
 
 export default function Archive() {
+    const { t } = useTranslation();
+
     return (
         <div>
-            <h1>Archiv předchozích ročníků</h1>
+            <h1>{t('Archiv předchozích ročníků')}</h1>
             <ListGroup>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2019/tcup">
                     TCUP 2019
