@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { Provider, useSelector, useDispatch } from 'react-redux';
 import { Alert, Container } from 'reactstrap';
 
 import './App.css';
@@ -27,6 +27,8 @@ import Archive from './components/Archive';
 import { loadUser } from './actions/auth';
 
 import { useTranslation } from 'react-i18next';
+
+import store from './store';
 
 const App = () => {
     const error = useSelector((state) => state.error);
@@ -74,4 +76,12 @@ const App = () => {
     );
 };
 
-export default App;
+const WrappedApp = () => {
+    return (
+        <Provider store={store}>
+            <App />
+        </Provider>
+    );
+};
+
+export default WrappedApp;
