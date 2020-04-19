@@ -3,6 +3,7 @@ import {
     GET_FORM_DATA,
     SUBMIT_REGISTRATION,
     UPDATE_REGISTRATION,
+    UPDATE_OTHER_REGISTRATION,
     GET_REGISTRATION,
     GET_OTHER_REGISTRATION,
     REGISTRATION_LOADING,
@@ -38,7 +39,8 @@ export const getRegistration = () => async (dispatch, getState) => {
                 isRegistered: true
             }
         });
-    } catch (e) {
+    } catch (err) {
+        dispatch(returnErrors(err));
         dispatch({
             type: GET_REGISTRATION,
             payload: {
@@ -61,7 +63,8 @@ export const getOtherRegistration = (id) => async (dispatch, getState) => {
                 otherRegistration: res.data
             }
         });
-    } catch (e) {
+    } catch (err) {
+        dispatch(returnErrors(err));
         dispatch({
             type: GET_OTHER_REGISTRATION,
             payload: {
@@ -94,6 +97,20 @@ export const updateRegistration = (registration) => async (dispatch, getState) =
             payload: {
                 registration: res.data,
                 isRegistered: true
+            }
+        });
+    } catch (err) {
+        dispatch(returnErrors(err));
+    }
+};
+
+export const updateOtherRegistration = (id, registration) => async (dispatch, getState) => {
+    try {
+        const res = await axios.put(`${API_ENDPOINT}/api/registration/${id}`, registration, tokenConfig(getState));
+        dispatch({
+            type: UPDATE_OTHER_REGISTRATION,
+            payload: {
+                otherRegistration: res.data
             }
         });
     } catch (err) {

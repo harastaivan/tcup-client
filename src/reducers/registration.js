@@ -5,6 +5,7 @@ import {
     GET_OTHER_REGISTRATION,
     SUBMIT_REGISTRATION,
     UPDATE_REGISTRATION,
+    UPDATE_OTHER_REGISTRATION,
     REGISTRATION_LOADING,
     RESET_REGISTRATION
 } from '../actions/types';
@@ -51,6 +52,11 @@ export default (state = initialState, action) => {
                 ...state,
                 registration: action.payload.registration,
                 isRegistered: action.payload.isRegistered
+            };
+        case UPDATE_OTHER_REGISTRATION:
+            return {
+                ...state,
+                otherRegistration: action.payload.otherRegistration
             };
         case REGISTRATION_LOADING:
             return {
