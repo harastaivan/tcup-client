@@ -109,7 +109,7 @@ export const logout = () => {
 
 // Setup config/headers and token
 export const tokenConfig = (getState, contentType = 'application/json') => {
-    // Get token from localStorage
+    // Get token from sessionStorage
     const token = getState().auth.token;
 
     // Headers
