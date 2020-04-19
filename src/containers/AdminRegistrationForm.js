@@ -7,12 +7,13 @@ import PropTypes from 'prop-types';
 import RegistrationFormTemplate from '../components/RegistrationForm';
 import Login from './Login';
 import Spinner from '../components/Spinner';
-import { getOtherRegistration } from '../actions/registration';
+import { getOtherRegistration, updateOtherRegistration } from '../actions/registration';
 import isEmpty from '../utils/isEmpty';
 import { useParams, useHistory } from 'react-router-dom';
 
 const EditRegistrationForm = (props) => {
     const { otherRegistration, formData } = useSelector((state) => state.registration);
+    const dispatch = useDispatch();
 
     const [edit, setEdit] = useState(props.edit);
     const [birthDate, setBirthDate] = useState(otherRegistration.birthDate);
@@ -67,7 +68,7 @@ const EditRegistrationForm = (props) => {
             meals,
             note
         };
-        // dispatch(updateRegistration(registration));
+        dispatch(updateOtherRegistration(otherRegistration._id, registration));
         setEdit(!edit);
     };
 
@@ -76,7 +77,7 @@ const EditRegistrationForm = (props) => {
     const header = (
         <Fragment>
             <h1>
-                {t('Úprava přihlášky')} id: {otherRegistration._id}
+                {t('Úprava přihlášky')} - {otherRegistration.user.name} {otherRegistration.user.surname}
             </h1>
             {!edit && (
                 <Button

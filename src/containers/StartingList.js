@@ -54,20 +54,20 @@ class StartingList extends Component {
                         </h2>
                         {one.registrations.length ? (
                             <div style={{ overflowX: 'scroll' }}>
-                                <Table>
+                                <Table striped responsive>
                                     <thead>
                                         <tr>
                                             <th>{t('jméno')}</th>
-                                            <th className="d-none d-md-table-cell">{t('datum narození')}</th>
+                                            <th>{t('datum narození')}</th>
                                             <th>{t('aeroklub')}</th>
                                             <th>{t('startovní číslo')}</th>
                                             <th>{t('typ')}</th>
                                             <th>{t('imatrikulace')}</th>
-                                            <th className="d-none d-md-table-cell">{t('zaplaceno')}</th>
+                                            <th>{t('zaplaceno')}</th>
                                             {isAdmin && (
                                                 <Fragment>
-                                                    <th className="d-none d-md-table-cell"> </th>
-                                                    <th className="d-none d-md-table-cell"> </th>
+                                                    <th>administrace</th>
+                                                    <th> </th>
                                                 </Fragment>
                                             )}
                                         </tr>
@@ -76,7 +76,7 @@ class StartingList extends Component {
                                         {one.registrations.map((registration) => (
                                             <tr key={registration._id}>
                                                 <td>{registration.fullName}</td>
-                                                <td className="d-none d-md-table-cell">
+                                                <td>
                                                     {registration.birthDate && (
                                                         <Moment format={'YYYY'} locale="cs">
                                                             {registration.birthDate}
@@ -88,13 +88,13 @@ class StartingList extends Component {
                                                 <td>{registration.gliderType}</td>
                                                 <td>{registration.registrationNumber}</td>
                                                 {registration.paid ? (
-                                                    <td className="d-none d-md-table-cell text-success">{t('ano')}</td>
+                                                    <td className="text-success">{t('ano')}</td>
                                                 ) : (
-                                                    <td className="d-none d-md-table-cell text-danger">{t('ne')}</td>
+                                                    <td className="text-danger">{t('ne')}</td>
                                                 )}
                                                 {isAdmin && (
                                                     <Fragment>
-                                                        <td className="d-none d-md-table-cell">
+                                                        <td>
                                                             <Button
                                                                 color={registration.paid ? 'danger' : 'success'}
                                                                 className="mb-1"
@@ -110,8 +110,9 @@ class StartingList extends Component {
                                                                     : t('označit jako zaplacené')}
                                                             </Button>
                                                         </td>
-                                                        <td className="d-none d-md-table-cell">
+                                                        <td>
                                                             <Button
+                                                                outline
                                                                 color={'primary'}
                                                                 className="mb-1"
                                                                 onClick={() => {}}
