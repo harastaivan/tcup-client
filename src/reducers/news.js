@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
         case ADD_NEWS:
             return {
                 ...state,
-                news: [action.payload, ...state.news]
+                news: [action.payload.news, ...state.news]
             };
         case DELETE_NEWS:
             return {
