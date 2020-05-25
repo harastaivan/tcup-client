@@ -9,18 +9,20 @@ const Footer = () => {
     return (
         <Container className="transparent-background">
             <footer className={`p-5 py-4 text-center text-small`}>
-                <p>
-                    © {process.env.REACT_APP_TITLE}{' '}
-                    <b>
-                        {t('verze')} {version}
-                    </b>
-                </p>
-                <p>
-                    by{' '}
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/harastaivan">
-                        @harastaivan
-                    </a>
-                </p>
+                <span class="text">
+                    <p>
+                        © {process.env.REACT_APP_TITLE}{' '}
+                        <b>
+                            {t('verze')} {version}
+                        </b>
+                    </p>
+                    <p>
+                        by{' '}
+                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/harastaivan">
+                            @harastaivan
+                        </a>
+                    </p>
+                </span>
             </footer>
         </Container>
     );
