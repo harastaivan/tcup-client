@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <Container className="transparent-background">
             <footer className={`p-5 py-4 text-center text-small`}>
-                <span class="text">
+                <span className="text">
                     <p>
                         © {process.env.REACT_APP_TITLE}{' '}
                         <b>

@@ -49,7 +49,7 @@ const App = () => {
             <Switch>
                 <Route path="/" component={Home} exact />
             </Switch>
-            <Container className={!isHomepage && 'p-3 min-vh-container transparent-background'}>
+            <Container className={!isHomepage ? 'p-3 min-vh-container transparent-background' : ''}>
                 {process.env.REACT_APP_TEST_MODE === 'true' && !isHomepage && (
                     <Alert color="warning">
                         {t('Aplikace se právě testuje. Nemusí vše fungovat správně.')}{' '}
