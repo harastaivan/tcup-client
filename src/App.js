@@ -50,7 +50,7 @@ const App = () => {
                 <Route path="/" component={Home} exact />
             </Switch>
             <Container className={!isHomepage && 'p-3 min-vh-container transparent-background'}>
-                {process.env.REACT_APP_TEST_MODE === 'true' && (
+                {process.env.REACT_APP_TEST_MODE === 'true' && !isHomepage && (
                     <Alert color="warning">
                         {t('Aplikace se právě testuje. Nemusí vše fungovat správně.')}{' '}
                         <a href="https://gitreports.com/issue/harastaivan/tcup-client">{t('Chyby hlašte zde')}</a>.
