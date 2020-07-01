@@ -23,6 +23,7 @@ import Results from './containers/Results';
 import UserSettings from './containers/UserSettings';
 import ChangePassword from './containers/ChangePassword';
 import Archive from './components/Archive';
+import CompetitionDays from './containers/CompetitionDays';
 
 import { loadUser } from './actions/auth';
 
@@ -72,6 +73,7 @@ const App = () => {
                     <Route path="/user-profile" component={UserSettings} />
                     <Route path="/change-password" component={ChangePassword} />
                     <Route path="/archive" component={Archive} />
+                    <Route path="/competition-days" component={CompetitionDays} />
                 </Switch>
             </Container>
             {!isHomepage && <Footer />}
