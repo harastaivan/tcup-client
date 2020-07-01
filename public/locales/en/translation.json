@@ -117,5 +117,13 @@
     "Archiv": "Archive",
     "úprava přihlášky": "edit entry form",
     "Archiv předchozích ročníků": "Previous years archive",
-    "Notifikovat emailem": "Send email notification"
+    "Notifikovat emailem": "Send email notification",
+    "Soutěžní dny": "Competition days",
+    "soutěžní den": "competition day",
+    "datum": "date",
+    "status": "status",
+    "Den": "Day",
+    "bez úlohy": "no task",
+    "s úlohou": "with task",
+    "úloha zrušena": "task cancelled"
 }

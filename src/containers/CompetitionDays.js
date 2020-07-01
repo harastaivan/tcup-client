@@ -52,7 +52,12 @@ const CompetitionDays = () => {
                 <tbody>
                     {competitionDays.map((day) => (
                         <tr key={day._id}>
-                            <td>{t(day.name)}</td>
+                            <td>
+                                {day.name
+                                    .split(' ')
+                                    .map((s) => t(s))
+                                    .join(' ')}
+                            </td>
                             <td>
                                 <Moment format={'DD. MM. YYYY'} locale="cs">
                                     {day.date}
