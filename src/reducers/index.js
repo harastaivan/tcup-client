@@ -6,6 +6,7 @@ import newsReducer from './news';
 import registrationReducer from './registration';
 import documentReducer from './document';
 import startingListReducer from './startingList';
+import competitionDayReducer from './competitionDay';
 
 export default combineReducers({
     error: errorReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     news: newsReducer,
     registration: registrationReducer,
     document: documentReducer,
-    startingList: startingListReducer
+    startingList: startingListReducer,
+    competitionDay: competitionDayReducer
 });

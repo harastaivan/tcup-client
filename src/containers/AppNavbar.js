@@ -139,6 +139,15 @@ const AppNavbar = () => {
                                         </NavLink>
                                     </NavItem>
                                 </DropdownItem>
+                                {isAdmin && (
+                                    <DropdownItem className="bg-dark">
+                                        <NavItem>
+                                            <NavLink tag={Link} to="/competition-days" activeClassName="active">
+                                                {t('Soutěžní dny')}
+                                            </NavLink>
+                                        </NavItem>
+                                    </DropdownItem>
+                                )}
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         {isAuthenticated ? authLinks : guestLinks}
