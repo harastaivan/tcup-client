@@ -59,7 +59,7 @@ const CompetitorStatuses = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        const today = getCompetitionDay(competitionDays, new Date('2020-05-14'));
+        const today = getCompetitionDay(competitionDays);
         if (!today) {
             return;
         }
