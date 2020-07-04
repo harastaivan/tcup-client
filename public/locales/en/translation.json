@@ -125,5 +125,12 @@
     "Den": "Day",
     "bez úlohy": "no task",
     "s úlohou": "with task",
-    "úloha zrušena": "task cancelled"
+    "úloha zrušena": "task cancelled",
+    "Vyber den": "Choose day",
+    "typ kluzáku": "glider type",
+    "Na tento den nejsou žádné statusy soutěžících.": "Competitor statuses are not set for this day.",
+    "na zemi": "on ground",
+    "letí": "flying",
+    "na poli": "outlanded",
+    "doma": "home"
 }
