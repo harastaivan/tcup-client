@@ -4,6 +4,7 @@ import { Table, ButtonGroup, Button } from 'reactstrap';
 import Moment from 'react-moment';
 import { useTranslation } from 'react-i18next';
 import { getCompetitionDays, updateCompetitionDay } from '../actions/competitionDay';
+import { translateDayName } from '../utils/translateDayName';
 
 const competitionDaysEnum = [
     {
@@ -52,12 +53,7 @@ const CompetitionDays = () => {
                 <tbody>
                     {competitionDays.map((day) => (
                         <tr key={day._id}>
-                            <td>
-                                {day.name
-                                    .split(' ')
-                                    .map((s) => t(s))
-                                    .join(' ')}
-                            </td>
+                            <td>{translateDayName(day.name, t)}</td>
                             <td>
                                 <Moment format={'DD. MM. YYYY'} locale="cs">
                                     {day.date}

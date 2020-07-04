@@ -13,6 +13,7 @@ import {
 } from '../actions/competitorStatus';
 import Spinner from '../components/Spinner';
 import { getCompetitionDay } from '../utils/getCompetitionDay';
+import { translateDayName } from '../utils/translateDayName';
 
 const competitorStatusesEnum = [
     {
@@ -97,7 +98,9 @@ const CompetitorStatuses = () => {
                                 {competitionDays.map((day) => {
                                     return (
                                         <option key={day._id} value={day._id}>
-                                            {`${day.name} - ${moment(day.date).format('DD. MM. YYYY')}`}
+                                            {`${translateDayName(day.name, t)} - ${moment(day.date).format(
+                                                'DD. MM. YYYY'
+                                            )}`}
                                         </option>
                                     );
                                 })}
@@ -120,7 +123,9 @@ const CompetitorStatuses = () => {
                     <tbody>
                         {competitorStatuses.map((status) => {
                             const statusInfo = competitorStatusesEnum.find((s) => s.code === status.status);
-                            const userStatus = <span className={`text-${statusInfo.color}`}>{statusInfo.label}</span>;
+                            const userStatus = (
+                                <span className={`text-${statusInfo.color}`}>{t(statusInfo.label)}</span>
+                            );
                             const adminStatus = (
                                 <ButtonGroup>
                                     {competitorStatusesEnum.map((s) => (
