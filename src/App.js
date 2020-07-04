@@ -11,7 +11,7 @@ import Home from './containers/Home';
 import News from './containers/News';
 import Registration from './containers/Registration';
 import Login from './containers/Login';
-import Statuses from './containers/Statuses';
+import CompetitorStatuses from './containers/CompetitorStatuses';
 import StartingList from './containers/StartingList';
 import Documents from './containers/Documents';
 import Contacts from './containers/Contacts';
@@ -64,7 +64,7 @@ const App = () => {
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />
                     <Route path="/logout" component={Logout} />
-                    <Route path="/statuses" component={Statuses} />
+                    <Route path="/statuses" component={CompetitorStatuses} />
                     <Route path="/starting-list" component={StartingList} />
                     <Route path="/results" component={Results} />
                     <Route path="/documents" component={Documents} />

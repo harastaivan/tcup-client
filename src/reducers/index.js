@@ -7,6 +7,7 @@ import registrationReducer from './registration';
 import documentReducer from './document';
 import startingListReducer from './startingList';
 import competitionDayReducer from './competitionDay';
+import competitorStatusReducer from './competitorStatus';
 
 export default combineReducers({
     error: errorReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
     registration: registrationReducer,
     document: documentReducer,
     startingList: startingListReducer,
-    competitionDay: competitionDayReducer
+    competitionDay: competitionDayReducer,
+    competitorStatus: competitorStatusReducer
 });
