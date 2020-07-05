@@ -23,6 +23,8 @@ const AppNavbar = () => {
     const { isAuthenticated, isAdmin, user } = useSelector((state) => state.auth);
     const { t } = useTranslation();
 
+    const soaringSpotUrl = 'https://www.soaringspot.com/cs/tcup2020/results';
+
     const authLinks = (
         <Fragment>
             <UncontrolledDropdown nav inNavbar className="bg-dark mr-4">
@@ -100,9 +102,7 @@ const AppNavbar = () => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} to="/results" activeClassName="active" disabled>
-                                {t('Úlohy a výsledky')}
-                            </NavLink>
+                            <NavLink href={soaringSpotUrl}>{t('Úlohy a výsledky')}</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to="/registration" activeClassName="active" exact>
