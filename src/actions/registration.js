@@ -11,7 +11,12 @@ import {
 } from './types';
 import axios from 'axios';
 import { tokenConfig } from './auth';
-import { returnErrors } from './error';
+import { returnErrors, parseError } from './error';
+
+const isError = ({ msg, status }) => {
+    if (msg === 'Registration does not exist for this user' && status === 404) return false;
+    return true;
+};
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
@@ -40,7 +45,9 @@ export const getRegistration = () => async (dispatch, getState) => {
             }
         });
     } catch (err) {
-        dispatch(returnErrors(err));
+        if (isError(parseError(err))) {
+            dispatch(returnErrors(err));
+        }
         dispatch({
             type: GET_REGISTRATION,
             payload: {
