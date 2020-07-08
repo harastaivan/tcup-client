@@ -111,7 +111,7 @@ const AppNavbar = () => {
                         </NavItem>
                         <NavItem />
                         <NavItem>
-                            <NavLink tag={Link} to="/igc" activeClassName="active" disabled>
+                            <NavLink tag={Link} to="/igc" activeClassName="active">
                                 {t('Odeslat IGC')}
                             </NavLink>
                         </NavItem>
