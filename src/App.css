@@ -43,3 +43,8 @@
     position: relative;
     margin-top: -2em;
 }
+
+.spacerForSpinner {
+    min-height: 4rem;
+    line-height: 4rem;
+}

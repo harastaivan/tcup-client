@@ -8,6 +8,7 @@ import documentReducer from './document';
 import startingListReducer from './startingList';
 import competitionDayReducer from './competitionDay';
 import competitorStatusReducer from './competitorStatus';
+import igcReducer from './igc';
 
 export default combineReducers({
     error: errorReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
     document: documentReducer,
     startingList: startingListReducer,
     competitionDay: competitionDayReducer,
-    competitorStatus: competitorStatusReducer
+    competitorStatus: competitorStatusReducer,
+    igc: igcReducer
 });

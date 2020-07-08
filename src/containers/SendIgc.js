@@ -1,18 +1,20 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Row, Col, Alert } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
 import Spinner from '../components/Spinner';
 import { getCompetitionDay } from '../utils/getCompetitionDay';
 import { getCompetitionDays } from '../actions/competitionDay';
 import { formatCompetitionDay } from '../utils/formatCompetitionDay';
+import { addIgc, getIgcFormData } from '../actions/igc';
 
 const SendIgc = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
     const competitionDays = useSelector((state) => state.competitionDay.competitionDays);
+    const { pilots, loading, success, error } = useSelector((state) => state.igc);
 
     const [file, setFile] = useState('');
     const [pilot, setPilot] = useState('');
@@ -21,6 +23,7 @@ const SendIgc = () => {
 
     useEffect(() => {
         dispatch(getCompetitionDays());
+        dispatch(getIgcFormData());
     }, [dispatch]);
 
     useEffect(() => {
@@ -31,24 +34,15 @@ const SendIgc = () => {
         setToday(today);
     }, [competitionDays]);
 
-    const pilots = [
-        {
-            _id: 1,
-            name: 'Ivan',
-            surname: 'Harašta',
-            startNumber: 'HI'
-        },
-        {
-            _id: 2,
-            name: 'Pavel',
-            surname: 'Jiránek',
-            startNumber: 'YID'
-        }
-    ];
-
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('submit', file, pilot, today);
+        const igc = {
+            igc: file,
+            pilot,
+            day: today._id
+        };
+        dispatch(addIgc(igc));
+        console.log('submit', igc);
         setFile(null);
         setFileInputKey(Date.now());
         setPilot('');
@@ -56,6 +50,16 @@ const SendIgc = () => {
 
     const submitDisabled = () => {
         return !file || !pilot || !today;
+    };
+
+    const getButtonColor = () => {
+        if (success) {
+            return 'success';
+        }
+        if (error) {
+            return 'danger';
+        }
+        return 'dark';
     };
 
     return (
@@ -99,7 +103,17 @@ const SendIgc = () => {
                                 onChange={(e) => setFile(e.target.files[0])}
                             />
                         </FormGroup>
-                        <Button color="dark" style={{ marginTop: '2rem' }} disabled={submitDisabled()} block>
+                        <div className="spacerForSpinner">
+                            {loading && <Spinner withoutMargin />}
+                            {success && <span>{success}</span>}
+                            {error && <span>{error}</span>}
+                        </div>
+                        <Button
+                            style={{ marginTop: '1rem' }}
+                            color={getButtonColor()}
+                            disabled={submitDisabled()}
+                            block
+                        >
                             {t('Nahrát')}
                         </Button>
                     </Form>

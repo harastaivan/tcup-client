@@ -23,7 +23,7 @@ const Home = () => {
                         <Button outline color="secondary" size="lg" tag={NavLink} to="/registration">
                             přihláška
                         </Button>{' '}
-                        <Button color="primary" size="lg" tag={NavLink} to="/igc" disabled>
+                        <Button color="primary" size="lg" tag={NavLink} to="/igc">
                             odeslat IGC
                         </Button>
                     </div>
