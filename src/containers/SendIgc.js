@@ -1,13 +1,35 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
+import Spinner from '../components/Spinner';
+import { getCompetitionDay } from '../utils/getCompetitionDay';
+import { getCompetitionDays } from '../actions/competitionDay';
+import { formatCompetitionDay } from '../utils/formatCompetitionDay';
+
 const SendIgc = () => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
+
+    const competitionDays = useSelector((state) => state.competitionDay.competitionDays);
 
     const [file, setFile] = useState('');
     const [pilot, setPilot] = useState('');
+    const [today, setToday] = useState('');
     const [fileInputKey, setFileInputKey] = useState(Date.now());
+
+    useEffect(() => {
+        dispatch(getCompetitionDays());
+    }, [dispatch]);
+
+    useEffect(() => {
+        const today = getCompetitionDay(competitionDays);
+        if (!today) {
+            return;
+        }
+        setToday(today);
+    }, [competitionDays]);
 
     const pilots = [
         {
@@ -26,21 +48,23 @@ const SendIgc = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('submit', file, pilot);
+        console.log('submit', file, pilot, today);
         setFile(null);
         setFileInputKey(Date.now());
         setPilot('');
     };
 
     const submitDisabled = () => {
-        return !file || !pilot;
+        return !file || !pilot || !today;
     };
 
     return (
         <Fragment>
             <h2>{t('Odeslat IGC')}</h2>
             <Row form>
-                <Col md={7}>
+                <Col md={6}>
+                    {today && <p>{formatCompetitionDay(today, t)}</p>}
+                    {!today && <Spinner />}
                     <Form onSubmit={onSubmit}>
                         <FormGroup>
                             <Label for={'pilot'}>{t('Pilot')}</Label>

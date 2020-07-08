@@ -2,7 +2,6 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, ButtonGroup, Button, Input, Label, Form, Row, Col, FormGroup } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
-import moment from 'moment';
 
 import { getCompetitionDays } from '../actions/competitionDay';
 import {
@@ -13,7 +12,7 @@ import {
 } from '../actions/competitorStatus';
 import Spinner from '../components/Spinner';
 import { getCompetitionDay } from '../utils/getCompetitionDay';
-import { translateDayName } from '../utils/translateDayName';
+import { formatCompetitionDay } from '../utils/formatCompetitionDay';
 
 const competitorStatusesEnum = [
     {
@@ -98,9 +97,7 @@ const CompetitorStatuses = () => {
                                 {competitionDays.map((day) => {
                                     return (
                                         <option key={day._id} value={day._id}>
-                                            {`${translateDayName(day.name, t)} - ${moment(day.date).format(
-                                                'DD. MM. YYYY'
-                                            )}`}
+                                            {formatCompetitionDay(day, t)}
                                         </option>
                                     );
                                 })}
