@@ -4,6 +4,7 @@ import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
 import Spinner from '../components/Spinner';
+import DownloadIgc from './DownloadIgc';
 import { getCompetitionDay } from '../utils/getCompetitionDay';
 import { getCompetitionDays } from '../actions/competitionDay';
 import { formatCompetitionDay } from '../utils/formatCompetitionDay';
@@ -15,6 +16,7 @@ const SendIgc = () => {
 
     const competitionDays = useSelector((state) => state.competitionDay.competitionDays);
     const { pilots, loading, success, error } = useSelector((state) => state.igc);
+    const { isAdmin } = useSelector((state) => state.auth);
 
     const [file, setFile] = useState('');
     const [pilot, setPilot] = useState('');
@@ -65,7 +67,7 @@ const SendIgc = () => {
     return (
         <Fragment>
             <h2>{t('Odeslat IGC')}</h2>
-            <Row form>
+            <Row>
                 <Col md={6}>
                     {today && <p>{formatCompetitionDay(today, t)}</p>}
                     {!today && <Spinner />}
@@ -119,6 +121,7 @@ const SendIgc = () => {
                     </Form>
                 </Col>
             </Row>
+            {isAdmin && <DownloadIgc />}
         </Fragment>
     );
 };
