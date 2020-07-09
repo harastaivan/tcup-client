@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Form, FormGroup, Label, Input, Button, Row, Col, Alert } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
 import Spinner from '../components/Spinner';
@@ -42,7 +42,7 @@ const SendIgc = () => {
             day: today._id
         };
         dispatch(addIgc(igc));
-        console.log('submit', igc);
+
         setFile(null);
         setFileInputKey(Date.now());
         setPilot('');
