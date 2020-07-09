@@ -132,5 +132,10 @@
     "na zemi": "on ground",
     "letí": "flying",
     "na poli": "outlanded",
-    "doma": "home"
+    "doma": "home",
+    "Pilot": "Pilot",
+    "Vyber pilota": "Choose a pilot",
+    "IGC soubor": "IGC file",
+    "Soubor byl odeslán organizátorovi": "File was submitted to the organiser",
+    "Soubor se nepodařilo odeslat organizátorovi, zkuste to později": "File could not be submitted to the organiser, try again later"
 }
