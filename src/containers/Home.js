@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Tracking from './Tracking';
 import News from './News';
 import Footer from './Footer';
-import { Container, Button } from 'reactstrap';
+import { Container, Button, Row, Col } from 'reactstrap';
 
 const Home = () => {
     const { t } = useTranslation();
@@ -27,7 +28,14 @@ const Home = () => {
                             odeslat IGC
                         </Button>
                     </div>
-                    <News />
+                    <Row>
+                        <Col md={8}>
+                            <News />
+                        </Col>
+                        <Col md={4}>
+                            <Tracking />
+                        </Col>
+                    </Row>
                     <Footer />
                 </Container>
             </div>

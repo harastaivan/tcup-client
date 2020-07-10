@@ -35,7 +35,7 @@ class News extends Component {
         const t = this.props.t;
         const i18n = this.props.i18n;
         return (
-            <div>
+            <div style={{ marginBottom: '2rem' }}>
                 <h1>{t('Novinky')}</h1>
                 <AddNews />
                 {loading ? <Spinner /> : null}

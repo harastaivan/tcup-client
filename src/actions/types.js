@@ -46,3 +46,5 @@ export const ADD_IGC_SUCCESS = 'ADD_IGC_SUCCESS';
 export const ADD_IGC_ERROR = 'ADD_IGC_ERROR';
 export const IGC_CLEAR_MESSAGE = 'IGC_CLEAR_MESSAGE';
 export const GET_IGC_FORM_DATA = 'GET_IGC_FORM_DATA';
+export const ADD_TRACKING = 'ADD_TRACKING';
+export const GET_TRACKINGS = 'GET_TRACKINGS';

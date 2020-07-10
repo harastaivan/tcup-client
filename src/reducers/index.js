@@ -9,6 +9,7 @@ import startingListReducer from './startingList';
 import competitionDayReducer from './competitionDay';
 import competitorStatusReducer from './competitorStatus';
 import igcReducer from './igc';
+import trackingReducer from './tracking';
 
 export default combineReducers({
     error: errorReducer,
@@ -20,5 +21,6 @@ export default combineReducers({
     startingList: startingListReducer,
     competitionDay: competitionDayReducer,
     competitorStatus: competitorStatusReducer,
-    igc: igcReducer
+    igc: igcReducer,
+    tracking: trackingReducer
 });
