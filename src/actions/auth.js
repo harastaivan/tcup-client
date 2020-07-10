@@ -11,12 +11,15 @@ import {
     USER_CHANGED,
     USER_CHANGE_ERROR,
     USER_PASSWORD_CHANGED,
-    USER_PASSWORD_CHANGE_ERROR
+    USER_PASSWORD_CHANGE_ERROR,
+    TIMEOUT_LOGOUT_SUCCESS
 } from './types';
 import { returnErrors } from './error';
 import { returnSuccess } from './success';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+
+let logoutTimer = null;
 
 // Check token & load user
 export const loadUser = () => async (dispatch, getState) => {
@@ -92,6 +95,9 @@ export const login = ({ email, password }) => async (dispatch) => {
     try {
         const res = await axios.post(`${API_ENDPOINT}/api/auth`, body, config);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+        logoutTimer = setTimeout(() => {
+            dispatch({ type: TIMEOUT_LOGOUT_SUCCESS });
+        }, 59 * 60 * 1000);
     } catch (err) {
         dispatch({
             type: LOGIN_FAIL
@@ -102,6 +108,11 @@ export const login = ({ email, password }) => async (dispatch) => {
 
 // Logout user
 export const logout = () => {
+    if (logoutTimer) {
+        clearTimeout(logoutTimer);
+        logoutTimer = null;
+    }
+
     return {
         type: LOGOUT_SUCCESS
     };

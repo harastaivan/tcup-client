@@ -8,7 +8,8 @@ import {
     LOGOUT_SUCCESS,
     REGISTER_FAIL,
     USER_CHANGED,
-    USER_PASSWORD_CHANGED
+    USER_PASSWORD_CHANGED,
+    TIMEOUT_LOGOUT_SUCCESS
 } from '../actions/types';
 
 const initialState = {
@@ -50,6 +51,7 @@ export default function(state = initialState, action) {
         case AUTH_ERROR:
         case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
+        case TIMEOUT_LOGOUT_SUCCESS:
         case REGISTER_FAIL:
             sessionStorage.removeItem('token');
             return {
