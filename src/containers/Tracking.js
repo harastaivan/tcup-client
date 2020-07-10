@@ -1,32 +1,12 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-    Table,
-    ButtonGroup,
-    Button,
-    Input,
-    Label,
-    Form,
-    Row,
-    Col,
-    FormGroup,
-    ListGroup,
-    ListGroupItem
-} from 'reactstrap';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 
 import { getCompetitionDays } from '../actions/competitionDay';
-import {
-    getCompetitorStatuses,
-    updateCompetitorStatus,
-    resetCompetitorStatuses,
-    setLoadingCompetitorStatuses
-} from '../actions/competitorStatus';
-import Spinner from '../components/Spinner';
 import { getCompetitionDay } from '../utils/getCompetitionDay';
-import { formatCompetitionDay } from '../utils/formatCompetitionDay';
 import { getTrackings } from '../actions/tracking';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import { translateDayName } from '../utils/translateDayName';
 
 const CompetitorStatuses = () => {
     const { t } = useTranslation();
@@ -57,17 +37,15 @@ const CompetitorStatuses = () => {
         dispatch(getTrackings(today));
     }, [dispatch, today]);
 
-    console.log('trackings', trackings);
-
     return (
-        <div className="order-1">
+        <div>
             <h2>{t('Tracking')}</h2>
             <ListGroup style={{ marginTop: '2.1rem' }}>
                 {trackings.map((tracking) => {
                     const trackingUrl = `https://glideandseek.com/?taskOneUrl=${tracking.taskUrl}`;
                     return (
                         <ListGroupItem tag="a" href={trackingUrl} key={tracking._id}>
-                            {`Tracking ${t(tracking.competitionClass.name)} ${t(tracking.day.name)}`}
+                            {`Tracking ${t(tracking.competitionClass.name)} ${translateDayName(tracking.day.name, t)}`}
                         </ListGroupItem>
                     );
                 })}
@@ -78,9 +56,10 @@ const CompetitorStatuses = () => {
                     >
                         {`Tracking ${t(trackings[0].competitionClass.name)} & ${t(
                             trackings[1].competitionClass.name
-                        )} ${t(trackings[0].day.name)}`}
+                        )} ${translateDayName(trackings[0].day.name, t)}`}
                     </ListGroupItem>
                 )}
+                {trackings.length == 0 && <p>{t('Pro tento den není tracking.')}</p>}
             </ListGroup>
         </div>
     );

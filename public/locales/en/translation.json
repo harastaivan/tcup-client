@@ -138,5 +138,7 @@
     "IGC soubor": "IGC file",
     "Soubor byl odeslán organizátorovi": "File was submitted to the organiser",
     "Soubor se nepodařilo odeslat organizátorovi, zkuste to později": "File could not be submitted to the organiser, try again later",
-    "Web a vyhodnocování": "Web and results"
+    "Web a vyhodnocování": "Web and results",
+    "Tracking": "Tracking",
+    "Pro tento den není tracking.": "There is no tracking for this day."
 }
