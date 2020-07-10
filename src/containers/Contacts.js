@@ -6,21 +6,15 @@ const Contacts = () => {
     const contacts = [
         {
             heading: t('Pořadatel'),
-            lines: [
-                'AK Toužim',
-                'www.lkto.cz',
-                'E-mail: aktouzim@volny.cz',
-                'Tel.: +420 353 312 447',
-                t('předchozí stránka') + ': www.gliding.cz/souteze/2019/tcup'
-            ]
+            lines: ['AK Toužim', 'www.lkto.cz', 'E-mail: aktouzim@volny.cz', 'Tel.: +420 353 312 447']
         },
         {
             heading: t('Ředitel soutěže'),
-            lines: ['Karel Beníšek ml.', '+420 724 235 210', 'karel.benisek@seznam.cz']
+            lines: ['Karel Beníšek ml.', 'Tel.: +420 724 235 210', 'E-mail: karel.benisek@seznam.cz']
         },
         {
             heading: t('Pole'),
-            lines: [t('Bude doplněno'), '+420 ... ... ...']
+            lines: ['Tel.: +420 722 628 006', 'Tel.: +420 353 312 447']
         },
         {
             heading: t('Přihlášky'),
