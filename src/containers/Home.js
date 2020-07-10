@@ -28,6 +28,13 @@ const Home = () => {
                             odeslat IGC
                         </Button>
                     </div>
+                    <h2 className="sub-header-alert">
+                        {'Dovolujeme si upozornit účastníky závodu, že provozní plocha letiště je'}
+                        <br />
+                        {'monitorována kamerovým systémem a během dne i noci ostrahu zabezpečuje agentura Securitas.'}
+                        <br />
+                        {'V případě dotazu se obraťte na ředitele závodu.'}
+                    </h2>
                     <Row>
                         <Col md={8}>
                             <News />
