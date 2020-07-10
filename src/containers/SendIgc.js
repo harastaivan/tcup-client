@@ -105,8 +105,8 @@ const SendIgc = () => {
                         </FormGroup>
                         <div className="spacerForSpinner">
                             {loading && <Spinner withoutMargin />}
-                            {success && <span>{success}</span>}
-                            {error && <span>{error}</span>}
+                            {success && <span>{t(success)}</span>}
+                            {error && <span>{t(error)}</span>}
                         </div>
                         <Button
                             style={{ marginTop: '1rem' }}
