@@ -49,7 +49,7 @@ const CompetitorStatuses = () => {
                         </ListGroupItem>
                     );
                 })}
-                {trackings.length == 2 && (
+                {trackings.length === 2 && (
                     <ListGroupItem
                         tag="a"
                         href={`https://glideandseek.com/?taskOneUrl=${trackings[0].taskUrl}&taskTwoUrl=${trackings[1].taskUrl}`}
@@ -59,7 +59,7 @@ const CompetitorStatuses = () => {
                         )} ${translateDayName(trackings[0].day.name, t)}`}
                     </ListGroupItem>
                 )}
-                {trackings.length == 0 && <p>{t('Pro tento den není tracking.')}</p>}
+                {trackings.length === 0 && <p>{t('Pro tento den není tracking.')}</p>}
             </ListGroup>
         </div>
     );
