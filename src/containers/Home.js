@@ -21,8 +21,8 @@ const Home = () => {
                         {t('11. 7. – 19. 7. 2020 v Toužimi')}.
                     </h2>
                     <div className="button-container">
-                        <Button outline color="secondary" size="lg" tag={NavLink} to="/registration">
-                            přihláška
+                        <Button outline color="secondary" size="lg" tag={'a'} href="https://lipty.rajce.idnes.cz">
+                            fotogalerie
                         </Button>{' '}
                         <Button color="primary" size="lg" tag={NavLink} to="/igc">
                             odeslat IGC
