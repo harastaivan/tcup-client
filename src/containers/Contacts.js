@@ -19,6 +19,10 @@ const Contacts = () => {
         {
             heading: t('Přihlášky'),
             lines: ['E-mail: aktouzim@volny.cz', 'Tel.: +420 602 213 207']
+        },
+        {
+            heading: t('Web a vyhodnocování'),
+            lines: ['Ivan Harašta ml.', 'E-mail: ivan@harasta.dev', 'Tel.: +420 775 412 486']
         }
     ];
 
