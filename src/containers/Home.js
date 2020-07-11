@@ -22,10 +22,10 @@ const Home = () => {
                     </h2>
                     <div className="button-container">
                         <Button outline color="secondary" size="lg" tag={'a'} href="https://lipty.rajce.idnes.cz">
-                            fotogalerie
+                            {t('fotogalerie')}
                         </Button>{' '}
                         <Button color="primary" size="lg" tag={NavLink} to="/igc">
-                            odeslat IGC
+                            {t('odeslat IGC')}
                         </Button>
                     </div>
                     <h2 className="sub-header-alert">

@@ -140,5 +140,15 @@
     "Soubor se nepodařilo odeslat organizátorovi, zkuste to později": "File could not be submitted to the organiser, try again later",
     "Web a vyhodnocování": "Web and results",
     "Tracking": "Tracking",
-    "Pro tento den není tracking.": "There is no tracking for this day."
+    "Pro tento den není tracking.": "There is no tracking for this day.",
+    "fotogalerie": "photos",
+    "odeslat IGC": "IGC upload",
+    "Stáhnout IGC": "IGC download",
+    "obnovit": "refresh",
+    "příjmení": "surname",
+    "igc": "igc",
+    "nahráno": "uploaded",
+    "upraveno": "edited",
+    "staženo": "downloaded",
+    "zpracováno": "processed"
 }
