@@ -8,14 +8,14 @@ export const getCompetitionDay = (competitionDays, dayToFind = new Date()) => {
     const today = moment(dayToFind);
 
     if (today.isBefore(min)) {
-        return competitionDays.find((d) => moment(d.date).isSame(min));
+        return competitionDays.find((d) => moment(d.date).isSame(min, 'day'));
     }
 
     if (today.isAfter(max)) {
-        return competitionDays.find((d) => moment(d.date).isSame(max));
+        return competitionDays.find((d) => moment(d.date).isSame(max, 'day'));
     }
 
-    return competitionDays.find((d) => moment(d.date).isSame(today));
+    return competitionDays.find((d) => moment(d.date).isSame(today, 'day'));
 };
 
 export const getCompetitionDaysUntilToday = (competitionDays, dayToFind = new Date()) => {
@@ -25,5 +25,5 @@ export const getCompetitionDaysUntilToday = (competitionDays, dayToFind = new Da
     }
     const today = moment(competitionDay.date);
 
-    return competitionDays.filter((d) => moment(d.date).isBefore(today) || moment(d.date).isSame(today));
+    return competitionDays.filter((d) => moment(d.date).isBefore(today) || moment(d.date).isSame(today, 'day'));
 };
