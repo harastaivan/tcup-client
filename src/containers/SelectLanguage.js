@@ -30,17 +30,17 @@ export default function SelectLanguage() {
     const { i18n } = useTranslation();
 
     return (
-        <UncontrolledDropdown nav inNavbar className="bg-dark mr-4">
+        <UncontrolledDropdown nav inNavbar className="bg-light mr-4">
             <DropdownToggle nav caret>
                 <Flag language={getCountryCode(i18n.language)} />
             </DropdownToggle>
-            <DropdownMenu right className="bg-dark">
-                <DropdownItem className="bg-dark">
+            <DropdownMenu right className="bg-light">
+                <DropdownItem className="bg-light">
                     <NavLink onClick={() => i18n.changeLanguage('cs')}>
                         <Flag language={'cz'} /> česky
                     </NavLink>
                 </DropdownItem>
-                <DropdownItem className="bg-dark">
+                <DropdownItem className="bg-light">
                     <NavItem>
                         <NavLink onClick={() => i18n.changeLanguage('en')}>
                             <Flag language={'gb'} /> english

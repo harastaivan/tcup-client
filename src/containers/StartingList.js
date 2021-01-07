@@ -131,7 +131,9 @@ class StartingList extends Component {
                                 </Table>
                             </div>
                         ) : (
-                            t('Nikdo z této třídy nemá podanou přihlášku.')
+                            <p style={{ margin: '1.5rem 0', color: '#323232' }}>
+                                {t('Nikdo z této třídy nemá podanou přihlášku.')}
+                            </p>
                         )}
                     </Fragment>
                 ))}

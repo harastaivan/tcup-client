@@ -39,6 +39,7 @@ class News extends Component {
                 <h1>{t('Novinky')}</h1>
                 <AddNews />
                 {loading ? <Spinner /> : null}
+                {news.length === 0 && <p style={{ marginTop: '1.6rem' }}>{t('Nejsou zde žádné novinky.')}</p>}
                 {news.map((one) => (
                     <Card className="mt-4" key={one._id}>
                         <CardHeader>
