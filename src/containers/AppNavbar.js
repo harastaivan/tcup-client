@@ -92,7 +92,7 @@ const AppNavbar = () => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} to="/statuses" activeClassName="active">
+                            <NavLink tag={Link} to="/statuses" activeClassName="active" disabled>
                                 {t('Statusy soutěžících')}
                             </NavLink>
                         </NavItem>
@@ -113,7 +113,7 @@ const AppNavbar = () => {
                         </NavItem>
                         <NavItem />
                         <NavItem>
-                            <NavLink tag={Link} to="/igc" activeClassName="active">
+                            <NavLink tag={Link} to="/igc" activeClassName="active" disabled>
                                 {t('Odeslat IGC')}
                             </NavLink>
                         </NavItem>
