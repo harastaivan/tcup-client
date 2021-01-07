@@ -44,6 +44,7 @@
     background-color: white;
     color: #343a40;
     border: 5px solid #343a40;
+    border-radius: 4px;
     padding: 15px;
     display: inline-block;
     position: relative;

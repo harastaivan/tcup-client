@@ -27,7 +27,7 @@ const AppNavbar = () => {
 
     const authLinks = (
         <Fragment>
-            <UncontrolledDropdown nav inNavbar className="bg-dark mr-4">
+            <UncontrolledDropdown nav inNavbar className="mr-4">
                 <DropdownToggle nav caret>
                     <strong>{user ? `${user.name} ${user.surname}` : ''}</strong>
                     {isAdmin ? (
@@ -38,15 +38,15 @@ const AppNavbar = () => {
                         ''
                     )}
                 </DropdownToggle>
-                <DropdownMenu right className="bg-dark">
-                    <DropdownItem className="bg-dark">
+                <DropdownMenu right>
+                    <DropdownItem>
                         <NavItem>
                             <NavLink tag={Link} to="/user-profile" activeClassName="active">
                                 {t('Profil')}
                             </NavLink>
                         </NavItem>
                     </DropdownItem>
-                    <DropdownItem className="bg-dark">
+                    <DropdownItem>
                         <NavItem>
                             <NavLink tag={Link} to="/change-password" activeClassName="active">
                                 {t('Změnit heslo')}
@@ -79,7 +79,7 @@ const AppNavbar = () => {
     );
     return (
         <Fragment>
-            <Navbar color="dark" dark expand="lg">
+            <Navbar color="light" light expand="lg">
                 <NavbarBrand tag={Link} to="/">
                     {process.env.REACT_APP_TITLE}
                 </NavbarBrand>
@@ -115,24 +115,24 @@ const AppNavbar = () => {
                                 {t('Odeslat IGC')}
                             </NavLink>
                         </NavItem>
-                        <UncontrolledDropdown nav inNavbar className="bg-dark mr-4">
+                        <UncontrolledDropdown nav inNavbar className="mr-4">
                             <DropdownToggle nav caret>
                                 {t('Další')}
                             </DropdownToggle>
-                            <DropdownMenu right className="bg-dark">
-                                <DropdownItem className="bg-dark">
+                            <DropdownMenu right className="bg-light">
+                                <DropdownItem className="bg-light">
                                     <NavLink tag={Link} to="/documents" activeClassName="active">
                                         {t('Dokumenty')}
                                     </NavLink>
                                 </DropdownItem>
-                                <DropdownItem className="bg-dark">
+                                <DropdownItem className="bg-light">
                                     <NavItem>
                                         <NavLink tag={Link} to="/contacts" activeClassName="active">
                                             {t('Kontakty')}
                                         </NavLink>
                                     </NavItem>
                                 </DropdownItem>
-                                <DropdownItem className="bg-dark">
+                                <DropdownItem className="bg-light">
                                     <NavItem>
                                         <NavLink tag={Link} to="/archive" activeClassName="active">
                                             {t('Archiv')}
@@ -140,7 +140,7 @@ const AppNavbar = () => {
                                     </NavItem>
                                 </DropdownItem>
                                 {isAdmin && (
-                                    <DropdownItem className="bg-dark">
+                                    <DropdownItem>
                                         <NavItem>
                                             <NavLink tag={Link} to="/competition-days" activeClassName="active">
                                                 {t('Soutěžní dny')}
