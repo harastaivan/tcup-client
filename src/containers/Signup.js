@@ -64,9 +64,7 @@ class Signup extends Component {
         const t = this.props.t;
         return (
             <div>
-                {this.signupDisabled() && (
-                    <Alert color="info">{t('Již není možná registrace, máme plnou kapacitu.')}</Alert>
-                )}
+                {this.signupDisabled() && <Alert color="info">{t('V tuto chvíli není registrace možná.')}</Alert>}
                 <h1>{t('Registrovat se')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>
