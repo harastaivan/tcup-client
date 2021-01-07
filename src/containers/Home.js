@@ -18,7 +18,7 @@ const Home = () => {
                     </h1>
                     <h2 className="sub-header">
                         {t('Letošní tcup se bude konat')} <br />
-                        {t('11. 7. – 19. 7. 2020 v Toužimi')}.
+                        {t('10. 7. – 18. 7. 2021 v Toužimi')}.
                     </h2>
                     <div className="button-container">
                         <Button outline color="secondary" size="lg" tag={'a'} href="https://lipty.rajce.idnes.cz">
