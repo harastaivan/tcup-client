@@ -107,7 +107,7 @@ const AppNavbar = () => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink tag={Link} to="/registration" activeClassName="active" exact>
+                            <NavLink tag={Link} to="/registration" activeClassName="active" exact disabled>
                                 {t('Přihláška')}
                             </NavLink>
                         </NavItem>
