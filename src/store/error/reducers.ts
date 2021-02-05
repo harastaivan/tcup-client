@@ -1,20 +1,21 @@
-import { GET_ERRORS, CLEAR_ERRORS } from '../../actions/types'
+import { ErrorAction, errorActionTypes } from "./actions"
+import { ErrorState } from "./types"
 
-const initialState = {
+const initialState: ErrorState = {
     msg: null,
     status: null,
     id: null,
 }
 
-const errorReducer = (state = initialState, action) => {
+const errorReducer = (state: ErrorState = initialState, action: ErrorAction) => {
     switch (action.type) {
-        case GET_ERRORS:
+        case errorActionTypes.GET_ERRORS:
             return {
                 msg: action.payload.msg,
                 status: action.payload.status,
                 id: action.payload.id,
             }
-        case CLEAR_ERRORS:
+        case errorActionTypes.CLEAR_ERRORS:
             return {
                 msg: null,
                 status: null,

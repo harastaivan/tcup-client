@@ -1,18 +1,7 @@
-import {
-    USER_LOADING,
-    USER_LOADED,
-    LOGIN_SUCCESS,
-    REGISTER_SUCCESS,
-    AUTH_ERROR,
-    LOGIN_FAIL,
-    LOGOUT_SUCCESS,
-    REGISTER_FAIL,
-    USER_CHANGED,
-    USER_PASSWORD_CHANGED,
-    TIMEOUT_LOGOUT_SUCCESS,
-} from '../../actions/types'
+import { AuthAction, authActionTypes } from './actions'
+import { AuthState } from './types'
 
-const initialState = {
+const initialState: AuthState = {
     token: sessionStorage.getItem('token'),
     isAuthenticated: false,
     isAdmin: false,
@@ -20,15 +9,15 @@ const initialState = {
     user: null,
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: AuthAction) => {
     switch (action.type) {
-        case USER_LOADING:
+        case authActionTypes.USER_LOADING:
             return {
                 ...state,
                 isLoading: true,
             }
 
-        case USER_LOADED:
+        case authActionTypes.USER_LOADED:
             return {
                 ...state,
                 isAuthenticated: true,
@@ -37,8 +26,8 @@ const authReducer = (state = initialState, action) => {
                 user: action.payload,
             }
 
-        case LOGIN_SUCCESS:
-        case REGISTER_SUCCESS:
+        case authActionTypes.LOGIN_SUCCESS:
+        case authActionTypes.REGISTER_SUCCESS:
             sessionStorage.setItem('token', action.payload.token)
             return {
                 ...state,
@@ -48,11 +37,11 @@ const authReducer = (state = initialState, action) => {
                 isLoading: false,
             }
 
-        case AUTH_ERROR:
-        case LOGIN_FAIL:
-        case LOGOUT_SUCCESS:
-        case TIMEOUT_LOGOUT_SUCCESS:
-        case REGISTER_FAIL:
+        case authActionTypes.AUTH_ERROR:
+        case authActionTypes.LOGIN_FAIL:
+        case authActionTypes.LOGOUT_SUCCESS:
+        case authActionTypes.TIMEOUT_LOGOUT_SUCCESS:
+        case authActionTypes.REGISTER_FAIL:
             sessionStorage.removeItem('token')
             return {
                 ...state,
@@ -62,13 +51,13 @@ const authReducer = (state = initialState, action) => {
                 isAuthenticated: false,
                 isLoading: false,
             }
-        case USER_CHANGED:
+        case authActionTypes.USER_CHANGED:
             return {
                 ...state,
                 user: action.payload,
                 isAdmin: action.payload.admin,
             }
-        case USER_PASSWORD_CHANGED:
+        case authActionTypes.USER_PASSWORD_CHANGED:
             return {
                 ...state,
                 token: action.payload.token,

@@ -17,10 +17,11 @@ import {
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import SelectLanguage from './SelectLanguage'
+import { getAuth } from '../store/auth/selectors'
 
 const AppNavbar = () => {
     const [open, setOpen] = useState(false)
-    const { isAuthenticated, isAdmin, user } = useSelector((state) => state.auth)
+    const { isAuthenticated, isAdmin, user } = useSelector(getAuth)
     const { t } = useTranslation()
 
     const soaringSpotUrl = ''
