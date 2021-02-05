@@ -10,7 +10,7 @@ import {
     USER_CHANGED,
     USER_PASSWORD_CHANGED,
     TIMEOUT_LOGOUT_SUCCESS,
-} from '../actions/types'
+} from '../../actions/types'
 
 const initialState = {
     token: sessionStorage.getItem('token'),

@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
 
-import { register } from '../actions/auth'
-import { clearErrors } from '../actions/error'
+import { register } from '../store/auth/actions'
+import { clearErrors } from '../store/error/actions'
 import GdprConsent from './GdprConsent'
 
 class Signup extends Component {

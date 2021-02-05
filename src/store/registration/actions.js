@@ -8,10 +8,10 @@ import {
     GET_OTHER_REGISTRATION,
     REGISTRATION_LOADING,
     RESET_REGISTRATION,
-} from './types'
+} from '../../actions/types'
 import axios from 'axios'
-import { tokenConfig } from './auth'
-import { returnErrors, parseError } from './error'
+import { tokenConfig } from '../auth/actions'
+import { returnErrors, parseError } from '../error/actions'
 
 const isError = ({ msg, status }) => {
     if (msg === 'Registration does not exist for this user' && status === 404) return false

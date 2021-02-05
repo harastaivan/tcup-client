@@ -1,4 +1,4 @@
-import { GET_SUCCESS, CLEAR_SUCCESS } from './types'
+import { GET_SUCCESS, CLEAR_SUCCESS } from '../../actions/types'
 
 export const returnSuccess = (msg, id = null) => {
     return {

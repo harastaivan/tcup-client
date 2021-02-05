@@ -5,7 +5,7 @@ import { Button } from 'reactstrap'
 import PropTypes from 'prop-types'
 
 import RegistrationFormTemplate from '../components/RegistrationForm'
-import { updateRegistration } from '../actions/registration'
+import { updateRegistration } from '../store/registration/actions'
 import isEmpty from '../utils/isEmpty'
 
 const EditRegistrationForm = (props) => {

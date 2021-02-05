@@ -7,7 +7,7 @@ import Moment from 'react-moment'
 import { withTranslation } from 'react-i18next'
 import 'moment/locale/cs'
 
-import { getStartingList, setStartingListLoading, markPaid, exportRegistrations } from '../actions/startingList'
+import { getStartingList, setStartingListLoading, markPaid, exportRegistrations } from '../store/startingList/actions'
 import Spinner from '../components/Spinner'
 
 class StartingList extends Component {

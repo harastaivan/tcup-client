@@ -1,4 +1,4 @@
-import { GET_SUCCESS, CLEAR_SUCCESS } from '../actions/types'
+import { GET_SUCCESS, CLEAR_SUCCESS } from '../../actions/types'
 
 const initialState = {
     msg: null,

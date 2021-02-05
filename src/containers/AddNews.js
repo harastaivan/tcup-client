@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, FormGroup, Button, Input, Label } from 'reactstrap'
 
-import { addNews } from '../actions/news'
+import { addNews } from '../store/news/actions'
 import { useTranslation } from 'react-i18next'
 
 const AddNews = () => {

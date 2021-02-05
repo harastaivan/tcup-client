@@ -8,7 +8,7 @@ import {
     UPDATE_OTHER_REGISTRATION,
     REGISTRATION_LOADING,
     RESET_REGISTRATION,
-} from '../actions/types'
+} from '../../actions/types'
 
 const initialState = {
     registration: {},

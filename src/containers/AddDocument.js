@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Form, FormGroup, Button, Input, Label } from 'reactstrap'
 
-import { addDocument } from '../actions/document'
+import { addDocument } from '../store/document/actions'
 import { useTranslation } from 'react-i18next'
 
 const AddDocument = () => {

@@ -1,6 +1,6 @@
-import { GET_COMPETITION_DAYS, UPDATE_COMPETITION_DAY } from './types'
+import { GET_COMPETITION_DAYS, UPDATE_COMPETITION_DAY } from '../../actions/types'
 import axios from 'axios'
-import { tokenConfig } from './auth'
+import { tokenConfig } from '../auth/actions'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 

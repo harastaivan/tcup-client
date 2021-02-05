@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import isEmpty from '../utils/isEmpty'
-import { submitRegistration } from '../actions/registration'
+import { submitRegistration } from '../store/registration/actions'
 import GdprConsent from './GdprConsent'
 
 import RegistrationFormTemplate from '../components/RegistrationForm'

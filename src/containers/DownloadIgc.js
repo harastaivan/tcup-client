@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next'
 import Moment from 'react-moment'
 
 import { getCompetitionDay } from '../utils/getCompetitionDay'
-import { getCompetitionDays } from '../actions/competitionDay'
+import { getCompetitionDays } from '../store/competitionDay/actions'
 import { formatCompetitionDay } from '../utils/formatCompetitionDay'
-import { getIgcFiles, resetIgcFiles, updateIgcFile } from '../actions/igc'
+import { getIgcFiles, resetIgcFiles, updateIgcFile } from '../store/igc/actions'
 
 const DownloadIgc = () => {
     const { t } = useTranslation()

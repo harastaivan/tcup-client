@@ -1,5 +1,5 @@
-import { GET_COMPETITION_DAYS, UPDATE_COMPETITION_DAY } from '../actions/types'
-import { getCompetitionDaysUntilToday } from '../utils/getCompetitionDay'
+import { GET_COMPETITION_DAYS, UPDATE_COMPETITION_DAY } from '../../actions/types'
+import { getCompetitionDaysUntilToday } from '../../utils/getCompetitionDay'
 
 const initialState = {
     competitionDays: [],

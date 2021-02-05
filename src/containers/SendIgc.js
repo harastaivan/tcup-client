@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next'
 import Spinner from '../components/Spinner'
 import DownloadIgc from './DownloadIgc'
 import { getCompetitionDay } from '../utils/getCompetitionDay'
-import { getCompetitionDays } from '../actions/competitionDay'
+import { getCompetitionDays } from '../store/competitionDay/actions'
 import { formatCompetitionDay } from '../utils/formatCompetitionDay'
-import { addIgc, getIgcFormData } from '../actions/igc'
+import { addIgc, getIgcFormData } from '../store/igc/actions'
 
 const SendIgc = () => {
     const { t } = useTranslation()

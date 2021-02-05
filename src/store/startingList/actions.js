@@ -1,7 +1,7 @@
-import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from './types'
+import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../../actions/types'
 import axios from 'axios'
-import { tokenConfig } from './auth'
-import { returnErrors } from './error'
+import { tokenConfig } from '../auth/actions'
+import { returnErrors } from '../error/actions'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 

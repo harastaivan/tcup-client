@@ -6,7 +6,7 @@ import Moment from 'react-moment'
 import { withTranslation } from 'react-i18next'
 import 'moment/locale/cs'
 
-import { getNews, deleteNews, setNewsLoading } from '../actions/news'
+import { getNews, deleteNews, setNewsLoading } from '../store/news/actions'
 import AddNews from './AddNews'
 import Spinner from '../components/Spinner'
 

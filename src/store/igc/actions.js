@@ -7,10 +7,10 @@ import {
     GET_IGC_FILES,
     RESET_IGC_FILES,
     UPDATE_IGC_FILE,
-} from './types'
+} from '../../actions/types'
 import axios from 'axios'
-import { tokenConfig } from './auth'
-import { returnErrors } from './error'
+import { tokenConfig } from '../auth/actions'
+import { returnErrors } from '../error/actions'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
