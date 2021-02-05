@@ -1,18 +1,19 @@
-import { GET_SUCCESS, CLEAR_SUCCESS } from '../../actions/types'
+import { SuccessAction, successActionTypes } from './actions'
+import { SuccessState } from './types'
 
-const initialState = {
+const initialState: SuccessState = {
     msg: null,
     id: null,
 }
 
-const successReducer = (state = initialState, action) => {
+const successReducer = (state: SuccessState = initialState, action: SuccessAction) => {
     switch (action.type) {
-        case GET_SUCCESS:
+        case successActionTypes.GET_SUCCESS:
             return {
                 msg: action.payload.msg,
                 id: action.payload.id,
             }
-        case CLEAR_SUCCESS:
+        case successActionTypes.CLEAR_SUCCESS:
             return {
                 msg: null,
                 id: null,
