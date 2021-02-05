@@ -8,7 +8,8 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import store from './store'
-import { loadUser } from './actions/auth'
+import { loadUser } from './store/auth/actions'
+import { getError } from './store/error/selectors'
 
 import AppNavbar from './containers/AppNavbar'
 import Home from './containers/Home'
@@ -30,7 +31,7 @@ import Archive from './components/Archive'
 import CompetitionDays from './containers/CompetitionDays'
 
 const App = () => {
-    const error = useSelector((state) => state.error)
+    const error = useSelector(getError)
     const dispatch = useDispatch()
 
     useEffect(() => {

@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ListGroup, ListGroupItem } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import { getCompetitionDays } from '../actions/competitionDay'
+import { getCompetitionDays } from '../store/competitionDay/actions'
 import { getCompetitionDay } from '../utils/getCompetitionDay'
-import { getTrackings } from '../actions/tracking'
+import { getTrackings } from '../store/tracking/actions'
 import { translateDayName } from '../utils/translateDayName'
 
 const CompetitorStatuses = () => {

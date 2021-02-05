@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import RegistrationFormTemplate from '../components/RegistrationForm'
 import Login from './Login'
 import Spinner from '../components/Spinner'
-import { getOtherRegistration, updateOtherRegistration } from '../actions/registration'
+import { getOtherRegistration, updateOtherRegistration } from '../store/registration/actions'
 import isEmpty from '../utils/isEmpty'
 import { useParams, useHistory } from 'react-router-dom'
 

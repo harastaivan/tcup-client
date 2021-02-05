@@ -13,9 +13,9 @@ import {
     USER_PASSWORD_CHANGED,
     USER_PASSWORD_CHANGE_ERROR,
     TIMEOUT_LOGOUT_SUCCESS,
-} from './types'
-import { returnErrors } from './error'
-import { returnSuccess } from './success'
+} from '../../actions/types'
+import { returnErrors } from '../error/actions'
+import { returnSuccess } from '../success/actions'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 

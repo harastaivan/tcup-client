@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { withTranslation } from 'react-i18next'
 
-import { login } from '../actions/auth'
-import { clearErrors } from '../actions/error'
+import { login } from '../store/auth/actions'
+import { clearErrors } from '../store/error/actions'
 
 class Login extends Component {
     state = {

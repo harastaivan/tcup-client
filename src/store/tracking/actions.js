@@ -1,6 +1,6 @@
-import { ADD_TRACKING, GET_TRACKINGS } from './types'
+import { ADD_TRACKING, GET_TRACKINGS } from '../../actions/types'
 import axios from 'axios'
-import { tokenConfig } from './auth'
+import { tokenConfig } from '../auth/actions'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 

@@ -8,7 +8,7 @@ import RegistrationForm from './RegistrationForm'
 import EditRegistrationForm from './EditRegistrationForm'
 import AdminRegistrationForm from './AdminRegistrationForm'
 import Login from './Login'
-import { getRegistration, getFormData, resetRegistration } from '../actions/registration'
+import { getRegistration, getFormData, resetRegistration } from '../store/registration/actions'
 import Spinner from '../components/Spinner'
 
 const Registration = () => {

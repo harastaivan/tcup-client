@@ -7,7 +7,7 @@ import {
     GET_IGC_FILES,
     RESET_IGC_FILES,
     UPDATE_IGC_FILE,
-} from '../actions/types'
+} from '../../actions/types'
 
 const initialState = {
     pilots: [],

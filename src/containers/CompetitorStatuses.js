@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Table, ButtonGroup, Button, Input, Label, Form, Row, Col, FormGroup } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import { getCompetitionDays } from '../actions/competitionDay'
+import { getCompetitionDays } from '../store/competitionDay/actions'
 import {
     getCompetitorStatuses,
     updateCompetitorStatus,
     resetCompetitorStatuses,
     setLoadingCompetitorStatuses,
-} from '../actions/competitorStatus'
+} from '../store/competitorStatus/actions'
 import Spinner from '../components/Spinner'
 import { getCompetitionDay } from '../utils/getCompetitionDay'
 import { formatCompetitionDay } from '../utils/formatCompetitionDay'

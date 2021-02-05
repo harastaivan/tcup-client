@@ -3,9 +3,9 @@ import {
     UPDATE_COMPETITOR_STATUS,
     RESET_COMPETITOR_STATUSES,
     LOADING_COMPETITOR_STATUSES,
-} from './types'
+} from '../../actions/types'
 import axios from 'axios'
-import { tokenConfig } from './auth'
+import { tokenConfig } from '../auth/actions'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 

@@ -1,4 +1,4 @@
-import { GET_NEWS, NEWS_LOADING, ADD_NEWS, DELETE_NEWS } from '../actions/types'
+import { GET_NEWS, NEWS_LOADING, ADD_NEWS, DELETE_NEWS } from '../../actions/types'
 
 const initialState = {
     news: [],

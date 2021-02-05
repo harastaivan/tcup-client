@@ -4,9 +4,9 @@ import { Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 
-import { clearSuccess } from '../actions/success'
-import { clearErrors } from '../actions/error'
-import { changePassword } from '../actions/auth'
+import { clearSuccess } from '../store/success/actions'
+import { clearErrors } from '../store/error/actions'
+import { changePassword } from '../store/auth/actions'
 
 class ChangePassword extends Component {
     state = {

@@ -1,7 +1,7 @@
-import { DOCUMENTS_LOADING, GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT } from './types'
+import { DOCUMENTS_LOADING, GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT } from '../../actions/types'
 import axios from 'axios'
-import { tokenConfig } from './auth'
-import { returnErrors } from './error'
+import { tokenConfig } from '../auth/actions'
+import { returnErrors } from '../error/actions'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
