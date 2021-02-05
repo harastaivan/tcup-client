@@ -4,7 +4,7 @@ const initialState = {
     trackings: []
 };
 
-export default (state = initialState, action) => {
+const trackingReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_TRACKINGS:
             return {
@@ -15,3 +15,5 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default trackingReducer;

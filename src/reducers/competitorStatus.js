@@ -10,7 +10,7 @@ const initialState = {
     loading: false
 };
 
-export default (state = initialState, action) => {
+const competitorStatusReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_COMPETITOR_STATUSES:
             return {
@@ -42,3 +42,5 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default competitorStatusReducer;

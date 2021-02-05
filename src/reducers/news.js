@@ -5,7 +5,7 @@ const initialState = {
     loading: false
 };
 
-export default (state = initialState, action) => {
+const newsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_NEWS:
             return {
@@ -32,3 +32,5 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default newsReducer;

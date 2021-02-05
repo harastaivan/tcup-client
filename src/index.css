@@ -1,32 +1,32 @@
 body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-		'Droid Sans', 'Helvetica Neue', sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 img.homepage {
-	position: absolute;
-	z-index: -50;
-	top: 0;
-	left: 50%;
-	margin-left: -1024px;
-	height: 160vh;
+    position: absolute;
+    z-index: -50;
+    top: 0;
+    left: 50%;
+    margin-left: -1024px;
+    height: 160vh;
 }
 
 .transparent-background {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 .text-light-blue {
-	color: #53a6ff;
+    color: #53a6ff;
 }
 
 .min-vh-container {
-	min-height: calc(100vh - 56px - 176px);
+    min-height: calc(100vh - 56px - 176px);
 }

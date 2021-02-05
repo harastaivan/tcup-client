@@ -17,7 +17,7 @@ const initialState = {
     error: ''
 };
 
-export default (state = initialState, action) => {
+const igcReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_IGC:
             return {
@@ -82,3 +82,5 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default igcReducer;

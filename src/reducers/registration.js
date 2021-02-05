@@ -24,7 +24,7 @@ const initialState = {
     registrationLoading: false
 };
 
-export default (state = initialState, action) => {
+const registrationReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_FORM_DATA:
             return {
@@ -89,3 +89,5 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default registrationReducer;
