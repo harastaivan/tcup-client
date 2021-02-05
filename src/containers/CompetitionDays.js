@@ -1,43 +1,43 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Table, ButtonGroup, Button } from 'reactstrap';
-import Moment from 'react-moment';
-import { useTranslation } from 'react-i18next';
-import { getCompetitionDays, updateCompetitionDay } from '../actions/competitionDay';
-import { translateDayName } from '../utils/translateDayName';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Table, ButtonGroup, Button } from 'reactstrap'
+import Moment from 'react-moment'
+import { useTranslation } from 'react-i18next'
+import { getCompetitionDays, updateCompetitionDay } from '../actions/competitionDay'
+import { translateDayName } from '../utils/translateDayName'
 
 const competitionDaysEnum = [
     {
         label: 'bez úlohy',
         code: 'NO_TASK',
-        color: 'info'
+        color: 'info',
     },
     {
         label: 's úlohou',
         code: 'TASK',
-        color: 'success'
+        color: 'success',
     },
     {
         label: 'úloha zrušena',
         code: 'TASK_CANCELLED',
-        color: 'danger'
-    }
-];
+        color: 'danger',
+    },
+]
 
 const CompetitionDays = () => {
-    const dispatch = useDispatch();
-    const { t } = useTranslation();
+    const dispatch = useDispatch()
+    const { t } = useTranslation()
 
-    const { competitionDays } = useSelector((state) => state.competitionDay);
+    const { competitionDays } = useSelector((state) => state.competitionDay)
 
     useEffect(() => {
-        dispatch(getCompetitionDays());
-    }, [dispatch]);
+        dispatch(getCompetitionDays())
+    }, [dispatch])
 
     const updateDay = (day, task) => {
-        day.task = task;
-        dispatch(updateCompetitionDay(day));
-    };
+        day.task = task
+        dispatch(updateCompetitionDay(day))
+    }
 
     return (
         <div>
@@ -66,9 +66,8 @@ const CompetitionDays = () => {
                                             key={d.code}
                                             color={d.code === day.task ? d.color : 'secondary'}
                                             onClick={() => {
-                                                updateDay(day, d.code);
-                                            }}
-                                        >
+                                                updateDay(day, d.code)
+                                            }}>
                                             {t(d.label)}
                                         </Button>
                                     ))}
@@ -79,7 +78,7 @@ const CompetitionDays = () => {
                 </tbody>
             </Table>
         </div>
-    );
-};
+    )
+}
 
-export default CompetitionDays;
+export default CompetitionDays

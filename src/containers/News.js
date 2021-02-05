@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Card, CardBody, CardFooter, CardHeader, CardText, Button } from 'reactstrap';
-import Moment from 'react-moment';
-import { withTranslation } from 'react-i18next';
-import 'moment/locale/cs';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { Card, CardBody, CardFooter, CardHeader, CardText, Button } from 'reactstrap'
+import Moment from 'react-moment'
+import { withTranslation } from 'react-i18next'
+import 'moment/locale/cs'
 
-import { getNews, deleteNews, setNewsLoading } from '../actions/news';
-import AddNews from './AddNews';
-import Spinner from '../components/Spinner';
+import { getNews, deleteNews, setNewsLoading } from '../actions/news'
+import AddNews from './AddNews'
+import Spinner from '../components/Spinner'
 
 class News extends Component {
     static propTypes = {
@@ -18,22 +18,22 @@ class News extends Component {
         news: PropTypes.object.isRequired,
         isAdmin: PropTypes.bool,
         t: PropTypes.func.isRequired,
-        i18n: PropTypes.object.isRequired
-    };
+        i18n: PropTypes.object.isRequired,
+    }
 
     onDeleteClick = (id) => {
-        this.props.deleteNews(id);
-    };
+        this.props.deleteNews(id)
+    }
 
     componentDidMount() {
-        this.props.setNewsLoading();
-        this.props.getNews();
+        this.props.setNewsLoading()
+        this.props.getNews()
     }
 
     render() {
-        const { news, loading } = this.props.news;
-        const t = this.props.t;
-        const i18n = this.props.i18n;
+        const { news, loading } = this.props.news
+        const t = this.props.t
+        const i18n = this.props.i18n
         return (
             <div style={{ marginBottom: '2rem' }}>
                 <h1>{t('Novinky')}</h1>
@@ -50,8 +50,7 @@ class News extends Component {
                                         className="remove-btn float-right"
                                         color="danger"
                                         size="sm"
-                                        onClick={this.onDeleteClick.bind(this, one._id)}
-                                    >
+                                        onClick={this.onDeleteClick.bind(this, one._id)}>
                                         {t('smazat novinku')}
                                     </Button>
                                 ) : null}
@@ -59,7 +58,7 @@ class News extends Component {
                         </CardHeader>
                         <CardBody>
                             {one.body.split('\n').map((line, i) => {
-                                return <CardText key={i}>{line}</CardText>;
+                                return <CardText key={i}>{line}</CardText>
                             })}
                         </CardBody>
                         <CardFooter>
@@ -71,13 +70,13 @@ class News extends Component {
                     </Card>
                 ))}
             </div>
-        );
+        )
     }
 }
 
 const mapStateToProps = (state) => ({
     news: state.news,
-    isAdmin: state.auth.isAdmin
-});
+    isAdmin: state.auth.isAdmin,
+})
 
-export default connect(mapStateToProps, { getNews, deleteNews, setNewsLoading })(withTranslation()(News));
+export default connect(mapStateToProps, { getNews, deleteNews, setNewsLoading })(withTranslation()(News))

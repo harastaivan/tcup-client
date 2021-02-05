@@ -1,42 +1,42 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Form, FormGroup, Label, Input, Button, Row, Col, Table } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
-import Moment from 'react-moment';
+import React, { Fragment, useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Form, FormGroup, Label, Input, Button, Row, Col, Table } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
+import Moment from 'react-moment'
 
-import { getCompetitionDay } from '../utils/getCompetitionDay';
-import { getCompetitionDays } from '../actions/competitionDay';
-import { formatCompetitionDay } from '../utils/formatCompetitionDay';
-import { getIgcFiles, resetIgcFiles, updateIgcFile } from '../actions/igc';
+import { getCompetitionDay } from '../utils/getCompetitionDay'
+import { getCompetitionDays } from '../actions/competitionDay'
+import { formatCompetitionDay } from '../utils/formatCompetitionDay'
+import { getIgcFiles, resetIgcFiles, updateIgcFile } from '../actions/igc'
 
 const DownloadIgc = () => {
-    const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const { t } = useTranslation()
+    const dispatch = useDispatch()
 
-    const competitionDays = useSelector((state) => state.competitionDay.competitionDaysUntilToday);
-    const { files } = useSelector((state) => state.igc);
+    const competitionDays = useSelector((state) => state.competitionDay.competitionDaysUntilToday)
+    const { files } = useSelector((state) => state.igc)
 
-    const [day, setDay] = useState('');
-
-    useEffect(() => {
-        dispatch(getCompetitionDays());
-    }, [dispatch]);
+    const [day, setDay] = useState('')
 
     useEffect(() => {
-        const today = getCompetitionDay(competitionDays);
+        dispatch(getCompetitionDays())
+    }, [dispatch])
+
+    useEffect(() => {
+        const today = getCompetitionDay(competitionDays)
         if (!today) {
-            return;
+            return
         }
-        setDay(today._id);
-    }, [competitionDays]);
+        setDay(today._id)
+    }, [competitionDays])
 
     useEffect(() => {
         if (!day) {
-            return;
+            return
         }
-        dispatch(resetIgcFiles());
-        dispatch(getIgcFiles(day));
-    }, [dispatch, day]);
+        dispatch(resetIgcFiles())
+        dispatch(getIgcFiles(day))
+    }, [dispatch, day])
 
     return (
         <div style={{ marginTop: '2rem' }}>
@@ -52,30 +52,28 @@ const DownloadIgc = () => {
                                 id={'competitionDay'}
                                 value={day}
                                 onChange={(e) => {
-                                    setDay(e.target.value);
+                                    setDay(e.target.value)
                                 }}
-                                disabled={competitionDays.length === 0}
-                            >
+                                disabled={competitionDays.length === 0}>
                                 <option value="">{t('Vyber den')}</option>
                                 {competitionDays.map((day) => {
                                     return (
                                         <option key={day._id} value={day._id}>
                                             {formatCompetitionDay(day, t)}
                                         </option>
-                                    );
+                                    )
                                 })}
                             </Input>
                         </FormGroup>
                         <Button
                             onClick={() => {
-                                dispatch(resetIgcFiles());
-                                dispatch(getIgcFiles(day));
+                                dispatch(resetIgcFiles())
+                                dispatch(getIgcFiles(day))
                             }}
                             color={'primary'}
                             className="mb-3"
                             size="md"
-                            disabled={!day}
-                        >
+                            disabled={!day}>
                             {t('obnovit')}
                         </Button>
                     </Col>
@@ -118,24 +116,22 @@ const DownloadIgc = () => {
                                     <td>
                                         <Button
                                             onClick={() => {
-                                                igcFile.downloaded = !igcFile.downloaded;
-                                                dispatch(updateIgcFile(igcFile));
+                                                igcFile.downloaded = !igcFile.downloaded
+                                                dispatch(updateIgcFile(igcFile))
                                             }}
                                             color={igcFile.downloaded ? 'success' : 'danger'}
                                             className="mb-1"
-                                            size="sm"
-                                        >
+                                            size="sm">
                                             {t('staženo')}
                                         </Button>{' '}
                                         <Button
                                             onClick={() => {
-                                                igcFile.processed = !igcFile.processed;
-                                                dispatch(updateIgcFile(igcFile));
+                                                igcFile.processed = !igcFile.processed
+                                                dispatch(updateIgcFile(igcFile))
                                             }}
                                             color={igcFile.processed ? 'success' : 'danger'}
                                             className="mb-1"
-                                            size="sm"
-                                        >
+                                            size="sm">
                                             {t('zpracováno')}
                                         </Button>{' '}
                                     </td>
@@ -146,7 +142,7 @@ const DownloadIgc = () => {
                 </Fragment>
             ))}
         </div>
-    );
-};
+    )
+}
 
-export default DownloadIgc;
+export default DownloadIgc

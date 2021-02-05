@@ -1,19 +1,19 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
+import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
+import { Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
 
-import { clearSuccess } from '../actions/success';
-import { clearErrors } from '../actions/error';
-import { changePassword } from '../actions/auth';
+import { clearSuccess } from '../actions/success'
+import { clearErrors } from '../actions/error'
+import { changePassword } from '../actions/auth'
 
 class ChangePassword extends Component {
     state = {
         oldPassword: '',
         newPassword: '',
-        saved: false
-    };
+        saved: false,
+    }
 
     static propTypes = {
         isAuthenticated: PropTypes.bool,
@@ -22,33 +22,33 @@ class ChangePassword extends Component {
         clearSuccess: PropTypes.func.isRequired,
         clearErrors: PropTypes.func.isRequired,
         changePassword: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired
-    };
+        t: PropTypes.func.isRequired,
+    }
 
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
-            saved: false
-        });
-    };
+            saved: false,
+        })
+    }
 
     onSubmit = (e) => {
-        e.preventDefault();
-        this.props.clearSuccess();
-        this.props.clearErrors();
-        const { oldPassword, newPassword } = this.state;
+        e.preventDefault()
+        this.props.clearSuccess()
+        this.props.clearErrors()
+        const { oldPassword, newPassword } = this.state
 
-        this.props.changePassword({ oldPassword, newPassword });
+        this.props.changePassword({ oldPassword, newPassword })
 
-        this.setState({ errorMsg: null, saved: true });
-    };
+        this.setState({ errorMsg: null, saved: true })
+    }
 
     isDisabled = () => {
-        return this.state.saved || !this.state.oldPassword || !this.state.newPassword;
-    };
+        return this.state.saved || !this.state.oldPassword || !this.state.newPassword
+    }
 
     render() {
-        const t = this.props.t;
+        const t = this.props.t
         return (
             <Fragment>
                 {this.props.success.msg ? <Alert color="success">{t(this.props.success.msg)}</Alert> : null}
@@ -81,16 +81,16 @@ class ChangePassword extends Component {
                     </Button>
                 </Form>
             </Fragment>
-        );
+        )
     }
 }
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
-    success: state.success
-});
+    success: state.success,
+})
 
 export default connect(mapStateToProps, { clearSuccess, clearErrors, changePassword })(
     withTranslation()(ChangePassword)
-);
+)

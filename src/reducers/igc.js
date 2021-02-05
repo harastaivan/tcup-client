@@ -6,16 +6,16 @@ import {
     IGC_CLEAR_MESSAGE,
     GET_IGC_FILES,
     RESET_IGC_FILES,
-    UPDATE_IGC_FILE
-} from '../actions/types';
+    UPDATE_IGC_FILE,
+} from '../actions/types'
 
 const initialState = {
     pilots: [],
     files: [],
     loading: false,
     success: '',
-    error: ''
-};
+    error: '',
+}
 
 const igcReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -24,43 +24,43 @@ const igcReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
                 success: '',
-                error: ''
-            };
+                error: '',
+            }
         case ADD_IGC_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 success: 'Soubor byl odeslán organizátorovi',
-                error: ''
-            };
+                error: '',
+            }
         case ADD_IGC_ERROR:
             return {
                 ...state,
                 loading: false,
                 success: '',
-                error: 'Soubor se nepodařilo odeslat organizátorovi, zkuste to později'
-            };
+                error: 'Soubor se nepodařilo odeslat organizátorovi, zkuste to později',
+            }
         case IGC_CLEAR_MESSAGE:
             return {
                 ...state,
                 success: '',
-                error: ''
-            };
+                error: '',
+            }
         case GET_IGC_FORM_DATA:
             return {
                 ...state,
-                pilots: action.payload
-            };
+                pilots: action.payload,
+            }
         case GET_IGC_FILES:
             return {
                 ...state,
-                files: action.payload
-            };
+                files: action.payload,
+            }
         case RESET_IGC_FILES:
             return {
                 ...state,
-                files: []
-            };
+                files: [],
+            }
         case UPDATE_IGC_FILE:
             return {
                 ...state,
@@ -72,15 +72,15 @@ const igcReducer = (state = initialState, action) => {
                                   ...igcFile,
                                   downloaded: action.payload.downloaded,
                                   processed: action.payload.processed,
-                                  updatedAt: action.payload.updatedAt
+                                  updatedAt: action.payload.updatedAt,
                               }
                             : igcFile
-                    )
-                }))
-            };
+                    ),
+                })),
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default igcReducer;
+export default igcReducer

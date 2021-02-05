@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 export default function GdprConsent(props) {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     return (
         <Fragment>
@@ -26,9 +26,9 @@ export default function GdprConsent(props) {
             </div>
             <p>{t('Správcem osobních údajů je Aeroklub Toužim')}.</p>
         </Fragment>
-    );
+    )
 }
 
 GdprConsent.propTypes = {
-    action: PropTypes.string.isRequired
-};
+    action: PropTypes.string.isRequired,
+}

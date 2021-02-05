@@ -1,34 +1,34 @@
-import React, { Fragment, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Form, FormGroup, Button, Input, Label } from 'reactstrap';
+import React, { Fragment, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Form, FormGroup, Button, Input, Label } from 'reactstrap'
 
-import { addNews } from '../actions/news';
-import { useTranslation } from 'react-i18next';
+import { addNews } from '../actions/news'
+import { useTranslation } from 'react-i18next'
 
 const AddNews = () => {
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
-    const [email, setEmail] = useState(false);
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
+    const [email, setEmail] = useState(false)
 
-    const isAdmin = useSelector((state) => state.auth.isAdmin);
-    const dispatch = useDispatch();
+    const isAdmin = useSelector((state) => state.auth.isAdmin)
+    const dispatch = useDispatch()
 
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const newNews = {
             title,
             body,
-            email
-        };
+            email,
+        }
 
-        dispatch(addNews(newNews));
+        dispatch(addNews(newNews))
 
-        setTitle('');
-        setBody('');
-        setEmail(false);
-    };
+        setTitle('')
+        setBody('')
+        setEmail(false)
+    }
 
     return (
         <Fragment>
@@ -65,7 +65,7 @@ const AddNews = () => {
                                     id="email"
                                     checked={email}
                                     onChange={() => {
-                                        setEmail(!email);
+                                        setEmail(!email)
                                     }}
                                 />
                                 {t('Notifikovat emailem')}
@@ -78,7 +78,7 @@ const AddNews = () => {
                 </Fragment>
             ) : null}
         </Fragment>
-    );
-};
+    )
+}
 
-export default AddNews;
+export default AddNews

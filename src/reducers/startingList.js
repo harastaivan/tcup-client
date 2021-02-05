@@ -1,12 +1,12 @@
-import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver'
 
-import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../actions/types';
-import formatDate from '../utils/formatDate';
+import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../actions/types'
+import formatDate from '../utils/formatDate'
 
 const initialState = {
     classes: [],
-    loading: false
-};
+    loading: false,
+}
 
 const startingListReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -14,37 +14,37 @@ const startingListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 classes: action.payload,
-                loading: false
-            };
+                loading: false,
+            }
         case STARTING_LIST_LOADING:
             return {
                 ...state,
-                loading: true
-            };
+                loading: true,
+            }
         case PAY_REGISTRATION:
             return {
                 ...state,
                 classes: state.classes.map((one) => {
                     one.registrations = one.registrations.map((registration) => {
                         if (registration._id === action.payload.registrationId) {
-                            registration.paid = action.payload.paid;
+                            registration.paid = action.payload.paid
                         }
-                        return registration;
-                    });
-                    return one;
-                })
-            };
+                        return registration
+                    })
+                    return one
+                }),
+            }
         case EXPORT_REGISTRATIONS: {
-            const data = new TextEncoder('utf-8').encode(action.payload.data);
-            const filename = `export-${formatDate()}.csv`;
+            const data = new TextEncoder('utf-8').encode(action.payload.data)
+            const filename = `export-${formatDate()}.csv`
             saveAs(new Blob([data], { type: action.payload.headers['content-type'] }), filename, {
-                autoBom: true
-            });
-            return state;
+                autoBom: true,
+            })
+            return state
         }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default startingListReducer;
+export default startingListReducer

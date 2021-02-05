@@ -2,13 +2,13 @@ import {
     GET_COMPETITOR_STATUSES,
     UPDATE_COMPETITOR_STATUS,
     RESET_COMPETITOR_STATUSES,
-    LOADING_COMPETITOR_STATUSES
-} from '../actions/types';
+    LOADING_COMPETITOR_STATUSES,
+} from '../actions/types'
 
 const initialState = {
     competitorStatuses: [],
-    loading: false
-};
+    loading: false,
+}
 
 const competitorStatusReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -16,31 +16,31 @@ const competitorStatusReducer = (state = initialState, action) => {
             return {
                 ...state,
                 competitorStatuses: action.payload,
-                loading: false
-            };
+                loading: false,
+            }
         case UPDATE_COMPETITOR_STATUS:
             return {
                 ...state,
                 competitorStatuses: state.competitorStatuses.map((status) => {
                     if (status._id === action.payload._id) {
-                        status.status = action.payload.status;
+                        status.status = action.payload.status
                     }
-                    return status;
-                })
-            };
+                    return status
+                }),
+            }
         case RESET_COMPETITOR_STATUSES:
             return {
                 ...state,
-                competitorStatuses: []
-            };
+                competitorStatuses: [],
+            }
         case LOADING_COMPETITOR_STATUSES:
             return {
                 ...state,
-                loading: true
-            };
+                loading: true,
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default competitorStatusReducer;
+export default competitorStatusReducer

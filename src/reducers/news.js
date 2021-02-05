@@ -1,9 +1,9 @@
-import { GET_NEWS, NEWS_LOADING, ADD_NEWS, DELETE_NEWS } from '../actions/types';
+import { GET_NEWS, NEWS_LOADING, ADD_NEWS, DELETE_NEWS } from '../actions/types'
 
 const initialState = {
     news: [],
-    loading: false
-};
+    loading: false,
+}
 
 const newsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -11,26 +11,26 @@ const newsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 news: action.payload,
-                loading: false
-            };
+                loading: false,
+            }
         case NEWS_LOADING:
             return {
                 ...state,
-                loading: true
-            };
+                loading: true,
+            }
         case ADD_NEWS:
             return {
                 ...state,
-                news: [action.payload.news, ...state.news]
-            };
+                news: [action.payload.news, ...state.news],
+            }
         case DELETE_NEWS:
             return {
                 ...state,
-                news: state.news.filter((item) => item._id !== action.payload)
-            };
+                news: state.news.filter((item) => item._id !== action.payload),
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default newsReducer;
+export default newsReducer

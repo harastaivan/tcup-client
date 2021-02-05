@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react';
-import { NavLink as Link } from 'react-router-dom';
+import React, { Fragment, useState } from 'react'
+import { NavLink as Link } from 'react-router-dom'
 import {
     Badge,
     Collapse,
@@ -12,18 +12,18 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown
-} from 'reactstrap';
-import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import SelectLanguage from './SelectLanguage';
+    UncontrolledDropdown,
+} from 'reactstrap'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import SelectLanguage from './SelectLanguage'
 
 const AppNavbar = () => {
-    const [open, setOpen] = useState(false);
-    const { isAuthenticated, isAdmin, user } = useSelector((state) => state.auth);
-    const { t } = useTranslation();
+    const [open, setOpen] = useState(false)
+    const { isAuthenticated, isAdmin, user } = useSelector((state) => state.auth)
+    const { t } = useTranslation()
 
-    const soaringSpotUrl = '';
+    const soaringSpotUrl = ''
 
     const authLinks = (
         <Fragment>
@@ -61,7 +61,7 @@ const AppNavbar = () => {
                 </NavLink>
             </NavItem>
         </Fragment>
-    );
+    )
 
     const guestLinks = (
         <Fragment>
@@ -76,7 +76,7 @@ const AppNavbar = () => {
                 </NavLink>
             </NavItem>
         </Fragment>
-    );
+    )
     return (
         <Fragment>
             <Navbar color="light" light expand="lg">
@@ -158,7 +158,7 @@ const AppNavbar = () => {
                 </Collapse>
             </Navbar>
         </Fragment>
-    );
-};
+    )
+}
 
-export default AppNavbar;
+export default AppNavbar

@@ -1,34 +1,34 @@
-import React, { useState, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { Button } from 'reactstrap';
-import PropTypes from 'prop-types';
+import React, { useState, Fragment } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import { Button } from 'reactstrap'
+import PropTypes from 'prop-types'
 
-import RegistrationFormTemplate from '../components/RegistrationForm';
-import { updateRegistration } from '../actions/registration';
-import isEmpty from '../utils/isEmpty';
+import RegistrationFormTemplate from '../components/RegistrationForm'
+import { updateRegistration } from '../actions/registration'
+import isEmpty from '../utils/isEmpty'
 
 const EditRegistrationForm = (props) => {
-    const auth = useSelector((state) => state.auth);
-    const registration = useSelector((state) => state.registration.registration);
-    const formData = useSelector((state) => state.registration.formData);
+    const auth = useSelector((state) => state.auth)
+    const registration = useSelector((state) => state.registration.registration)
+    const formData = useSelector((state) => state.registration.formData)
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
-    const [edit, setEdit] = useState(props.edit);
-    const [birthDate, setBirthDate] = useState(registration.birthDate);
-    const [phone, setPhone] = useState(registration.phone);
-    const [aeroclub, setAeroclub] = useState(registration.aeroclub);
-    const [region, setRegion] = useState(registration.region._id);
-    const [gliderType, setGliderType] = useState(registration.glider.gliderType._id);
-    const [registrationNumber, setRegistrationNumber] = useState(registration.glider.registrationNumber);
-    const [startNumber, setStartNumber] = useState(registration.glider.startNumber);
-    const [competitionClass, setCompetitionClass] = useState(registration.competitionClass._id);
-    const [logger, setLogger] = useState(registration.logger);
-    const [accomodationType, setAccomodationType] = useState(registration.accomodation.accomodationType._id);
-    const [quantity, setQuantity] = useState(registration.accomodation.quantity);
-    const [meals, setMeals] = useState(registration.meals);
-    const [note, setNote] = useState(registration.note);
+    const [edit, setEdit] = useState(props.edit)
+    const [birthDate, setBirthDate] = useState(registration.birthDate)
+    const [phone, setPhone] = useState(registration.phone)
+    const [aeroclub, setAeroclub] = useState(registration.aeroclub)
+    const [region, setRegion] = useState(registration.region._id)
+    const [gliderType, setGliderType] = useState(registration.glider.gliderType._id)
+    const [registrationNumber, setRegistrationNumber] = useState(registration.glider.registrationNumber)
+    const [startNumber, setStartNumber] = useState(registration.glider.startNumber)
+    const [competitionClass, setCompetitionClass] = useState(registration.competitionClass._id)
+    const [logger, setLogger] = useState(registration.logger)
+    const [accomodationType, setAccomodationType] = useState(registration.accomodation.accomodationType._id)
+    const [quantity, setQuantity] = useState(registration.accomodation.quantity)
+    const [meals, setMeals] = useState(registration.meals)
+    const [note, setNote] = useState(registration.note)
 
     const isFormValid = () => {
         return (
@@ -43,11 +43,11 @@ const EditRegistrationForm = (props) => {
             !isEmpty(accomodationType) &&
             !isEmpty(quantity) &&
             !isEmpty(meals)
-        );
-    };
+        )
+    }
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         const registration = {
             birthDate,
@@ -57,22 +57,22 @@ const EditRegistrationForm = (props) => {
             glider: {
                 gliderType,
                 registrationNumber,
-                startNumber
+                startNumber,
             },
             competitionClass,
             logger,
             accomodation: {
                 accomodationType,
-                quantity
+                quantity,
             },
             meals,
-            note
-        };
-        dispatch(updateRegistration(registration));
-        setEdit(!edit);
-    };
+            note,
+        }
+        dispatch(updateRegistration(registration))
+        setEdit(!edit)
+    }
 
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     const header = (
         <Fragment>
@@ -82,14 +82,13 @@ const EditRegistrationForm = (props) => {
                     color="primary"
                     className="mb-3"
                     onClick={() => {
-                        setEdit(!edit);
-                    }}
-                >
+                        setEdit(!edit)
+                    }}>
                     {t('upravit přihlášku')}
                 </Button>
             )}
         </Fragment>
-    );
+    )
 
     const footer = (
         <Fragment>
@@ -99,7 +98,7 @@ const EditRegistrationForm = (props) => {
                 </Button>
             )}
         </Fragment>
-    );
+    )
 
     return (
         <RegistrationFormTemplate
@@ -138,11 +137,11 @@ const EditRegistrationForm = (props) => {
             setMeals={setMeals}
             setNote={setNote}
         />
-    );
-};
+    )
+}
 
 EditRegistrationForm.propTypes = {
-    edit: PropTypes.bool.isRequired
-};
+    edit: PropTypes.bool.isRequired,
+}
 
-export default EditRegistrationForm;
+export default EditRegistrationForm

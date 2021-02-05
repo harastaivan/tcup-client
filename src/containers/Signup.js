@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { withTranslation } from 'react-i18next';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { withTranslation } from 'react-i18next'
 
-import { register } from '../actions/auth';
-import { clearErrors } from '../actions/error';
-import GdprConsent from './GdprConsent';
+import { register } from '../actions/auth'
+import { clearErrors } from '../actions/error'
+import GdprConsent from './GdprConsent'
 
 class Signup extends Component {
     state = {
@@ -15,8 +15,8 @@ class Signup extends Component {
         surname: '',
         email: '',
         password: '',
-        msg: null
-    };
+        msg: null,
+    }
 
     static propTypes = {
         isAuthenticated: PropTypes.bool,
@@ -24,44 +24,44 @@ class Signup extends Component {
         register: PropTypes.func.isRequired,
         clearErrors: PropTypes.func.isRequired,
         history: PropTypes.object.isRequired,
-        t: PropTypes.func.isRequired
-    };
+        t: PropTypes.func.isRequired,
+    }
 
     onChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
-        });
-    };
+            [e.target.name]: e.target.value,
+        })
+    }
 
     onSubmit = (e) => {
-        e.preventDefault();
-        const { name, surname, email, password } = this.state;
+        e.preventDefault()
+        const { name, surname, email, password } = this.state
 
         const newUser = {
             name,
             surname,
             email,
-            password
-        };
-        this.props.register(newUser);
+            password,
+        }
+        this.props.register(newUser)
         this.setState({
-            password: ''
-        });
-    };
+            password: '',
+        })
+    }
 
     componentDidUpdate() {
         if (this.props.isAuthenticated) {
-            this.props.clearErrors();
-            this.props.history.push('/');
+            this.props.clearErrors()
+            this.props.history.push('/')
         }
     }
 
     signupDisabled() {
-        return true;
+        return true
     }
 
     render() {
-        const t = this.props.t;
+        const t = this.props.t
         return (
             <div>
                 {this.signupDisabled() && <Alert color="info">{t('V tuto chvíli není registrace možná.')}</Alert>}
@@ -126,8 +126,7 @@ class Signup extends Component {
                         color="dark"
                         style={{ marginTop: '2rem' }}
                         disabled={!this.state.name || !this.state.surname || !this.state.email || !this.state.password}
-                        block
-                    >
+                        block>
                         {t('Registrovat se')}
                     </Button>
                 </Form>
@@ -135,13 +134,13 @@ class Signup extends Component {
                     {t('Již máte účet?')} <Link to="/login">{t('Přihlaste se.')}</Link>
                 </Alert>
             </div>
-        );
+        )
     }
 }
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    error: state.error
-});
+    error: state.error,
+})
 
-export default connect(mapStateToProps, { register, clearErrors })(withTranslation()(Signup));
+export default connect(mapStateToProps, { register, clearErrors })(withTranslation()(Signup))

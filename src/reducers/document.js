@@ -1,9 +1,9 @@
-import { GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT, DOCUMENTS_LOADING } from '../actions/types';
+import { GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT, DOCUMENTS_LOADING } from '../actions/types'
 
 const initialState = {
     documents: [],
-    loading: false
-};
+    loading: false,
+}
 
 const documentReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -11,26 +11,26 @@ const documentReducer = (state = initialState, action) => {
             return {
                 ...state,
                 documents: action.payload,
-                loading: false
-            };
+                loading: false,
+            }
         case DOCUMENTS_LOADING:
             return {
                 ...state,
-                loading: true
-            };
+                loading: true,
+            }
         case ADD_DOCUMENT:
             return {
                 ...state,
-                documents: [action.payload, ...state.documents.filter((item) => item._id !== action.payload._id)]
-            };
+                documents: [action.payload, ...state.documents.filter((item) => item._id !== action.payload._id)],
+            }
         case DELETE_DOCUMENT:
             return {
                 ...state,
-                documents: state.documents.filter((item) => item._id !== action.payload)
-            };
+                documents: state.documents.filter((item) => item._id !== action.payload),
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default documentReducer;
+export default documentReducer

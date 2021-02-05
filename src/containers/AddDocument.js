@@ -1,25 +1,25 @@
-import React, { Fragment, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Form, FormGroup, Button, Input, Label } from 'reactstrap';
+import React, { Fragment, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Form, FormGroup, Button, Input, Label } from 'reactstrap'
 
-import { addDocument } from '../actions/document';
-import { useTranslation } from 'react-i18next';
+import { addDocument } from '../actions/document'
+import { useTranslation } from 'react-i18next'
 
 const AddDocument = () => {
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState(null)
 
-    const isAdmin = useSelector((state) => state.auth.isAdmin);
-    const dispatch = useDispatch();
-    const { t } = useTranslation();
+    const isAdmin = useSelector((state) => state.auth.isAdmin)
+    const dispatch = useDispatch()
+    const { t } = useTranslation()
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const newDocument = {
-            document: file
-        };
-        dispatch(addDocument(newDocument));
-        setFile(null);
-    };
+            document: file,
+        }
+        dispatch(addDocument(newDocument))
+        setFile(null)
+    }
 
     return (
         <Fragment>
@@ -38,7 +38,7 @@ const AddDocument = () => {
                 </Fragment>
             ) : null}
         </Fragment>
-    );
-};
+    )
+}
 
-export default AddDocument;
+export default AddDocument

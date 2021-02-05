@@ -1,12 +1,12 @@
 const getCountryCode = (lng) => {
     switch (lng) {
         case 'cs':
-            return 'cz';
+            return 'cz'
         case 'en':
-            return 'gb';
+            return 'gb'
         default:
-            return 'cz';
+            return 'cz'
     }
-};
+}
 
-export default getCountryCode;
+export default getCountryCode

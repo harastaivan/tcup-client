@@ -1,13 +1,13 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import Tracking from './Tracking';
-import News from './News';
-import Footer from './Footer';
-import { Container, Button, Row, Col } from 'reactstrap';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Tracking from './Tracking'
+import News from './News'
+import Footer from './Footer'
+import { Container, Button, Row, Col } from 'reactstrap'
 
 const Home = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
     return (
         <div className="homepage">
             <div className="homepage-highlight"></div>
@@ -47,7 +47,7 @@ const Home = () => {
                 </Container>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home
