@@ -1,39 +1,39 @@
-import React, { useState, Fragment } from 'react';
-import { Label, Input } from 'reactstrap';
-import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import React, { useState, Fragment } from 'react'
+import { Label, Input } from 'reactstrap'
+import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
-import isEmpty from '../utils/isEmpty';
+import isEmpty from '../utils/isEmpty'
 
-export const TRANSLATED = 'TRANSLATED';
-export const GLIDER_TYPE = 'GLIDER_TYPE';
+export const TRANSLATED = 'TRANSLATED'
+export const GLIDER_TYPE = 'GLIDER_TYPE'
 
 export default function ValidatedInput(props) {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
-    const [valid, setValid] = useState(false);
-    const [visited, setVisited] = useState(false);
+    const [valid, setValid] = useState(false)
+    const [visited, setVisited] = useState(false)
 
     const isValid = (value) => {
         if (!props.required) {
-            return true;
+            return true
         }
-        return !isEmpty(value);
-    };
+        return !isEmpty(value)
+    }
 
     const getSelectData = (type, data) => {
         switch (type) {
             case TRANSLATED:
-                return t(data.name);
+                return t(data.name)
             case GLIDER_TYPE:
-                return `${data.name} (${data.index})`;
+                return `${data.name} (${data.index})`
             default:
-                return data.name;
+                return data.name
         }
-    };
+    }
 
-    const id = props.id || props.name;
-    const placeholder = props.placeholder || props.label;
+    const id = props.id || props.name
+    const placeholder = props.placeholder || props.label
 
     return (
         <div>
@@ -45,19 +45,18 @@ export default function ValidatedInput(props) {
                 placeholder={placeholder}
                 value={props.value}
                 onChange={(e) => {
-                    setValid(isValid(e.target.value));
-                    setVisited(true);
-                    props.setValue(e.target.value);
+                    setValid(isValid(e.target.value))
+                    setVisited(true)
+                    props.setValue(e.target.value)
                 }}
                 disabled={props.disabled}
                 required={props.required}
                 onBlur={() => {
-                    setValid(isValid(props.value));
-                    setVisited(true);
+                    setValid(isValid(props.value))
+                    setVisited(true)
                 }}
                 // valid={valid && visited}
-                invalid={!valid && visited}
-            >
+                invalid={!valid && visited}>
                 {props.select && (
                     <Fragment>
                         <option value="">{placeholder}</option>
@@ -66,13 +65,13 @@ export default function ValidatedInput(props) {
                                 <option key={one._id} value={one._id}>
                                     {getSelectData(props.selectDataType, one)}
                                 </option>
-                            );
+                            )
                         })}
                     </Fragment>
                 )}
             </Input>
         </div>
-    );
+    )
 }
 
 ValidatedInput.propTypes = {
@@ -87,5 +86,5 @@ ValidatedInput.propTypes = {
     selectData: PropTypes.array,
     selectDataType: PropTypes.string,
     disabled: PropTypes.bool,
-    required: PropTypes.bool
-};
+    required: PropTypes.bool,
+}

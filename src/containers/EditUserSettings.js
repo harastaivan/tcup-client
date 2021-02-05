@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
+import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
 
-import { clearErrors } from '../actions/error';
-import { changeUserInfo } from '../actions/auth';
+import { clearErrors } from '../actions/error'
+import { changeUserInfo } from '../actions/auth'
 
 class EditUserSettings extends Component {
     state = {
@@ -13,8 +13,8 @@ class EditUserSettings extends Component {
         surname: this.props.auth.user.surname,
         email: this.props.auth.user.email,
         msg: null,
-        saved: false
-    };
+        saved: false,
+    }
 
     static propTypes = {
         isAuthenticated: PropTypes.bool,
@@ -22,36 +22,36 @@ class EditUserSettings extends Component {
         error: PropTypes.object.isRequired,
         clearErrors: PropTypes.func.isRequired,
         changeUserInfo: PropTypes.func.isRequired,
-        t: PropTypes.func.isRequired
-    };
+        t: PropTypes.func.isRequired,
+    }
 
     onChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
-        });
-    };
+            [e.target.name]: e.target.value,
+        })
+    }
 
     onSubmit = (e) => {
-        e.preventDefault();
-        const { name, surname, email } = this.state;
+        e.preventDefault()
+        const { name, surname, email } = this.state
 
         const newUser = {
             name,
             surname,
-            email
-        };
+            email,
+        }
 
-        this.props.changeUserInfo(newUser);
+        this.props.changeUserInfo(newUser)
 
-        this.setState({ saved: true });
-    };
+        this.setState({ saved: true })
+    }
 
     isDisabled = () => {
-        return this.state.saved || !this.state.name || !this.state.surname || !this.state.email;
-    };
+        return this.state.saved || !this.state.name || !this.state.surname || !this.state.email
+    }
 
     render() {
-        const t = this.props.t;
+        const t = this.props.t
         return (
             <div>
                 {this.state.msg ? <Alert color="danger">{t(this.state.msg)}</Alert> : null}
@@ -101,14 +101,14 @@ class EditUserSettings extends Component {
                     </Button>
                 </Form>
             </div>
-        );
+        )
     }
 }
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     auth: state.auth,
-    error: state.error
-});
+    error: state.error,
+})
 
-export default connect(mapStateToProps, { clearErrors, changeUserInfo })(withTranslation()(EditUserSettings));
+export default connect(mapStateToProps, { clearErrors, changeUserInfo })(withTranslation()(EditUserSettings))

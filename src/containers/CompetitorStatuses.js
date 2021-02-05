@@ -1,79 +1,79 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Table, ButtonGroup, Button, Input, Label, Form, Row, Col, FormGroup } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState, Fragment } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Table, ButtonGroup, Button, Input, Label, Form, Row, Col, FormGroup } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
 
-import { getCompetitionDays } from '../actions/competitionDay';
+import { getCompetitionDays } from '../actions/competitionDay'
 import {
     getCompetitorStatuses,
     updateCompetitorStatus,
     resetCompetitorStatuses,
-    setLoadingCompetitorStatuses
-} from '../actions/competitorStatus';
-import Spinner from '../components/Spinner';
-import { getCompetitionDay } from '../utils/getCompetitionDay';
-import { formatCompetitionDay } from '../utils/formatCompetitionDay';
+    setLoadingCompetitorStatuses,
+} from '../actions/competitorStatus'
+import Spinner from '../components/Spinner'
+import { getCompetitionDay } from '../utils/getCompetitionDay'
+import { formatCompetitionDay } from '../utils/formatCompetitionDay'
 
 const competitorStatusesEnum = [
     {
         label: 'na zemi',
         code: 'DNF',
-        color: 'info'
+        color: 'info',
     },
     {
         label: 'letí',
         code: 'FLYING',
-        color: 'primary'
+        color: 'primary',
     },
     {
         label: 'na poli',
         code: 'OUTLANDING',
-        color: 'danger'
+        color: 'danger',
     },
     {
         label: 'doma',
         code: 'HOME',
-        color: 'success'
-    }
-];
+        color: 'success',
+    },
+]
 
 const CompetitorStatuses = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
-    const [day, setDay] = useState('');
+    const [day, setDay] = useState('')
 
-    const competitionDays = useSelector((state) => state.competitionDay.competitionDaysUntilToday);
-    const { competitorStatuses, loading } = useSelector((state) => state.competitorStatus);
-    const { isAdmin } = useSelector((state) => state.auth);
+    const competitionDays = useSelector((state) => state.competitionDay.competitionDaysUntilToday)
+    const { competitorStatuses, loading } = useSelector((state) => state.competitorStatus)
+    const { isAdmin } = useSelector((state) => state.auth)
 
     const updateStatus = (status, newStatus) => {
-        status.status = newStatus;
-        dispatch(updateCompetitorStatus(status));
-    };
+        status.status = newStatus
+        dispatch(updateCompetitorStatus(status))
+    }
 
     useEffect(() => {
-        dispatch(resetCompetitorStatuses());
-        dispatch(getCompetitionDays());
-    }, [dispatch]);
+        dispatch(resetCompetitorStatuses())
+        dispatch(getCompetitionDays())
+    }, [dispatch])
 
     useEffect(() => {
-        const today = getCompetitionDay(competitionDays);
+        const today = getCompetitionDay(competitionDays)
         if (!today) {
-            return;
+            return
         }
-        setDay(today._id);
-    }, [competitionDays]);
+        setDay(today._id)
+    }, [competitionDays])
 
     useEffect(() => {
-        dispatch(resetCompetitorStatuses());
+        dispatch(resetCompetitorStatuses())
         if (!day) {
-            return;
+            return
         }
-        dispatch(setLoadingCompetitorStatuses());
-        dispatch(getCompetitorStatuses(day));
-    }, [dispatch, day]);
+        dispatch(setLoadingCompetitorStatuses())
+        dispatch(getCompetitorStatuses(day))
+    }, [dispatch, day])
 
     return (
         <div>
@@ -89,17 +89,16 @@ const CompetitorStatuses = () => {
                                 id={'competitionDay'}
                                 value={day}
                                 onChange={(e) => {
-                                    setDay(e.target.value);
+                                    setDay(e.target.value)
                                 }}
-                                disabled={competitionDays.length === 0}
-                            >
+                                disabled={competitionDays.length === 0}>
                                 <option value="">{t('Vyber den')}</option>
                                 {competitionDays.map((day) => {
                                     return (
                                         <option key={day._id} value={day._id}>
                                             {formatCompetitionDay(day, t)}
                                         </option>
-                                    );
+                                    )
                                 })}
                             </Input>
                         </FormGroup>
@@ -119,10 +118,8 @@ const CompetitorStatuses = () => {
                     </thead>
                     <tbody>
                         {competitorStatuses.map((status) => {
-                            const statusInfo = competitorStatusesEnum.find((s) => s.code === status.status);
-                            const userStatus = (
-                                <span className={`text-${statusInfo.color}`}>{t(statusInfo.label)}</span>
-                            );
+                            const statusInfo = competitorStatusesEnum.find((s) => s.code === status.status)
+                            const userStatus = <span className={`text-${statusInfo.color}`}>{t(statusInfo.label)}</span>
                             const adminStatus = (
                                 <ButtonGroup>
                                     {competitorStatusesEnum.map((s) => (
@@ -130,14 +127,13 @@ const CompetitorStatuses = () => {
                                             key={s.code}
                                             color={s.code === status.status ? s.color : 'secondary'}
                                             onClick={() => {
-                                                updateStatus(status, s.code);
-                                            }}
-                                        >
+                                                updateStatus(status, s.code)
+                                            }}>
                                             {t(s.label)}
                                         </Button>
                                     ))}
                                 </ButtonGroup>
-                            );
+                            )
                             return (
                                 <tr key={status._id}>
                                     <td>{`${status.name} ${status.surname}`}</td>
@@ -149,7 +145,7 @@ const CompetitorStatuses = () => {
                                         {!isAdmin && userStatus}
                                     </td>
                                 </tr>
-                            );
+                            )
                         })}
                     </tbody>
                 </Table>
@@ -159,7 +155,7 @@ const CompetitorStatuses = () => {
                 <Fragment>{t('Na tento den nejsou žádné statusy soutěžících.')}</Fragment>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default CompetitorStatuses;
+export default CompetitorStatuses

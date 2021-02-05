@@ -1,46 +1,46 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom';
-import { Provider, useSelector, useDispatch } from 'react-redux';
-import { Alert, Container } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
+import { Provider, useSelector, useDispatch } from 'react-redux'
+import { Alert, Container } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-import store from './store';
-import { loadUser } from './actions/auth';
+import store from './store'
+import { loadUser } from './actions/auth'
 
-import AppNavbar from './containers/AppNavbar';
-import Home from './containers/Home';
-import News from './containers/News';
-import Registration from './containers/Registration';
-import Login from './containers/Login';
-import CompetitorStatuses from './containers/CompetitorStatuses';
-import StartingList from './containers/StartingList';
-import Documents from './containers/Documents';
-import Contacts from './containers/Contacts';
-import SendIgc from './containers/SendIgc';
-import Signup from './containers/Signup';
-import Footer from './containers/Footer';
-import Logout from './containers/Logout';
-import Results from './containers/Results';
-import UserSettings from './containers/UserSettings';
-import ChangePassword from './containers/ChangePassword';
-import Archive from './components/Archive';
-import CompetitionDays from './containers/CompetitionDays';
+import AppNavbar from './containers/AppNavbar'
+import Home from './containers/Home'
+import News from './containers/News'
+import Registration from './containers/Registration'
+import Login from './containers/Login'
+import CompetitorStatuses from './containers/CompetitorStatuses'
+import StartingList from './containers/StartingList'
+import Documents from './containers/Documents'
+import Contacts from './containers/Contacts'
+import SendIgc from './containers/SendIgc'
+import Signup from './containers/Signup'
+import Footer from './containers/Footer'
+import Logout from './containers/Logout'
+import Results from './containers/Results'
+import UserSettings from './containers/UserSettings'
+import ChangePassword from './containers/ChangePassword'
+import Archive from './components/Archive'
+import CompetitionDays from './containers/CompetitionDays'
 
 const App = () => {
-    const error = useSelector((state) => state.error);
-    const dispatch = useDispatch();
+    const error = useSelector((state) => state.error)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(loadUser());
-    }, [dispatch]);
+        dispatch(loadUser())
+    }, [dispatch])
 
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
-    const match = useRouteMatch('/');
-    const isHomepage = match && match.isExact;
+    const match = useRouteMatch('/')
+    const isHomepage = match && match.isExact
 
     return (
         <div className="App">
@@ -76,8 +76,8 @@ const App = () => {
             </Container>
             {!isHomepage && <Footer />}
         </div>
-    );
-};
+    )
+}
 
 const WrappedApp = () => {
     return (
@@ -86,7 +86,7 @@ const WrappedApp = () => {
                 <App />
             </Router>
         </Provider>
-    );
-};
+    )
+}
 
-export default WrappedApp;
+export default WrappedApp

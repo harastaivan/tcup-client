@@ -1,68 +1,68 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
+import React, { Fragment, useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
 
-import Spinner from '../components/Spinner';
-import DownloadIgc from './DownloadIgc';
-import { getCompetitionDay } from '../utils/getCompetitionDay';
-import { getCompetitionDays } from '../actions/competitionDay';
-import { formatCompetitionDay } from '../utils/formatCompetitionDay';
-import { addIgc, getIgcFormData } from '../actions/igc';
+import Spinner from '../components/Spinner'
+import DownloadIgc from './DownloadIgc'
+import { getCompetitionDay } from '../utils/getCompetitionDay'
+import { getCompetitionDays } from '../actions/competitionDay'
+import { formatCompetitionDay } from '../utils/formatCompetitionDay'
+import { addIgc, getIgcFormData } from '../actions/igc'
 
 const SendIgc = () => {
-    const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const { t } = useTranslation()
+    const dispatch = useDispatch()
 
-    const competitionDays = useSelector((state) => state.competitionDay.competitionDays);
-    const { pilots, loading, success, error } = useSelector((state) => state.igc);
-    const { isAdmin } = useSelector((state) => state.auth);
+    const competitionDays = useSelector((state) => state.competitionDay.competitionDays)
+    const { pilots, loading, success, error } = useSelector((state) => state.igc)
+    const { isAdmin } = useSelector((state) => state.auth)
 
-    const [file, setFile] = useState('');
-    const [pilot, setPilot] = useState('');
-    const [today, setToday] = useState('');
-    const [fileInputKey, setFileInputKey] = useState(Date.now());
-
-    useEffect(() => {
-        dispatch(getCompetitionDays());
-        dispatch(getIgcFormData());
-    }, [dispatch]);
+    const [file, setFile] = useState('')
+    const [pilot, setPilot] = useState('')
+    const [today, setToday] = useState('')
+    const [fileInputKey, setFileInputKey] = useState(Date.now())
 
     useEffect(() => {
-        const today = getCompetitionDay(competitionDays);
+        dispatch(getCompetitionDays())
+        dispatch(getIgcFormData())
+    }, [dispatch])
+
+    useEffect(() => {
+        const today = getCompetitionDay(competitionDays)
         if (!today) {
-            return;
+            return
         }
-        setToday(today);
-    }, [competitionDays]);
+        setToday(today)
+    }, [competitionDays])
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const igc = {
             igc: file,
             pilot,
-            day: today._id
-        };
-        dispatch(addIgc(igc));
+            day: today._id,
+        }
+        dispatch(addIgc(igc))
 
-        setFile(null);
-        setFileInputKey(Date.now());
-        setPilot('');
-    };
+        setFile(null)
+        setFileInputKey(Date.now())
+        setPilot('')
+    }
 
     const submitDisabled = () => {
-        return !file || !pilot || !today;
-    };
+        return !file || !pilot || !today
+    }
 
     const getButtonColor = () => {
         if (success) {
-            return 'success';
+            return 'success'
         }
         if (error) {
-            return 'danger';
+            return 'danger'
         }
-        return 'dark';
-    };
+        return 'dark'
+    }
 
     return (
         <Fragment>
@@ -80,17 +80,16 @@ const SendIgc = () => {
                                 id={'pilot'}
                                 value={pilot}
                                 onChange={(e) => {
-                                    setPilot(e.target.value);
+                                    setPilot(e.target.value)
                                 }}
-                                disabled={pilots.length === 0}
-                            >
+                                disabled={pilots.length === 0}>
                                 <option value="">{t('Vyber pilota')}</option>
                                 {pilots.map((pilot) => {
                                     return (
                                         <option key={pilot._id} value={pilot._id}>
                                             {`${pilot.startNumber} - ${pilot.name} ${pilot.surname}`}
                                         </option>
-                                    );
+                                    )
                                 })}
                             </Input>
                         </FormGroup>
@@ -114,8 +113,7 @@ const SendIgc = () => {
                             style={{ marginTop: '1rem' }}
                             color={getButtonColor()}
                             disabled={submitDisabled()}
-                            block
-                        >
+                            block>
                             {t('Nahrát')}
                         </Button>
                     </Form>
@@ -123,7 +121,7 @@ const SendIgc = () => {
             </Row>
             {isAdmin && <DownloadIgc />}
         </Fragment>
-    );
-};
+    )
+}
 
-export default SendIgc;
+export default SendIgc

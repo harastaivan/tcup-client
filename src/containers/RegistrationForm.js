@@ -1,38 +1,38 @@
-import React, { useState, Fragment } from 'react';
-import { Button } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+import React, { useState, Fragment } from 'react'
+import { Button } from 'reactstrap'
+import { useSelector, useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
-import isEmpty from '../utils/isEmpty';
-import { submitRegistration } from '../actions/registration';
-import GdprConsent from './GdprConsent';
+import isEmpty from '../utils/isEmpty'
+import { submitRegistration } from '../actions/registration'
+import GdprConsent from './GdprConsent'
 
-import RegistrationFormTemplate from '../components/RegistrationForm';
+import RegistrationFormTemplate from '../components/RegistrationForm'
 
 const RegistrationForm = () => {
-    const auth = useSelector((state) => state.auth);
-    const formData = useSelector((state) => state.registration.formData);
+    const auth = useSelector((state) => state.auth)
+    const formData = useSelector((state) => state.registration.formData)
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
-    const [birthDate, setBirthDate] = useState('');
-    const [phone, setPhone] = useState('');
-    const [aeroclub, setAeroclub] = useState('');
-    const [region, setRegion] = useState('');
-    const [gliderType, setGliderType] = useState('');
-    const [registrationNumber, setRegistrationNumber] = useState('');
-    const [startNumber, setStartNumber] = useState('');
-    const [competitionClass, setCompetitionClass] = useState('');
-    const [logger, setLogger] = useState('');
-    const [accomodationType, setAccomodationType] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [meals, setMeals] = useState('');
-    const [note, setNote] = useState('');
+    const [birthDate, setBirthDate] = useState('')
+    const [phone, setPhone] = useState('')
+    const [aeroclub, setAeroclub] = useState('')
+    const [region, setRegion] = useState('')
+    const [gliderType, setGliderType] = useState('')
+    const [registrationNumber, setRegistrationNumber] = useState('')
+    const [startNumber, setStartNumber] = useState('')
+    const [competitionClass, setCompetitionClass] = useState('')
+    const [logger, setLogger] = useState('')
+    const [accomodationType, setAccomodationType] = useState('')
+    const [quantity, setQuantity] = useState('')
+    const [meals, setMeals] = useState('')
+    const [note, setNote] = useState('')
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         const registration = {
             birthDate,
@@ -42,19 +42,19 @@ const RegistrationForm = () => {
             glider: {
                 gliderType,
                 registrationNumber,
-                startNumber
+                startNumber,
             },
             competitionClass,
             logger,
             accomodation: {
                 accomodationType,
-                quantity
+                quantity,
             },
             meals,
-            note
-        };
-        dispatch(submitRegistration(registration));
-    };
+            note,
+        }
+        dispatch(submitRegistration(registration))
+    }
 
     const isFormValid = () => {
         return (
@@ -69,10 +69,10 @@ const RegistrationForm = () => {
             !isEmpty(accomodationType) &&
             !isEmpty(quantity) &&
             !isEmpty(meals)
-        );
-    };
+        )
+    }
 
-    const header = <h1>{t('Vytvoření přihlášky')}</h1>;
+    const header = <h1>{t('Vytvoření přihlášky')}</h1>
 
     const footer = (
         <Fragment>
@@ -81,7 +81,7 @@ const RegistrationForm = () => {
                 {t('Vytvořit přihlášku')}
             </Button>
         </Fragment>
-    );
+    )
 
     return (
         <RegistrationFormTemplate
@@ -120,7 +120,7 @@ const RegistrationForm = () => {
             setMeals={setMeals}
             setNote={setNote}
         />
-    );
-};
+    )
+}
 
-export default RegistrationForm;
+export default RegistrationForm

@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { withTranslation } from 'react-i18next';
+import React, { Component } from 'react'
+import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { withTranslation } from 'react-i18next'
 
-import { login } from '../actions/auth';
-import { clearErrors } from '../actions/error';
+import { login } from '../actions/auth'
+import { clearErrors } from '../actions/error'
 
 class Login extends Component {
     state = {
         modal: false,
         email: '',
         password: '',
-        msg: null
-    };
+        msg: null,
+    }
 
     static propTypes = {
         clearErrors: PropTypes.func.isRequired,
@@ -22,35 +22,35 @@ class Login extends Component {
         error: PropTypes.object.isRequired,
         history: PropTypes.object.isRequired,
         isAuthenticated: PropTypes.bool,
-        t: PropTypes.func.isRequired
-    };
+        t: PropTypes.func.isRequired,
+    }
 
     onChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
-        });
-    };
+            [e.target.name]: e.target.value,
+        })
+    }
 
     onSubmit = (e) => {
-        e.preventDefault();
-        this.props.clearErrors();
-        const { email, password } = this.state;
-        const user = { email, password };
-        this.props.login(user);
+        e.preventDefault()
+        this.props.clearErrors()
+        const { email, password } = this.state
+        const user = { email, password }
+        this.props.login(user)
         this.setState({
-            password: ''
-        });
-    };
+            password: '',
+        })
+    }
 
     componentDidUpdate() {
         if (this.props.isAuthenticated) {
-            this.props.clearErrors();
-            this.props.history.push('/');
+            this.props.clearErrors()
+            this.props.history.push('/')
         }
     }
 
     render() {
-        const t = this.props.t;
+        const t = this.props.t
         return (
             <div>
                 <h1>{t('Přihlásit se')}</h1>
@@ -81,8 +81,7 @@ class Login extends Component {
                         color="dark"
                         style={{ marginTop: '2rem' }}
                         block
-                        disabled={!this.state.email || !this.state.password}
-                    >
+                        disabled={!this.state.email || !this.state.password}>
                         {t('Přihlásit se')}
                     </Button>
                 </Form>
@@ -90,13 +89,13 @@ class Login extends Component {
                     {t('Nemáte účet?')} <Link to="/signup">{t('Vytvořte si ho.')}</Link>
                 </Alert>
             </div>
-        );
+        )
     }
 }
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    error: state.error
-});
+    error: state.error,
+})
 
-export default connect(mapStateToProps, { login, clearErrors })(withTranslation()(Login));
+export default connect(mapStateToProps, { login, clearErrors })(withTranslation()(Login))

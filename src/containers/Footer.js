@@ -1,11 +1,11 @@
-import React from 'react';
-import { Container } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
+import React from 'react'
+import { Container } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
 
-import { version } from '../../package.json';
+import { version } from '../../package.json'
 
 const Footer = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
     return (
         <Container className="transparent-background">
             <footer className={`p-5 py-4 text-center text-small`}>
@@ -25,7 +25,7 @@ const Footer = () => {
                 </span>
             </footer>
         </Container>
-    );
-};
+    )
+}
 
-export default Footer;
+export default Footer

@@ -1,12 +1,12 @@
-import React from 'react';
-import { Form, Row, Col, FormGroup } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { Form, Row, Col, FormGroup } from 'reactstrap'
+import { useTranslation } from 'react-i18next'
+import PropTypes from 'prop-types'
 
-import ValidatedInput, { TRANSLATED, GLIDER_TYPE } from '../containers/ValidatedInput';
+import ValidatedInput, { TRANSLATED, GLIDER_TYPE } from '../containers/ValidatedInput'
 
 const RegistrationForm = (props) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     return (
         <div>
@@ -22,8 +22,7 @@ const RegistrationForm = (props) => {
                                 label={t('Jméno')}
                                 value={props.name}
                                 setValue={() => {}}
-                                disabled
-                            ></ValidatedInput>
+                                disabled></ValidatedInput>
                         </FormGroup>
                     </Col>
                     <Col md={6}>
@@ -34,8 +33,7 @@ const RegistrationForm = (props) => {
                                 label={t('Příjmení')}
                                 value={props.surname}
                                 setValue={() => {}}
-                                disabled
-                            ></ValidatedInput>
+                                disabled></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -48,8 +46,7 @@ const RegistrationForm = (props) => {
                                 label={t('Email')}
                                 value={props.email}
                                 setValue={() => {}}
-                                disabled
-                            ></ValidatedInput>
+                                disabled></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -62,8 +59,7 @@ const RegistrationForm = (props) => {
                                 label={t('Datum narození')}
                                 value={props.birthDate}
                                 setValue={props.setBirthDate}
-                                disabled={props.disabled}
-                            ></ValidatedInput>
+                                disabled={props.disabled}></ValidatedInput>
                         </FormGroup>
                     </Col>
                     <Col md={6}>
@@ -75,8 +71,7 @@ const RegistrationForm = (props) => {
                                 value={props.phone}
                                 setValue={props.setPhone}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -90,8 +85,7 @@ const RegistrationForm = (props) => {
                                 value={props.aeroclub}
                                 setValue={props.setAeroclub}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                     <Col md={6}>
@@ -106,8 +100,7 @@ const RegistrationForm = (props) => {
                                 selectData={props.formData.regions}
                                 selectDataType={TRANSLATED}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -124,8 +117,7 @@ const RegistrationForm = (props) => {
                                 selectData={props.formData.gliderTypes}
                                 selectDataType={GLIDER_TYPE}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                     <Col md={4}>
@@ -137,8 +129,7 @@ const RegistrationForm = (props) => {
                                 value={props.registrationNumber}
                                 setValue={props.setRegistrationNumber}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                     <Col md={4}>
@@ -150,8 +141,7 @@ const RegistrationForm = (props) => {
                                 value={props.startNumber}
                                 setValue={props.setStartNumber}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -168,8 +158,7 @@ const RegistrationForm = (props) => {
                                 selectData={props.formData.competitionClasses}
                                 selectDataType={TRANSLATED}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                     <Col md={6}>
@@ -181,8 +170,7 @@ const RegistrationForm = (props) => {
                                 value={props.logger}
                                 setValue={props.setLogger}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -199,8 +187,7 @@ const RegistrationForm = (props) => {
                                 selectData={props.formData.accomodationTypes}
                                 selectDataType={TRANSLATED}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                     <Col md={6}>
@@ -213,8 +200,7 @@ const RegistrationForm = (props) => {
                                 value={props.quantity}
                                 setValue={props.setQuantity}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -229,8 +215,7 @@ const RegistrationForm = (props) => {
                                 value={props.meals}
                                 setValue={props.setMeals}
                                 disabled={props.disabled}
-                                required
-                            ></ValidatedInput>
+                                required></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -243,16 +228,15 @@ const RegistrationForm = (props) => {
                                 label={t('Poznámka')}
                                 value={props.note}
                                 setValue={props.setNote}
-                                disabled={props.disabled}
-                            ></ValidatedInput>
+                                disabled={props.disabled}></ValidatedInput>
                         </FormGroup>
                     </Col>
                 </Row>
                 {props.footer}
             </Form>
         </div>
-    );
-};
+    )
+}
 
 RegistrationForm.propTypes = {
     header: PropTypes.object.isRequired,
@@ -288,7 +272,7 @@ RegistrationForm.propTypes = {
     setAccomodationType: PropTypes.func.isRequired,
     setQuantity: PropTypes.func.isRequired,
     setMeals: PropTypes.func.isRequired,
-    setNote: PropTypes.func.isRequired
-};
+    setNote: PropTypes.func.isRequired,
+}
 
-export default RegistrationForm;
+export default RegistrationForm

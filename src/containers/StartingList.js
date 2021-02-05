@@ -1,14 +1,14 @@
-import React, { Component, Fragment } from 'react';
-import { NavLink as Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { Button, Container, Table } from 'reactstrap';
-import { connect } from 'react-redux';
-import Moment from 'react-moment';
-import { withTranslation } from 'react-i18next';
-import 'moment/locale/cs';
+import React, { Component, Fragment } from 'react'
+import { NavLink as Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { Button, Container, Table } from 'reactstrap'
+import { connect } from 'react-redux'
+import Moment from 'react-moment'
+import { withTranslation } from 'react-i18next'
+import 'moment/locale/cs'
 
-import { getStartingList, setStartingListLoading, markPaid, exportRegistrations } from '../actions/startingList';
-import Spinner from '../components/Spinner';
+import { getStartingList, setStartingListLoading, markPaid, exportRegistrations } from '../actions/startingList'
+import Spinner from '../components/Spinner'
 
 class StartingList extends Component {
     static propTypes = {
@@ -18,26 +18,26 @@ class StartingList extends Component {
         markPaid: PropTypes.func.isRequired,
         exportRegistrations: PropTypes.func.isRequired,
         isAdmin: PropTypes.bool,
-        t: PropTypes.func.isRequired
-    };
+        t: PropTypes.func.isRequired,
+    }
 
     componentDidMount() {
-        this.props.setStartingListLoading();
-        this.props.getStartingList();
+        this.props.setStartingListLoading()
+        this.props.getStartingList()
     }
 
     markPaid = (registrationId, nowPaid) => {
-        const paid = !nowPaid;
-        this.props.markPaid(registrationId, paid);
-    };
+        const paid = !nowPaid
+        this.props.markPaid(registrationId, paid)
+    }
 
     exportStartingList = () => {
-        this.props.exportRegistrations();
-    };
+        this.props.exportRegistrations()
+    }
 
     render() {
-        const { classes, loading } = this.props.startingList;
-        const { isAdmin, t } = this.props;
+        const { classes, loading } = this.props.startingList
+        const { isAdmin, t } = this.props
         return (
             <Container>
                 <h1>{t('Startovní listina')}</h1>
@@ -103,8 +103,7 @@ class StartingList extends Component {
                                                                     registration._id,
                                                                     registration.paid
                                                                 )}
-                                                                size="sm"
-                                                            >
+                                                                size="sm">
                                                                 {registration.paid
                                                                     ? t('označit jako nezaplacené')
                                                                     : t('označit jako zaplacené')}
@@ -118,8 +117,7 @@ class StartingList extends Component {
                                                                 onClick={() => {}}
                                                                 size="sm"
                                                                 tag={Link}
-                                                                to={`/registration/${registration._id}`}
-                                                            >
+                                                                to={`/registration/${registration._id}`}>
                                                                 {t('úprava přihlášky')}
                                                             </Button>
                                                         </td>
@@ -138,15 +136,15 @@ class StartingList extends Component {
                     </Fragment>
                 ))}
             </Container>
-        );
+        )
     }
 }
 
 const mapStateToProps = (state) => ({
     startingList: state.startingList,
-    isAdmin: state.auth.isAdmin
-});
+    isAdmin: state.auth.isAdmin,
+})
 
 export default connect(mapStateToProps, { getStartingList, setStartingListLoading, markPaid, exportRegistrations })(
     withTranslation()(StartingList)
-);
+)

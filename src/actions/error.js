@@ -1,4 +1,4 @@
-import { GET_ERRORS, CLEAR_ERRORS } from './types';
+import { GET_ERRORS, CLEAR_ERRORS } from './types'
 
 export const parseError = (error) => {
     if (error.response) {
@@ -6,34 +6,34 @@ export const parseError = (error) => {
         // that falls out of the range of 2xx
         return {
             msg: error.response.data.msg,
-            status: error.response.status
-        };
+            status: error.response.status,
+        }
     } else if (error.request) {
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
         return {
             msg: error.message, // .msg ?
-            status: error.request.status
-        };
+            status: error.request.status,
+        }
     } else {
         return {
             msg: error.message, // .msg ?
-            status: 500
-        };
+            status: 500,
+        }
     }
-};
+}
 
 // RETURN ERRORS
 export const returnErrors = (error, id = null) => {
-    const { msg, status } = parseError(error);
+    const { msg, status } = parseError(error)
     return {
         type: GET_ERRORS,
-        payload: { msg, status, id }
-    };
-};
+        payload: { msg, status, id },
+    }
+}
 
 export const clearErrors = () => {
     return {
-        type: CLEAR_ERRORS
-    };
-};
+        type: CLEAR_ERRORS,
+    }
+}

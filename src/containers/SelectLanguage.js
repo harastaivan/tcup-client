@@ -1,10 +1,10 @@
-import React from 'react';
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavLink, NavItem } from 'reactstrap';
-import ReactCountryFlag from 'react-country-flag';
-import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavLink, NavItem } from 'reactstrap'
+import ReactCountryFlag from 'react-country-flag'
+import { useTranslation } from 'react-i18next'
+import PropTypes from 'prop-types'
 
-import getCountryCode from '../utils/countryCode';
+import getCountryCode from '../utils/countryCode'
 
 const Flag = (props) => (
     <ReactCountryFlag
@@ -17,17 +17,17 @@ const Flag = (props) => (
             width: '1.5em',
             border: '1px solid #222',
             borderRadius: '2px',
-            objectFit: 'cover'
+            objectFit: 'cover',
         }}
     />
-);
+)
 
 Flag.propTypes = {
-    language: PropTypes.string.isRequired
-};
+    language: PropTypes.string.isRequired,
+}
 
 export default function SelectLanguage() {
-    const { i18n } = useTranslation();
+    const { i18n } = useTranslation()
 
     return (
         <UncontrolledDropdown nav inNavbar className="bg-light mr-4">
@@ -49,5 +49,5 @@ export default function SelectLanguage() {
                 </DropdownItem>
             </DropdownMenu>
         </UncontrolledDropdown>
-    );
+    )
 }

@@ -7,8 +7,8 @@ import {
     UPDATE_REGISTRATION,
     UPDATE_OTHER_REGISTRATION,
     REGISTRATION_LOADING,
-    RESET_REGISTRATION
-} from '../actions/types';
+    RESET_REGISTRATION,
+} from '../actions/types'
 
 const initialState = {
     registration: {},
@@ -17,12 +17,12 @@ const initialState = {
         accomodationTypes: [],
         competitionClasses: [],
         gliderTypes: [],
-        regions: []
+        regions: [],
     },
     loading: false,
     formDataLoading: false,
-    registrationLoading: false
-};
+    registrationLoading: false,
+}
 
 const registrationReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -33,61 +33,61 @@ const registrationReducer = (state = initialState, action) => {
                     accomodationTypes: action.payload.accomodationTypes,
                     competitionClasses: action.payload.competitionClasses,
                     gliderTypes: action.payload.gliderTypes,
-                    regions: action.payload.regions
+                    regions: action.payload.regions,
                 },
                 formDataLoading: false,
-                loading: false || state.registrationLoading
-            };
+                loading: false || state.registrationLoading,
+            }
         case GET_REGISTRATION:
             return {
                 ...state,
                 registration: action.payload.registration,
                 isRegistered: action.payload.isRegistered,
                 registrationLoading: false,
-                loading: false || state.formDataLoading
-            };
+                loading: false || state.formDataLoading,
+            }
         case SUBMIT_REGISTRATION:
         case UPDATE_REGISTRATION:
             return {
                 ...state,
                 registration: action.payload.registration,
-                isRegistered: action.payload.isRegistered
-            };
+                isRegistered: action.payload.isRegistered,
+            }
         case UPDATE_OTHER_REGISTRATION:
             return {
                 ...state,
-                otherRegistration: action.payload.otherRegistration
-            };
+                otherRegistration: action.payload.otherRegistration,
+            }
         case REGISTRATION_LOADING:
             return {
                 ...state,
                 registrationLoading: true,
-                loading: true
-            };
+                loading: true,
+            }
         case GET_OTHER_REGISTRATION:
             return {
                 ...state,
                 otherRegistration: action.payload.otherRegistration,
                 registrationLoading: false,
-                loading: false || state.formDataLoading
-            };
+                loading: false || state.formDataLoading,
+            }
         case RESET_REGISTRATION:
             return {
                 ...state,
                 registration: {},
                 isRegistered: false,
                 registrationLoading: false,
-                loading: false || state.formDataLoading
-            };
+                loading: false || state.formDataLoading,
+            }
         case FORM_DATA_LOADING:
             return {
                 ...state,
                 formDataLoading: true,
-                loading: true
-            };
+                loading: true,
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default registrationReducer;
+export default registrationReducer

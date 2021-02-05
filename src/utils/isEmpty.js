@@ -1,8 +1,8 @@
 const isEmpty = (value) => {
     if (value === '' || value === null || value === undefined) {
-        return true;
+        return true
     }
-    return false;
-};
+    return false
+}
 
-export default isEmpty;
+export default isEmpty
