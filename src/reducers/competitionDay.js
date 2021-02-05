@@ -6,7 +6,7 @@ const initialState = {
     competitionDaysUntilToday: []
 };
 
-export default (state = initialState, action) => {
+const competitionDayReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_COMPETITION_DAYS:
             return {
@@ -32,3 +32,5 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default competitionDayReducer;

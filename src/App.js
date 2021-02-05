@@ -2,9 +2,13 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { Alert, Container } from 'reactstrap';
+import { useTranslation } from 'react-i18next';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import store from './store';
+import { loadUser } from './actions/auth';
 
 import AppNavbar from './containers/AppNavbar';
 import Home from './containers/Home';
@@ -24,12 +28,6 @@ import UserSettings from './containers/UserSettings';
 import ChangePassword from './containers/ChangePassword';
 import Archive from './components/Archive';
 import CompetitionDays from './containers/CompetitionDays';
-
-import { loadUser } from './actions/auth';
-
-import { useTranslation } from 'react-i18next';
-
-import store from './store';
 
 const App = () => {
     const error = useSelector((state) => state.error);

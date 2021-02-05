@@ -1,5 +1,5 @@
 .homepage-highlight {
-    background-image: url('/img/homepage.png');
+    background-image: url('./assets/img/homepage.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

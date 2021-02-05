@@ -5,7 +5,7 @@ const initialState = {
     loading: false
 };
 
-export default (state = initialState, action) => {
+const documentReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_DOCUMENTS:
             return {
@@ -32,3 +32,5 @@ export default (state = initialState, action) => {
             return state;
     }
 };
+
+export default documentReducer;

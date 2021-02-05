@@ -5,7 +5,7 @@ const initialState = {
     id: null
 };
 
-export default function(state = initialState, action) {
+const successReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SUCCESS:
             return {
@@ -20,4 +20,6 @@ export default function(state = initialState, action) {
         default:
             return state;
     }
-}
+};
+
+export default successReducer;
