@@ -1,3 +1,3 @@
-import { AppState } from "../types";
+import { AppState } from '../types'
 
 export const getError = (state: AppState) => state.error

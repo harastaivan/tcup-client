@@ -1,9 +1,8 @@
-
 import { SuccessState } from './types'
 
 export enum successActionTypes {
     GET_SUCCESS = 'GET_SUCCESS',
-    CLEAR_SUCCESS = 'CLEAR_SUCCESS'
+    CLEAR_SUCCESS = 'CLEAR_SUCCESS',
 }
 
 export type ReturnSuccessAction = {

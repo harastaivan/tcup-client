@@ -1,3 +1,3 @@
-import { AppState } from "../types";
+import { AppState } from '../types'
 
 export const getSuccess = (state: AppState) => state.success
