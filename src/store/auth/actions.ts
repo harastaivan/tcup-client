@@ -49,9 +49,11 @@ export type UserLoadedAction = {
     payload: User
 }
 
-export type LoadUserAction = {
-    type: authActionTypes.USER_LOADING | authActionTypes.AUTH_ERROR
-} | UserLoadedAction
+export type LoadUserAction =
+    | {
+          type: authActionTypes.USER_LOADING | authActionTypes.AUTH_ERROR
+      }
+    | UserLoadedAction
 
 export type UserInfoChangedAction = {
     type: authActionTypes.USER_CHANGED
@@ -61,9 +63,11 @@ export type UserInfoChangedAction = {
     }
 }
 
-export type ChangeUserInfoAction = {
-    type: authActionTypes.USER_CHANGE_ERROR | errorActionTypes.GET_ERRORS
-} | UserInfoChangedAction
+export type ChangeUserInfoAction =
+    | {
+          type: authActionTypes.USER_CHANGE_ERROR | errorActionTypes.GET_ERRORS
+      }
+    | UserInfoChangedAction
 
 export type UserPasswordChangedAction = {
     type: authActionTypes.USER_PASSWORD_CHANGED
@@ -72,9 +76,14 @@ export type UserPasswordChangedAction = {
     }
 }
 
-export type ChangePasswordAction = {
-    type: authActionTypes.USER_PASSWORD_CHANGE_ERROR | successActionTypes.GET_SUCCESS | errorActionTypes.GET_ERRORS
-} | UserPasswordChangedAction
+export type ChangePasswordAction =
+    | {
+          type:
+              | authActionTypes.USER_PASSWORD_CHANGE_ERROR
+              | successActionTypes.GET_SUCCESS
+              | errorActionTypes.GET_ERRORS
+      }
+    | UserPasswordChangedAction
 
 export type UserAuthenticatedAction = {
     type: authActionTypes.REGISTER_SUCCESS | authActionTypes.LOGIN_SUCCESS
@@ -84,19 +93,29 @@ export type UserAuthenticatedAction = {
     }
 }
 
-export type RegisterUserAction = {
-    type: authActionTypes.REGISTER_FAIL | errorActionTypes.GET_ERRORS
-} | UserAuthenticatedAction
+export type RegisterUserAction =
+    | {
+          type: authActionTypes.REGISTER_FAIL | errorActionTypes.GET_ERRORS
+      }
+    | UserAuthenticatedAction
 
-export type LoginAction = {
-    type: authActionTypes.LOGIN_FAIL | authActionTypes.TIMEOUT_LOGOUT_SUCCESS | errorActionTypes.GET_ERRORS
-} | UserAuthenticatedAction
+export type LoginAction =
+    | {
+          type: authActionTypes.LOGIN_FAIL | authActionTypes.TIMEOUT_LOGOUT_SUCCESS | errorActionTypes.GET_ERRORS
+      }
+    | UserAuthenticatedAction
 
 export type LogoutAction = {
     type: authActionTypes.LOGOUT_SUCCESS
 }
 
-export type AuthAction = LoadUserAction | ChangeUserInfoAction | ChangePasswordAction | RegisterUserAction | LoginAction | LogoutAction
+export type AuthAction =
+    | LoadUserAction
+    | ChangeUserInfoAction
+    | ChangePasswordAction
+    | RegisterUserAction
+    | LoginAction
+    | LogoutAction
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
@@ -115,7 +134,11 @@ export const loadUser = (): ThunkAction<void, AppState, null, LoadUserAction> =>
     }
 }
 
-export const changeUserInfo = ({ name, surname, email }: ChangeUserInfoValues): ThunkAction<void, AppState, null, ChangeUserInfoAction> => async (dispatch, getState) => {
+export const changeUserInfo = ({
+    name,
+    surname,
+    email,
+}: ChangeUserInfoValues): ThunkAction<void, AppState, null, ChangeUserInfoAction> => async (dispatch, getState) => {
     try {
         const res = await axios.put(`${API_ENDPOINT}/api/users`, { name, surname, email }, tokenConfig(getState))
         dispatch({ type: authActionTypes.USER_CHANGED, payload: res.data })
@@ -125,7 +148,10 @@ export const changeUserInfo = ({ name, surname, email }: ChangeUserInfoValues): 
     }
 }
 
-export const changePassword = ({ oldPassword, newPassword }: ChangePasswordValues): ThunkAction<void, AppState, null, ChangePasswordAction> => async (dispatch, getState) => {
+export const changePassword = ({
+    oldPassword,
+    newPassword,
+}: ChangePasswordValues): ThunkAction<void, AppState, null, ChangePasswordAction> => async (dispatch, getState) => {
     try {
         const res = await axios.post(
             `${API_ENDPOINT}/api/auth/change-password`,
@@ -140,7 +166,12 @@ export const changePassword = ({ oldPassword, newPassword }: ChangePasswordValue
     }
 }
 
-export const register = ({ name, surname, email, password }: SignupCredentials): ThunkAction<void, AppState, null, RegisterUserAction> => async (dispatch) => {
+export const register = ({
+    name,
+    surname,
+    email,
+    password,
+}: SignupCredentials): ThunkAction<void, AppState, null, RegisterUserAction> => async (dispatch) => {
     const config: AxiosRequestConfig = {
         headers: {
             'Content-Type': 'application/json',
@@ -160,7 +191,9 @@ export const register = ({ name, surname, email, password }: SignupCredentials):
     }
 }
 
-export const login = ({ email, password }: LoginCredentials): ThunkAction<void, AppState, null, LoginAction> => async (dispatch) => {
+export const login = ({ email, password }: LoginCredentials): ThunkAction<void, AppState, null, LoginAction> => async (
+    dispatch
+) => {
     // Headers
     const config = {
         headers: {
