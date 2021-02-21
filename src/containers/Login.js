@@ -86,7 +86,7 @@ class Login extends Component {
                     </Button>
                 </Form>
                 <Alert color="light" style={{ marginTop: '2rem' }}>
-                    {t('Nemáte účet?')} <Link to="/signup">{t('Vytvořte si ho.')}</Link>
+                    {t('Nedaří se přihlásit? Možná jste')} <Link to="/password-reset">{t('zapomněli heslo.')}</Link>
                 </Alert>
             </div>
         )
