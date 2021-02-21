@@ -29,6 +29,7 @@ import UserSettings from './containers/UserSettings'
 import ChangePassword from './containers/ChangePassword'
 import Archive from './components/Archive'
 import CompetitionDays from './containers/CompetitionDays'
+import ResetPassword from './containers/ResetPassword'
 
 const App = () => {
     const error = useSelector(getError)
@@ -73,6 +74,7 @@ const App = () => {
                     <Route path="/change-password" component={ChangePassword} />
                     <Route path="/archive" component={Archive} />
                     <Route path="/competition-days" component={CompetitionDays} />
+                    <Route path="/password-reset" component={ResetPassword} />
                 </Switch>
             </Container>
             {!isHomepage && <Footer />}
