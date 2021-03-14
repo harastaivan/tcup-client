@@ -143,13 +143,22 @@ const AppNavbar = () => {
                                     </NavItem>
                                 </DropdownItem>
                                 {isAdmin && (
-                                    <DropdownItem>
-                                        <NavItem>
-                                            <NavLink tag={Link} to="/competition-days" activeClassName="active">
-                                                {t('Soutěžní dny')}
-                                            </NavLink>
-                                        </NavItem>
-                                    </DropdownItem>
+                                    <>
+                                        <DropdownItem>
+                                            <NavItem>
+                                                <NavLink tag={Link} to="/competition-days" activeClassName="active">
+                                                    {t('Soutěžní dny')}
+                                                </NavLink>
+                                            </NavItem>
+                                        </DropdownItem>
+                                        <DropdownItem>
+                                            <NavItem>
+                                                <NavLink tag={Link} to="/users" activeClassName="active">
+                                                    {t('Seznam uživatelů')}
+                                                </NavLink>
+                                            </NavItem>
+                                        </DropdownItem>
+                                    </>
                                 )}
                             </DropdownMenu>
                         </UncontrolledDropdown>
