@@ -30,6 +30,7 @@ import ChangePassword from './containers/ChangePassword'
 import Archive from './components/Archive'
 import CompetitionDays from './containers/CompetitionDays'
 import ResetPassword from './containers/ResetPassword'
+import UsersList from './containers/UsersList'
 
 const App = () => {
     const error = useSelector(getError)
@@ -71,6 +72,7 @@ const App = () => {
                     <Route path="/contacts" component={Contacts} />
                     <Route path="/igc" component={SendIgc} />
                     <Route path="/user-profile" component={UserSettings} />
+                    <Route path="/users" component={UsersList} />
                     <Route path="/change-password" component={ChangePassword} />
                     <Route path="/archive" component={Archive} />
                     <Route path="/competition-days" component={CompetitionDays} />
