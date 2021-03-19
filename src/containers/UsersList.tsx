@@ -1,17 +1,46 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Table, ButtonGroup, Button } from 'reactstrap'
-import Moment from 'react-moment'
+import { Table, Badge, ButtonGroup } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
-import { getCompetitionDays, updateCompetitionDay } from '../store/competitionDay/actions'
-import { translateDayName } from '../utils/translateDayName'
+import useUsersList, { User } from '../hooks/useUsersList'
+import Spinner from '../components/Spinner'
 
 const UsersList = () => {
-    const {t } = useTranslation()
+    const { t } = useTranslation()
+
+    const { users, loading } = useUsersList()
+
+    const mapUser = (user: User) => (
+        <tr key={user.id}>
+            <td>{user.name}</td>
+            <td>{user.surname}</td>
+            <td>{user.email}</td>
+            <td>
+                <ButtonGroup>
+                    {user.admin && (
+                        <Badge color="danger" className="ml-2">
+                            {t('Admin')}
+                        </Badge>
+                    )}
+                    {!user.passwordValid && (
+                        <Badge color="warning" className="ml-2">
+                            {t('Neplatné heslo')}
+                        </Badge>
+                    )}
+                </ButtonGroup>
+            </td>
+        </tr>
+    )
+
+    const adminCount = users.admins.length
+    const usersCount = users.others.length
 
     return (
         <div>
             <h1>{t('Seznam uživatelů')}</h1>
+            <p style={{ margin: '2em 0' }}>
+                Soutěž spravuje {adminCount} administrátorů. Soutěže se účastní{' '}
+                <strong>{usersCount + adminCount} závodníků</strong>.
+            </p>
             <Table striped responsive>
                 <thead>
                     <tr>
@@ -22,30 +51,9 @@ const UsersList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((day) => (
-                        <tr key={day._id}>
-                            <td>{translateDayName(day.name, t)}</td>
-                            <td>
-                                <Moment format={'DD. MM. YYYY'} locale="cs">
-                                    {day.date}
-                                </Moment>
-                            </td>
-                            <td>
-                                <ButtonGroup>
-                                    {competitionDaysEnum.map((d) => (
-                                        <Button
-                                            key={d.code}
-                                            color={d.code === day.task ? d.color : 'secondary'}
-                                            onClick={() => {
-                                                updateDay(day, d.code)
-                                            }}>
-                                            {t(d.label)}
-                                        </Button>
-                                    ))}
-                                </ButtonGroup>
-                            </td>
-                        </tr>
-                    ))}
+                    {loading && <Spinner />}
+                    {users.admins.map(mapUser)}
+                    {users.others.map(mapUser)}
                 </tbody>
             </Table>
         </div>
