@@ -34,12 +34,19 @@ const UsersList = () => {
     const adminCount = users.admins.length
     const usersCount = users.others.length
 
+    const mailingList = [...users.admins, ...users.others]
+        .map(({ name, surname, email }) => `${name} ${surname} <${email}>`)
+        .join(', ')
+
     return (
         <div>
             <h1>{t('Seznam uživatelů')}</h1>
-            <p style={{ margin: '2em 0' }}>
+            <p style={{ marginTop: '2em' }}>
                 Soutěž spravuje {adminCount} administrátorů. Soutěže se účastní{' '}
                 <strong>{usersCount + adminCount} závodníků</strong>.
+            </p>
+            <p style={{ marginBottom: '2em' }}>
+                <a href={`mailto:${mailingList}`}>{t('Poslat email všem')}</a>
             </p>
             <Table striped responsive>
                 <thead>
