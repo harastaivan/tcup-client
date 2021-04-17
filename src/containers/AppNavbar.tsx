@@ -24,6 +24,8 @@ const AppNavbar = () => {
     const { isAuthenticated, isAdmin, user } = useSelector(getAuth)
     const { t } = useTranslation()
 
+    const soaringSpotUrl = process.env.REACT_APP_SOARING_SPOT_URL
+
     const authLinks = (
         <Fragment>
             <UncontrolledDropdown nav inNavbar className="mr-4">
@@ -101,8 +103,16 @@ const AppNavbar = () => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink
+                                href={soaringSpotUrl ? soaringSpotUrl : '#'}
+                                target="_blank"
+                                disabled={!soaringSpotUrl}>
+                                {t('Úlohy')}
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink tag={Link} to="/results" activeClassName="active">
-                                {t('Úlohy a výsledky')}
+                                {t('Výsledky')}
                             </NavLink>
                         </NavItem>
                         <NavItem>
