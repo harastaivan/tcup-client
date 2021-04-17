@@ -53,6 +53,7 @@ const App = () => {
         <div className="App">
             <AppNavbar />
             <Switch>
+                <Route path="/results" component={Results} />
                 <Route path="/" component={Home} exact />
             </Switch>
             <Container className={!isSpecialPage ? 'p-3 min-vh-container transparent-background' : ''}>
@@ -71,7 +72,6 @@ const App = () => {
                     <Route path="/logout" component={Logout} />
                     <Route path="/statuses" component={CompetitorStatuses} />
                     <Route path="/starting-list" component={StartingList} />
-                    <Route path="/results" component={Results} />
                     <Route path="/documents" component={Documents} />
                     <Route path="/contacts" component={Contacts} />
                     <Route path="/igc" component={SendIgc} />
