@@ -44,8 +44,10 @@ const App = () => {
 
     const { t } = useTranslation()
 
-    const match = useRouteMatch('/')
-    const isHomepage = match && match.isExact
+    const isHomepage = useRouteMatch('/')?.isExact || false
+    const isResultsPage = useRouteMatch('/results')?.isExact || false
+
+    const isSpecialPage = isHomepage || isResultsPage
 
     return (
         <div className="App">
@@ -53,8 +55,8 @@ const App = () => {
             <Switch>
                 <Route path="/" component={Home} exact />
             </Switch>
-            <Container className={!isHomepage ? 'p-3 min-vh-container transparent-background' : ''}>
-                {process.env.REACT_APP_TEST_MODE === 'true' && !isHomepage && (
+            <Container className={!isSpecialPage ? 'p-3 min-vh-container transparent-background' : ''}>
+                {process.env.REACT_APP_TEST_MODE === 'true' && !isSpecialPage && (
                     <Alert color="warning">
                         {t('Aplikace se právě testuje. Nemusí vše fungovat správně.')}{' '}
                         <a href="https://gitreports.com/issue/harastaivan/tcup-client">{t('Chyby hlašte zde')}</a>.
@@ -81,7 +83,7 @@ const App = () => {
                     {isAdmin && <Route path="/users" component={UsersList} />}
                 </Switch>
             </Container>
-            {!isHomepage && <Footer />}
+            {!isSpecialPage && <Footer />}
         </div>
     )
 }
