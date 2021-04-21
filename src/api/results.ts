@@ -1,4 +1,4 @@
-import { dailyResults, topResults, totalResults } from './mockData'
+import axios from 'axios'
 
 type TopResult = {
     position: number
@@ -38,44 +38,24 @@ export type TopResults = {
     classes: ClassTopResult[]
 }
 
-export const getTopResults = (): Promise<TopResults> => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(topResults())
-        }, 500)
-    })
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+
+export const getTopResults = async (): Promise<TopResults> => {
+    const res = await axios.get(`${API_ENDPOINT}/api/results/top`)
+    return res.data
 }
 
-export const getTotalResults = (classId: string): Promise<TotalResult[]> => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const results = totalResults().classes.find((c) => c.id === classId)?.results
-            resolve(results || [])
-        }, 1000)
-    })
+export const getTotalResults = async (classId: string): Promise<TotalResult[]> => {
+    const res = await axios.get(`${API_ENDPOINT}/api/results/total/${classId}`)
+    return res.data
 }
 
-export const getFilters = (): Promise<Filters> => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const classes = dailyResults().classes.map((c) => ({
-                id: c.id,
-                name: c.name,
-                days: c.days.map((day) => ({ id: day.id, name: day.name, date: day.date })),
-            }))
-            const filters = { classes }
-            resolve(filters)
-        }, 500)
-    })
+export const getFilters = async (): Promise<Filters> => {
+    const res = await axios.get(`${API_ENDPOINT}/api/results/daily/filters`)
+    return res.data
 }
 
-export const getDailyResults = (classId: string, dayId: string): Promise<DailyResult[]> => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const days = dailyResults().classes.find((c) => c.id === classId)?.days
-            const results = days?.find((d) => d.id === dayId)?.results
-
-            resolve(results || [])
-        }, 500)
-    })
+export const getDailyResults = async (classId: string, dayId: string): Promise<DailyResult[]> => {
+    const res = await axios.get(`${API_ENDPOINT}/api/results/daily/${classId}/${dayId}`)
+    return res.data
 }
