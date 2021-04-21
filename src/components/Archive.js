@@ -9,6 +9,9 @@ export default function Archive() {
         <div>
             <h1>{t('Archiv předchozích ročníků')}</h1>
             <ListGroup>
+                <ListGroupItem tag="a" href="https://tcup.cz">
+                    tcup 2021
+                </ListGroupItem>
                 <ListGroupItem tag="a" href="http://2020.tcup.cz">
                     tcup 2020
                 </ListGroupItem>
