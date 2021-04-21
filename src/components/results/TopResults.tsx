@@ -6,8 +6,8 @@ import ResultsTitle from './ResultsTitle'
 import { useTopResults } from '../../hooks/useResults'
 
 type Props = {
-    goToTotalResults: (classId: { id: string; name: string }) => () => void
-    goToDailyResults: (classId: { id: string; name: string }) => () => void
+    goToTotalResults: (classId: { _id: string; name: string }) => () => void
+    goToDailyResults: (classId: { _id: string; name: string }) => () => void
 }
 
 const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
@@ -34,12 +34,12 @@ const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
                 {!loaded && !error && <Spinner />}
                 {loaded &&
                     results &&
-                    results.classes.map(({ id, name, results }) => (
-                        <Col md="6" key={id}>
+                    results.classes.map(({ _id, name, results }) => (
+                        <Col md="6" key={_id}>
                             <Card body>
                                 <CardTitle tag="h5">{`${name} ${t('třída')}`}</CardTitle>
 
-                                {results.map(({ position, startNumber, name, aeroclub, glider, points }, index) => (
+                                {results.map(({ position, name, aeroclub, glider, points }, index) => (
                                     <div
                                         style={{
                                             borderLeft: `7px solid ${getColor(position)}`,
@@ -60,9 +60,6 @@ const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
                                         </div>
                                         <div>
                                             <span style={{ fontWeight: 'bold' }}>{name}</span>{' '}
-                                            <span style={{ opacity: 0.6, fontSize: '0.9em', marginLeft: '3px' }}>
-                                                {startNumber}
-                                            </span>
                                         </div>
                                         <div style={{ fontSize: '0.9em' }}>
                                             <span> {aeroclub}</span>{' '}
@@ -85,7 +82,7 @@ const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
                                         <Button
                                             style={{ width: '100%', marginBottom: '10px' }}
                                             color="secondary"
-                                            onClick={goToTotalResults({ id, name })}>
+                                            onClick={goToTotalResults({ _id, name })}>
                                             Celkové výsledky
                                         </Button>
                                     </Col>
@@ -94,7 +91,7 @@ const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
                                             style={{ width: '100%', marginBottom: '10px' }}
                                             color="secondary"
                                             outline
-                                            onClick={goToDailyResults({ id, name })}>
+                                            onClick={goToDailyResults({ _id, name })}>
                                             Denní výsledky
                                         </Button>
                                     </Col>
