@@ -6,15 +6,15 @@ import Spinner from '../Spinner'
 import { useTotalResults } from '../../hooks/useResults'
 
 type Props = {
-    competitionClass: { id: string; name: string }
+    competitionClass: { _id: string; name: string }
     goToTopResults: () => void
-    goToDailyResults: (competitionClass: { id: string; name: string }) => () => void
+    goToDailyResults: (competitionClass: { _id: string; name: string }) => () => void
 }
 
 const TotalResults = ({ competitionClass, goToTopResults, goToDailyResults }: Props) => {
     const { t } = useTranslation()
 
-    const { results, loaded, error } = useTotalResults(competitionClass.id)
+    const { results, loaded, error } = useTotalResults(competitionClass._id)
 
     return (
         <div style={{ marginTop: '2rem' }}>
@@ -30,8 +30,6 @@ const TotalResults = ({ competitionClass, goToTopResults, goToDailyResults }: Pr
                     <thead>
                         <tr>
                             <th>{t('#')}</th>
-                            <th>&Delta;</th>
-                            <th>{t('start. č.')}</th>
                             <th>{t('jméno')}</th>
                             <th>{t('aeroklub')}</th>
                             <th>{t('typ')}</th>
@@ -42,8 +40,6 @@ const TotalResults = ({ competitionClass, goToTopResults, goToDailyResults }: Pr
                         {results.map((result, index) => (
                             <tr key={index}>
                                 <td>{result.position}</td>
-                                <td>{result.gainedPosition}</td>
-                                <td>{result.startNumber}</td>
                                 <td>{result.name}</td>
                                 <td>{result.aeroclub}</td>
                                 <td>{`${result.glider} (${result.handicap})`}</td>

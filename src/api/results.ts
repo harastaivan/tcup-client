@@ -2,7 +2,6 @@ import { dailyResults, topResults, totalResults } from './mockData'
 
 type TopResult = {
     position: number
-    startNumber: string
     name: string
     aeroclub: string
     glider: string
@@ -10,7 +9,6 @@ type TopResult = {
 }
 
 export type TotalResult = {
-    gainedPosition: number
     handicap: number
 } & TopResult
 
@@ -19,17 +17,17 @@ export type DailyResult = {
 } & TotalResult
 
 type ClassTopResult = {
-    id: string
+    _id: string
     name: string
     results: TopResult[]
 }
 
 export type Filters = {
     classes: {
-        id: string
+        _id: string
         name: string
         days: {
-            id: string
+            _id: string
             name: string
             date: string
         }[]

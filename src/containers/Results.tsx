@@ -12,7 +12,7 @@ enum Page {
 }
 const Results = () => {
     const [page, setPage] = useState(Page.topResults)
-    const [competitionClass, setCompetitionClass] = useState<{ id: string; name: string } | null>(null)
+    const [competitionClass, setCompetitionClass] = useState<{ _id: string; name: string } | null>(null)
     const [visualisationMaximised, setVisualisationMaximised] = useState(false)
 
     const [flightId, setFlightId] = useState<number | null>(null)
@@ -26,12 +26,12 @@ const Results = () => {
         setPage(Page.topResults)
     }
 
-    const goToTotalResults = (classId: { id: string; name: string }) => () => {
+    const goToTotalResults = (classId: { _id: string; name: string }) => () => {
         setPage(Page.totalResults)
         setCompetitionClass(classId)
     }
 
-    const goToDailyResults = (classId: { id: string; name: string }) => () => {
+    const goToDailyResults = (classId: { _id: string; name: string }) => () => {
         setPage(Page.dailyResults)
         setCompetitionClass(classId)
     }
@@ -50,14 +50,14 @@ const Results = () => {
                 )}
                 {page === Page.totalResults && (
                     <TotalResults
-                        competitionClass={competitionClass as { id: string; name: string }}
+                        competitionClass={competitionClass as { _id: string; name: string }}
                         goToTopResults={goToTopResults}
                         goToDailyResults={goToDailyResults}
                     />
                 )}
                 {page === Page.dailyResults && (
                     <DailyResults
-                        competitionClass={competitionClass as { id: string; name: string }}
+                        competitionClass={competitionClass as { _id: string; name: string }}
                         playFlight={playFlight}
                         goToTopResults={goToTopResults}
                         goToTotalResults={goToTotalResults}

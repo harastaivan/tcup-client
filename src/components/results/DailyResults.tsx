@@ -13,14 +13,14 @@ type FiltersProps = {
     selectedDay: { classId: string | null; dayId: string | null }
     selectDay: (classId: string, dayId: string) => void
     goToTopResults: () => void
-    goToTotalResults: (competitionClass: { id: string; name: string }) => () => void
+    goToTotalResults: (competitionClass: { _id: string; name: string }) => () => void
 }
 
 type Props = {
-    competitionClass: { id: string; name: string }
+    competitionClass: { _id: string; name: string }
     playFlight: (flightId: number) => void
     goToTopResults: () => void
-    goToTotalResults: (competitionClass: { id: string; name: string }) => () => void
+    goToTotalResults: (competitionClass: { _id: string; name: string }) => () => void
 }
 
 const FiltersCards = ({ filters, loaded, selectedDay, selectDay, goToTopResults, goToTotalResults }: FiltersProps) => {
@@ -38,12 +38,12 @@ const FiltersCards = ({ filters, loaded, selectedDay, selectDay, goToTopResults,
         <Row style={{ marginTop: '2rem' }}>
             {loaded &&
                 filters &&
-                filters.classes.map(({ id: classId, name: className, days }) => (
+                filters.classes.map(({ _id: classId, name: className, days }) => (
                     <Col md="6" style={{ marginBottom: '2em' }} key={classId}>
                         <Card body>
                             <CardTitle tag="h5">{`${className} ${t('třída')}`}</CardTitle>
                             <ListGroup flush>
-                                {days.map(({ id: dayId, name, date }) => (
+                                {days.map(({ _id: dayId, name, date }) => (
                                     <ListGroupItem
                                         tag="a"
                                         href="#"
@@ -71,7 +71,7 @@ const FiltersCards = ({ filters, loaded, selectedDay, selectDay, goToTopResults,
                                         style={{ width: '100%', marginBottom: '10px' }}
                                         color="secondary"
                                         outline
-                                        onClick={goToTotalResults({ id: classId, name: className })}>
+                                        onClick={goToTotalResults({ _id: classId, name: className })}>
                                         Celkové výsledky
                                     </Button>
                                 </Col>
@@ -87,7 +87,7 @@ const DailyResults = ({ competitionClass, playFlight, goToTopResults, goToTotalR
     const { t } = useTranslation()
 
     const { filters, filtersLoaded, selectedDay, selectDay, results, loaded, error } = useDailyResults(
-        competitionClass.id
+        competitionClass._id
     )
 
     return (
@@ -112,8 +112,6 @@ const DailyResults = ({ competitionClass, playFlight, goToTopResults, goToTotalR
                     <thead>
                         <tr>
                             <th>{t('#')}</th>
-                            <th>&Delta;</th>
-                            <th>{t('start. č.')}</th>
                             <th>{t('jméno')}</th>
                             <th>{t('aeroklub')}</th>
                             <th>{t('typ')}</th>
@@ -125,8 +123,6 @@ const DailyResults = ({ competitionClass, playFlight, goToTopResults, goToTotalR
                         {results.map((result: DailyResult) => (
                             <tr key={result.position}>
                                 <td>{result.position}</td>
-                                <td>{result.gainedPosition}</td>
-                                <td>{result.startNumber}</td>
                                 <td>{result.name}</td>
                                 <td>{result.aeroclub}</td>
                                 <td>{`${result.glider} (${result.handicap})`}</td>

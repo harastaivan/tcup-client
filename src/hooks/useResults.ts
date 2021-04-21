@@ -132,11 +132,11 @@ export const useDailyResults = (classId: string): DailyResultsState => {
             return
         }
         if (selectedClassId === null) {
-            setSelectedClassId(filters.classes[0].id)
+            setSelectedClassId(filters.classes[0]._id)
         }
         if (selectedDayId === null) {
-            const days = filters.classes.find((c) => c.id === selectedClassId)?.days
-            setSelectedDayId((days && days[0].id) || null)
+            const days = filters.classes.find((c) => c._id === selectedClassId)?.days
+            setSelectedDayId((days && days[0]._id) || null)
         }
     }, [filters, selectedClassId, selectedDayId])
 
