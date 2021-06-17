@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Tracking from './Tracking'
+import Sponsors from '../components/Sponsors'
 import News from './News'
 import Footer from './Footer'
 import { Container, Button, Row, Col } from 'reactstrap'
@@ -41,6 +42,7 @@ const Home = () => {
                         </Col>
                         <Col md={4}>
                             <Tracking />
+                            <Sponsors />
                         </Col>
                     </Row>
                     <Footer />
