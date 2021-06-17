@@ -63,7 +63,7 @@ const FiltersCards = ({ filters, loaded, selectedDay, selectDay, goToTopResults,
                                         style={{ width: '100%', marginBottom: '10px' }}
                                         color="secondary"
                                         onClick={goToTopResults}>
-                                        Zpět
+                                        {t('Zpět')}
                                     </Button>
                                 </Col>
                                 <Col md="6">
@@ -72,7 +72,7 @@ const FiltersCards = ({ filters, loaded, selectedDay, selectDay, goToTopResults,
                                         color="secondary"
                                         outline
                                         onClick={goToTotalResults({ _id: classId, name: className })}>
-                                        Celkové výsledky
+                                        {t('Celkové výsledky')}
                                     </Button>
                                 </Col>
                             </Row>
