@@ -83,7 +83,7 @@ const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
                                             style={{ width: '100%', marginBottom: '10px' }}
                                             color="secondary"
                                             onClick={goToTotalResults({ _id, name })}>
-                                            Celkové výsledky
+                                            {t('Celkové výsledky')}
                                         </Button>
                                     </Col>
                                     <Col md="6">
@@ -92,7 +92,7 @@ const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
                                             color="secondary"
                                             outline
                                             onClick={goToDailyResults({ _id, name })}>
-                                            Denní výsledky
+                                            {t('Denní výsledky')}
                                         </Button>
                                     </Col>
                                 </Row>

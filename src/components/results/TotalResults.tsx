@@ -52,7 +52,7 @@ const TotalResults = ({ competitionClass, goToTopResults, goToDailyResults }: Pr
             <Row style={{ marginTop: '2rem' }}>
                 <Col md="6">
                     <Button style={{ width: '100%', marginBottom: '10px' }} color="secondary" onClick={goToTopResults}>
-                        Zpět
+                        {t('Zpět')}
                     </Button>
                 </Col>
                 <Col md="6">
@@ -61,7 +61,7 @@ const TotalResults = ({ competitionClass, goToTopResults, goToDailyResults }: Pr
                         color="secondary"
                         outline
                         onClick={goToDailyResults(competitionClass)}>
-                        Denní výsledky
+                        {t('Denní výsledky')}
                     </Button>
                 </Col>
             </Row>
