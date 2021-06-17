@@ -3,9 +3,21 @@ import { useTranslation } from 'react-i18next'
 import useSponsors, { Sponsor as SponsorType } from '../hooks/useSponsors'
 import styled from 'styled-components'
 
+const Divider = styled.div`
+    max-width: 250px;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #00000049;
+
+    &:last-of-type {
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+`
+
 const SponsorImage = styled.img`
     width: 100%;
-    max-width: 250px;
 `
 
 const SponsorsWrapper = styled.div`
@@ -20,10 +32,14 @@ const Sponsor = ({ name, image, url }: SponsorType) => {
     const img = <SponsorImage src={image} alt={name} />
 
     if (url) {
-        return <a href={url}>{img}</a>
+        return (
+            <Divider>
+                <a href={url}>{img}</a>
+            </Divider>
+        )
     }
 
-    return img
+    return <Divider>{img}</Divider>
 }
 
 const Sponsors = () => {
