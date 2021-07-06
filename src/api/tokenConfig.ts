@@ -8,7 +8,7 @@ export const tokenConfig = (token: string | null, contentType = 'application/jso
         },
     }
 
-    if (token) config.headers['x-auth-token'] = token
+    if (token) config.headers['Authorization'] = `Bearer ${token}`
 
     return config
 }
