@@ -31,7 +31,7 @@ import Archive from './components/Archive'
 import CompetitionDays from './containers/CompetitionDays'
 import ResetPassword from './containers/ResetPassword'
 import UsersList from './containers/UsersList'
-import { getIsAdmin } from './store/auth/selectors'
+import { getIsAdmin, getToken } from './store/auth/selectors'
 import TestMode from './components/TestMode'
 import Offline from './components/Offline'
 
@@ -39,10 +39,12 @@ const App = () => {
     const error = useSelector(getError)
     const dispatch = useDispatch()
     const isAdmin = useSelector(getIsAdmin)
+    const token = useSelector(getToken)
 
     useEffect(() => {
+        if (token === null) return
         dispatch(loadUser())
-    }, [dispatch])
+    }, [dispatch, token])
 
     const { t } = useTranslation()
 
