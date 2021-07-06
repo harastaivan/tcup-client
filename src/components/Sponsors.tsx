@@ -50,8 +50,8 @@ const Sponsors = () => {
         <div>
             <h2>{t('Sponzoři')}</h2>
             <SponsorsWrapper>
-                {sponsors.map((sponsor) => (
-                    <Sponsor {...sponsor} />
+                {sponsors.map((sponsor, key) => (
+                    <Sponsor {...sponsor} key={key} />
                 ))}
             </SponsorsWrapper>
         </div>
