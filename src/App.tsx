@@ -33,6 +33,7 @@ import ResetPassword from './containers/ResetPassword'
 import UsersList from './containers/UsersList'
 import { getIsAdmin } from './store/auth/selectors'
 import TestMode from './components/TestMode'
+import Offline from './components/Offline'
 
 const App = () => {
     const error = useSelector(getError)
@@ -53,6 +54,7 @@ const App = () => {
     return (
         <div className="App">
             <AppNavbar />
+            <Offline />
             <Switch>
                 <Route path="/results" component={Results} />
                 <Route path="/" component={Home} exact />
