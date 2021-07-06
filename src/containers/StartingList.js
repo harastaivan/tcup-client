@@ -1,6 +1,6 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { NavLink as Link } from 'react-router-dom'
-import { Button, Container, Table } from 'reactstrap'
+import { Button, ButtonGroup, Container, Table } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Moment from 'react-moment'
 import { useTranslation } from 'react-i18next'
@@ -16,7 +16,27 @@ import Spinner from '../components/Spinner'
 import { getIsAdmin } from '../store/auth/selectors'
 import { getStartingList } from '../store/startingList/selectors'
 
+const registrationsCompletedEnum = [
+    {
+        label: 'všechny registrace',
+        color: 'primary',
+        filter: null,
+    },
+    {
+        label: 'dokončené',
+        color: 'success',
+        filter: true,
+    },
+    {
+        label: 'nedokončené',
+        color: 'danger',
+        filter: false,
+    },
+]
+
 const StartingList = () => {
+    const [registrationCompletedIndex, setRegistrationCompletedIndex] = useState(0)
+
     const startingList = useSelector(getStartingList)
     const isAdmin = useSelector(getIsAdmin)
 
@@ -41,7 +61,12 @@ const StartingList = () => {
     const { classes, loading } = startingList
 
     const getRegistrations = (competitionClass) => {
-        return competitionClass.registrations
+        const { filter } = registrationsCompletedEnum[registrationCompletedIndex]
+        if (filter === null) {
+            return competitionClass.registrations
+        }
+
+        return competitionClass.registrations.filter((reg) => reg.registrationCompleted === filter)
     }
 
     return (
@@ -52,6 +77,23 @@ const StartingList = () => {
                 <Button color="primary" className="mb-3" onClick={exportStartingList}>
                     {t('export přihlášek')}
                 </Button>
+            )}
+            {isAdmin && (
+                <div style={{ marginBottom: '1em' }}>
+                    <ButtonGroup>
+                        {registrationsCompletedEnum.map((s, index) => (
+                            <Button
+                                key={s.label}
+                                color={index === registrationCompletedIndex ? s.color : 'secondary'}
+                                onClick={() => {
+                                    setRegistrationCompletedIndex(index)
+                                }}>
+                                {t(s.label)}
+                            </Button>
+                        ))}
+                    </ButtonGroup>
+                    <span style={{ marginLeft: '1em' }}>(Určeno pro registraci závodníků v první soutěžní den)</span>
+                </div>
             )}
             {classes.map((one) => {
                 const registrations = getRegistrations(one)
