@@ -1,58 +1,67 @@
-import React, { Component, Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { NavLink as Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import { Button, Container, Table } from 'reactstrap'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Moment from 'react-moment'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import 'moment/locale/cs'
 
-import { getStartingList, setStartingListLoading, markPaid, exportRegistrations } from '../store/startingList/actions'
+import {
+    getStartingList as getStartingListAction,
+    setStartingListLoading,
+    markPaid,
+    exportRegistrations,
+} from '../store/startingList/actions'
 import Spinner from '../components/Spinner'
+import { getIsAdmin } from '../store/auth/selectors'
+import { getStartingList } from '../store/startingList/selectors'
 
-class StartingList extends Component {
-    static propTypes = {
-        getStartingList: PropTypes.func.isRequired,
-        setStartingListLoading: PropTypes.func.isRequired,
-        startingList: PropTypes.object.isRequired,
-        markPaid: PropTypes.func.isRequired,
-        exportRegistrations: PropTypes.func.isRequired,
-        isAdmin: PropTypes.bool,
-        t: PropTypes.func.isRequired,
-    }
+const StartingList = () => {
+    const startingList = useSelector(getStartingList)
+    const isAdmin = useSelector(getIsAdmin)
 
-    componentDidMount() {
-        this.props.setStartingListLoading()
-        this.props.getStartingList()
-    }
+    const { t } = useTranslation()
 
-    markPaid = (registrationId, nowPaid) => {
+    const dispatch = useDispatch()
+
+    const onMarkPaid = (registrationId, nowPaid) => () => {
         const paid = !nowPaid
-        this.props.markPaid(registrationId, paid)
+        dispatch(markPaid(registrationId, paid))
     }
 
-    exportStartingList = () => {
-        this.props.exportRegistrations()
+    const exportStartingList = () => {
+        dispatch(exportRegistrations())
     }
 
-    render() {
-        const { classes, loading } = this.props.startingList
-        const { isAdmin, t } = this.props
-        return (
-            <Container>
-                <h1>{t('Startovní listina')}</h1>
-                {loading ? <Spinner /> : null}
-                {isAdmin && (
-                    <Button color="primary" className="mb-3" onClick={this.exportStartingList}>
-                        {t('export přihlášek')}
-                    </Button>
-                )}
-                {classes.map((one) => (
+    useEffect(() => {
+        dispatch(setStartingListLoading())
+        dispatch(getStartingListAction())
+    }, [dispatch])
+
+    const { classes, loading } = startingList
+
+    const getRegistrations = (competitionClass) => {
+        return competitionClass.registrations
+    }
+
+    return (
+        <Container>
+            <h1>{t('Startovní listina')}</h1>
+            {loading ? <Spinner /> : null}
+            {isAdmin && (
+                <Button color="primary" className="mb-3" onClick={exportStartingList}>
+                    {t('export přihlášek')}
+                </Button>
+            )}
+            {classes.map((one) => {
+                const registrations = getRegistrations(one)
+
+                return (
                     <Fragment key={one._id}>
                         <h2>
-                            {t(one.name)} {one.registrations.length ? `(${one.registrations.length})` : null}
+                            {t(one.name)} {registrations.length ? `(${registrations.length})` : null}
                         </h2>
-                        {one.registrations.length ? (
+                        {registrations.length ? (
                             <div style={{ overflowX: 'scroll' }}>
                                 <Table striped responsive>
                                     <thead>
@@ -73,7 +82,7 @@ class StartingList extends Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {one.registrations.map((registration) => (
+                                        {registrations.map((registration) => (
                                             <tr key={registration._id}>
                                                 <td>{registration.fullName}</td>
                                                 <td>
@@ -98,8 +107,7 @@ class StartingList extends Component {
                                                             <Button
                                                                 color={registration.paid ? 'danger' : 'success'}
                                                                 className="mb-1"
-                                                                onClick={this.markPaid.bind(
-                                                                    this,
+                                                                onClick={onMarkPaid(
                                                                     registration._id,
                                                                     registration.paid
                                                                 )}
@@ -134,17 +142,10 @@ class StartingList extends Component {
                             </p>
                         )}
                     </Fragment>
-                ))}
-            </Container>
-        )
-    }
+                )
+            })}
+        </Container>
+    )
 }
 
-const mapStateToProps = (state) => ({
-    startingList: state.startingList,
-    isAdmin: state.auth.isAdmin,
-})
-
-export default connect(mapStateToProps, { getStartingList, setStartingListLoading, markPaid, exportRegistrations })(
-    withTranslation()(StartingList)
-)
+export default StartingList
