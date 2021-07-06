@@ -32,6 +32,7 @@ import CompetitionDays from './containers/CompetitionDays'
 import ResetPassword from './containers/ResetPassword'
 import UsersList from './containers/UsersList'
 import { getIsAdmin } from './store/auth/selectors'
+import TestMode from './components/TestMode'
 
 const App = () => {
     const error = useSelector(getError)
@@ -57,12 +58,7 @@ const App = () => {
                 <Route path="/" component={Home} exact />
             </Switch>
             <Container className={!isSpecialPage ? 'p-3 min-vh-container transparent-background' : ''}>
-                {process.env.REACT_APP_TEST_MODE === 'true' && !isSpecialPage && (
-                    <Alert color="warning">
-                        {t('Aplikace se právě testuje. Nemusí vše fungovat správně.')}{' '}
-                        <a href="https://gitreports.com/issue/harastaivan/tcup-client">{t('Chyby hlašte zde')}</a>.
-                    </Alert>
-                )}
+                <TestMode hidden={isSpecialPage} />
                 {error.msg && <Alert color="danger">{t(error.msg)}</Alert>}
                 <Switch>
                     <Route path="/news" component={News} />
