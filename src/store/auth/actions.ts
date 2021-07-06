@@ -240,7 +240,7 @@ export const tokenConfig = (getState: () => AppState, contentType = 'application
         },
     }
 
-    if (token) config.headers['x-auth-token'] = token
+    if (token) config.headers['Authorization'] = `Bearer ${token}`
 
     return config
 }
