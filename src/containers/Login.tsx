@@ -1,16 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Alert, Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 import { login } from '../store/auth/actions'
 import { clearErrors } from '../store/error/actions'
 import { getAuth } from '../store/auth/selectors'
 
+type FormData = {
+    email: string
+    password: string
+}
+
+const LoginSchema = yup.object().shape({
+    email: yup.string().email('Musí být ve formátu emailu').required('Email musí být vyplněn'),
+    password: yup.string().required('Heslo musí být vyplněno'),
+})
+
 const Login: React.FC = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<FormData>({
+        resolver: yupResolver(LoginSchema),
+    })
 
     const dispatch = useDispatch()
 
@@ -20,21 +39,15 @@ const Login: React.FC = () => {
 
     const { t } = useTranslation()
 
-    const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value)
-    }
-
-    const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value)
-    }
-
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const onSubmit = handleSubmit((data: FormData) => {
+        alert(JSON.stringify(data))
         dispatch(clearErrors())
+        const { email, password } = data
         const user = { email, password }
         dispatch(login(user))
-        setPassword('')
-    }
+        reset()
+        // setPassword('')
+    })
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -43,33 +56,30 @@ const Login: React.FC = () => {
         }
     }, [isAuthenticated, dispatch, history])
 
+    console.log(errors)
+
     return (
         <div>
             <h1>{t('Přihlásit se')}</h1>
             <Form onSubmit={onSubmit}>
                 <FormGroup>
                     <Label for="email">{t('Email')}</Label>
-                    <Input
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder={t('Email')}
-                        value={email}
-                        onChange={onChangeEmail}
-                    />
+                    <Input id="email" placeholder={t('Email')} invalid={!!errors.email} {...register('email')} />
+                    {errors.email && <FormFeedback>{t(errors.email.message as string)}</FormFeedback>}
                 </FormGroup>
                 <FormGroup>
-                    <Label for="Password">{t('Heslo')}</Label>
+                    <Label for="password">{t('Heslo')}</Label>
                     <Input
+                        id="password"
                         type="password"
-                        name="password"
-                        id="Password"
                         placeholder={t('Heslo')}
-                        value={password}
-                        onChange={onChangePassword}
+                        invalid={!!errors.password}
+                        {...register('password')}
                     />
+                    {errors.password && <FormFeedback>{t(errors.password.message as string)}</FormFeedback>}
                 </FormGroup>
-                <Button color="dark" style={{ marginTop: '2rem' }} block disabled={!email || !password}>
+                {/* TODO disabled */}
+                <Button color="dark" style={{ marginTop: '2rem' }} block disabled={false}>
                     {t('Přihlásit se')}
                 </Button>
             </Form>

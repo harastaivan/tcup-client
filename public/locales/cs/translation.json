@@ -191,5 +191,8 @@
     "Poslat email všem": "Poslat email všem",
     "email": "email",
     "Poslat email": "Poslat email",
-    "Aplikace je offline": "Aplikace je offline. Zkontrolujte připojení k internetu."
+    "Aplikace je offline": "Aplikace je offline. Zkontrolujte připojení k internetu.",
+    "Musí obsahovat email": "Musí obsahovat email",
+    "Email musí být vyplněn": "Email musí být vyplněn",
+    "Heslo musí být vyplněno": "Heslo musí být vyplněno"
 }
