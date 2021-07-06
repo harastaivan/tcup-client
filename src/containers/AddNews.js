@@ -1,9 +1,10 @@
 import React, { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Form, FormGroup, Button, Input, Label } from 'reactstrap'
+import { Form, FormGroup, Button, Input } from 'reactstrap'
 
 import { addNews } from '../store/news/actions'
 import { useTranslation } from 'react-i18next'
+import Checkbox from './Checkbox'
 
 const AddNews = () => {
     const [title, setTitle] = useState('')
@@ -58,18 +59,7 @@ const AddNews = () => {
                             />
                         </FormGroup>
                         <FormGroup check>
-                            <Label check>
-                                <Input
-                                    type="checkbox"
-                                    name="email"
-                                    id="email"
-                                    checked={email}
-                                    onChange={() => {
-                                        setEmail(!email)
-                                    }}
-                                />
-                                {t('Notifikovat emailem')}
-                            </Label>
+                            <Checkbox id="email" value={email} setValue={setEmail} label={t('Notifikovat emailem')} />
                         </FormGroup>
                         <Button color="dark" style={{ marginTop: '2rem' }} disabled={!title || !body} block>
                             {t('Přidat novinku')}
