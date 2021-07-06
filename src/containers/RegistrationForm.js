@@ -24,6 +24,7 @@ const RegistrationForm = () => {
     const [gliderType, setGliderType] = useState('')
     const [registrationNumber, setRegistrationNumber] = useState('')
     const [startNumber, setStartNumber] = useState('')
+    const [hasEngine, setHasEngine] = useState(false)
     const [competitionClass, setCompetitionClass] = useState('')
     const [logger, setLogger] = useState('')
     const [accomodationType, setAccomodationType] = useState('')
@@ -43,6 +44,7 @@ const RegistrationForm = () => {
                 gliderType,
                 registrationNumber,
                 startNumber,
+                hasEngine,
             },
             competitionClass,
             logger,
@@ -100,6 +102,7 @@ const RegistrationForm = () => {
             gliderType={gliderType}
             registrationNumber={registrationNumber}
             startNumber={startNumber}
+            hasEngine={hasEngine}
             competitionClass={competitionClass}
             logger={logger}
             accomodationType={accomodationType}
@@ -113,6 +116,7 @@ const RegistrationForm = () => {
             setGliderType={setGliderType}
             setRegistrationNumber={setRegistrationNumber}
             setStartNumber={setStartNumber}
+            setHasEngine={setHasEngine}
             setCompetitionClass={setCompetitionClass}
             setLogger={setLogger}
             setAccomodationType={setAccomodationType}

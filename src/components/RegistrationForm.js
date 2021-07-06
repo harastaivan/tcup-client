@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
 import ValidatedInput, { TRANSLATED, GLIDER_TYPE } from '../containers/ValidatedInput'
+import Checkbox from '../containers/Checkbox'
 
 const RegistrationForm = (props) => {
     const { t } = useTranslation()
@@ -145,6 +146,19 @@ const RegistrationForm = (props) => {
                         </FormGroup>
                     </Col>
                 </Row>
+                <Row form style={{ paddingBottom: '2em' }}>
+                    <Col md={6}>
+                        <FormGroup check>
+                            <Checkbox
+                                id="hasEngine"
+                                value={props.hasEngine}
+                                setValue={props.setHasEngine}
+                                label={t('Má motor')}
+                                disabled={props.disabled}
+                            />
+                        </FormGroup>
+                    </Col>
+                </Row>
                 <Row form>
                     <Col md={6}>
                         <FormGroup>
@@ -232,6 +246,36 @@ const RegistrationForm = (props) => {
                         </FormGroup>
                     </Col>
                 </Row>
+                {props.igcId !== undefined && (
+                    <Row form>
+                        <Col md={6}>
+                            <FormGroup>
+                                <ValidatedInput
+                                    type="text"
+                                    name="igcId"
+                                    label={t('IGC ID')}
+                                    value={props.igcId}
+                                    setValue={props.setIgcId}
+                                    disabled={props.disabled}></ValidatedInput>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                )}
+                {props.registrationCompleted !== undefined && (
+                    <Row form style={{ paddingBottom: '2em' }}>
+                        <Col md={6}>
+                            <FormGroup check>
+                                <Checkbox
+                                    id="registrationCompleted"
+                                    value={props.registrationCompleted}
+                                    setValue={props.setRegistrationCompleted}
+                                    label={t('Registrace dokončena')}
+                                    disabled={props.disabled}
+                                />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                )}
                 {props.footer}
             </Form>
         </div>
@@ -254,6 +298,7 @@ RegistrationForm.propTypes = {
     gliderType: PropTypes.any.isRequired,
     registrationNumber: PropTypes.any.isRequired,
     startNumber: PropTypes.any.isRequired,
+    hasEngine: PropTypes.any.isRequired,
     competitionClass: PropTypes.any.isRequired,
     logger: PropTypes.any.isRequired,
     accomodationType: PropTypes.any.isRequired,
@@ -267,6 +312,7 @@ RegistrationForm.propTypes = {
     setGliderType: PropTypes.func.isRequired,
     setRegistrationNumber: PropTypes.func.isRequired,
     setStartNumber: PropTypes.func.isRequired,
+    setHasEngine: PropTypes.func.isRequired,
     setCompetitionClass: PropTypes.func.isRequired,
     setLogger: PropTypes.func.isRequired,
     setAccomodationType: PropTypes.func.isRequired,

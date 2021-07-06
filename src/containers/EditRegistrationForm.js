@@ -23,6 +23,7 @@ const EditRegistrationForm = (props) => {
     const [gliderType, setGliderType] = useState(registration.glider.gliderType._id)
     const [registrationNumber, setRegistrationNumber] = useState(registration.glider.registrationNumber)
     const [startNumber, setStartNumber] = useState(registration.glider.startNumber)
+    const [hasEngine, setHasEngine] = useState(registration.glider.hasEngine)
     const [competitionClass, setCompetitionClass] = useState(registration.competitionClass._id)
     const [logger, setLogger] = useState(registration.logger)
     const [accomodationType, setAccomodationType] = useState(registration.accomodation.accomodationType._id)
@@ -58,6 +59,7 @@ const EditRegistrationForm = (props) => {
                 gliderType,
                 registrationNumber,
                 startNumber,
+                hasEngine,
             },
             competitionClass,
             logger,
@@ -117,6 +119,7 @@ const EditRegistrationForm = (props) => {
             gliderType={gliderType}
             registrationNumber={registrationNumber}
             startNumber={startNumber}
+            hasEngine={hasEngine}
             competitionClass={competitionClass}
             logger={logger}
             accomodationType={accomodationType}
@@ -130,6 +133,7 @@ const EditRegistrationForm = (props) => {
             setGliderType={setGliderType}
             setRegistrationNumber={setRegistrationNumber}
             setStartNumber={setStartNumber}
+            setHasEngine={setHasEngine}
             setCompetitionClass={setCompetitionClass}
             setLogger={setLogger}
             setAccomodationType={setAccomodationType}

@@ -23,12 +23,15 @@ const EditRegistrationForm = (props) => {
     const [gliderType, setGliderType] = useState(otherRegistration.glider.gliderType._id)
     const [registrationNumber, setRegistrationNumber] = useState(otherRegistration.glider.registrationNumber)
     const [startNumber, setStartNumber] = useState(otherRegistration.glider.startNumber)
+    const [hasEngine, setHasEngine] = useState(otherRegistration.glider.hasEngine)
     const [competitionClass, setCompetitionClass] = useState(otherRegistration.competitionClass._id)
     const [logger, setLogger] = useState(otherRegistration.logger)
     const [accomodationType, setAccomodationType] = useState(otherRegistration.accomodation.accomodationType._id)
     const [quantity, setQuantity] = useState(otherRegistration.accomodation.quantity)
     const [meals, setMeals] = useState(otherRegistration.meals)
     const [note, setNote] = useState(otherRegistration.note)
+    const [igcId, setIgcId] = useState(otherRegistration.igcId)
+    const [registrationCompleted, setRegistrationCompleted] = useState(otherRegistration.registrationCompleted)
 
     const isFormValid = () => {
         return (
@@ -58,6 +61,7 @@ const EditRegistrationForm = (props) => {
                 gliderType,
                 registrationNumber,
                 startNumber,
+                hasEngine,
             },
             competitionClass,
             logger,
@@ -67,6 +71,8 @@ const EditRegistrationForm = (props) => {
             },
             meals,
             note,
+            igcId,
+            registrationCompleted,
         }
         dispatch(updateOtherRegistration(otherRegistration._id, registration))
         setEdit(!edit)
@@ -119,12 +125,15 @@ const EditRegistrationForm = (props) => {
             gliderType={gliderType}
             registrationNumber={registrationNumber}
             startNumber={startNumber}
+            hasEngine={hasEngine}
             competitionClass={competitionClass}
             logger={logger}
             accomodationType={accomodationType}
             quantity={quantity}
             meals={meals}
             note={note}
+            igcId={igcId}
+            registrationCompleted={registrationCompleted}
             setBirthDate={setBirthDate}
             setPhone={setPhone}
             setAeroclub={setAeroclub}
@@ -132,12 +141,15 @@ const EditRegistrationForm = (props) => {
             setGliderType={setGliderType}
             setRegistrationNumber={setRegistrationNumber}
             setStartNumber={setStartNumber}
+            setHasEngine={setHasEngine}
             setCompetitionClass={setCompetitionClass}
             setLogger={setLogger}
             setAccomodationType={setAccomodationType}
             setQuantity={setQuantity}
             setMeals={setMeals}
             setNote={setNote}
+            setIgcId={setIgcId}
+            setRegistrationCompleted={setRegistrationCompleted}
         />
     )
 }
