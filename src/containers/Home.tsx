@@ -25,7 +25,7 @@ const Home = () => {
                         <Button outline color="secondary" size="lg" tag={'a'} href="https://lipty.rajce.idnes.cz">
                             {t('fotogalerie')}
                         </Button>{' '}
-                        <Button color="primary" size="lg" tag={NavLink} to="/igc" disabled>
+                        <Button color="primary" size="lg" tag={NavLink} to="/igc">
                             {t('odeslat IGC')}
                         </Button>
                     </div>
