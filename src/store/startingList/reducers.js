@@ -1,6 +1,12 @@
 import { saveAs } from 'file-saver'
 
-import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../../actions/types'
+import {
+    GET_STARTING_LIST,
+    STARTING_LIST_LOADING,
+    PAY_REGISTRATION,
+    EXPORT_REGISTRATIONS,
+    SEE_YOU_EXPORT,
+} from '../../actions/types'
 import formatDate from '../../utils/formatDate'
 
 const initialState = {
@@ -39,6 +45,14 @@ const startingListReducer = (state = initialState, action) => {
             const filename = `export-${formatDate()}.csv`
             saveAs(new Blob([data], { type: action.payload.headers['content-type'] }), filename, {
                 autoBom: true,
+            })
+            return state
+        }
+        case SEE_YOU_EXPORT: {
+            const { res, className } = action.payload
+            const filename = `seeyou-${className}-${formatDate()}.csv`
+            saveAs(new Blob([res.data], { type: 'text/csv; charset=windows-1250' }), filename, {
+                autoBom: false,
             })
             return state
         }

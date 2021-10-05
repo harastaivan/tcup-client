@@ -1,4 +1,10 @@
-import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../../actions/types'
+import {
+    STARTING_LIST_LOADING,
+    GET_STARTING_LIST,
+    PAY_REGISTRATION,
+    EXPORT_REGISTRATIONS,
+    SEE_YOU_EXPORT,
+} from '../../actions/types'
 import axios from 'axios'
 import { tokenConfig } from '../auth/actions'
 import { returnErrors } from '../error/actions'
@@ -45,6 +51,24 @@ export const exportRegistrations = () => async (dispatch, getState) => {
         dispatch({
             type: EXPORT_REGISTRATIONS,
             payload: res,
+        })
+    } catch (err) {
+        dispatch(returnErrors(err))
+    }
+}
+
+export const seeYouExport = (compClass) => async (dispatch, getState) => {
+    try {
+        const res = await axios.get(
+            `${API_ENDPOINT}/api/starting-list/export/seeyou/${compClass._id}`,
+            tokenConfig(getState)
+        )
+        dispatch({
+            type: SEE_YOU_EXPORT,
+            payload: {
+                className: compClass.name,
+                res,
+            },
         })
     } catch (err) {
         dispatch(returnErrors(err))

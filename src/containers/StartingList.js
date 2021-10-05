@@ -11,6 +11,7 @@ import {
     setStartingListLoading,
     markPaid,
     exportRegistrations,
+    seeYouExport,
 } from '../store/startingList/actions'
 import Spinner from '../components/Spinner'
 import { getIsAdmin } from '../store/auth/selectors'
@@ -53,6 +54,10 @@ const StartingList = () => {
         dispatch(exportRegistrations())
     }
 
+    const exportSeeYou = (compClass) => () => {
+        dispatch(seeYouExport(compClass))
+    }
+
     useEffect(() => {
         dispatch(setStartingListLoading())
         dispatch(getStartingListAction())
@@ -69,6 +74,14 @@ const StartingList = () => {
         return competitionClass.registrations.filter((reg) => reg.registrationCompleted === filter)
     }
 
+    const getSeeYouExport = (classes) => {
+        return classes.map((compClass) => (
+            <Button color="primary" className="mb-3 mr-2" onClick={exportSeeYou(compClass)}>
+                {t(`export SeeYou ${compClass.name}`)}
+            </Button>
+        ))
+    }
+
     return (
         <Container>
             <h1>{t('Startovní listina')}</h1>
@@ -78,6 +91,7 @@ const StartingList = () => {
                     {t('export přihlášek')}
                 </Button>
             )}
+            {isAdmin && <div>{getSeeYouExport(classes)}</div>}
             {isAdmin && (
                 <div style={{ marginBottom: '1em' }}>
                     <ButtonGroup>
