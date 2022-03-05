@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'reactstrap'
+import { SOARING_SPOT_URL } from '../../constants'
 
 type Props = {
     children: string
@@ -7,13 +8,11 @@ type Props = {
 const ResultsTitle = ({ children }: Props) => {
     const { t } = useTranslation()
 
-    const soaringSpotUrl = process.env.REACT_APP_SOARING_SPOT_URL
-
     return (
         <div>
             <h3>{children}</h3>
-            {soaringSpotUrl && (
-                <NavLink href={soaringSpotUrl} target="_blank" style={{ padding: '0' }}>
+            {SOARING_SPOT_URL && (
+                <NavLink href={SOARING_SPOT_URL} target="_blank" style={{ padding: '0' }}>
                     {t('Přejít na SoaringSpot')}
                 </NavLink>
             )}

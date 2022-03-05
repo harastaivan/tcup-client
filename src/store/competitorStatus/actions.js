@@ -1,13 +1,13 @@
+import axios from 'axios'
+
 import {
     GET_COMPETITOR_STATUSES,
     UPDATE_COMPETITOR_STATUS,
     RESET_COMPETITOR_STATUSES,
     LOADING_COMPETITOR_STATUSES,
 } from '../../actions/types'
-import axios from 'axios'
 import { tokenConfig } from '../auth/actions'
-
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+import { API_ENDPOINT } from '../../constants'
 
 export const getCompetitorStatuses = (day) => async (dispatch) => {
     const res = await axios.get(`${API_ENDPOINT}/api/competitorstatuses/${day}`)

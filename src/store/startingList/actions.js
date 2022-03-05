@@ -1,9 +1,9 @@
-import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../../actions/types'
 import axios from 'axios'
+import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../../actions/types'
+
 import { tokenConfig } from '../auth/actions'
 import { returnErrors } from '../error/actions'
-
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+import { API_ENDPOINT } from '../../constants'
 
 export const getStartingList = () => async (dispatch) => {
     dispatch(setStartingListLoading)

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Alert } from 'reactstrap'
+import { TEST_MODE } from '../constants'
 
 type Props = {
     hidden?: boolean
@@ -8,7 +9,7 @@ type Props = {
 const TestMode: React.FC<Props> = ({ hidden }: Props) => {
     const { t } = useTranslation()
 
-    if (process.env.REACT_APP_TEST_MODE === 'true' && !hidden) {
+    if (TEST_MODE && !hidden) {
         return (
             <Alert color="warning">
                 {t('Aplikace se právě testuje. Nemusí vše fungovat správně.')}{' '}

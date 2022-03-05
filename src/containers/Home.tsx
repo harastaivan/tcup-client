@@ -6,6 +6,7 @@ import Sponsors from '../components/Sponsors'
 import News from './News'
 import Footer from './Footer'
 import { Container, Button, Row, Col } from 'reactstrap'
+import { APP_TITLE } from '../constants'
 
 const Home = () => {
     const { t } = useTranslation()
@@ -15,7 +16,7 @@ const Home = () => {
             <div className="homepage-body">
                 <Container>
                     <h1 className="header-box">
-                        <span className="header-box-span">{process.env.REACT_APP_TITLE}</span>
+                        <span className="header-box-span">{APP_TITLE}</span>
                     </h1>
                     <h2 className="sub-header">
                         {t('Letošní tcup se bude konat')} <br />
