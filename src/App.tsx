@@ -31,15 +31,15 @@ import Archive from './components/Archive'
 import CompetitionDays from './containers/CompetitionDays'
 import ResetPassword from './containers/ResetPassword'
 import UsersList from './containers/UsersList'
-import { getIsAdmin, getToken } from './store/auth/selectors'
+import { getAuth } from './store/auth/selectors'
 import TestMode from './components/TestMode'
 import Offline from './components/Offline'
+import SpinnerFullPage from './components/SpinnerFullPage'
 
 const App = () => {
     const error = useSelector(getError)
     const dispatch = useDispatch()
-    const isAdmin = useSelector(getIsAdmin)
-    const token = useSelector(getToken)
+    const { isLoading, token, isAdmin } = useSelector(getAuth)
 
     useEffect(() => {
         if (token === null) return
@@ -49,9 +49,14 @@ const App = () => {
     const { t } = useTranslation()
 
     const isHomepage = useRouteMatch('/')?.isExact || false
+    const isLogin = useRouteMatch('/login')?.isExact || false
     const isResultsPage = useRouteMatch('/results')?.isExact || false
 
     const isSpecialPage = isHomepage || isResultsPage
+
+    if (isLoading && !isLogin) {
+        return <SpinnerFullPage />
+    }
 
     return (
         <div className="App">

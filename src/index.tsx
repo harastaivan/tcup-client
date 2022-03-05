@@ -8,11 +8,11 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './i18next'
 
-import Spinner from './components/Spinner'
+import SpinnerFullPage from './components/SpinnerFullPage'
 
 const root = (
     <React.StrictMode>
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<SpinnerFullPage />}>
             <App />
         </Suspense>
     </React.StrictMode>

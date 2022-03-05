@@ -5,7 +5,7 @@ const initialState: AuthState = {
     token: sessionStorage.getItem('token'),
     isAuthenticated: false,
     isAdmin: false,
-    isLoading: false,
+    isLoading: Boolean(sessionStorage.getItem('token')),
     user: null,
 }
 
