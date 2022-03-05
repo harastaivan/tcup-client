@@ -3,6 +3,7 @@ import { Container } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
 import { version } from '../../package.json'
+import { APP_TITLE } from '../constants'
 
 const Footer = () => {
     const { t } = useTranslation()
@@ -11,7 +12,7 @@ const Footer = () => {
             <footer className={`p-5 py-4 text-center text-small`}>
                 <span className="text">
                     <p>
-                        © {process.env.REACT_APP_TITLE}{' '}
+                        © {APP_TITLE}{' '}
                         <b>
                             {t('verze')} {version}
                         </b>

@@ -1,5 +1,7 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { ThunkAction } from 'redux-thunk'
+
+import { API_ENDPOINT } from '../../constants'
 import { tokenConfig } from '../auth/actions'
 import { returnErrors, ReturnErrorsAction } from '../error/actions'
 import { AppState } from '../types'
@@ -35,8 +37,6 @@ export type NewsLoadingAction = {
 
 export type NewsAction = GetNewsAction | AddNewsAction | DeleteNewsAction | NewsLoadingAction
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
-
 export const getNews = (): ThunkAction<void, AppState, null, GetNewsAction> => async (dispatch) => {
     dispatch(setNewsLoading)
     const res = await axios.get(`${API_ENDPOINT}/api/news`)
@@ -57,7 +57,7 @@ export const addNews = (news: News): ThunkAction<void, AppState, null, AddNewsAc
             payload: res.data,
         })
     } catch (err) {
-        dispatch(returnErrors(err))
+        dispatch(returnErrors(err as AxiosError))
     }
 }
 
@@ -71,7 +71,7 @@ export const deleteNews = (
             payload: id,
         })
     } catch (err) {
-        dispatch(returnErrors(err))
+        dispatch(returnErrors(err as AxiosError))
     }
 }
 

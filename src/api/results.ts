@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_ENDPOINT } from '../constants'
 
 type TopResult = {
     position: number
@@ -37,8 +38,6 @@ export type Filters = {
 export type TopResults = {
     classes: ClassTopResult[]
 }
-
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 export const getTopResults = async (): Promise<TopResults> => {
     const res = await axios.get(`${API_ENDPOINT}/api/results/top`)

@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import {
     FORM_DATA_LOADING,
     GET_FORM_DATA,
@@ -9,16 +11,14 @@ import {
     REGISTRATION_LOADING,
     RESET_REGISTRATION,
 } from '../../actions/types'
-import axios from 'axios'
 import { tokenConfig } from '../auth/actions'
 import { returnErrors, parseError } from '../error/actions'
+import { API_ENDPOINT } from '../../constants'
 
 const isError = ({ msg, status }) => {
     if (msg === 'Registration does not exist for this user' && status === 404) return false
     return true
 }
-
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 export const getFormData = () => async (dispatch) => {
     dispatch({
