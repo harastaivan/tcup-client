@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import {
     ADD_IGC,
     GET_IGC_FORM_DATA,
@@ -8,11 +10,9 @@ import {
     RESET_IGC_FILES,
     UPDATE_IGC_FILE,
 } from '../../actions/types'
-import axios from 'axios'
 import { tokenConfig } from '../auth/actions'
 import { returnErrors } from '../error/actions'
-
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+import { API_ENDPOINT } from '../../constants'
 
 export const addIgc = (igc) => async (dispatch, getState) => {
     try {

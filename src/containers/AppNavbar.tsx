@@ -18,13 +18,12 @@ import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import SelectLanguage from './SelectLanguage'
 import { getAuth } from '../store/auth/selectors'
+import { APP_TITLE, SOARING_SPOT_URL } from '../constants'
 
 const AppNavbar = () => {
     const [open, setOpen] = useState(false)
     const { isAuthenticated, isAdmin, user } = useSelector(getAuth)
     const { t } = useTranslation()
-
-    const soaringSpotUrl = process.env.REACT_APP_SOARING_SPOT_URL
 
     const authLinks = (
         <Fragment>
@@ -82,7 +81,7 @@ const AppNavbar = () => {
         <Fragment>
             <Navbar color="light" light expand="lg">
                 <NavbarBrand tag={Link} to="/">
-                    {process.env.REACT_APP_TITLE}
+                    {APP_TITLE}
                 </NavbarBrand>
                 <NavbarToggler onClick={() => setOpen(!open)} />
                 <Collapse isOpen={open} navbar>
@@ -103,10 +102,7 @@ const AppNavbar = () => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink
-                                href={soaringSpotUrl ? soaringSpotUrl : '#'}
-                                target="_blank"
-                                disabled={!soaringSpotUrl}>
+                            <NavLink href={SOARING_SPOT_URL || '#'} target="_blank" disabled={!SOARING_SPOT_URL}>
                                 {t('Úlohy')}
                             </NavLink>
                         </NavItem>
