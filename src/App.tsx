@@ -35,6 +35,7 @@ import { getAuth } from './store/auth/selectors'
 import TestMode from './components/TestMode'
 import Offline from './components/Offline'
 import SpinnerFullPage from './components/SpinnerFullPage'
+import type { TKey } from './i18next'
 
 const App = () => {
     const error = useSelector(getError)
@@ -68,7 +69,7 @@ const App = () => {
             </Switch>
             <Container className={!isSpecialPage ? 'p-3 min-vh-container transparent-background' : ''}>
                 <TestMode hidden={isSpecialPage} />
-                {error.msg && <Alert color="danger">{t(error.msg)}</Alert>}
+                {error.msg && <Alert color="danger">{t(error.msg as TKey)}</Alert>}
                 <Switch>
                     <Route path="/news" component={News} />
                     <Route path="/registration" component={Registration} />
