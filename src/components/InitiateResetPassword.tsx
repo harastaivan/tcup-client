@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { useSendEmail } from '../hooks/resetPassword'
+import { TKey } from '../i18next'
 import Spinner from './Spinner'
 
 const InitiateResetPassword = () => {
@@ -27,7 +28,7 @@ const InitiateResetPassword = () => {
 
             {error && (
                 <Alert color="danger" style={{ marginTop: '2rem' }}>
-                    {t(error)}
+                    {t(error as TKey)}
                 </Alert>
             )}
 
