@@ -38,11 +38,12 @@ import Archive from 'components/Archive'
 import TestMode from 'components/TestMode'
 import Offline from 'components/Offline'
 import SpinnerFullPage from 'components/SpinnerFullPage'
+import { useSpinnerFullPage } from 'hooks/useSpinnerFullPage'
 
 const App = () => {
     const error = useSelector(getError)
     const dispatch = useDispatch()
-    const { isLoading, token, isAdmin } = useSelector(getAuth)
+    const { token, isAdmin } = useSelector(getAuth)
 
     useEffect(() => {
         if (token === null) return
@@ -52,12 +53,13 @@ const App = () => {
     const { t } = useTranslation()
 
     const isHomepage = useRouteMatch('/')?.isExact || false
-    const isLogin = useRouteMatch('/login')?.isExact || false
     const isResultsPage = useRouteMatch('/results')?.isExact || false
+
+    const { showSpinner } = useSpinnerFullPage()
 
     const isSpecialPage = isHomepage || isResultsPage
 
-    if (isLoading && !isLogin) {
+    if (showSpinner) {
         return <SpinnerFullPage />
     }
 
