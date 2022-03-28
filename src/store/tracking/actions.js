@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-import { ADD_TRACKING, GET_TRACKINGS } from '../../actions/types'
-import { tokenConfig } from '../auth/actions'
-import { API_ENDPOINT } from '../../constants'
+import { ADD_TRACKING, GET_TRACKINGS } from 'actions/types'
+import { tokenConfig } from 'store/auth/actions'
+import { API_ENDPOINT } from 'config/constants'
 
 export const addTracking = (tracking) => async (dispatch, getState) => {
     const res = await axios.post(`${API_ENDPOINT}/api/tracking`, tracking, tokenConfig(getState))

@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import Spinner from '../components/Spinner'
+import Spinner from 'components/Spinner'
 import DownloadIgc from './DownloadIgc'
-import { getCompetitionDay } from '../utils/getCompetitionDay'
-import { getCompetitionDays } from '../store/competitionDay/actions'
-import { formatCompetitionDay } from '../utils/formatCompetitionDay'
-import { addIgc, getIgcFormData } from '../store/igc/actions'
+import { getCompetitionDay } from 'utils/getCompetitionDay'
+import { getCompetitionDays } from 'store/competitionDay/actions'
+import { formatCompetitionDay } from 'utils/formatCompetitionDay'
+import { addIgc, getIgcFormData } from 'store/igc/actions'
 
 const SendIgc = () => {
     const { t } = useTranslation()

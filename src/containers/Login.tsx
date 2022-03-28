@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import { login } from '../store/auth/actions'
-import { clearErrors } from '../store/error/actions'
-import { getAuth } from '../store/auth/selectors'
+import { login } from 'store/auth/actions'
+import { clearErrors } from 'store/error/actions'
+import { getAuth } from 'store/auth/selectors'
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('')

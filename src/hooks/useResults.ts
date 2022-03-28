@@ -8,7 +8,7 @@ import {
     TopResults,
     TotalResult,
     DailyResult,
-} from '../api/results'
+} from 'api/results'
 
 type TopResultsState = {
     results: TopResults | null

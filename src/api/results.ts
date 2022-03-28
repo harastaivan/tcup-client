@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_ENDPOINT } from '../constants'
+import { API_ENDPOINT } from 'config/constants'
 
 type TopResult = {
     position: number

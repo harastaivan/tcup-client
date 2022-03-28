@@ -10,10 +10,10 @@ import {
     GET_OTHER_REGISTRATION,
     REGISTRATION_LOADING,
     RESET_REGISTRATION,
-} from '../../actions/types'
+} from 'actions/types'
 import { tokenConfig } from '../auth/actions'
 import { returnErrors, parseError } from '../error/actions'
-import { API_ENDPOINT } from '../../constants'
+import { API_ENDPOINT } from 'config/constants'
 
 const isError = ({ msg, status }) => {
     if (msg === 'Registration does not exist for this user' && status === 404) return false

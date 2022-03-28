@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-import { GET_COMPETITION_DAYS, UPDATE_COMPETITION_DAY } from '../../actions/types'
-import { tokenConfig } from '../auth/actions'
-import { API_ENDPOINT } from '../../constants'
+import { GET_COMPETITION_DAYS, UPDATE_COMPETITION_DAY } from 'actions/types'
+import { tokenConfig } from 'store/auth/actions'
+import { API_ENDPOINT } from 'config/constants'
 
 export const getCompetitionDays = () => async (dispatch) => {
     const res = await axios.get(`${API_ENDPOINT}/api/days`)

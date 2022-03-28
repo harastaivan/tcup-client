@@ -2,9 +2,9 @@ import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { getIsAdmin, getToken } from '../store/auth/selectors'
-import { tokenConfig } from '../api/tokenConfig'
-import { API_ENDPOINT } from '../constants'
+import { getIsAdmin, getToken } from 'store/auth/selectors'
+import { tokenConfig } from 'api/tokenConfig'
+import { API_ENDPOINT } from 'config/constants'
 
 export type User = {
     id: string

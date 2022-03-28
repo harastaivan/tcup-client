@@ -9,10 +9,10 @@ import {
     GET_IGC_FILES,
     RESET_IGC_FILES,
     UPDATE_IGC_FILE,
-} from '../../actions/types'
-import { tokenConfig } from '../auth/actions'
-import { returnErrors } from '../error/actions'
-import { API_ENDPOINT } from '../../constants'
+} from 'actions/types'
+import { tokenConfig } from 'store/auth/actions'
+import { returnErrors } from 'store/error/actions'
+import { API_ENDPOINT } from 'config/constants'
 
 export const addIgc = (igc) => async (dispatch, getState) => {
     try {

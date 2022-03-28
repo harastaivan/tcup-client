@@ -1,4 +1,4 @@
-import { GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT, DOCUMENTS_LOADING } from '../../actions/types'
+import { GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT, DOCUMENTS_LOADING } from 'actions/types'
 
 const initialState = {
     documents: [],

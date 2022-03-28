@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-import { DOCUMENTS_LOADING, GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT } from '../../actions/types'
+import { DOCUMENTS_LOADING, GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT } from 'actions/types'
 import { tokenConfig } from '../auth/actions'
 import { returnErrors } from '../error/actions'
-import { API_ENDPOINT } from '../../constants'
+import { API_ENDPOINT } from 'config/constants'
 
 export const getDocuments = () => async (dispatch) => {
     dispatch(setDocumentsLoading)

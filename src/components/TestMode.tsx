@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Alert } from 'reactstrap'
-import { TEST_MODE } from '../constants'
+import { TEST_MODE } from 'config/constants'
 
 type Props = {
     hidden?: boolean

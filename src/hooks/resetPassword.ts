@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 
-import { API_ENDPOINT } from '../constants'
+import { API_ENDPOINT } from 'config/constants'
 
 export const useSendEmail = () => {
     const [loading, setLoading] = useState(false)

@@ -5,9 +5,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
 
-import { register } from '../store/auth/actions'
-import { clearErrors } from '../store/error/actions'
+import { register } from 'store/auth/actions'
+import { clearErrors } from 'store/error/actions'
 import GdprConsent from './GdprConsent'
+import { SIGNUP_DISABLED } from 'config/constants'
 
 class Signup extends Component {
     state = {
@@ -56,15 +57,12 @@ class Signup extends Component {
         }
     }
 
-    signupDisabled() {
-        return true
-    }
-
     render() {
+        console.log({ SIGNUP_DISABLED })
         const t = this.props.t
         return (
             <div>
-                {this.signupDisabled() && <Alert color="info">{t('V tuto chvíli není registrace možná.')}</Alert>}
+                {SIGNUP_DISABLED && <Alert color="info">{t('V tuto chvíli není registrace možná.')}</Alert>}
                 <h1>{t('Registrovat se')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>
@@ -78,7 +76,7 @@ class Signup extends Component {
                                     placeholder={t('Jméno')}
                                     value={this.state.name}
                                     onChange={this.onChange}
-                                    disabled={this.signupDisabled()}
+                                    disabled={SIGNUP_DISABLED}
                                 />
                             </FormGroup>
                         </Col>
@@ -92,7 +90,7 @@ class Signup extends Component {
                                     placeholder={t('Příjmení')}
                                     value={this.state.surname}
                                     onChange={this.onChange}
-                                    disabled={this.signupDisabled()}
+                                    disabled={SIGNUP_DISABLED}
                                 />
                             </FormGroup>
                         </Col>
@@ -106,7 +104,7 @@ class Signup extends Component {
                             placeholder={t('Email')}
                             value={this.state.email}
                             onChange={this.onChange}
-                            disabled={this.signupDisabled()}
+                            disabled={SIGNUP_DISABLED}
                         />
                     </FormGroup>
                     <FormGroup>
@@ -118,10 +116,10 @@ class Signup extends Component {
                             placeholder={t('Heslo')}
                             value={this.state.password}
                             onChange={this.onChange}
-                            disabled={this.signupDisabled()}
+                            disabled={SIGNUP_DISABLED}
                         />
                     </FormGroup>
-                    {!this.signupDisabled() && <GdprConsent action="Zaregistrováním se souhlasíte" />}
+                    {!SIGNUP_DISABLED && <GdprConsent action="Zaregistrováním se souhlasíte" />}
                     <Button
                         color="dark"
                         style={{ marginTop: '2rem' }}
