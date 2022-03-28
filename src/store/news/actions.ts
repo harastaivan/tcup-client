@@ -1,11 +1,11 @@
 import axios, { AxiosError } from 'axios'
-import { ThunkAction } from 'redux-thunk'
+import type { ThunkAction } from 'redux-thunk'
 
 import { API_ENDPOINT } from '../../constants'
 import { tokenConfig } from '../auth/actions'
 import { returnErrors, ReturnErrorsAction } from '../error/actions'
-import { AppState } from '../types'
-import { News, NewsId } from './types'
+import type { AppState } from '../types'
+import type { News, NewsId } from './types'
 
 export enum newsActionTypes {
     GET_NEWS = 'GET_NEWS',

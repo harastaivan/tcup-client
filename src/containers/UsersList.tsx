@@ -1,4 +1,3 @@
-import React from 'react'
 import { Table, Badge, ButtonGroup } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import useUsersList, { User } from '../hooks/useUsersList'

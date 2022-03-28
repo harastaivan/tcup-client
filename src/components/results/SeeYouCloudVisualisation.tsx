@@ -1,14 +1,14 @@
-import React from 'react'
+import type { FC, SetStateAction } from 'react'
 import { useTranslation } from 'react-i18next'
 import VisualisationMaximisedControl from './VisualisationMaximisedControl'
 
 type ErrorProps = {
     maximised: boolean
-    setMaximised: React.Dispatch<React.SetStateAction<boolean>>
+    setMaximised: React.Dispatch<SetStateAction<boolean>>
     children: string
 }
 
-const SomeError: React.FC<ErrorProps> = ({ maximised, setMaximised, children }) => {
+const SomeError: FC<ErrorProps> = ({ maximised, setMaximised, children }) => {
     return (
         <div style={{ position: 'relative', height: maximised ? '630px' : '40px', transition: 'height 0.75s ease' }}>
             <div
