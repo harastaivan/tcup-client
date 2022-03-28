@@ -1,5 +1,5 @@
 import { ErrorAction, errorActionTypes } from './actions'
-import { ErrorState } from './types'
+import type { ErrorState } from './types'
 
 const initialState: ErrorState = {
     msg: null,

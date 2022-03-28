@@ -1,5 +1,5 @@
-import { AxiosError } from 'axios'
-import { ErrorState } from './types'
+import type { AxiosError } from 'axios'
+import type { ErrorState } from './types'
 
 export enum errorActionTypes {
     GET_ERRORS = 'GET_ERRORS',

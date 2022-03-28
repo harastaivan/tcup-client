@@ -10,7 +10,7 @@ import { getNews, deleteNews, setNewsLoading } from '../store/news/actions'
 
 import AddNews from './AddNews'
 import Spinner from '../components/Spinner'
-import { NewsId } from '../store/news/types'
+import type { NewsId } from '../store/news/types'
 import { getIsAdmin } from '../store/auth/selectors'
 
 const News: React.FC = () => {
