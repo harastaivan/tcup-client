@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Table, ButtonGroup, Button } from 'reactstrap'
 import Moment from 'react-moment'
 import { useTranslation } from 'react-i18next'
-import { getCompetitionDays, updateCompetitionDay } from '../store/competitionDay/actions'
-import { translateDayName } from '../utils/translateDayName'
+import { getCompetitionDays, updateCompetitionDay } from 'store/competitionDay/actions'
+import { translateDayName } from 'utils/translateDayName'
 
 const competitionDaysEnum = [
     {

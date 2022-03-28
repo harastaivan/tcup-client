@@ -4,7 +4,7 @@ import ReactCountryFlag from 'react-country-flag'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
-import getCountryCode from '../utils/countryCode'
+import getCountryCode from 'utils/countryCode'
 
 const Flag = (props) => (
     <ReactCountryFlag

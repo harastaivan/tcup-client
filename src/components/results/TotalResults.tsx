@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next'
 import { Button, Col, Row, Table } from 'reactstrap'
 
 import ResultsTitle from './ResultsTitle'
-import Spinner from '../Spinner'
-import { useTotalResults } from '../../hooks/useResults'
+import Spinner from 'components/Spinner'
+import { useTotalResults } from 'hooks/useResults'
 
 type Props = {
     competitionClass: { _id: string; name: string }

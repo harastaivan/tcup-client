@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'reactstrap'
-import { SOARING_SPOT_URL } from '../../constants'
+import { SOARING_SPOT_URL } from 'config/constants'
 
 type Props = {
     children: string

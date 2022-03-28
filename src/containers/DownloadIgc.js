@@ -4,10 +4,10 @@ import { Form, FormGroup, Label, Input, Button, Row, Col, Table } from 'reactstr
 import { useTranslation } from 'react-i18next'
 import Moment from 'react-moment'
 
-import { getCompetitionDay } from '../utils/getCompetitionDay'
-import { getCompetitionDays } from '../store/competitionDay/actions'
-import { formatCompetitionDay } from '../utils/formatCompetitionDay'
-import { getIgcFiles, resetIgcFiles, updateIgcFile } from '../store/igc/actions'
+import { getCompetitionDay } from 'utils/getCompetitionDay'
+import { getCompetitionDays } from 'store/competitionDay/actions'
+import { formatCompetitionDay } from 'utils/formatCompetitionDay'
+import { getIgcFiles, resetIgcFiles, updateIgcFile } from 'store/igc/actions'
 
 const DownloadIgc = () => {
     const { t } = useTranslation()

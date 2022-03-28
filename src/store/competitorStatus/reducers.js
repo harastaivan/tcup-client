@@ -3,7 +3,7 @@ import {
     UPDATE_COMPETITOR_STATUS,
     RESET_COMPETITOR_STATUSES,
     LOADING_COMPETITOR_STATUSES,
-} from '../../actions/types'
+} from 'actions/types'
 
 const initialState = {
     competitorStatuses: [],

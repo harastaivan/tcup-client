@@ -7,9 +7,9 @@ import 'moment/locale/cs'
 import { withTranslation } from 'react-i18next'
 
 import AddDocument from './AddDocument'
-import { getDocuments, deleteDocument, setDocumentsLoading } from '../store/document/actions'
-import fileSize from '../utils/fileSize'
-import Spinner from '../components/Spinner'
+import { getDocuments, deleteDocument, setDocumentsLoading } from 'store/document/actions'
+import fileSize from 'utils/fileSize'
+import Spinner from 'components/Spinner'
 
 class Documents extends Component {
     static propTypes = {

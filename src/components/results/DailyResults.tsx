@@ -3,9 +3,9 @@ import { Button, Card, CardTitle, Col, ListGroup, ListGroupItem, Row, Table } fr
 import Moment from 'react-moment'
 
 import ResultsTitle from './ResultsTitle'
-import Spinner from '../Spinner'
-import type { DailyResult, Filters } from '../../api/results'
-import { useDailyResults } from '../../hooks/useResults'
+import Spinner from 'components/Spinner'
+import type { DailyResult, Filters } from 'api/results'
+import { useDailyResults } from 'hooks/useResults'
 
 type FiltersProps = {
     filters: Filters | null

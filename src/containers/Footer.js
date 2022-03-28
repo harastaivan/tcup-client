@@ -3,7 +3,7 @@ import { Container } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
 import { version } from '../../package.json'
-import { APP_TITLE } from '../constants'
+import { APP_TITLE } from 'config/constants'
 
 const Footer = () => {
     const { t } = useTranslation()

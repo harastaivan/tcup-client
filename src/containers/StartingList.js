@@ -11,10 +11,10 @@ import {
     setStartingListLoading,
     markPaid,
     exportRegistrations,
-} from '../store/startingList/actions'
-import Spinner from '../components/Spinner'
-import { getIsAdmin } from '../store/auth/selectors'
-import { getStartingList } from '../store/startingList/selectors'
+} from 'store/startingList/actions'
+import Spinner from 'components/Spinner'
+import { getIsAdmin } from 'store/auth/selectors'
+import { getStartingList } from 'store/startingList/selectors'
 
 const registrationsCompletedEnum = [
     {

@@ -1,4 +1,4 @@
-import { APP_TITLE } from '../constants'
+import { APP_TITLE } from 'config/constants'
 import Spinner from './Spinner'
 
 const SpinnerFullPage = () => {

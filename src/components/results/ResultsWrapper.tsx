@@ -1,5 +1,5 @@
 import { Container } from 'reactstrap'
-import Footer from '../../containers/Footer'
+import Footer from 'containers/Footer'
 
 type Props = {
     maximised?: boolean
