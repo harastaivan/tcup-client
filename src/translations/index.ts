@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import cs from './translations/cs.json'
-import en from './translations/en.json'
+import cs from './cs.json'
+import en from './en.json'
 
 import LanguageDetector from 'i18next-browser-languagedetector'
 // not like to use this?

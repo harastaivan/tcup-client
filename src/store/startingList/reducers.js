@@ -1,7 +1,7 @@
 import { saveAs } from 'file-saver'
 
-import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from '../../actions/types'
-import formatDate from '../../utils/formatDate'
+import { GET_STARTING_LIST, STARTING_LIST_LOADING, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from 'actions/types'
+import formatDate from 'utils/formatDate'
 
 const initialState = {
     classes: [],

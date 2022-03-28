@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Alert, Container } from 'reactstrap'
 import styled from 'styled-components'
-import useOnlineStatus from '../hooks/useOnlineStatus'
+import useOnlineStatus from 'hooks/useOnlineStatus'
 
 const Wrapper = styled.div`
     margin-top: 1rem;

@@ -11,7 +11,7 @@ import {
     ChangePasswordBody,
     SignupBody,
     LoginBody,
-} from '../../api/auth'
+} from 'api/auth'
 import { errorActionTypes, returnErrors } from '../error/actions'
 import { returnSuccess, successActionTypes } from '../success/actions'
 import type { AppState } from '../types'

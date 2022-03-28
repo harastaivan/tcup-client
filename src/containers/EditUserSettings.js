@@ -4,8 +4,8 @@ import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstr
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 
-import { clearErrors } from '../store/error/actions'
-import { changeUserInfo } from '../store/auth/actions'
+import { clearErrors } from 'store/error/actions'
+import { changeUserInfo } from 'store/auth/actions'
 
 class EditUserSettings extends Component {
     state = {

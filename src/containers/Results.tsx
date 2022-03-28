@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import TopResults from '../components/results/TopResults'
-import SeeYouCloudVisualisation from '../components/results/SeeYouCloudVisualisation'
-import ResultsWrapper from '../components/results/ResultsWrapper'
-import TotalResults from '../components/results/TotalResults'
-import DailyResults from '../components/results/DailyResults'
+import TopResults from 'components/results/TopResults'
+import SeeYouCloudVisualisation from 'components/results/SeeYouCloudVisualisation'
+import ResultsWrapper from 'components/results/ResultsWrapper'
+import TotalResults from 'components/results/TotalResults'
+import DailyResults from 'components/results/DailyResults'
 
 enum Page {
     topResults,

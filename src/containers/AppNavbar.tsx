@@ -17,8 +17,8 @@ import {
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import SelectLanguage from './SelectLanguage'
-import { getAuth } from '../store/auth/selectors'
-import { APP_TITLE, SOARING_SPOT_URL } from '../constants'
+import { getAuth } from 'store/auth/selectors'
+import { APP_TITLE, SOARING_SPOT_URL } from 'config/constants'
 
 const AppNavbar = () => {
     const [open, setOpen] = useState(false)

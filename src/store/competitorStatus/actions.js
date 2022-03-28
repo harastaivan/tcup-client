@@ -5,9 +5,9 @@ import {
     UPDATE_COMPETITOR_STATUS,
     RESET_COMPETITOR_STATUSES,
     LOADING_COMPETITOR_STATUSES,
-} from '../../actions/types'
-import { tokenConfig } from '../auth/actions'
-import { API_ENDPOINT } from '../../constants'
+} from 'actions/types'
+import { tokenConfig } from 'store/auth/actions'
+import { API_ENDPOINT } from 'config/constants'
 
 export const getCompetitorStatuses = (day) => async (dispatch) => {
     const res = await axios.get(`${API_ENDPOINT}/api/competitorstatuses/${day}`)

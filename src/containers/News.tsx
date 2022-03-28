@@ -5,13 +5,13 @@ import Moment from 'react-moment'
 import { useTranslation } from 'react-i18next'
 import 'moment/locale/cs'
 
-import { getNews as getNewsSelector } from '../store/news/selectors'
-import { getNews, deleteNews, setNewsLoading } from '../store/news/actions'
+import { getNews as getNewsSelector } from 'store/news/selectors'
+import { getNews, deleteNews, setNewsLoading } from 'store/news/actions'
 
 import AddNews from './AddNews'
-import Spinner from '../components/Spinner'
-import type { NewsId } from '../store/news/types'
-import { getIsAdmin } from '../store/auth/selectors'
+import Spinner from 'components/Spinner'
+import type { NewsId } from 'store/news/types'
+import { getIsAdmin } from 'store/auth/selectors'
 
 const News: React.FC = () => {
     const { t, i18n } = useTranslation()
@@ -57,6 +57,7 @@ const News: React.FC = () => {
                     </CardBody>
                     <CardFooter>
                         <strong>{`${one.author.name} ${one.author.surname} `}</strong>
+                        {/** @ts-ignore */}
                         <Moment format={'dddd D. M. YYYY HH:mm'} locale={i18n.language} className="float-right">
                             {one.updatedAt}
                         </Moment>

@@ -1,4 +1,4 @@
-import { GET_TRACKINGS } from '../../actions/types'
+import { GET_TRACKINGS } from 'actions/types'
 
 const initialState = {
     trackings: [],
