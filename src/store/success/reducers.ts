@@ -1,5 +1,5 @@
 import { SuccessAction, successActionTypes } from './actions'
-import { SuccessState } from './types'
+import type { SuccessState } from './types'
 
 const initialState: SuccessState = {
     msg: null,

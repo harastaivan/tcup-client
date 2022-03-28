@@ -1,9 +1,21 @@
-import axios, { AxiosRequestConfig } from 'axios'
-import { ThunkAction } from 'redux-thunk'
+import type { AxiosError, AxiosRequestConfig } from 'axios'
+import type { ThunkAction } from 'redux-thunk'
+
+import {
+    getLoggedInUser,
+    updateUser,
+    changeUserPassword,
+    createUser,
+    loginUser,
+    UpdateUserBody,
+    ChangePasswordBody,
+    SignupBody,
+    LoginBody,
+} from '../../api/auth'
 import { errorActionTypes, returnErrors } from '../error/actions'
 import { returnSuccess, successActionTypes } from '../success/actions'
-import { AppState } from '../types'
-import { User } from './types'
+import type { AppState } from '../types'
+import type { User } from './types'
 
 export enum authActionTypes {
     USER_LOADING = 'USER_LOADING',
@@ -19,29 +31,6 @@ export enum authActionTypes {
     USER_PASSWORD_CHANGED = 'USER_PASSWORD_CHANGED',
     USER_PASSWORD_CHANGE_ERROR = 'USER_PASSWORD_CHANGE_ERROR',
     TIMEOUT_LOGOUT_SUCCESS = 'TIMEOUT_LOGOUT_SUCCESS',
-}
-
-export type ChangeUserInfoValues = {
-    name: string
-    surname: string
-    email: string
-}
-
-export type ChangePasswordValues = {
-    oldPassword: string
-    newPassword: string
-}
-
-export type SignupCredentials = {
-    name: string
-    surname: string
-    email: string
-    password: string
-}
-
-export type LoginCredentials = {
-    email: string
-    password: string
 }
 
 export type UserLoadedAction = {
@@ -101,7 +90,11 @@ export type RegisterUserAction =
 
 export type LoginAction =
     | {
-          type: authActionTypes.LOGIN_FAIL | authActionTypes.TIMEOUT_LOGOUT_SUCCESS | errorActionTypes.GET_ERRORS
+          type:
+              | authActionTypes.USER_LOADING
+              | authActionTypes.LOGIN_FAIL
+              | authActionTypes.TIMEOUT_LOGOUT_SUCCESS
+              | errorActionTypes.GET_ERRORS
       }
     | UserAuthenticatedAction
 
@@ -117,8 +110,6 @@ export type AuthAction =
     | LoginAction
     | LogoutAction
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
-
 let logoutTimer: NodeJS.Timeout | null = null
 
 // Check token & load user
@@ -126,86 +117,71 @@ export const loadUser = (): ThunkAction<void, AppState, null, LoadUserAction> =>
     try {
         // User loading
         dispatch({ type: authActionTypes.USER_LOADING })
-        const res = await axios.get(`${API_ENDPOINT}/api/auth/user`, tokenConfig(getState))
-        dispatch({ type: authActionTypes.USER_LOADED, payload: res.data })
+        const user = await getLoggedInUser(tokenConfig(getState))
+        dispatch({ type: authActionTypes.USER_LOADED, payload: user })
     } catch {
         // dispatch(returnErrors(err));
         dispatch({ type: authActionTypes.AUTH_ERROR })
     }
 }
 
-export const changeUserInfo = ({
-    name,
-    surname,
-    email,
-}: ChangeUserInfoValues): ThunkAction<void, AppState, null, ChangeUserInfoAction> => async (dispatch, getState) => {
+export const changeUserInfo = (body: UpdateUserBody): ThunkAction<void, AppState, null, ChangeUserInfoAction> => async (
+    dispatch,
+    getState
+) => {
     try {
-        const res = await axios.put(`${API_ENDPOINT}/api/users`, { name, surname, email }, tokenConfig(getState))
-        dispatch({ type: authActionTypes.USER_CHANGED, payload: res.data })
+        const user = await updateUser(body, tokenConfig(getState))
+        dispatch({ type: authActionTypes.USER_CHANGED, payload: user })
     } catch (err) {
-        dispatch(returnErrors(err))
+        dispatch(returnErrors(err as AxiosError))
         dispatch({ type: authActionTypes.USER_CHANGE_ERROR })
     }
 }
 
-export const changePassword = ({
-    oldPassword,
-    newPassword,
-}: ChangePasswordValues): ThunkAction<void, AppState, null, ChangePasswordAction> => async (dispatch, getState) => {
+export const changePassword = (
+    body: ChangePasswordBody
+): ThunkAction<void, AppState, null, ChangePasswordAction> => async (dispatch, getState) => {
     try {
-        const res = await axios.post(
-            `${API_ENDPOINT}/api/auth/change-password`,
-            { oldPassword, newPassword },
-            tokenConfig(getState)
-        )
-        dispatch({ type: authActionTypes.USER_PASSWORD_CHANGED, payload: res.data })
+        const res = await changeUserPassword(body, tokenConfig(getState))
+        dispatch({ type: authActionTypes.USER_PASSWORD_CHANGED, payload: res })
         dispatch(returnSuccess('Heslo bylo změněno', authActionTypes.USER_PASSWORD_CHANGED))
     } catch (err) {
-        dispatch(returnErrors(err, authActionTypes.USER_PASSWORD_CHANGE_ERROR))
+        dispatch(returnErrors(err as AxiosError, authActionTypes.USER_PASSWORD_CHANGE_ERROR))
         dispatch({ type: authActionTypes.USER_PASSWORD_CHANGE_ERROR })
     }
 }
 
-export const register = ({
-    name,
-    surname,
-    email,
-    password,
-}: SignupCredentials): ThunkAction<void, AppState, null, RegisterUserAction> => async (dispatch) => {
+export const register = (body: SignupBody): ThunkAction<void, AppState, null, RegisterUserAction> => async (
+    dispatch
+) => {
     const config: AxiosRequestConfig = {
         headers: {
             'Content-Type': 'application/json',
         },
     }
 
-    const body = JSON.stringify({ name, surname, email, password })
-
     try {
-        const res = await axios.post(`${API_ENDPOINT}/api/users`, body, config)
-        dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: res.data })
+        const res = await createUser(body, config)
+        dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: res })
     } catch (err) {
         dispatch({
             type: authActionTypes.REGISTER_FAIL,
         })
-        dispatch(returnErrors(err, authActionTypes.REGISTER_FAIL))
+        dispatch(returnErrors(err as AxiosError, authActionTypes.REGISTER_FAIL))
     }
 }
 
-export const login = ({ email, password }: LoginCredentials): ThunkAction<void, AppState, null, LoginAction> => async (
-    dispatch
-) => {
+export const login = (body: LoginBody): ThunkAction<void, AppState, null, LoginAction> => async (dispatch) => {
     // Headers
     const config = {
         headers: {
             'Content-Type': 'application/json',
         },
     }
-
-    const body = JSON.stringify({ email, password })
-
+    dispatch({ type: authActionTypes.USER_LOADING })
     try {
-        const res = await axios.post(`${API_ENDPOINT}/api/auth`, body, config)
-        dispatch({ type: authActionTypes.LOGIN_SUCCESS, payload: res.data })
+        const res = await loginUser(body, config)
+        dispatch({ type: authActionTypes.LOGIN_SUCCESS, payload: res })
         logoutTimer = setTimeout(() => {
             dispatch({ type: authActionTypes.TIMEOUT_LOGOUT_SUCCESS })
         }, 59 * 60 * 1000)
@@ -213,7 +189,7 @@ export const login = ({ email, password }: LoginCredentials): ThunkAction<void, 
         dispatch({
             type: authActionTypes.LOGIN_FAIL,
         })
-        dispatch(returnErrors(err, authActionTypes.LOGIN_FAIL))
+        dispatch(returnErrors(err as AxiosError, authActionTypes.LOGIN_FAIL))
     }
 }
 

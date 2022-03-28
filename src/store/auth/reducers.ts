@@ -1,5 +1,5 @@
 import { AuthAction, authActionTypes } from './actions'
-import { AuthState } from './types'
+import type { AuthState } from './types'
 
 const initialState: AuthState = {
     token: sessionStorage.getItem('token'),

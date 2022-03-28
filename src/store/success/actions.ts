@@ -1,4 +1,4 @@
-import { SuccessState } from './types'
+import type { SuccessState } from './types'
 
 export enum successActionTypes {
     GET_SUCCESS = 'GET_SUCCESS',

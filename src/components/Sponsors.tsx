@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import useSponsors, { Sponsor as SponsorType } from '../hooks/useSponsors'
 import styled from 'styled-components'

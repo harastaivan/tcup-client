@@ -1,5 +1,5 @@
 import { NewsAction, newsActionTypes } from './actions'
-import { NewsState } from './types'
+import type { NewsState } from './types'
 
 const initialState: NewsState = {
     news: [],

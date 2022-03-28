@@ -4,7 +4,7 @@ import Moment from 'react-moment'
 
 import ResultsTitle from './ResultsTitle'
 import Spinner from '../Spinner'
-import { DailyResult, Filters } from '../../api/results'
+import type { DailyResult, Filters } from '../../api/results'
 import { useDailyResults } from '../../hooks/useResults'
 
 type FiltersProps = {
