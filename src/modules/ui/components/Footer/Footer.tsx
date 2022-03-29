@@ -2,11 +2,12 @@ import React from 'react'
 import { Container } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import { version } from '../../package.json'
+import { version } from '../../../../../package.json'
 import { APP_TITLE } from 'config/constants'
 
-const Footer = () => {
+export const Footer = () => {
     const { t } = useTranslation()
+
     return (
         <Container className="transparent-background">
             <footer className={`p-5 py-4 text-center text-small`}>
@@ -17,9 +18,11 @@ const Footer = () => {
                             {t('verze')} {version}
                         </b>
                     </p>
-                    <p>
-                        by{' '}
-                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/harastaivan">
+                    <p style={{ fontWeight: 500 }}>
+                        <span style={{ marginRight: 6 }}>
+                            Made with<span style={{ marginRight: 6 }}> ❤️ </span> by
+                        </span>
+                        <a target="_blank" rel="noopener noreferrer" href="https://harasta.dev">
                             @harastaivan
                         </a>
                     </p>
@@ -28,5 +31,3 @@ const Footer = () => {
         </Container>
     )
 }
-
-export default Footer

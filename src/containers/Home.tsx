@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import Tracking from './Tracking'
 import Sponsors from 'components/Sponsors'
 import News from './News'
-import Footer from './Footer'
+import { Footer } from 'modules/ui'
 import { Container, Button, Row, Col } from 'reactstrap'
 import { APP_TITLE } from 'config/constants'
 
