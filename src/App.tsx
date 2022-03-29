@@ -38,7 +38,6 @@ import Archive from 'components/Archive'
 import TestMode from 'components/TestMode'
 import Offline from 'components/Offline'
 import SpinnerFullPage from 'components/SpinnerFullPage'
-import { useSpinnerFullPage } from 'hooks/useSpinnerFullPage'
 
 const App = () => {
     const error = useSelector(getError)
@@ -55,13 +54,7 @@ const App = () => {
     const isHomepage = useRouteMatch('/')?.isExact || false
     const isResultsPage = useRouteMatch('/results')?.isExact || false
 
-    const { showSpinner } = useSpinnerFullPage()
-
     const isSpecialPage = isHomepage || isResultsPage
-
-    if (showSpinner) {
-        return <SpinnerFullPage />
-    }
 
     return (
         <div className="App">
@@ -94,6 +87,7 @@ const App = () => {
                 </Switch>
             </Container>
             {!isSpecialPage && <Footer />}
+            <SpinnerFullPage />
         </div>
     )
 }
