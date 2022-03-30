@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.0.2"></a>
+
+## 1.0.2 (2022-03-30)
+
+### Miscellaneous
+
+-   👷 Remove fast forward PR github action [[8ff65a7](https://github.com/harastaivan/tcup-client/commit/8ff65a7f2616d25617d06a7a132862d1c4d16e28)]
+
 <a name="1.0.1"></a>
 
 ## 1.0.1 (2022-03-30)
