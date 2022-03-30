@@ -1,5 +1,7 @@
 {
     "common": {
+        "navbar.registration": "Přihláška",
+
         "Admin": "Admin",
         "Profil": "Profil",
         "Změnit heslo": "Změnit heslo",
@@ -10,7 +12,6 @@
         "Statusy soutěžících": "Statusy soutěžících",
         "Startovní listina": "Startovní listina",
         "Úlohy a výsledky": "Úlohy a výsledky",
-        "Přihláška": "Přihláška",
         "Odeslat IGC": "Odeslat IGC",
         "Další": "Další",
         "Dokumenty": "Dokumenty",
@@ -71,7 +72,6 @@
         "Nemáte účet?": "Nemáte účet?",
         "Vytvořte si ho.": "Vytvořte si ho.",
         "smazat novinku": "smazat novinku",
-        "Pro vytvoření přihlášky se přihlaste.": "Pro vytvoření přihlášky se přihlaste.",
         "Vytvoření přihlášky": "Vytvoření přihlášky",
         "Vytvořit přihlášku": "Vytvořit přihlášku",
         "V tuto chvíli není registrace možná.": "V tuto chvíli není registrace možná.",
@@ -194,8 +194,49 @@
         "Poslat email": "Poslat email",
         "Aplikace je offline": "Aplikace je offline. Zkontrolujte připojení k internetu.",
         "Něco se pokazilo": "Něco se pokazilo",
-        "Pro úpravu přihlášky se přihlaste.": "Pro úpravu přihlášky se přihlaste.",
-        "Pro úpravu přihlášky musíte být admin.": "Pro úpravu přihlášky musíte být admin.",
-        "Neplatné heslo": "Neplatné heslo"
+        "Neplatné heslo": "Neplatné heslo",
+
+        "registration.title": "Přihláška",
+        "registration.admin.title": "Úprava přihlášky uživatele",
+        "registration.update.login": "Pro úpravu přihlášky se přihlaste.",
+        "registration.admin.login": "Pro úpravu přihlášky musíte být admin.",
+        "registration.create.login": "Pro vytvoření přihlášky se přihlaste.",
+        "form.field.required": "Pole je povinné",
+        "form.field.number": "Pole musí být číslo",
+        "form.registration.name.label": "Jméno",
+        "form.registration.surname.label": "Příjmení",
+        "form.registration.email.label": "Email",
+        "form.registration.birthDate.label": "Datum narození",
+        "form.registration.phone.label": "Telefon",
+        "form.registration.phone.error": "Pole musí být telefonní číslo",
+        "form.registration.aeroclub.label": "Aeroklub",
+        "form.registration.region.label": "Region",
+        "form.registration.gliderType.label": "Typ kluzáku",
+        "form.registration.registrationNumber.label": "Imatrikulace",
+        "form.registration.startNumber.label": "Startovní číslo",
+        "form.registration.hasEngine.label": "Má motor",
+        "form.registration.competitionClass.label": "Třída",
+        "form.registration.logger.label": "Logger",
+        "form.registration.accomodationType.label": "Typ ubytování",
+        "form.registration.quantity.label": "Počet osob pro ubytování",
+        "form.registration.meals.label": "Počet osob pro jídlo",
+        "form.registration.note.label": "Poznámka",
+        "form.registration.registrationCompleted.label": "Registrace dokončena",
+        "form.registration.igcId.label": "IGC ID",
+        "form.registration.submit": "Editovat přihlášku",
+        "form.submitting": "načítání...",
+
+        "competitionClass.club": "Klub",
+        "competitionClass.18_meter": "Kombi",
+
+        "region.Morava": "Morava",
+        "region.Německo": "Německo",
+        "region.Rakousko": "Rakousko",
+        "region.Čechy 1.": "Čechy 1",
+        "region.Čechy 2.": "Čechy 2",
+
+        "accomodationType.Děkuji, nemám zájem": "Děkuji, nemám zájem",
+        "accomodationType.Kemp": "Kemp",
+        "accomodationType.Ubytovna": "Ubytovna"
     }
 }
