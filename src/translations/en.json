@@ -1,5 +1,7 @@
 {
     "common": {
+        "navbar.registration": "Entry form",
+
         "Admin": "Admin",
         "Profil": "Profile",
         "Změnit heslo": "Change password",
@@ -10,7 +12,6 @@
         "Statusy soutěžících": "Competitors status",
         "Startovní listina": "Starting list",
         "Úlohy a výsledky": "Tasks and results",
-        "Přihláška": "Entry form",
         "Odeslat IGC": "IGC upload",
         "Další": "More",
         "Dokumenty": "Documents",
@@ -71,7 +72,6 @@
         "Nemáte účet?": "Don't have an account yet?",
         "Vytvořte si ho.": "Sign up here.",
         "smazat novinku": "delete news",
-        "Pro vytvoření přihlášky se přihlaste.": "To fill in the entry form first you need to Log in.",
         "Vytvoření přihlášky": "Entry form",
         "Vytvořit přihlášku": "Submit entry form",
         "V tuto chvíli není registrace možná.": "Contact the organizer to sign up.",
@@ -193,9 +193,50 @@
         "email": "email",
         "Poslat email": "Send email",
         "Aplikace je offline": "Aplication is offline. Check your internet connection.",
-        "Něco se pokazilo": "Něco se pokazilo",
-        "Pro úpravu přihlášky se přihlaste.": "Pro úpravu přihlášky se přihlaste.",
-        "Pro úpravu přihlášky musíte být admin.": "Pro úpravu přihlášky musíte být admin.",
-        "Neplatné heslo": "Neplatné heslo"
+        "Něco se pokazilo": "Something went wrong",
+        "Neplatné heslo": "Neplatné heslo",
+
+        "registration.title": "Entry form",
+        "registration.admin.title": "Admin entry form",
+        "registration.update.login": "To fill out the entry form you need to be logged in.",
+        "registration.admin.login": "To fill out the entry form you need to be admin.",
+        "registration.create.login": "To fill out the entry form you need to be logged in.",
+        "form.field.required": "The field is required.",
+        "form.field.number": "The field must be a number.",
+        "form.registration.name.label": "Name",
+        "form.registration.surname.label": "Surname",
+        "form.registration.email.label": "Email",
+        "form.registration.birthDate.label": "Date of birth",
+        "form.registration.phone.label": "Phone",
+        "form.registration.phone.error": "The field must be a phone number.",
+        "form.registration.aeroclub.label": "Aeroclub",
+        "form.registration.region.label": "Region",
+        "form.registration.gliderType.label": "Glider type",
+        "form.registration.registrationNumber.label": "Aircraft registration number",
+        "form.registration.startNumber.label": "Start number",
+        "form.registration.hasEngine.label": "Has engine",
+        "form.registration.competitionClass.label": "Competition class",
+        "form.registration.logger.label": "Logger",
+        "form.registration.accomodationType.label": "Accomodation",
+        "form.registration.quantity.label": "Number of persons for accomodation",
+        "form.registration.meals.label": "Number of persons for food",
+        "form.registration.note.label": "Note",
+        "form.registration.registrationCompleted.label": "Registration completed",
+        "form.registration.igcId.label": "IGC ID",
+        "form.registration.submit": "Edit entry form",
+        "form.submitting": "loading...",
+
+        "competitionClass.club": "Club",
+        "competitionClass.18_meter": "Combi",
+
+        "region.Morava": "Moravia",
+        "region.Německo": "Germany",
+        "region.Rakousko": "Austria",
+        "region.Čechy 1.": "Czechia 1",
+        "region.Čechy 2.": "Czechia 2",
+
+        "accomodationType.Děkuji, nemám zájem": "Thanks, I'm not interested",
+        "accomodationType.Kemp": "Camp",
+        "accomodationType.Ubytovna": "Lodging house"
     }
 }

@@ -113,7 +113,7 @@ const AppNavbar = () => {
                         </NavItem>
                         <NavItem>
                             <NavLink tag={Link} to="/registration" activeClassName="active" exact>
-                                {t('Přihláška')}
+                                {t('navbar.registration')}
                             </NavLink>
                         </NavItem>
                         <NavItem />

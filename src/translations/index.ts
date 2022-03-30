@@ -13,8 +13,10 @@ const resources = { cs, en }
 const defaultNS = 'common' as const
 
 export const availableLanguages = Object.keys(resources)
-export type TranslationResources = typeof en
+export type TranslationResources = typeof cs
 export type TKey = keyof TranslationResources[typeof defaultNS]
+
+export type TFunction = (key: TKey) => string
 
 i18n.use(initReactI18next)
     .use(LanguageDetector)
