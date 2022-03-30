@@ -6,4 +6,4 @@ export const SIGNUP_DISABLED =
 export const SPINNER_TIMEOUT =
     process.env.REACT_APP_SPINNER_TIMEOUT !== undefined ? Number(process.env.REACT_APP_SPINNER_TIMEOUT) : 2000
 
-export const APP_TITLE = 'tcup 2022'
+export const APP_TITLE = process.env.REACT_APP_TITLE
