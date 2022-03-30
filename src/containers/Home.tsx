@@ -1,14 +1,17 @@
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import Tracking from './Tracking'
-import Sponsors from 'components/Sponsors'
-import News from './News'
-import { Footer } from 'modules/ui'
 import { Container, Button, Row, Col } from 'reactstrap'
+
+import Sponsors from 'components/Sponsors'
 import { APP_TITLE } from 'config/constants'
+import { Footer } from 'modules/ui'
+
+import Tracking from './Tracking'
+import News from './News'
 
 const Home = () => {
     const { t } = useTranslation()
+
     return (
         <div className="homepage">
             <div className="homepage-highlight"></div>
@@ -18,23 +21,23 @@ const Home = () => {
                         <span className="header-box-span">{APP_TITLE}</span>
                     </h1>
                     <h2 className="sub-header">
-                        {t('Letošní tcup se bude konat')} <br />
-                        {t('10. 7. – 18. 7. 2021 v Toužimi')}.
+                        {t('homepage.subheader.1')} <br />
+                        {t('homepage.subheader.2')}.
                     </h2>
                     <div className="button-container">
                         <Button outline color="secondary" size="lg" tag={'a'} href="https://lipty.rajce.idnes.cz">
-                            {t('fotogalerie')}
+                            {t('homepage.photos')}
                         </Button>{' '}
                         <Button color="primary" size="lg" tag={NavLink} to="/igc">
-                            {t('odeslat IGC')}
+                            {t('homepage.sendIgc')}
                         </Button>
                     </div>
                     <h2 className="sub-header-alert">
-                        {'Dovolujeme si upozornit účastníky závodu, že provozní plocha letiště je'}
+                        {t('homepage.subheader.alert.1')}
                         <br />
-                        {'monitorována kamerovým systémem a během dne i noci ostrahu zabezpečuje agentura Securitas.'}
+                        {t('homepage.subheader.alert.2')}
                         <br />
-                        {'V případě dotazu se obraťte na ředitele závodu.'}
+                        {t('homepage.subheader.alert.3')}
                     </h2>
                     <Row>
                         <Col md={8}>
