@@ -34,7 +34,7 @@ import CompetitionDays from 'containers/CompetitionDays'
 import ResetPassword from 'containers/ResetPassword'
 import UsersList from 'containers/UsersList'
 
-import Archive from 'components/Archive'
+import { Archive } from 'components/Archive'
 import TestMode from 'components/TestMode'
 import Offline from 'components/Offline'
 import SpinnerFullPage from 'components/SpinnerFullPage'

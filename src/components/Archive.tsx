@@ -1,14 +1,16 @@
-import React from 'react'
 import { ListGroup, ListGroupItem } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-export default function Archive() {
+export const Archive = () => {
     const { t } = useTranslation()
 
     return (
         <div>
-            <h1>{t('Archiv předchozích ročníků')}</h1>
+            <h1>{t('archive.title')}</h1>
             <ListGroup>
+                <ListGroupItem tag="a" href="http://2021.tcup.cz">
+                    tcup 2021
+                </ListGroupItem>
                 <ListGroupItem tag="a" href="http://2020.tcup.cz">
                     tcup 2020
                 </ListGroupItem>

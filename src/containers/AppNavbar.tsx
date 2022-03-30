@@ -142,7 +142,7 @@ const AppNavbar = () => {
                                 <DropdownItem className="bg-light">
                                     <NavItem>
                                         <NavLink tag={Link} to="/archive" activeClassName="active">
-                                            {t('Archiv')}
+                                            {t('navbar.archive')}
                                         </NavLink>
                                     </NavItem>
                                 </DropdownItem>
