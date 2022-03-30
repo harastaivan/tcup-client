@@ -1,6 +1,6 @@
 {
     "name": "tcup-client",
-    "version": "0.12.0",
+    "version": "1.0.0",
     "private": true,
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.0",
