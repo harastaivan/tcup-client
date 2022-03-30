@@ -17,7 +17,7 @@ import { getError } from 'store/error/selectors'
 import AppNavbar from 'containers/AppNavbar'
 import Home from 'containers/Home'
 import News from 'containers/News'
-import Registration from 'containers/Registration'
+import { RegistrationPage } from 'modules/registration'
 import Login from 'containers/Login'
 import CompetitorStatuses from 'containers/CompetitorStatuses'
 import StartingList from 'containers/StartingList'
@@ -69,7 +69,7 @@ const App = () => {
                 {error.msg && <Alert color="danger">{t(error.msg as TKey)}</Alert>}
                 <Switch>
                     <Route path="/news" component={News} />
-                    <Route path="/registration" component={Registration} />
+                    <Route path="/registration" component={RegistrationPage} />
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />
                     <Route path="/logout" component={Logout} />
