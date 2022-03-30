@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.0.1"></a>
+
+## 1.0.1 (2022-03-30)
+
+### Fixed
+
+-   🐛 Add app title back [[ea0335a](https://github.com/harastaivan/tcup-client/commit/ea0335ab5df9524b634440173e234ac50fc533a0)]
+
+### Miscellaneous
+
+-   👷 Add fast forward PR github action [[68dc29c](https://github.com/harastaivan/tcup-client/commit/68dc29c2a5671f0c4d23568d5b15f8343f31b76f)]
+
 <a name="1.0.0"></a>
 
 ## 1.0.0 (2022-03-30)
