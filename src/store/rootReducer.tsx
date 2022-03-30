@@ -10,6 +10,7 @@ import competitionDayReducer from './competitionDay/reducers'
 import competitorStatusReducer from './competitorStatus/reducers'
 import igcReducer from './igc/reducers'
 import trackingReducer from './tracking/reducers'
+import { api } from 'services/api'
 
 export default combineReducers({
     error: errorReducer,
@@ -23,4 +24,5 @@ export default combineReducers({
     competitorStatus: competitorStatusReducer,
     igc: igcReducer,
     tracking: trackingReducer,
+    [api.reducerPath]: api.reducer,
 })
