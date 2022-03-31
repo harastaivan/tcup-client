@@ -46,6 +46,7 @@ export const exportRegistrations = () => async (dispatch, getState) => {
             type: EXPORT_REGISTRATIONS,
             payload: res,
         })
+        toast.success('startingList.export.success')
     } catch (err) {
         toast.apiError(err)
     }

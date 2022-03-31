@@ -8,6 +8,7 @@ import {
 } from 'actions/types'
 import { tokenConfig } from 'store/auth/actions'
 import { API_ENDPOINT } from 'config/constants'
+import { toast } from 'modules/toast'
 
 export const getCompetitorStatuses = (day) => async (dispatch) => {
     const res = await axios.get(`${API_ENDPOINT}/api/competitorstatuses/${day}`)
@@ -18,15 +19,19 @@ export const getCompetitorStatuses = (day) => async (dispatch) => {
 }
 
 export const updateCompetitorStatus = (competitorStatus) => async (dispatch, getState) => {
-    const res = await axios.put(
-        `${API_ENDPOINT}/api/competitorstatuses/${competitorStatus._id}`,
-        { status: competitorStatus.status },
-        tokenConfig(getState)
-    )
-    dispatch({
-        type: UPDATE_COMPETITOR_STATUS,
-        payload: res.data,
-    })
+    try {
+        const res = await axios.put(
+            `${API_ENDPOINT}/api/competitorstatuses/${competitorStatus._id}`,
+            { status: competitorStatus.status },
+            tokenConfig(getState)
+        )
+        dispatch({
+            type: UPDATE_COMPETITOR_STATUS,
+            payload: res.data,
+        })
+    } catch {
+        toast.error('competitorStatus.update.error')
+    }
 }
 
 export const resetCompetitorStatuses = () => async (dispatch) => {

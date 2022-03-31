@@ -53,6 +53,7 @@ export const addNews = (news: News): ThunkAction<void, AppState, null, AddNewsAc
             type: newsActionTypes.ADD_NEWS,
             payload: res.data,
         })
+        toast.success('news.add.success')
     } catch (err) {
         toast.apiError(err as AxiosError)
     }
@@ -68,6 +69,7 @@ export const deleteNews = (id: NewsId): ThunkAction<void, AppState, null, Delete
             type: newsActionTypes.DELETE_NEWS,
             payload: id,
         })
+        toast.success('news.delete.success')
     } catch (err) {
         toast.apiError(err as AxiosError)
     }

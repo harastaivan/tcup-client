@@ -27,6 +27,7 @@ export const addDocument = (document) => async (dispatch, getState) => {
             type: ADD_DOCUMENT,
             payload: res.data,
         })
+        toast.success('document.add.success')
     } catch (err) {
         toast.apiError(err)
     }
@@ -39,6 +40,7 @@ export const deleteDocument = (id) => async (dispatch, getState) => {
             type: DELETE_DOCUMENT,
             payload: id,
         })
+        toast.success('document.delete.success')
     } catch (err) {
         toast.apiError(err)
     }
