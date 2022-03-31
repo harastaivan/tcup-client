@@ -242,6 +242,15 @@
         "logout.success": "Byl jste odhlášen.",
         "changeUserInfo.success": "Vaše údaje byly změněny.",
 
+        "competitionDays.update.success": "Den byl upraven.",
+        "competitionDays.update.error": "Došlo k chybě.",
+        "competitorStatus.update.error": "Došlo k chybě.",
+        "document.add.success": "Dokument byl nahrán.",
+        "document.delete.success": "Dokument byl smazán.",
+        "news.add.success": "Novinka byla přidána.",
+        "news.delete.success": "Novinka byla smazána.",
+        "startingList.export.success": "Export byl proveden.",
+
         "competitionClass.club": "Klub",
         "competitionClass.18_meter": "Kombi",
 

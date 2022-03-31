@@ -242,6 +242,15 @@
         "logout.success": "You were logged out.",
         "changeUserInfo.success": "Your user information was changed.",
 
+        "competitionDays.update.success": "Day was updated.",
+        "competitionDays.update.error": "Something went wrong.",
+        "competitorStatus.update.error": "Something went wrong.",
+        "document.add.success": "Document was uploaded.",
+        "document.delete.success": "Document was deleted.",
+        "news.add.success": "News was added.",
+        "news.delete.success": "News was deleted.",
+        "startingList.export.success": "Export is finished.",
+
         "competitionClass.club": "Club",
         "competitionClass.18_meter": "Kombi",
 
