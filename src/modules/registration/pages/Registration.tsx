@@ -16,12 +16,14 @@ export const RegistrationPage = () => {
                 <Route path={adminPath}>
                     {!isAuthenticated && (
                         <div>
+                            {/* TODO: Redirect to /login */}
                             <Alert color="info">{t('registration.update.login')}</Alert>
                             <Login />
                         </div>
                     )}
                     {isAuthenticated && !isAdmin && (
                         <div>
+                            {/* TODO: Redirect to /login */}
                             <Alert color="danger">{t('registration.admin.login')}</Alert>
                             <Login />
                         </div>
@@ -32,6 +34,7 @@ export const RegistrationPage = () => {
                     {loading && <Spinner />}
                     {!loading && !isAuthenticated && (
                         <div>
+                            {/* TODO: Redirect to /login */}
                             <Alert color="info">{t('registration.create.login')}</Alert>
                             <Login />
                         </div>
