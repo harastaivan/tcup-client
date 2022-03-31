@@ -5,7 +5,6 @@ import { Link, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import { login } from 'store/auth/actions'
-import { clearErrors } from 'store/error/actions'
 import { getAuth } from 'store/auth/selectors'
 
 const Login: React.FC = () => {
@@ -30,7 +29,6 @@ const Login: React.FC = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        dispatch(clearErrors())
         const user = { email, password }
         dispatch(login(user))
         setPassword('')
@@ -38,7 +36,6 @@ const Login: React.FC = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            dispatch(clearErrors())
             history.push('/')
         }
     }, [isAuthenticated, dispatch, history])

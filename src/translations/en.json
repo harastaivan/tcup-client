@@ -119,7 +119,7 @@
         "Registration already exists by this user": "Registration already exists by this user",
         "User is not admin": "User is not admin",
         "Soubor": "File",
-        "Heslo bylo změněno": "Password",
+        "changePassword.success": "Password has been changed",
         "Přidat novinku": "Add news",
         "Nadpis": "Title",
         "Novinka": "News body",
@@ -228,8 +228,22 @@
         "form.registration.submit": "Edit entry form",
         "form.submitting": "loading...",
 
+        "registration.submit.success": "Entry form was submitted.",
+        "registration.update.success": "Entry form was updated.",
+        "registration.submit.error": "There was a problem with submitting entry form.",
+        "registration.update.error": "There was a problem with updating entry form.",
+
+        "backend.unavailable": "Server is unavailable. Contact the administrator.",
+
+        "results.class.noResults": "Class has no results yet.",
+
+        "signup.success": "You've been signed up.",
+        "login.success": "You were logged in.",
+        "loadUser.error": "You were logged out.",
+        "changeUserInfo.success": "Your user information was changed.",
+
         "competitionClass.club": "Club",
-        "competitionClass.18_meter": "Combi",
+        "competitionClass.18_meter": "Kombi",
 
         "region.Morava": "Moravia",
         "region.Německo": "Germany",

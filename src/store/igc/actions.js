@@ -11,7 +11,7 @@ import {
     UPDATE_IGC_FILE,
 } from 'actions/types'
 import { tokenConfig } from 'store/auth/actions'
-import { returnErrors } from 'store/error/actions'
+import { toast } from 'modules/toast'
 import { API_ENDPOINT } from 'config/constants'
 
 export const addIgc = (igc) => async (dispatch, getState) => {
@@ -32,7 +32,7 @@ export const addIgc = (igc) => async (dispatch, getState) => {
             dispatch({ type: IGC_CLEAR_MESSAGE })
         }, 5000)
     } catch (err) {
-        dispatch(returnErrors(err))
+        toast.apiError(err)
         dispatch({
             type: ADD_IGC_ERROR,
             payload: err,

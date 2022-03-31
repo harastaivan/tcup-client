@@ -12,8 +12,7 @@ import {
     SignupBody,
     LoginBody,
 } from 'api/auth'
-import { errorActionTypes, returnErrors } from '../error/actions'
-import { returnSuccess, successActionTypes } from '../success/actions'
+import { toast } from 'modules/toast'
 import type { AppState } from '../types'
 import type { User } from './types'
 
@@ -40,7 +39,7 @@ export type UserLoadedAction = {
 
 export type LoadUserAction =
     | {
-          type: authActionTypes.USER_LOADING | authActionTypes.AUTH_ERROR
+          type: authActionTypes.USER_LOADING | authActionTypes.AUTH_ERROR | authActionTypes.LOGOUT_SUCCESS
       }
     | UserLoadedAction
 
@@ -54,7 +53,7 @@ export type UserInfoChangedAction = {
 
 export type ChangeUserInfoAction =
     | {
-          type: authActionTypes.USER_CHANGE_ERROR | errorActionTypes.GET_ERRORS
+          type: authActionTypes.USER_CHANGE_ERROR
       }
     | UserInfoChangedAction
 
@@ -67,10 +66,7 @@ export type UserPasswordChangedAction = {
 
 export type ChangePasswordAction =
     | {
-          type:
-              | authActionTypes.USER_PASSWORD_CHANGE_ERROR
-              | successActionTypes.GET_SUCCESS
-              | errorActionTypes.GET_ERRORS
+          type: authActionTypes.USER_PASSWORD_CHANGE_ERROR
       }
     | UserPasswordChangedAction
 
@@ -84,17 +80,13 @@ export type UserAuthenticatedAction = {
 
 export type RegisterUserAction =
     | {
-          type: authActionTypes.REGISTER_FAIL | errorActionTypes.GET_ERRORS
+          type: authActionTypes.REGISTER_FAIL
       }
     | UserAuthenticatedAction
 
 export type LoginAction =
     | {
-          type:
-              | authActionTypes.USER_LOADING
-              | authActionTypes.LOGIN_FAIL
-              | authActionTypes.TIMEOUT_LOGOUT_SUCCESS
-              | errorActionTypes.GET_ERRORS
+          type: authActionTypes.USER_LOADING | authActionTypes.LOGIN_FAIL | authActionTypes.TIMEOUT_LOGOUT_SUCCESS
       }
     | UserAuthenticatedAction
 
@@ -120,8 +112,9 @@ export const loadUser = (): ThunkAction<void, AppState, null, LoadUserAction> =>
         const user = await getLoggedInUser(tokenConfig(getState))
         dispatch({ type: authActionTypes.USER_LOADED, payload: user })
     } catch {
-        // dispatch(returnErrors(err));
+        toast.error('loadUser.error')
         dispatch({ type: authActionTypes.AUTH_ERROR })
+        dispatch(logout())
     }
 }
 
@@ -132,8 +125,9 @@ export const changeUserInfo = (body: UpdateUserBody): ThunkAction<void, AppState
     try {
         const user = await updateUser(body, tokenConfig(getState))
         dispatch({ type: authActionTypes.USER_CHANGED, payload: user })
+        toast.success('changeUserInfo.success')
     } catch (err) {
-        dispatch(returnErrors(err as AxiosError))
+        toast.apiError(err as AxiosError)
         dispatch({ type: authActionTypes.USER_CHANGE_ERROR })
     }
 }
@@ -144,9 +138,9 @@ export const changePassword = (
     try {
         const res = await changeUserPassword(body, tokenConfig(getState))
         dispatch({ type: authActionTypes.USER_PASSWORD_CHANGED, payload: res })
-        dispatch(returnSuccess('Heslo bylo změněno', authActionTypes.USER_PASSWORD_CHANGED))
+        toast.success('changePassword.success')
     } catch (err) {
-        dispatch(returnErrors(err as AxiosError, authActionTypes.USER_PASSWORD_CHANGE_ERROR))
+        toast.apiError(err as AxiosError)
         dispatch({ type: authActionTypes.USER_PASSWORD_CHANGE_ERROR })
     }
 }
@@ -163,11 +157,12 @@ export const register = (body: SignupBody): ThunkAction<void, AppState, null, Re
     try {
         const res = await createUser(body, config)
         dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: res })
+        toast.success('signup.success')
     } catch (err) {
         dispatch({
             type: authActionTypes.REGISTER_FAIL,
         })
-        dispatch(returnErrors(err as AxiosError, authActionTypes.REGISTER_FAIL))
+        toast.apiError(err as AxiosError)
     }
 }
 
@@ -182,6 +177,7 @@ export const login = (body: LoginBody): ThunkAction<void, AppState, null, LoginA
     try {
         const res = await loginUser(body, config)
         dispatch({ type: authActionTypes.LOGIN_SUCCESS, payload: res })
+        toast.success('login.success')
         logoutTimer = setTimeout(() => {
             dispatch({ type: authActionTypes.TIMEOUT_LOGOUT_SUCCESS })
         }, 59 * 60 * 1000)
@@ -189,7 +185,7 @@ export const login = (body: LoginBody): ThunkAction<void, AppState, null, LoginA
         dispatch({
             type: authActionTypes.LOGIN_FAIL,
         })
-        dispatch(returnErrors(err as AxiosError, authActionTypes.LOGIN_FAIL))
+        toast.apiError(err as AxiosError)
     }
 }
 

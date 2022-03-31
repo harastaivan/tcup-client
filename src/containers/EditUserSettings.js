@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 
-import { clearErrors } from 'store/error/actions'
 import { changeUserInfo } from 'store/auth/actions'
 
 class EditUserSettings extends Component {
@@ -19,8 +18,6 @@ class EditUserSettings extends Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool,
         auth: PropTypes.object.isRequired,
-        error: PropTypes.object.isRequired,
-        clearErrors: PropTypes.func.isRequired,
         changeUserInfo: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     }
@@ -47,14 +44,13 @@ class EditUserSettings extends Component {
     }
 
     isDisabled = () => {
-        return this.state.saved || !this.state.name || !this.state.surname || !this.state.email
+        return !this.state.name || !this.state.surname || !this.state.email
     }
 
     render() {
         const t = this.props.t
         return (
             <div>
-                {this.state.msg ? <Alert color="danger">{t(this.state.msg)}</Alert> : null}
                 <h1>{t('Změnit mé údaje')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <Row form>
@@ -108,7 +104,6 @@ class EditUserSettings extends Component {
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     auth: state.auth,
-    error: state.error,
 })
 
-export default connect(mapStateToProps, { clearErrors, changeUserInfo })(withTranslation()(EditUserSettings))
+export default connect(mapStateToProps, { changeUserInfo })(withTranslation()(EditUserSettings))

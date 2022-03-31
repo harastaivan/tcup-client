@@ -3,7 +3,7 @@ import type { ThunkAction } from 'redux-thunk'
 
 import { API_ENDPOINT } from 'config/constants'
 import { tokenConfig } from '../auth/actions'
-import { returnErrors, ReturnErrorsAction } from '../error/actions'
+import { toast } from 'modules/toast'
 import type { AppState } from 'store/types'
 import type { News, NewsId } from './types'
 
@@ -46,10 +46,7 @@ export const getNews = (): ThunkAction<void, AppState, null, GetNewsAction> => a
     })
 }
 
-export const addNews = (news: News): ThunkAction<void, AppState, null, AddNewsAction | ReturnErrorsAction> => async (
-    dispatch,
-    getState
-) => {
+export const addNews = (news: News): ThunkAction<void, AppState, null, AddNewsAction> => async (dispatch, getState) => {
     try {
         const res = await axios.post(`${API_ENDPOINT}/api/news`, news, tokenConfig(getState))
         dispatch({
@@ -57,13 +54,14 @@ export const addNews = (news: News): ThunkAction<void, AppState, null, AddNewsAc
             payload: res.data,
         })
     } catch (err) {
-        dispatch(returnErrors(err as AxiosError))
+        toast.apiError(err as AxiosError)
     }
 }
 
-export const deleteNews = (
-    id: NewsId
-): ThunkAction<void, AppState, null, DeleteNewsAction | ReturnErrorsAction> => async (dispatch, getState) => {
+export const deleteNews = (id: NewsId): ThunkAction<void, AppState, null, DeleteNewsAction> => async (
+    dispatch,
+    getState
+) => {
     try {
         await axios.delete(`${API_ENDPOINT}/api/news/${id}`, tokenConfig(getState))
         dispatch({
@@ -71,7 +69,7 @@ export const deleteNews = (
             payload: id,
         })
     } catch (err) {
-        dispatch(returnErrors(err as AxiosError))
+        toast.apiError(err as AxiosError)
     }
 }
 

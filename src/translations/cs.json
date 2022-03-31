@@ -119,7 +119,7 @@
         "Registration does not exist for this user": "Přihláška zatím nebyla vytvořena",
         "User is not admin": "Uživatel není admin",
         "Soubor": "Soubor",
-        "Heslo bylo změněno": "Heslo bylo změněno",
+        "changePassword.success": "Heslo bylo změněno",
         "Přidat novinku": "Přidat novinku",
         "Nadpis": "Nadpis",
         "Novinka": "Novinka",
@@ -227,6 +227,20 @@
         "form.registration.igcId.label": "IGC ID",
         "form.registration.submit": "Editovat přihlášku",
         "form.submitting": "načítání...",
+
+        "registration.submit.success": "Přihláška byla úspěšně vyplněna.",
+        "registration.update.success": "Přihláška byla úspěšně upravena.",
+        "registration.submit.error": "Nastal problém s vyplněním přihlášky, zkuste to znovu později.",
+        "registration.update.error": "Nastal problém s upravením přihlášky, zkuste to znovu později.",
+
+        "backend.unavailable": "Server je nedostupný. Kontaktujte administrátora.",
+
+        "results.class.noResults": "Třída nemá žádné výsledky",
+
+        "signup.success": "Registrace proběhla úspěšně.",
+        "login.success": "Byl jste přihlášen.",
+        "loadUser.error": "Byl jste odhlášen.",
+        "changeUserInfo.success": "Vaše údaje byly změněny.",
 
         "competitionClass.club": "Klub",
         "competitionClass.18_meter": "Kombi",

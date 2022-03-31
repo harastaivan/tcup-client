@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
 import { Provider, useSelector, useDispatch } from 'react-redux'
-import { Alert, Container } from 'reactstrap'
-import { useTranslation } from 'react-i18next'
+import { Container } from 'reactstrap'
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import type { TKey } from 'translations'
-
 import store from 'store'
 import { loadUser } from 'store/auth/actions'
 import { getAuth } from 'store/auth/selectors'
-import { getError } from 'store/error/selectors'
 
 import AppNavbar from 'containers/AppNavbar'
 import Home from 'containers/Home'
@@ -41,7 +37,6 @@ import { Toaster } from 'modules/toast'
 import { useOnlineStatus, useBackendStatus } from 'hooks'
 
 const App = () => {
-    const error = useSelector(getError)
     const dispatch = useDispatch()
     const { token, isAdmin } = useSelector(getAuth)
     useOnlineStatus()
@@ -51,8 +46,6 @@ const App = () => {
         if (token === null) return
         dispatch(loadUser())
     }, [dispatch, token])
-
-    const { t } = useTranslation()
 
     const isHomepage = useRouteMatch('/')?.isExact || false
     const isResultsPage = useRouteMatch('/results')?.isExact || false
@@ -69,7 +62,6 @@ const App = () => {
             </Switch>
             <Container className={!isSpecialPage ? 'p-3 min-vh-container transparent-background' : ''}>
                 <TestMode hidden={isSpecialPage} />
-                {error.msg && <Alert color="danger">{t(error.msg as TKey)}</Alert>}
                 <Switch>
                     <Route path="/news" component={News} />
                     <Route path="/registration" component={RegistrationPage} />

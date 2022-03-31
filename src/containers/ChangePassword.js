@@ -1,11 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Alert, Form, FormGroup, Label, Input, Button } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
 
-import { clearSuccess } from 'store/success/actions'
-import { clearErrors } from 'store/error/actions'
 import { changePassword } from 'store/auth/actions'
 
 class ChangePassword extends Component {
@@ -17,10 +15,6 @@ class ChangePassword extends Component {
 
     static propTypes = {
         isAuthenticated: PropTypes.bool,
-        error: PropTypes.object.isRequired,
-        success: PropTypes.object.isRequired,
-        clearSuccess: PropTypes.func.isRequired,
-        clearErrors: PropTypes.func.isRequired,
         changePassword: PropTypes.func.isRequired,
         t: PropTypes.func.isRequired,
     }
@@ -34,8 +28,6 @@ class ChangePassword extends Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        this.props.clearSuccess()
-        this.props.clearErrors()
         const { oldPassword, newPassword } = this.state
 
         this.props.changePassword({ oldPassword, newPassword })
@@ -51,7 +43,6 @@ class ChangePassword extends Component {
         const t = this.props.t
         return (
             <Fragment>
-                {this.props.success.msg ? <Alert color="success">{t(this.props.success.msg)}</Alert> : null}
                 <h1>{t('Změnit heslo')}</h1>
                 <Form onSubmit={this.onSubmit} autoComplete={'off'}>
                     <FormGroup>
@@ -87,10 +78,6 @@ class ChangePassword extends Component {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
-    error: state.error,
-    success: state.success,
 })
 
-export default connect(mapStateToProps, { clearSuccess, clearErrors, changePassword })(
-    withTranslation()(ChangePassword)
-)
+export default connect(mapStateToProps, { changePassword })(withTranslation()(ChangePassword))

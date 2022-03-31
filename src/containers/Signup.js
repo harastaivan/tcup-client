@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { withTranslation } from 'react-i18next'
 
 import { register } from 'store/auth/actions'
-import { clearErrors } from 'store/error/actions'
 import GdprConsent from './GdprConsent'
 import { SIGNUP_DISABLED } from 'config/constants'
 
@@ -23,7 +22,6 @@ class Signup extends Component {
         isAuthenticated: PropTypes.bool,
         error: PropTypes.object.isRequired,
         register: PropTypes.func.isRequired,
-        clearErrors: PropTypes.func.isRequired,
         history: PropTypes.object.isRequired,
         t: PropTypes.func.isRequired,
     }
@@ -52,7 +50,6 @@ class Signup extends Component {
 
     componentDidUpdate() {
         if (this.props.isAuthenticated) {
-            this.props.clearErrors()
             this.props.history.push('/')
         }
     }
@@ -141,4 +138,4 @@ const mapStateToProps = (state) => ({
     error: state.error,
 })
 
-export default connect(mapStateToProps, { register, clearErrors })(withTranslation()(Signup))
+export default connect(mapStateToProps, { register })(withTranslation()(Signup))

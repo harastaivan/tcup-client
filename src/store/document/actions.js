@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { DOCUMENTS_LOADING, GET_DOCUMENTS, ADD_DOCUMENT, DELETE_DOCUMENT } from 'actions/types'
 import { tokenConfig } from '../auth/actions'
-import { returnErrors } from '../error/actions'
+import { toast } from 'modules/toast'
 import { API_ENDPOINT } from 'config/constants'
 
 export const getDocuments = () => async (dispatch) => {
@@ -28,7 +28,7 @@ export const addDocument = (document) => async (dispatch, getState) => {
             payload: res.data,
         })
     } catch (err) {
-        dispatch(returnErrors(err))
+        toast.apiError(err)
     }
 }
 
@@ -40,7 +40,7 @@ export const deleteDocument = (id) => async (dispatch, getState) => {
             payload: id,
         })
     } catch (err) {
-        dispatch(returnErrors(err))
+        toast.apiError(err)
     }
 }
 

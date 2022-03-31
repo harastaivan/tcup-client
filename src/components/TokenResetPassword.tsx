@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import { useResetPassword } from 'hooks/resetPassword'
-import type { TKey } from 'translations'
-import Spinner from './Spinner'
+import { Form, FormGroup, Label, Input } from 'reactstrap'
+import { SubmitButton } from 'modules/form'
+import { useResetPassword } from 'hooks'
 
 type Props = {
     token: string
@@ -14,7 +13,6 @@ const TokenResetPassword = ({ token }: Props) => {
         loading,
         tokenValid,
         passwordChanged,
-        error,
         password,
         onChangePassword,
         passwordCheck,
@@ -24,26 +22,6 @@ const TokenResetPassword = ({ token }: Props) => {
 
     return (
         <div>
-            {loading && <Spinner />}
-
-            {error && (
-                <Alert color="danger" style={{ marginTop: '2rem' }}>
-                    {t(error as TKey)}
-                </Alert>
-            )}
-
-            {!loading && !error && !passwordChanged && tokenValid && (
-                <Alert color="info" style={{ marginTop: '2rem' }}>
-                    {t('Vytvořte si nové heslo.')}
-                </Alert>
-            )}
-
-            {!loading && passwordChanged && (
-                <Alert color="success" style={{ marginTop: '2rem' }}>
-                    {t('Vaše heslo bylo úspěšně změněno. Můžete se přihlásit.')}
-                </Alert>
-            )}
-
             <h1>{t('Obnovit heslo')}</h1>
 
             {tokenValid && (
@@ -70,13 +48,9 @@ const TokenResetPassword = ({ token }: Props) => {
                             onChange={onChangePasswordCheck}
                         />
                     </FormGroup>
-                    <Button
-                        color="dark"
-                        style={{ marginTop: '2rem' }}
-                        block
-                        disabled={loading || Boolean(error) || passwordChanged}>
+                    <SubmitButton loading={loading} disabled={passwordChanged}>
                         {t('Změnit heslo')}
-                    </Button>
+                    </SubmitButton>
                 </Form>
             )}
         </div>

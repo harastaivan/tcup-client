@@ -4,10 +4,11 @@ import { Button, Spinner } from 'reactstrap'
 
 interface SubmitButtonProps {
     loading?: boolean
+    disabled?: boolean
     children: ReactNode
 }
 
-export const SubmitButton = ({ loading = false, children }: SubmitButtonProps) => {
+export const SubmitButton = ({ loading = false, disabled = false, children }: SubmitButtonProps) => {
     const { t } = useTranslation()
 
     const spinner = (
@@ -18,7 +19,7 @@ export const SubmitButton = ({ loading = false, children }: SubmitButtonProps) =
     )
 
     return (
-        <Button type="submit" style={{ width: '100%', marginTop: '1em' }} disabled={loading}>
+        <Button type="submit" style={{ width: '100%', marginTop: '1em' }} disabled={loading || disabled}>
             {loading ? spinner : children}
         </Button>
     )

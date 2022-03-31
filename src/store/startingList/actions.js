@@ -2,7 +2,7 @@ import axios from 'axios'
 import { STARTING_LIST_LOADING, GET_STARTING_LIST, PAY_REGISTRATION, EXPORT_REGISTRATIONS } from 'actions/types'
 
 import { tokenConfig } from '../auth/actions'
-import { returnErrors } from '../error/actions'
+import { toast } from 'modules/toast'
 import { API_ENDPOINT } from 'config/constants'
 
 export const getStartingList = () => async (dispatch) => {
@@ -35,7 +35,7 @@ export const markPaid = (registrationId, paid) => async (dispatch, getState) => 
             },
         })
     } catch (err) {
-        dispatch(returnErrors(err))
+        toast.apiError(err)
     }
 }
 
@@ -47,6 +47,6 @@ export const exportRegistrations = () => async (dispatch, getState) => {
             payload: res,
         })
     } catch (err) {
-        dispatch(returnErrors(err))
+        toast.apiError(err)
     }
 }

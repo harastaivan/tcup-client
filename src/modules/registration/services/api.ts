@@ -1,3 +1,4 @@
+import { toast } from 'modules/toast'
 import { api } from 'services/api'
 import { ApiTypes } from 'services/types'
 import type { AdminFormValues, UserRegistrationFormValues } from '../components'
@@ -50,9 +51,9 @@ export const adsApi = apiWithTags.injectEndpoints({
             onQueryStarted: async (_, { queryFulfilled }) => {
                 try {
                     await queryFulfilled
-                    // localizedToast.success('ads.form.update.success', {}, { locale })
+                    toast.success('registration.submit.success')
                 } catch (err) {
-                    // localizedToast.error('ads.form.update.error', {}, { locale })
+                    toast.error('registration.submit.error')
                 }
             },
         }),
@@ -67,9 +68,9 @@ export const adsApi = apiWithTags.injectEndpoints({
             onQueryStarted: async (_, { queryFulfilled }) => {
                 try {
                     await queryFulfilled
-                    // localizedToast.success('ads.form.update.success', {}, { locale })
+                    toast.success('registration.update.success')
                 } catch (err) {
-                    // localizedToast.error('ads.form.update.error', {}, { locale })
+                    toast.error('registration.update.error')
                 }
             },
         }),
@@ -84,9 +85,9 @@ export const adsApi = apiWithTags.injectEndpoints({
             onQueryStarted: async (_, { queryFulfilled }) => {
                 try {
                     await queryFulfilled
-                    // localizedToast.success('ads.form.update.success', {}, { locale })
+                    toast.success('registration.update.success')
                 } catch (err) {
-                    // localizedToast.error('ads.form.update.error', {}, { locale })
+                    toast.error('registration.update.error')
                 }
             },
         }),
