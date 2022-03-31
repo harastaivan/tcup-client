@@ -38,6 +38,7 @@ import { Archive } from 'components/Archive'
 import TestMode from 'components/TestMode'
 import Offline from 'components/Offline'
 import SpinnerFullPage from 'components/SpinnerFullPage'
+import { Toaster } from 'modules/toast'
 
 const App = () => {
     const error = useSelector(getError)
@@ -58,6 +59,7 @@ const App = () => {
 
     return (
         <div className="App">
+            <Toaster />
             <AppNavbar />
             <Offline />
             <Switch>
