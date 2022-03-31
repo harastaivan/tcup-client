@@ -112,9 +112,8 @@ export const loadUser = (): ThunkAction<void, AppState, null, LoadUserAction> =>
         const user = await getLoggedInUser(tokenConfig(getState))
         dispatch({ type: authActionTypes.USER_LOADED, payload: user })
     } catch {
-        toast.error('loadUser.error')
         dispatch({ type: authActionTypes.AUTH_ERROR })
-        dispatch(logout())
+        dispatch(logout(true))
     }
 }
 
@@ -189,10 +188,16 @@ export const login = (body: LoginBody): ThunkAction<void, AppState, null, LoginA
     }
 }
 
-export const logout = (): LogoutAction => {
+export const logout = (error = false): LogoutAction => {
     if (logoutTimer) {
         clearTimeout(logoutTimer)
         logoutTimer = null
+    }
+
+    if (error) {
+        toast.error('logout.success')
+    } else {
+        toast.success('logout.success')
     }
 
     return {

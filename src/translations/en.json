@@ -239,7 +239,7 @@
 
         "signup.success": "You've been signed up.",
         "login.success": "You were logged in.",
-        "loadUser.error": "You were logged out.",
+        "logout.success": "You were logged out.",
         "changeUserInfo.success": "Your user information was changed.",
 
         "competitionClass.club": "Club",

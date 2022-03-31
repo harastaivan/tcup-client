@@ -239,7 +239,7 @@
 
         "signup.success": "Registrace proběhla úspěšně.",
         "login.success": "Byl jste přihlášen.",
-        "loadUser.error": "Byl jste odhlášen.",
+        "logout.success": "Byl jste odhlášen.",
         "changeUserInfo.success": "Vaše údaje byly změněny.",
 
         "competitionClass.club": "Klub",
