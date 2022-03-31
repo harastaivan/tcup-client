@@ -250,6 +250,8 @@
         "news.add.success": "Novinka byla přidána.",
         "news.delete.success": "Novinka byla smazána.",
         "startingList.export.success": "Export byl proveden.",
+        "igc.submit.success": "IGC soubor byl odeslán organizátorovi.",
+        "igc.submit.error": "Soubor se nepodařilo odeslat organizátorovi, zkuste to později.",
 
         "competitionClass.club": "Klub",
         "competitionClass.18_meter": "Kombi",

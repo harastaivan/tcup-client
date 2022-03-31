@@ -1,6 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
+import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap'
+import { SubmitButton } from 'modules/form'
 import { useTranslation } from 'react-i18next'
 
 import Spinner from 'components/Spinner'
@@ -15,7 +16,7 @@ const SendIgc = () => {
     const dispatch = useDispatch()
 
     const competitionDays = useSelector((state) => state.competitionDay.competitionDays)
-    const { pilots, loading, success, error } = useSelector((state) => state.igc)
+    const { pilots, loading } = useSelector((state) => state.igc)
     const { isAdmin } = useSelector((state) => state.auth)
 
     const [file, setFile] = useState('')
@@ -58,16 +59,6 @@ const SendIgc = () => {
         return !file || !pilot || !today
     }
 
-    const getButtonColor = () => {
-        if (success) {
-            return 'success'
-        }
-        if (error) {
-            return 'danger'
-        }
-        return 'dark'
-    }
-
     return (
         <Fragment>
             <h2>{t('Odeslat IGC')}</h2>
@@ -108,18 +99,9 @@ const SendIgc = () => {
                                 onChange={(e) => setFile(e.target.files[0])}
                             />
                         </FormGroup>
-                        <div className="spacerForSpinner">
-                            {loading && <Spinner withoutMargin />}
-                            {success && <span>{t(success)}</span>}
-                            {error && <span>{t(error)}</span>}
-                        </div>
-                        <Button
-                            style={{ marginTop: '1rem' }}
-                            color={getButtonColor()}
-                            disabled={submitDisabled()}
-                            block>
+                        <SubmitButton loading={loading} disabled={submitDisabled()}>
                             {t('Nahrát')}
-                        </Button>
+                        </SubmitButton>
                     </Form>
                 </Col>
             </Row>

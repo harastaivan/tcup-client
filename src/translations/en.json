@@ -250,6 +250,8 @@
         "news.add.success": "News was added.",
         "news.delete.success": "News was deleted.",
         "startingList.export.success": "Export is finished.",
+        "igc.submit.success": "IGC file was sent to the organizer.",
+        "igc.submit.error": "IGC file was not sent to the organizer, try again later.",
 
         "competitionClass.club": "Club",
         "competitionClass.18_meter": "Kombi",

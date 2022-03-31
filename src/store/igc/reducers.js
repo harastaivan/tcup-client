@@ -3,7 +3,6 @@ import {
     GET_IGC_FORM_DATA,
     ADD_IGC_SUCCESS,
     ADD_IGC_ERROR,
-    IGC_CLEAR_MESSAGE,
     GET_IGC_FILES,
     RESET_IGC_FILES,
     UPDATE_IGC_FILE,
@@ -13,8 +12,6 @@ const initialState = {
     pilots: [],
     files: [],
     loading: false,
-    success: '',
-    error: '',
 }
 
 const igcReducer = (state = initialState, action) => {
@@ -23,28 +20,16 @@ const igcReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
-                success: '',
-                error: '',
             }
         case ADD_IGC_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                success: 'Soubor byl odeslán organizátorovi',
-                error: '',
             }
         case ADD_IGC_ERROR:
             return {
                 ...state,
                 loading: false,
-                success: '',
-                error: 'Soubor se nepodařilo odeslat organizátorovi, zkuste to později',
-            }
-        case IGC_CLEAR_MESSAGE:
-            return {
-                ...state,
-                success: '',
-                error: '',
             }
         case GET_IGC_FORM_DATA:
             return {

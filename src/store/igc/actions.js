@@ -5,7 +5,6 @@ import {
     GET_IGC_FORM_DATA,
     ADD_IGC_SUCCESS,
     ADD_IGC_ERROR,
-    IGC_CLEAR_MESSAGE,
     GET_IGC_FILES,
     RESET_IGC_FILES,
     UPDATE_IGC_FILE,
@@ -23,23 +22,20 @@ export const addIgc = (igc) => async (dispatch, getState) => {
         data.append('igc', igc.igc)
         data.append('pilot', igc.pilot)
         data.append('day', igc.day)
+        // TODO: Use toast.promise
         const res = await axios.post(`${API_ENDPOINT}/api/igc`, data, tokenConfig(getState, 'multipart/form-data'))
         dispatch({
             type: ADD_IGC_SUCCESS,
             payload: res.data,
         })
-        setTimeout(() => {
-            dispatch({ type: IGC_CLEAR_MESSAGE })
-        }, 5000)
+        toast.success('igc.submit.success')
     } catch (err) {
+        toast.error('igc.submit.error')
         toast.apiError(err)
         dispatch({
             type: ADD_IGC_ERROR,
             payload: err,
         })
-        setTimeout(() => {
-            dispatch({ type: IGC_CLEAR_MESSAGE })
-        }, 5000)
     }
 }
 
