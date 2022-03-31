@@ -15,7 +15,7 @@ export type User = {
     passwordValid: boolean
 }
 
-const useUsersList = () => {
+export const useUsersList = () => {
     const [users, setUsers] = useState<User[]>([])
     const [loading, setLoading] = useState(false)
     const isAdmin = useSelector(getIsAdmin)
@@ -39,5 +39,3 @@ const useUsersList = () => {
 
     return { users: { admins, others }, loading }
 }
-
-export default useUsersList

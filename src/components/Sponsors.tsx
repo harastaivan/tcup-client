@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import useSponsors, { Sponsor as SponsorType } from 'hooks/useSponsors'
+import { useSponsors } from 'hooks'
+import type { Sponsor as SponsorType } from 'hooks'
 import styled from 'styled-components'
 
 const Divider = styled.div`

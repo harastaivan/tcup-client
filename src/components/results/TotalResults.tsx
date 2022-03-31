@@ -3,7 +3,7 @@ import { Button, Col, Row, Table } from 'reactstrap'
 
 import ResultsTitle from './ResultsTitle'
 import Spinner from 'components/Spinner'
-import { useTotalResults } from 'hooks/useResults'
+import { useTotalResults } from 'hooks'
 
 type Props = {
     competitionClass: { _id: string; name: string }

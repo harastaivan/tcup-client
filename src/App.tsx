@@ -36,14 +36,16 @@ import UsersList from 'containers/UsersList'
 
 import { Archive } from 'components/Archive'
 import TestMode from 'components/TestMode'
-import Offline from 'components/Offline'
 import SpinnerFullPage from 'components/SpinnerFullPage'
 import { Toaster } from 'modules/toast'
+import { useOnlineStatus, useBackendStatus } from 'hooks'
 
 const App = () => {
     const error = useSelector(getError)
     const dispatch = useDispatch()
     const { token, isAdmin } = useSelector(getAuth)
+    useOnlineStatus()
+    useBackendStatus()
 
     useEffect(() => {
         if (token === null) return
@@ -61,7 +63,6 @@ const App = () => {
         <div className="App">
             <Toaster />
             <AppNavbar />
-            <Offline />
             <Switch>
                 <Route path="/results" component={Results} />
                 <Route path="/" component={Home} exact />

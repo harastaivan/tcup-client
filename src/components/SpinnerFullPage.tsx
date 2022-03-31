@@ -1,5 +1,5 @@
 import { APP_TITLE } from 'config/constants'
-import { useSpinnerFullPage } from 'hooks/useSpinnerFullPage'
+import { useSpinnerFullPage } from 'hooks'
 import Spinner from './Spinner'
 
 const SpinnerFullPage = () => {

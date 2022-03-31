@@ -3,7 +3,7 @@ import { Button, Card, CardTitle, Col, Row } from 'reactstrap'
 
 import Spinner from 'components/Spinner'
 import ResultsTitle from './ResultsTitle'
-import { useTopResults } from 'hooks/useResults'
+import { useTopResults } from 'hooks'
 
 type Props = {
     goToTotalResults: (classId: { _id: string; name: string }) => () => void

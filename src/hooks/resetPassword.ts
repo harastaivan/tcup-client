@@ -2,66 +2,64 @@ import axios, { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 
 import { API_ENDPOINT } from 'config/constants'
+import { toast } from 'modules/toast'
 
 export const useSendEmail = () => {
     const [loading, setLoading] = useState(false)
-    const [done, setDone] = useState(false)
-    const [error, setError] = useState('')
     const [email, setEmail] = useState('')
 
     const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDone(false)
-        setError('')
         setEmail(event.target.value)
     }
 
     const submit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         setLoading(true)
-        setDone(false)
-        setError('')
         try {
             await axios.post(`${API_ENDPOINT}/api/auth/reset-password`, { email })
-            setDone(true)
+            toast.success(
+                'Na váš email by Vám měl přijít obnovovací odkaz. Pokud nepřijde, kontaktujte administrátora prosím.'
+            )
         } catch (err) {
-            setError((err as AxiosError).response?.data?.msg || 'error')
+            toast.apiError(err as AxiosError)
         }
         setLoading(false)
     }
 
-    return { email, onChangeEmail, done, loading, error, submit }
+    useEffect(() => {
+        toast('Na váš email Vám přijde obnovovací odkaz.')
+    }, [])
+
+    return { email, onChangeEmail, loading: loading, submit }
 }
 
 export const useResetPassword = (token: string) => {
     const [loading, setLoading] = useState(false)
     const [tokenValid, setTokenValid] = useState(false)
     const [passwordChanged, setPasswordChanged] = useState(false)
-    const [error, setError] = useState('')
 
     const [password, setPassword] = useState('')
     const [passwordCheck, setPasswordCheck] = useState('')
 
     const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordChanged(false)
-        setError('')
         setPassword(event.target.value)
     }
 
     const onChangePasswordCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordChanged(false)
-        setError('')
         setPasswordCheck(event.target.value)
     }
 
     const isTokenValid = async (token: string) => {
         setLoading(true)
         setTokenValid(false)
-        setError('')
         try {
             await axios.post(`${API_ENDPOINT}/api/auth/reset-password/valid`, { token })
             setTokenValid(true)
+            toast('Vytvořte si nové heslo.')
         } catch (err) {
-            setError((err as AxiosError).response?.data?.msg || 'error')
+            toast.apiError(err as AxiosError)
         }
         setLoading(false)
     }
@@ -71,16 +69,16 @@ export const useResetPassword = (token: string) => {
         setLoading(true)
         setPasswordChanged(false)
         if (password !== passwordCheck) {
-            setError('Hesla se neshodují')
+            toast.error('Hesla se neshodují')
             setLoading(false)
             return
         }
-        setError('')
         try {
             await axios.post(`${API_ENDPOINT}/api/auth/reset-password/reset`, { token, password })
             setPasswordChanged(true)
+            toast.success('Vaše heslo bylo úspěšně změněno. Můžete se přihlásit.')
         } catch (err) {
-            setError((err as AxiosError).response?.data?.msg || 'error')
+            toast.apiError(err as AxiosError)
         }
         setLoading(false)
     }
@@ -93,7 +91,6 @@ export const useResetPassword = (token: string) => {
         loading,
         tokenValid,
         passwordChanged,
-        error,
         password,
         onChangePassword,
         passwordCheck,
