@@ -21,6 +21,7 @@ const SendIgc = () => {
     const [file, setFile] = useState('')
     const [pilot, setPilot] = useState('')
     const [today, setToday] = useState('')
+    const [todayLoading, setTodayLoading] = useState(false)
     const [fileInputKey, setFileInputKey] = useState(Date.now())
 
     useEffect(() => {
@@ -29,10 +30,13 @@ const SendIgc = () => {
     }, [dispatch])
 
     useEffect(() => {
+        setTodayLoading(true)
         const today = getCompetitionDay(competitionDays)
+        setTodayLoading(false)
         if (!today) {
             return
         }
+
         setToday(today)
     }, [competitionDays])
 
@@ -70,7 +74,7 @@ const SendIgc = () => {
             <Row>
                 <Col md={6}>
                     {today && <p>{formatCompetitionDay(today, t)}</p>}
-                    {!today && <Spinner />}
+                    {!today && todayLoading && <Spinner />}
                     <Form onSubmit={onSubmit}>
                         <FormGroup>
                             <Label for={'pilot'}>{t('Pilot')}</Label>
