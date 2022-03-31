@@ -39,6 +39,9 @@ const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
                             <Card body>
                                 <CardTitle tag="h5">{`${name} ${t('třída')}`}</CardTitle>
 
+                                {results.length === 0 && (
+                                    <p style={{ marginTop: '1em' }}>{t('results.class.noResults')}</p>
+                                )}
                                 {results.map(({ position, name, aeroclub, glider, points }, index) => (
                                     <div
                                         style={{
@@ -77,25 +80,27 @@ const TopResults = ({ goToTotalResults, goToDailyResults }: Props) => {
                                         </div>
                                     </div>
                                 ))}
-                                <Row style={{ marginTop: '1em' }}>
-                                    <Col md="6">
-                                        <Button
-                                            style={{ width: '100%', marginBottom: '10px' }}
-                                            color="secondary"
-                                            onClick={goToTotalResults({ _id, name })}>
-                                            {t('Celkové výsledky')}
-                                        </Button>
-                                    </Col>
-                                    <Col md="6">
-                                        <Button
-                                            style={{ width: '100%', marginBottom: '10px' }}
-                                            color="secondary"
-                                            outline
-                                            onClick={goToDailyResults({ _id, name })}>
-                                            {t('Denní výsledky')}
-                                        </Button>
-                                    </Col>
-                                </Row>
+                                {results.length > 0 && (
+                                    <Row style={{ marginTop: '1em' }}>
+                                        <Col md="6">
+                                            <Button
+                                                style={{ width: '100%', marginBottom: '10px' }}
+                                                color="secondary"
+                                                onClick={goToTotalResults({ _id, name })}>
+                                                {t('Celkové výsledky')}
+                                            </Button>
+                                        </Col>
+                                        <Col md="6">
+                                            <Button
+                                                style={{ width: '100%', marginBottom: '10px' }}
+                                                color="secondary"
+                                                outline
+                                                onClick={goToDailyResults({ _id, name })}>
+                                                {t('Denní výsledky')}
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                )}
                             </Card>
                         </Col>
                     ))}
