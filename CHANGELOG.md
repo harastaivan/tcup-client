@@ -1,5 +1,34 @@
 # Changelog
 
+<a name="1.1.0"></a>
+
+## 1.1.0 (2022-03-31)
+
+### Added
+
+-   ✨ Improve success/error handling in SendIgc [[c13ac49](https://github.com/harastaivan/tcup-client/commit/c13ac495cfe27dc5441488372db3c17d874430a5)]
+-   ✨ Use toast module, 🔥 Remove success and error stores [[b635653](https://github.com/harastaivan/tcup-client/commit/b6356532d000d6eb89a3ec1fe7d4a894929f10a3)]
+-   ✨ Add toast module made for notifications and error handling [[6c51ed9](https://github.com/harastaivan/tcup-client/commit/6c51ed90ed0559e75c47914b573c5928ffbcb08a)]
+-   ➕ Add react-hot-toast [[d17126f](https://github.com/harastaivan/tcup-client/commit/d17126fa2e8f8af1b59d7ff068e51949c2f899ca)]
+
+### Changed
+
+-   🚸 Add remaining success/error toasts [[cb262ab](https://github.com/harastaivan/tcup-client/commit/cb262abddcb16af4a74fb0240f9289f079c01e84)]
+-   🚸 Improve logout toast [[4ecd55d](https://github.com/harastaivan/tcup-client/commit/4ecd55d8978e7158bc35781726900da90db9aecb)]
+-   💄 Fix footer margin [[02eae6f](https://github.com/harastaivan/tcup-client/commit/02eae6f234396ad3a6b7bdbca6969b4f1c226da7)]
+-   ♻️ Refactor hooks, implement useOnlineStatus, useBackendStatus [[c76501f](https://github.com/harastaivan/tcup-client/commit/c76501f071ea4882062cf1c6a50dab2e58903923)]
+
+### Fixed
+
+-   🐛 Fix sendIgc infinite loading when no competition days [[2ccd066](https://github.com/harastaivan/tcup-client/commit/2ccd066d0ef2ea5de7c54704c73b8b6dafb2c967)]
+-   🐛 Fix Results page when no results [[4293259](https://github.com/harastaivan/tcup-client/commit/429325971e02f9e045b6a1472a8d83e593e360c9)]
+-   🐛 Fix phone regex [[388b2ec](https://github.com/harastaivan/tcup-client/commit/388b2ecda3ca64d1c69edc046c47a89a186d0a74)]
+
+### Miscellaneous
+
+-   🌐 Add translations [[890dba9](https://github.com/harastaivan/tcup-client/commit/890dba9bf23d652351a80b0d4b9fb9611d75bf7f)]
+-   💩 Todo registration redirect [[35025c4](https://github.com/harastaivan/tcup-client/commit/35025c4b433e560b6c02df7b24d91cede70135df)]
+
 <a name="1.0.2"></a>
 
 ## 1.0.2 (2022-03-30)
