@@ -20,7 +20,7 @@ export const Footer = () => {
                     </p>
                     <p style={{ fontWeight: 500 }}>
                         <span style={{ marginRight: 6 }}>
-                            Made with<span style={{ marginRight: 6 }}> ❤️ </span> by
+                            Made with<span style={{ marginRight: 2 }}> ❤️ </span> by
                         </span>
                         <a target="_blank" rel="noopener noreferrer" href="https://harasta.dev">
                             @harastaivan
