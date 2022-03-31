@@ -1,1 +1,1 @@
-export const phoneRegex = /\+*(\d|\s)+/
+export const phoneRegex = /^\+*(\d|\s)+$/
