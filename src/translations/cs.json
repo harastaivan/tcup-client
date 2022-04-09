@@ -264,6 +264,8 @@
 
         "accomodationType.Děkuji, nemám zájem": "Děkuji, nemám zájem",
         "accomodationType.Kemp": "Kemp",
-        "accomodationType.Ubytovna": "Ubytovna"
+        "accomodationType.Ubytovna": "Ubytovna",
+
+        "error.generic": "Něco se pokazilo."
     }
 }

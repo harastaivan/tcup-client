@@ -1,11 +1,12 @@
 import type { AxiosError } from 'axios'
+import type { TKey } from 'translations'
 
 export const parseError = (error: AxiosError) => {
     if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         return {
-            msg: error.response.data.msg as string,
+            msg: getMessage(error.response.data.msg),
             status: error.response.status as number,
         }
     }
@@ -14,13 +15,21 @@ export const parseError = (error: AxiosError) => {
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
         return {
-            msg: error.message, // .msg ?
+            msg: getMessage(error.message),
             status: error.request.status as number,
         }
     }
 
     return {
-        msg: error.message, // .msg ?
+        msg: getMessage(error.message),
         status: 500,
     }
+}
+
+export const getMessage = (message?: string): TKey => {
+    if (message) {
+        return message as TKey
+    }
+
+    return 'error.generic'
 }

@@ -264,6 +264,8 @@
 
         "accomodationType.Děkuji, nemám zájem": "Thanks, I'm not interested",
         "accomodationType.Kemp": "Camp",
-        "accomodationType.Ubytovna": "Lodging house"
+        "accomodationType.Ubytovna": "Lodging house",
+
+        "error.generic": "Something went wrong."
     }
 }
