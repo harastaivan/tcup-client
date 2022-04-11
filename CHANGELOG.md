@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.2.1"></a>
+
+## 1.2.1 (2022-04-11)
+
+### Miscellaneous
+
+-   👷 Add development branch to CI [[ce5e663](https://github.com/harastaivan/tcup-client/commit/ce5e663ca6ee88c5c9c33586a1db29910f67d461)]
+
 <a name="1.2.0"></a>
 
 ## 1.2.0 (2022-04-11)
