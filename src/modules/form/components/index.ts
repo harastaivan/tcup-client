@@ -1,4 +1,5 @@
 export * from './LabelInput'
+export * from './LoadingButton'
 export * from './Row'
 export * from './SelectLabelInput'
 export * from './SubmitButton'
