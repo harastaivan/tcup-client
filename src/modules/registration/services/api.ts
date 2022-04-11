@@ -16,9 +16,7 @@ import { transformResponseToAdminFormValues, transformResponseToFormValues } fro
 
 const apiWithTags = api.enhanceEndpoints({ addTagTypes: [ApiTags.FormData, ApiTags.Registration, ApiTags.Error] })
 
-// TODO: Success and error handling
-
-export const adsApi = apiWithTags.injectEndpoints({
+export const registrationApi = apiWithTags.injectEndpoints({
     endpoints: (build) => ({
         getFormData: build.query<FormDataResponse, void>({
             query: () => ({
@@ -101,4 +99,4 @@ export const {
     useCreateRegistrationMutation,
     useUpdateRegistrationMutation,
     useUpdateRegistrationAsAdminMutation,
-} = adsApi
+} = registrationApi
