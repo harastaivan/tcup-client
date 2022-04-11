@@ -16,7 +16,7 @@ import News from 'containers/News'
 import { RegistrationPage } from 'modules/registration'
 import Login from 'containers/Login'
 import CompetitorStatuses from 'containers/CompetitorStatuses'
-import StartingList from 'containers/StartingList'
+import { StartingListPage } from 'modules/startingList'
 import Documents from 'containers/Documents'
 import Contacts from 'containers/Contacts'
 import SendIgc from 'containers/SendIgc'
@@ -69,7 +69,7 @@ const App = () => {
                     <Route path="/signup" component={Signup} />
                     <Route path="/logout" component={Logout} />
                     <Route path="/statuses" component={CompetitorStatuses} />
-                    <Route path="/starting-list" component={StartingList} />
+                    <Route path="/starting-list" component={StartingListPage} />
                     <Route path="/documents" component={Documents} />
                     <Route path="/contacts" component={Contacts} />
                     <Route path="/igc" component={SendIgc} />

@@ -107,3 +107,16 @@ export type UpdateRegistrationAsAdminArgs = {
     id: string
     body: AdminRegistrationRequestBody
 }
+
+export enum RegistrationQuickAction {
+    paid = 'paid',
+    accepted = 'accepted',
+}
+
+export type UpdateRegistrationQuickActionArgs = {
+    id: string
+    body: {
+        [RegistrationQuickAction.paid]?: boolean
+        [RegistrationQuickAction.accepted]?: boolean
+    }
+}
