@@ -1,5 +1,28 @@
 # Changelog
 
+<a name="1.2.0"></a>
+
+## 1.2.0 (2022-04-11)
+
+### Added
+
+-   ✨ Add refactored startingList module [[6544cd4](https://github.com/harastaivan/tcup-client/commit/6544cd46f467fe0b06a1653b31c67d46814963f4)]
+-   ✨ Add LoadingButton form component [[69d9771](https://github.com/harastaivan/tcup-client/commit/69d97717f4948ec5d69f22a09b051f0616ecf321)]
+-   ✨ Add apiError generic message [[a59e39e](https://github.com/harastaivan/tcup-client/commit/a59e39e87535f8ba3ba296aedb3219383bb5b2c8)]
+
+### Removed
+
+-   🔥 Remove startingList redux store [[7515a01](https://github.com/harastaivan/tcup-client/commit/7515a014d76b6bbb7272466ca58aaef2c6570d98)]
+
+### Fixed
+
+-   🐛 Fix typo [[b85b91e](https://github.com/harastaivan/tcup-client/commit/b85b91ec5d653c4f1afdfb4c4a46759c5421e594)]
+
+### Miscellaneous
+
+-   🌐 Update translations [[21a1b3e](https://github.com/harastaivan/tcup-client/commit/21a1b3ed0cb822ff814d114c3f3487b62a6a4d11)]
+-   🏷️ Add types for file-saver [[97f6b17](https://github.com/harastaivan/tcup-client/commit/97f6b173788f9ef46ff4775b671e6338ce39541f)]
+
 <a name="1.1.0"></a>
 
 ## 1.1.0 (2022-03-31)
