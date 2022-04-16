@@ -1,9 +1,9 @@
-name: deploy-development
+name: deploy-production
 
 on:
     push:
         branches:
-            - development
+            - master
 
 jobs:
     build:
@@ -34,5 +34,5 @@ jobs:
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-                  heroku_app_name: tcup-development
+                  heroku_app_name: tcup-2022
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
