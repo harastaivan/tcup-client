@@ -48,12 +48,15 @@
         "format:check": "npm run prettier -- --list-different",
         "validate": "npm run format:check && npm run lint && npm run build",
         "version": "yarn changelog && code CHANGELOG.md --wait && git add CHANGELOG.md",
-        "changelog": "gitmoji-changelog"
+        "changelog": "gitmoji-changelog",
+        "cypress:open": "yarn run cypress open",
+        "cypress:run": "yarn run cypress run"
     },
     "eslintConfig": {
         "extends": [
             "react-app",
-            "react-app/jest"
+            "react-app/jest",
+            "plugin:cypress/recommended"
         ]
     },
     "bugs": {
@@ -72,11 +75,15 @@
         ]
     },
     "devDependencies": {
+        "@testing-library/cypress": "^8.0.2",
         "@types/file-saver": "^2.0.5",
         "@types/react-redux": "^7.1.16",
         "@types/react-router-dom": "^5.1.7",
         "@types/styled-components": "^5.1.10",
         "cypress": "^9.5.4",
+        "cypress-dotenv": "^2.0.0",
+        "dotenv": "^16.0.0",
+        "eslint-plugin-cypress": "^2.12.1",
         "gitmoji-changelog": "^2.3.0",
         "nyc": "^15.1.0",
         "prettier": "^2.2.1"

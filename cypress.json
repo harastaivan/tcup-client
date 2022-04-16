@@ -1,0 +1,11 @@
+{
+    "baseUrl": "http://development.tcup.cz",
+    "integrationFolder": "./cypress/e2e",
+    "pluginsFolder": false,
+    "fixturesFolder": false,
+    "video": false,
+    "viewportWidth": 1600,
+    "viewportHeight": 1000,
+    "defaultCommandTimeout": 12000,
+    "retries": 2
+}
