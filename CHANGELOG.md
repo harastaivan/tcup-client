@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.3.0"></a>
+
+## 1.3.0 (2022-04-16)
+
+### Added
+
+-   ✨ Update registration form to use glider types depending on competition class [[f79394f](https://github.com/harastaivan/tcup-client/commit/f79394fa9c8eb2194c64bde17177f94c4fbac03e)]
+
 <a name="1.2.1"></a>
 
 ## 1.2.1 (2022-04-11)
