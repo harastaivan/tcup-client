@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="1.3.1"></a>
+
+## 1.3.1 (2022-04-16)
+
+### Miscellaneous
+
+-   👷 Deploy production job [[2ebf470](https://github.com/harastaivan/tcup-client/commit/2ebf47048ab6a3ba952ff5155675ea6f165a9cbd)]
+-   👷 Deploy development job [[7651424](https://github.com/harastaivan/tcup-client/commit/76514244b3c65a3681451b6f536fe9b7a054bb8c)]
+-   👷 Add deploy github action [[73a2a71](https://github.com/harastaivan/tcup-client/commit/73a2a71cc971f8c16f3ebe764f4581d484edfc2e)]
+-   👷 Rename CI github action [[74432f1](https://github.com/harastaivan/tcup-client/commit/74432f1a12453fb718ca27e551d2cdf99ad5e0a8)]
+
 <a name="1.3.0"></a>
 
 ## 1.3.0 (2022-04-16)
