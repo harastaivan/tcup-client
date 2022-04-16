@@ -5,10 +5,15 @@ export interface AccomodationType {
     createdAt: string
 }
 
+enum CompetitionClassType {
+    CLUB = 'club',
+    KOMBI = '18_meter',
+}
+
 export interface CompetitionClass {
     _id: string
     name: string
-    type: 'club' | '18_meter'
+    type: CompetitionClassType
     soaringSpotId: number
     updatedAt: string
     createdAt: string
@@ -18,6 +23,8 @@ export interface GliderType {
     _id: string
     name: string
     index: number
+    handicap: number
+    competitionClassType: CompetitionClassType
 }
 
 export interface Region {

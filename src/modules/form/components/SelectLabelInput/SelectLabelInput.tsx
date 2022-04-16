@@ -7,17 +7,19 @@ interface BaseSelect {
 interface SelectLabelInputProps<S, T> extends LabelInputProps<T> {
     selectData: S[]
     translate: (s: S) => string
+    emptyLabel?: string
 }
 
 export const SelectLabelInput = <Select extends BaseSelect, FieldValues extends {}>({
     selectData,
     translate,
+    emptyLabel,
     ...props
 }: SelectLabelInputProps<Select, FieldValues>) => {
     return (
         <LabelInput {...props}>
             <>
-                <option value="">{props.label}</option>
+                <option value="">{emptyLabel || props.label}</option>
                 {selectData.map((data) => (
                     <option key={data._id} value={data._id}>
                         {translate(data)}

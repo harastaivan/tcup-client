@@ -8,6 +8,7 @@ import type { FormDataResponse } from 'modules/registration/types'
 
 import { AdminFormFields, AdminFormValues, AdminValues } from './FormFields'
 import { validationSchema as baseValidationSchema } from '../RegistrationFormAsUser'
+import { useFilterSelectData } from 'modules/registration/hooks'
 
 const validationSchema = (t: TFunction) =>
     baseValidationSchema(t).shape({
@@ -28,11 +29,13 @@ export const RegistrationFormAsAdminForm = ({
 }: RegistrationFormAsAdminProps) => {
     const { t } = useTranslation()
     const resolver = useYupValidationResolver(validationSchema(t))
-    const { handleSubmit, formState, control } = useForm<AdminFormValues>({
+    const { handleSubmit, formState, control, watch, resetField } = useForm<AdminFormValues>({
         mode: 'all',
         resolver,
         defaultValues,
     })
+
+    const { filterSelectData } = useFilterSelectData(watch, resetField)
 
     const onSubmit = handleSubmit(async (data) => {
         await submitData(data)
@@ -40,7 +43,7 @@ export const RegistrationFormAsAdminForm = ({
 
     return (
         <form onSubmit={onSubmit}>
-            <AdminFormFields control={control} selectData={selectData} />
+            <AdminFormFields control={control} selectData={filterSelectData(selectData)} />
 
             <SubmitButton loading={formState.isSubmitting}>{t('form.registration.submit')}</SubmitButton>
         </form>

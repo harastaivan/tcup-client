@@ -215,6 +215,7 @@
         "form.registration.aeroclub.label": "Aeroclub",
         "form.registration.region.label": "Region",
         "form.registration.gliderType.label": "Glider type",
+        "form.registration.gliderType.emptyLabel": "Choose competition class",
         "form.registration.registrationNumber.label": "Aircraft registration number",
         "form.registration.startNumber.label": "Start number",
         "form.registration.hasEngine.label": "Has engine",

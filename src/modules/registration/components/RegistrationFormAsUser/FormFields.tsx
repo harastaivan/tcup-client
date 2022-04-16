@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import type { Control } from 'react-hook-form'
+import { Col } from 'reactstrap'
 
 import { LabelInput, Row, SelectLabelInput, SwitchLabelInput } from 'modules/form'
 import type { TKey } from 'translations'
@@ -123,15 +124,52 @@ export const FormFields = ({ control, selectData }: FormFieldsProps) => {
             </Row>
             <Row>
                 <SelectLabelInput
-                    name={Values.GLIDER_TYPE}
+                    name={Values.COMPETITION_CLASS}
                     type="select"
                     control={control}
-                    label={t(`form.registration.${Values.GLIDER_TYPE}.label` as const)}
+                    label={t(`form.registration.${Values.COMPETITION_CLASS}.label` as const)}
                     required
-                    selectData={selectData.gliderTypes}
-                    translate={({ name, index }: GliderType) => `${name} (${index})`}
+                    selectData={selectData.competitionClasses}
+                    translate={({ type }) => t(`competitionClass.${type}` as const)}
                 />
 
+                {selectData.gliderTypes.length === 0 && (
+                    <SelectLabelInput
+                        name={Values.GLIDER_TYPE}
+                        type="select"
+                        control={control}
+                        label={t(`form.registration.${Values.GLIDER_TYPE}.label` as const)}
+                        emptyLabel={t(`form.registration.${Values.GLIDER_TYPE}.emptyLabel` as const)}
+                        required
+                        disabled
+                        selectData={[]}
+                        translate={() => ''}
+                    />
+                )}
+                {selectData.gliderTypes.length > 0 && (
+                    <SelectLabelInput
+                        name={Values.GLIDER_TYPE}
+                        type="select"
+                        control={control}
+                        label={t(`form.registration.${Values.GLIDER_TYPE}.label` as const)}
+                        required
+                        selectData={selectData.gliderTypes}
+                        translate={({ name, index }: GliderType) => `${name} (${index})`}
+                    />
+                )}
+            </Row>
+            <Row>
+                <Col />
+                <Col>
+                    <SwitchLabelInput
+                        name={Values.HAS_ENGINE}
+                        control={control}
+                        label={t(`form.registration.${Values.HAS_ENGINE}.label` as const)}
+                        required
+                    />
+                </Col>
+            </Row>
+            <Row>
                 <LabelInput
                     name={Values.REGISTRATION_NUMBER}
                     control={control}
@@ -144,25 +182,6 @@ export const FormFields = ({ control, selectData }: FormFieldsProps) => {
                     control={control}
                     label={t(`form.registration.${Values.START_NUMBER}.label` as const)}
                     required
-                />
-            </Row>
-            <Row>
-                <SwitchLabelInput
-                    name={Values.HAS_ENGINE}
-                    control={control}
-                    label={t(`form.registration.${Values.HAS_ENGINE}.label` as const)}
-                    required
-                />
-            </Row>
-            <Row>
-                <SelectLabelInput
-                    name={Values.COMPETITION_CLASS}
-                    type="select"
-                    control={control}
-                    label={t(`form.registration.${Values.COMPETITION_CLASS}.label` as const)}
-                    required
-                    selectData={selectData.competitionClasses}
-                    translate={({ type }) => t(`competitionClass.${type}` as const)}
                 />
 
                 <LabelInput

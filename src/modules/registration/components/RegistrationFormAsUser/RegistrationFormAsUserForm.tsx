@@ -1,13 +1,13 @@
 import { useForm } from 'react-hook-form'
-
+import { useTranslation } from 'react-i18next'
 import * as yup from 'yup'
 
-import { SubmitButton, useYupValidationResolver, phoneRegex } from 'modules/form'
-
 import type { TFunction } from 'translations'
+import { SubmitButton, useYupValidationResolver, phoneRegex } from 'modules/form'
 import type { FormDataResponse } from 'modules/registration/types'
+
 import { FormFields, FormValues, Values } from './FormFields'
-import { useTranslation } from 'react-i18next'
+import { useFilterSelectData } from '../../hooks'
 
 export const validationSchema = (t: TFunction) =>
     yup.object({
@@ -43,11 +43,13 @@ interface RegistrationFormAsUserProps {
 export const RegistrationFormAsUserForm = ({ defaultValues, selectData, submitData }: RegistrationFormAsUserProps) => {
     const { t } = useTranslation()
     const resolver = useYupValidationResolver(validationSchema(t))
-    const { handleSubmit, formState, control } = useForm<FormValues>({
+    const { handleSubmit, formState, control, watch, resetField } = useForm<FormValues>({
         mode: 'all',
         resolver,
         defaultValues,
     })
+
+    const { filterSelectData } = useFilterSelectData(watch, resetField)
 
     const onSubmit = handleSubmit(async (data) => {
         await submitData(data)
@@ -55,7 +57,7 @@ export const RegistrationFormAsUserForm = ({ defaultValues, selectData, submitDa
 
     return (
         <form onSubmit={onSubmit}>
-            <FormFields control={control} selectData={selectData} />
+            <FormFields control={control} selectData={filterSelectData(selectData)} />
 
             <SubmitButton loading={formState.isSubmitting}>{t('form.registration.submit')}</SubmitButton>
         </form>

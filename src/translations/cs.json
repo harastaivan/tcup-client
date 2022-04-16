@@ -215,6 +215,7 @@
         "form.registration.aeroclub.label": "Aeroklub",
         "form.registration.region.label": "Region",
         "form.registration.gliderType.label": "Typ kluzáku",
+        "form.registration.gliderType.emptyLabel": "Vyberte třídu",
         "form.registration.registrationNumber.label": "Imatrikulace",
         "form.registration.startNumber.label": "Startovní číslo",
         "form.registration.hasEngine.label": "Má motor",
