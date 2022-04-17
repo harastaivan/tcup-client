@@ -1,5 +1,27 @@
 # Changelog
 
+<a name="1.4.0"></a>
+
+## 1.4.0 (2022-04-17)
+
+### Changed
+
+-   🔧 Update cypress baseUrl [[796a6b2](https://github.com/harastaivan/tcup-client/commit/796a6b23f17201669dec5a14d8d14e9577c7e3f5)]
+-   🔧 Extract eslint config [[2265602](https://github.com/harastaivan/tcup-client/commit/2265602c477db197340aecb234e52a9cfcf87645)]
+
+### Fixed
+
+-   🐛 Fix build [[3d52fb5](https://github.com/harastaivan/tcup-client/commit/3d52fb51cb3767099f05f251d3b591172c7f9072)]
+-   🐛 Fix app version [[acaf501](https://github.com/harastaivan/tcup-client/commit/acaf5011ddb1db62a8de04c60e79741dc5faed0e)]
+
+### Security
+
+-   🔒 Fix security vulnerabilities [[056da47](https://github.com/harastaivan/tcup-client/commit/056da475243b1e6de20bb7b7626e20536ff81641)]
+
+### Miscellaneous
+
+-   👷 Add audit step to build job [[a3829ab](https://github.com/harastaivan/tcup-client/commit/a3829ab3eb0b99f3771adc39dc15fb2d401c14a8)]
+
 <a name="1.3.4"></a>
 
 ## 1.3.4 (2022-05-04)
