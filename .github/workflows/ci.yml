@@ -28,3 +28,34 @@ jobs:
 
             - name: audit
               run: yarn audit --level high --groups dependencies
+
+            - uses: actions/upload-artifact@v2
+              with:
+                  name: build
+                  path: build
+
+    cypress-run:
+        needs: build
+        runs-on: ubuntu-latest
+        container: cypress/browsers:node14.17.6-chrome100-ff98
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Download the build folders
+              uses: actions/download-artifact@v2
+              with:
+                  name: build
+                  path: build
+
+            # Install NPM dependencies, cache them correctly
+            # and run all Cypress tests
+            - name: Cypress run
+              uses: cypress-io/github-action@v2
+              with:
+                  # Specify Browser since container image is compile with Firefox
+                  browser: chrome
+              env:
+                  CYPRESS_API_ENDPOINT: http://api.development.tcup.cz
+                  CYPRESS_USER_EMAIL: user@tcup.cz
+                  CYPRESS_USER_PASSWORD: user123456

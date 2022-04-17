@@ -45,7 +45,7 @@ describe('Registration', () => {
         getAccessTokenCypressPromise().then((token) => {
             cy.request({
                 method: 'DELETE',
-                url: 'http://api.development.tcup.cz/api/registration',
+                url: `${Cypress.env('API_ENDPOINT')}/api/registration`,
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8',
                     authorization: `Bearer ${token}`,
@@ -131,7 +131,7 @@ describe('Registration', () => {
         getAccessTokenCypressPromise().then((token) => {
             cy.request({
                 method: 'DELETE',
-                url: 'http://api.development.tcup.cz/api/registration',
+                url: `${Cypress.env('API_ENDPOINT')}/api/registration`,
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8',
                     authorization: `Bearer ${token}`,
