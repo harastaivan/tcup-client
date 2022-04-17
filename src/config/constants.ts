@@ -7,3 +7,4 @@ export const SPINNER_TIMEOUT =
     process.env.REACT_APP_SPINNER_TIMEOUT !== undefined ? Number(process.env.REACT_APP_SPINNER_TIMEOUT) : 2000
 
 export const APP_TITLE = process.env.REACT_APP_TITLE
+export const APP_VERSION = process.env.REACT_APP_VERSION
