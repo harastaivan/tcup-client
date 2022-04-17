@@ -1,5 +1,5 @@
 {
-    "baseUrl": "http://development.tcup.cz",
+    "baseUrl": "http://local.tcup.cz:3000",
     "integrationFolder": "./cypress/e2e",
     "pluginsFolder": false,
     "fixturesFolder": false,
