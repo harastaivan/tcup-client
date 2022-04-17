@@ -27,6 +27,10 @@ export const Toaster = () => {
                         primary: 'green',
                         secondary: 'black',
                     },
+                    className: 'toast-success',
+                },
+                error: {
+                    className: 'toast-error',
                 },
             }}>
             {(toast) => {

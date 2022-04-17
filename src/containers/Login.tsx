@@ -53,6 +53,7 @@ const Login: React.FC = () => {
                         placeholder={t('Email')}
                         value={email}
                         onChange={onChangeEmail}
+                        data-testid="input-email"
                     />
                 </FormGroup>
                 <FormGroup>
@@ -64,9 +65,15 @@ const Login: React.FC = () => {
                         placeholder={t('Heslo')}
                         value={password}
                         onChange={onChangePassword}
+                        data-testid="input-password"
                     />
                 </FormGroup>
-                <Button color="dark" style={{ marginTop: '2rem' }} block disabled={!email || !password}>
+                <Button
+                    color="dark"
+                    style={{ marginTop: '2rem' }}
+                    block
+                    disabled={!email || !password}
+                    data-testid="button-submit">
                     {t('Přihlásit se')}
                 </Button>
             </Form>

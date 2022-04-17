@@ -31,7 +31,7 @@ const AppNavbar = () => {
                 <DropdownToggle nav caret>
                     <strong>{user ? `${user.name} ${user.surname}` : ''}</strong>
                     {isAdmin ? (
-                        <Badge color="danger" className="ml-2">
+                        <Badge color="danger" className="ml-2" data-testid="admin-badge">
                             {t('Admin')}
                         </Badge>
                     ) : (
@@ -56,7 +56,7 @@ const AppNavbar = () => {
                 </DropdownMenu>
             </UncontrolledDropdown>
             <NavItem>
-                <NavLink tag={Link} to="/logout" activeClassName="active">
+                <NavLink tag={Link} to="/logout" activeClassName="active" data-testid="navlink-logout">
                     {t('Odhlásit se')}
                 </NavLink>
             </NavItem>
@@ -66,7 +66,7 @@ const AppNavbar = () => {
     const guestLinks = (
         <Fragment>
             <NavItem>
-                <NavLink tag={Link} to="/login" activeClassName="active">
+                <NavLink tag={Link} to="/login" activeClassName="active" data-testid="navlink-login">
                     {t('Přihlásit se')}
                 </NavLink>
             </NavItem>
