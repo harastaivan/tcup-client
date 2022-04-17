@@ -19,7 +19,11 @@ export const SubmitButton = ({ loading = false, disabled = false, children }: Su
     )
 
     return (
-        <Button type="submit" style={{ width: '100%', marginTop: '1em' }} disabled={loading || disabled}>
+        <Button
+            type="submit"
+            style={{ width: '100%', marginTop: '1em' }}
+            disabled={loading || disabled}
+            data-testid="button-submit">
             {loading ? spinner : children}
         </Button>
     )

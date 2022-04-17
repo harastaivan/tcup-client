@@ -39,7 +39,7 @@ export const RegistrationFormAsUser = ({ user }: RegistrationFormAsUserProps) =>
 
     return (
         <>
-            <h1>{t('registration.title')}</h1>
+            <h1 data-testid="registration-as-user-title">{t('registration.title')}</h1>
             {loading && <Spinner />}
             {!loading && user && formData && (
                 <RegistrationFormAsUserForm

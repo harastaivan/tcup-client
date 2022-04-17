@@ -28,7 +28,7 @@ export const LabelInput = <FieldValues extends {}>({
     const showInvalid = Boolean(error?.message)
 
     return (
-        <FormGroup style={{ width: '100%' }}>
+        <FormGroup style={{ width: '100%' }} data-testid={`form-group-${name}`}>
             <Label for={id}>{label}</Label>
             <Input
                 id={id}
@@ -42,6 +42,7 @@ export const LabelInput = <FieldValues extends {}>({
                 invalid={showInvalid}
                 disabled={disabled}
                 children={children}
+                data-testid={`input-${name}`}
             />
             {showInvalid && <FormFeedback>{error?.message}</FormFeedback>}
         </FormGroup>
