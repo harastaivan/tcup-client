@@ -26,6 +26,9 @@ jobs:
             - run: yarn format:check
             - run: yarn test
 
+            - name: audit
+              run: yarn audit --level high --groups dependencies
+
     deploy:
         needs: build
         runs-on: ubuntu-latest
