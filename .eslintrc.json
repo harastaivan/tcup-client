@@ -1,0 +1,12 @@
+{
+    "extends": ["react-app", "react-app/jest", "plugin:cypress/recommended"],
+    "overrides": [
+        {
+            "files": ["**/cypress/**/*.spec.js", "**/cypress/**/*.spec.ts"],
+            "rules": {
+                "testing-library/await-async-query": 0,
+                "testing-library/prefer-screen-queries": 0
+            }
+        }
+    ]
+}

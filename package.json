@@ -52,13 +52,6 @@
         "cypress:open": "yarn run cypress open",
         "cypress:run": "yarn run cypress run"
     },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest",
-            "plugin:cypress/recommended"
-        ]
-    },
     "bugs": {
         "url": "https://gitreports.com/issue/harastaivan/tcup-client"
     },
