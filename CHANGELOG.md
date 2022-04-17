@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="1.3.2"></a>
+
+## 1.3.2 (2022-04-17)
+
+### Added
+
+-   ✅ Add e2e test for registration flow [[05b8357](https://github.com/harastaivan/tcup-client/commit/05b83573a5a9deb868665d8d3884d1235782d625)]
+-   ✅ Add e2e test for login flow [[0178b68](https://github.com/harastaivan/tcup-client/commit/0178b68322adab5d529afc32f755aa83c8241e63)]
+-   ✨ Setup cypress e2e testing [[0a9e95f](https://github.com/harastaivan/tcup-client/commit/0a9e95fefab5862035862d13c1dc9da8aa78bb43)]
+-   ➕ Add Cypress [[d891aba](https://github.com/harastaivan/tcup-client/commit/d891abab24ced511d94c36f630f4d815e3a3a08f)]
+
 <a name="1.3.1"></a>
 
 ## 1.3.1 (2022-04-16)
