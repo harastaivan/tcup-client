@@ -46,6 +46,7 @@
         "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
         "format": "npm run prettier -- --write",
         "format:check": "npm run prettier -- --list-different",
+        "translations:check": "node scripts/checkTranslations.mjs",
         "validate": "npm run format:check && npm run lint && npm run build",
         "version": "yarn changelog && code CHANGELOG.md --wait && git add CHANGELOG.md",
         "changelog": "gitmoji-changelog",
