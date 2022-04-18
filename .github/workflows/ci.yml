@@ -23,6 +23,7 @@ jobs:
             - run: yarn build
             - run: yarn lint
             - run: yarn format:check
+            - run: yarn translations:check
             - run: yarn test
 
             - name: audit
