@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.4.1"></a>
+
+## 1.4.1 (2022-04-18)
+
+### Added
+
+-   ✨ Add checkTranslations script [[c738b13](https://github.com/harastaivan/tcup-client/commit/c738b1360ef3cc5c4c9b6722313192448e554cb7)]
+
+### Miscellaneous
+
+-   👷 Add translations:check step to CI jobs [[17acf5e](https://github.com/harastaivan/tcup-client/commit/17acf5ee51546ea6a6e8855749cee78e65cdedc7)]
+
 <a name="1.4.0"></a>
 
 ## 1.4.0 (2022-04-17)
