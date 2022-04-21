@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.3.3"></a>
+
+## 1.3.3 (2022-04-21)
+
+### Fixed
+
+-   🐛 Fix igcId admin form validation [[20406c8](https://github.com/harastaivan/tcup-client/commit/20406c8e2515c5c395541b4913876bda6a43f029)]
+
 <a name="1.3.2"></a>
 
 ## 1.3.2 (2022-04-17)
