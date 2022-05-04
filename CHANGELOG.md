@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.3.4"></a>
+
+## 1.3.4 (2022-05-04)
+
+### Changed
+
+-   🔧 Enable signup [[4c7dc36](https://github.com/harastaivan/tcup-client/commit/4c7dc3631f769c802f8bd1c3e63a29006a7b172c)]
+
+### Removed
+
+-   🔥 Remove REACT_APP_SIGNUP_DISABLED env variable [[0bbede6](https://github.com/harastaivan/tcup-client/commit/0bbede62af549c68f55d02336ca19eb41949007d)]
+
 <a name="1.3.3"></a>
 
 ## 1.3.3 (2022-04-21)
