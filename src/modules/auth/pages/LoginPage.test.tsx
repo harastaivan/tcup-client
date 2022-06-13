@@ -1,9 +1,11 @@
+import 'jest-axe/extend-expect'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
+import { axe } from 'jest-axe'
 
 import { API_ENDPOINT } from 'config/constants'
 import { LoginPage } from 'modules/auth'
@@ -35,6 +37,12 @@ beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 afterAll(() => server.close())
 afterEach(() => server.resetHandlers())
 
+it('form is accessible', async () => {
+    const { container, debug } = render(<LoginPage />, { wrapper: Core })
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+})
+
 it('should render email input', () => {
     render(<LoginPage />, { wrapper: Core })
     const input = screen.getByLabelText(/email/i)
@@ -65,9 +73,11 @@ it('should submit the form with credentials', async () => {
     )
     const email = screen.getByLabelText(/email/i)
     const password = screen.getByLabelText(/heslo/i)
+    const login = screen.getByText(/přihlásit se/i, { selector: 'button' })
+    expect(login).toBeDisabled()
     userEvent.type(email, credentials.email)
     userEvent.type(password, credentials.password)
-    const login = screen.getByText(/přihlásit se/i, { selector: 'button' })
+    expect(login).not.toBeDisabled()
     userEvent.click(login)
     expect(login).toBeDisabled()
 
