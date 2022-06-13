@@ -1,5 +1,35 @@
 # Changelog
 
+<a name="1.4.2"></a>
+
+## 1.4.2 (2022-06-13)
+
+### Added
+
+-   ✅ Add accessibility test to LoginPage [[9eab569](https://github.com/harastaivan/tcup-client/commit/9eab56947bebbc4bbc81dc733970ceb583c8b43a)]
+-   ✅ Add LoginPage test [[f7c9292](https://github.com/harastaivan/tcup-client/commit/f7c9292303778d55e390faab825be5355d57c555)]
+-   ✅ Add Application test [[3bed7b2](https://github.com/harastaivan/tcup-client/commit/3bed7b294c0b27d7d5d59aa7fbe662c7193fd10f)]
+-   ➕ Add msw [[1e478a1](https://github.com/harastaivan/tcup-client/commit/1e478a11b0ec4007960ab84cc585c582951a1047)]
+-   ➕ Add jest-axe for accessibility testing [[a118953](https://github.com/harastaivan/tcup-client/commit/a11895378148b8a7a8bb14a9d9ec42bbe08257f3)]
+
+### Changed
+
+-   ♻️ Refactor Login [[57568ee](https://github.com/harastaivan/tcup-client/commit/57568ee9bea52fcee7748344c7c9b674c5a3e867)]
+-   ♻️ Refactor Application [[f6b8291](https://github.com/harastaivan/tcup-client/commit/f6b8291184eb1a8a0acf476c8cb16319198fde17)]
+-   ♻️ Refactor store [[a0a335b](https://github.com/harastaivan/tcup-client/commit/a0a335bd1d5cd6b9917cd39f85049f7a42f20982)]
+
+### Fixed
+
+-   💚 Temporarily remove yarn cache from github actions [[8859d8a](https://github.com/harastaivan/tcup-client/commit/8859d8a7cd8feb2ab241d749348b9aecbb6097fe)]
+
+### Security
+
+-   🔒 Fix vulnerability [[de875da](https://github.com/harastaivan/tcup-client/commit/de875daf10c7b5ef5e975919a3ed874eee778129)]
+
+### Miscellaneous
+
+-   🤡 Mock translations [[67df5af](https://github.com/harastaivan/tcup-client/commit/67df5af78e2704521d545b749aaab568033a65de)]
+
 <a name="1.4.1"></a>
 
 ## 1.4.1 (2022-04-18)
