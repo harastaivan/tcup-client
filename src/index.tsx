@@ -3,17 +3,22 @@ import 'react-app-polyfill/stable'
 
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
-import reportWebVitals from './reportWebVitals'
+
+import { Application } from 'modules/application'
+import { Core } from 'modules/core'
 import 'translations'
 
+import './index.css'
+import reportWebVitals from './reportWebVitals'
 import SpinnerFullPage from './components/SpinnerFullPage'
 
 const root = (
     <React.StrictMode>
+        {/* TODO: Move to App or better Layout */}
         <Suspense fallback={<SpinnerFullPage />}>
-            <App />
+            <Core>
+                <Application />
+            </Core>
         </Suspense>
     </React.StrictMode>
 )

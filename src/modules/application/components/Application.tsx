@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
-import { Provider, useSelector, useDispatch } from 'react-redux'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import { Container } from 'reactstrap'
 
-import './App.css'
+import './Application.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import store from 'store'
 import { loadUser } from 'store/auth/actions'
 import { getAuth } from 'store/auth/selectors'
 
@@ -36,7 +35,7 @@ import SpinnerFullPage from 'components/SpinnerFullPage'
 import { Toaster } from 'modules/toast'
 import { useOnlineStatus, useBackendStatus } from 'hooks'
 
-const App = () => {
+export const Application = () => {
     const dispatch = useDispatch()
     const { token, isAdmin } = useSelector(getAuth)
     useOnlineStatus()
@@ -86,15 +85,3 @@ const App = () => {
         </div>
     )
 }
-
-const WrappedApp = () => {
-    return (
-        <Provider store={store}>
-            <Router>
-                <App />
-            </Router>
-        </Provider>
-    )
-}
-
-export default WrappedApp
