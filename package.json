@@ -19,6 +19,7 @@
         "i18next-xhr-backend": "^3.2.2",
         "jest-axe": "^6.0.0",
         "moment": "^2.29.1",
+        "msw": "^0.42.1",
         "react": "^17.0.1",
         "react-app-polyfill": "^2.0.0",
         "react-country-flag": "^2.3.0",
