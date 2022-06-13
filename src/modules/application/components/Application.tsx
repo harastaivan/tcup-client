@@ -13,7 +13,7 @@ import AppNavbar from 'containers/AppNavbar'
 import Home from 'containers/Home'
 import News from 'containers/News'
 import { RegistrationPage } from 'modules/registration'
-import Login from 'containers/Login'
+import { LoginPage } from 'modules/auth'
 import CompetitorStatuses from 'containers/CompetitorStatuses'
 import { StartingListPage } from 'modules/startingList'
 import Documents from 'containers/Documents'
@@ -64,7 +64,7 @@ export const Application = () => {
                 <Switch>
                     <Route path="/news" component={News} />
                     <Route path="/registration" component={RegistrationPage} />
-                    <Route path="/login" component={Login} />
+                    <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={Signup} />
                     <Route path="/logout" component={Logout} />
                     <Route path="/statuses" component={CompetitorStatuses} />

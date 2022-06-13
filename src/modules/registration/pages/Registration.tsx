@@ -2,9 +2,9 @@ import { Switch, Route } from 'react-router-dom'
 import { Alert } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import Login from '../../../containers/Login'
 import Spinner from 'components/Spinner'
 import { RegistrationFormAsUser, RegistrationFormAsAdmin, useRegistrationPage } from 'modules/registration'
+import { LoginPage } from 'modules/auth'
 
 export const RegistrationPage = () => {
     const { loading, path, adminPath, isAdmin, isAuthenticated, user } = useRegistrationPage()
@@ -18,14 +18,14 @@ export const RegistrationPage = () => {
                         <div>
                             {/* TODO: Redirect to /login */}
                             <Alert color="info">{t('registration.update.login')}</Alert>
-                            <Login />
+                            <LoginPage />
                         </div>
                     )}
                     {isAuthenticated && !isAdmin && (
                         <div>
                             {/* TODO: Redirect to /login */}
                             <Alert color="danger">{t('registration.admin.login')}</Alert>
-                            <Login />
+                            <LoginPage />
                         </div>
                     )}
                     {isAuthenticated && isAdmin && <RegistrationFormAsAdmin />}
@@ -36,7 +36,7 @@ export const RegistrationPage = () => {
                         <div>
                             {/* TODO: Redirect to /login */}
                             <Alert color="info">{t('registration.create.login')}</Alert>
-                            <Login />
+                            <LoginPage />
                         </div>
                     )}
                     {!loading && isAuthenticated && <RegistrationFormAsUser user={user!} />}

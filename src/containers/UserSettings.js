@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import EditUserSettings from './EditUserSettings'
-import Login from './Login'
+import { LoginPage } from 'modules/auth'
 
 class UserSettings extends Component {
     static propTypes = {
@@ -14,7 +14,7 @@ class UserSettings extends Component {
         return (
             <Fragment>
                 {this.props.isAuthenticated && <EditUserSettings />}
-                {!this.props.isAuthenticated && <Login history={this.props.history} />}
+                {!this.props.isAuthenticated && <LoginPage history={this.props.history} />}
             </Fragment>
         )
     }

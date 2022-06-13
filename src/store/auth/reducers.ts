@@ -28,6 +28,7 @@ const authReducer = (state = initialState, action: AuthAction) => {
 
         case authActionTypes.LOGIN_SUCCESS:
         case authActionTypes.REGISTER_SUCCESS:
+            // TODO: Remove side-effect
             sessionStorage.setItem('token', action.payload.token)
             return {
                 ...state,
@@ -42,6 +43,7 @@ const authReducer = (state = initialState, action: AuthAction) => {
         case authActionTypes.LOGOUT_SUCCESS:
         case authActionTypes.TIMEOUT_LOGOUT_SUCCESS:
         case authActionTypes.REGISTER_FAIL:
+            // TODO: Remove side-effect
             sessionStorage.removeItem('token')
             return {
                 ...state,
