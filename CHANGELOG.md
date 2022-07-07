@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.3.5"></a>
+
+## 1.3.5 (2022-07-07)
+
+### Changed
+
+-   🔧 Update soaring spot url [[2b26c63](https://github.com/harastaivan/tcup-client/commit/2b26c63865c7bf557502313132f5bc58e13a7551)]
+
 <a name="1.3.4"></a>
 
 ## 1.3.4 (2022-05-04)
