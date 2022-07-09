@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.3.6"></a>
+
+## 1.3.6 (2022-07-09)
+
+### Added
+
+-   ✨ Add see you export to admin starting list [[5c5b2d3](https://github.com/harastaivan/tcup-client/commit/5c5b2d3260f8ead93aa62ffdd560d9868f98cd2c)]
+
+### Fixed
+
+-   🐛 Fix npm version [[6e22171](https://github.com/harastaivan/tcup-client/commit/6e22171d26f5431a7f1b995eabf428e028fa16ed)]
+-   🐛 Fix type warning [[55a59de](https://github.com/harastaivan/tcup-client/commit/55a59def7bf82a5999175384cc8cb633172d2c18)]
+
 <a name="1.3.5"></a>
 
 ## 1.3.5 (2022-07-07)
