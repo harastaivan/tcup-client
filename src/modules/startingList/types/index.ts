@@ -19,3 +19,7 @@ export interface StartingListByClass extends Pick<CompetitionClass, '_id' | 'nam
 }
 
 export type StartingListResponse = StartingListByClass[]
+
+export type SeeYouExportArgs = {
+    competitionClassId: CompetitionClass['_id']
+}

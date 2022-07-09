@@ -9,13 +9,14 @@ import { LoadingButton } from 'modules/form'
 
 import { useGetStartingListAsAdminQuery } from '../services/api'
 import { StartingListByClass } from './StartingListByClass'
-import { useExportStartingList, useRegistrationCompletedFilter } from '../hooks'
+import { useExportStartingList, useRegistrationCompletedFilter, useSeeYouExportStartingList } from '../hooks'
 
 export const StartingListAsAdmin = () => {
     const { t } = useTranslation()
     const { isLoading, error, isError, data: startingList } = useGetStartingListAsAdminQuery()
     const { filterRegistrations, buttons } = useRegistrationCompletedFilter()
     const { exportStartingList, isLoading: isExportLoading } = useExportStartingList()
+    const { exportSeeYouStartingList, isLoading: isSeeYouExportLoading } = useSeeYouExportStartingList()
 
     useEffect(() => {
         if (isError) {
@@ -29,6 +30,14 @@ export const StartingListAsAdmin = () => {
             <LoadingButton loading={isExportLoading} onClick={exportStartingList} style={{ marginBottom: '1em' }}>
                 {t('export přihlášek')}
             </LoadingButton>
+            {startingList?.map(({ _id, name }) => (
+                <LoadingButton
+                    loading={isSeeYouExportLoading}
+                    onClick={exportSeeYouStartingList(_id)}
+                    style={{ marginBottom: '1em', marginLeft: '1em' }}>
+                    {t('export see you')} {name}
+                </LoadingButton>
+            ))}
             <div style={{ marginBottom: '1em' }}>
                 <ButtonGroup>
                     {buttons.map(({ label, isActive, color, onClick }) => (
