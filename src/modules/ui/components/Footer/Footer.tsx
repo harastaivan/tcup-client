@@ -2,8 +2,7 @@ import React from 'react'
 import { Container } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import { version } from '../../../../../package.json'
-import { APP_TITLE } from 'config/constants'
+import { APP_TITLE, APP_VERSION } from 'config/constants'
 
 export const Footer = () => {
     const { t } = useTranslation()
@@ -15,7 +14,7 @@ export const Footer = () => {
                     <p>
                         © {APP_TITLE}{' '}
                         <b>
-                            {t('verze')} {version}
+                            {t('verze')} {APP_VERSION}
                         </b>
                     </p>
                     <p style={{ fontWeight: 500 }}>
