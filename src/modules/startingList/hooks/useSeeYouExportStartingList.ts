@@ -24,6 +24,8 @@ export const useSeeYouExportStartingList = () => {
     const saveData = (data: any) => {
         const encoded = new TextEncoder().encode(data)
         const filename = `export-see-you-${formatDate()}.csv`
+        // problem with saveAs, it still encodes to UTF-8 even if you fill in
+        //                                                    windows-1250 here...
         saveAs(new Blob([encoded], { type: 'text/csv; charset=utf-8' }), filename, {
             autoBom: true,
         })
