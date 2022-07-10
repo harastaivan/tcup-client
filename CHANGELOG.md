@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.3.7"></a>
+
+## 1.3.7 (2022-07-10)
+
+### Changed
+
+-   🔧 Update spinner timeout [[19f352f](https://github.com/harastaivan/tcup-client/commit/19f352fd2a1e04712097564b45776565a109a195)]
+
+### Miscellaneous
+
+-   📝 saveAs problem [[3a63bf0](https://github.com/harastaivan/tcup-client/commit/3a63bf0d533b8105a44e3d2b71dac96f2bc24fdd)]
+
 <a name="1.3.6"></a>
 
 ## 1.3.6 (2022-07-09)
