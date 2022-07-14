@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.3.8"></a>
+
+## 1.3.8 (2022-07-14)
+
+### Fixed
+
+-   🚑 Remove link to results page [[4efede2](https://github.com/harastaivan/tcup-client/commit/4efede27dbe7cf0d375fbeea94cab7284d6d1c48)]
+
 <a name="1.3.7"></a>
 
 ## 1.3.7 (2022-07-10)
