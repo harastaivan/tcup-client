@@ -103,12 +103,7 @@ const AppNavbar = () => {
                         </NavItem>
                         <NavItem>
                             <NavLink href={SOARING_SPOT_URL || '#'} target="_blank" disabled={!SOARING_SPOT_URL}>
-                                {t('Úlohy')}
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink tag={Link} to="/results" activeClassName="active">
-                                {t('Výsledky')}
+                                {t('Úlohy a výsledky')}
                             </NavLink>
                         </NavItem>
                         <NavItem>
