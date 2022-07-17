@@ -2,7 +2,7 @@ import { Table, Badge, ButtonGroup } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 import { useUsersList } from 'hooks'
 import type { User } from 'hooks'
-import Spinner from 'components/Spinner'
+import { Spinner } from 'modules/ui'
 
 const UsersList = () => {
     const { t } = useTranslation()

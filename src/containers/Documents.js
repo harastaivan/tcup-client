@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Container, Table, Button } from 'reactstrap'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import Moment from 'react-moment'
 import 'moment/locale/cs'
-import { withTranslation } from 'react-i18next'
 
-import AddDocument from './AddDocument'
+import { Spinner } from 'modules/ui'
 import { getDocuments, deleteDocument, setDocumentsLoading } from 'store/document/actions'
 import fileSize from 'utils/fileSize'
-import Spinner from 'components/Spinner'
+
+import AddDocument from './AddDocument'
 
 class Documents extends Component {
     static propTypes = {

@@ -2,9 +2,9 @@ import { Switch, Route } from 'react-router-dom'
 import { Alert } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
 
-import Login from '../../../containers/Login'
-import Spinner from 'components/Spinner'
+import { Spinner } from 'modules/ui'
 import { RegistrationFormAsUser, RegistrationFormAsAdmin, useRegistrationPage } from 'modules/registration'
+import Login from 'containers/Login'
 
 export const RegistrationPage = () => {
     const { loading, path, adminPath, isAdmin, isAuthenticated, user } = useRegistrationPage()

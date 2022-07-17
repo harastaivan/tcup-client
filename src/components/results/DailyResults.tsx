@@ -2,10 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { Button, Card, CardTitle, Col, ListGroup, ListGroupItem, Row, Table } from 'reactstrap'
 import Moment from 'react-moment'
 
-import ResultsTitle from './ResultsTitle'
-import Spinner from 'components/Spinner'
+import { Spinner } from 'modules/ui'
 import type { DailyResult, Filters } from 'api/results'
 import { useDailyResults } from 'hooks'
+
+import ResultsTitle from './ResultsTitle'
 
 type FiltersProps = {
     filters: Filters | null

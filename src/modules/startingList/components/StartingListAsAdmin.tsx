@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, ButtonGroup } from 'reactstrap'
 
-import Spinner from 'components/Spinner'
+import { Spinner } from 'modules/ui'
 import { toast } from 'modules/toast'
 import type { TKey } from 'translations'
 import { LoadingButton } from 'modules/form'

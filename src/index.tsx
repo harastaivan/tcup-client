@@ -8,7 +8,7 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import 'translations'
 
-import SpinnerFullPage from './components/SpinnerFullPage'
+import { SpinnerFullPage } from 'modules/ui'
 
 const root = (
     <React.StrictMode>

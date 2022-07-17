@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
-import Spinner from 'components/Spinner'
+
+import { Spinner } from 'modules/ui'
 import { toast } from 'modules/toast'
+
 import { useGetStartingListQuery } from '../services/api'
 import { StartingListByClass } from './StartingListByClass'
 

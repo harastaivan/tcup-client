@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { Button, Card, CardTitle, Col, Row } from 'reactstrap'
 
-import Spinner from 'components/Spinner'
-import ResultsTitle from './ResultsTitle'
+import { Spinner } from 'modules/ui'
 import { useTopResults } from 'hooks'
+
+import ResultsTitle from './ResultsTitle'
 
 type Props = {
     goToTotalResults: (classId: { _id: string; name: string }) => () => void

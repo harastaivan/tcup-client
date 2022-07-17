@@ -1,15 +1,16 @@
 import { Fragment, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap'
-import { SubmitButton } from 'modules/form'
 import { useTranslation } from 'react-i18next'
 
-import Spinner from 'components/Spinner'
-import DownloadIgc from './DownloadIgc'
+import { SubmitButton } from 'modules/form'
+import { Spinner } from 'modules/ui'
 import { getCompetitionDay } from 'utils/getCompetitionDay'
 import { getCompetitionDays } from 'store/competitionDay/actions'
 import { formatCompetitionDay } from 'utils/formatCompetitionDay'
 import { addIgc, getIgcFormData } from 'store/igc/actions'
+
+import DownloadIgc from './DownloadIgc'
 
 const SendIgc = () => {
     const { t } = useTranslation()

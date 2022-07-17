@@ -9,7 +9,7 @@ import { getNews as getNewsSelector } from 'store/news/selectors'
 import { getNews, deleteNews, setNewsLoading } from 'store/news/actions'
 
 import AddNews from './AddNews'
-import Spinner from 'components/Spinner'
+import { Spinner } from 'modules/ui'
 import type { NewsId } from 'store/news/types'
 import { getIsAdmin } from 'store/auth/selectors'
 

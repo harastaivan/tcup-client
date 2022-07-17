@@ -1,8 +1,9 @@
 import { APP_TITLE } from 'config/constants'
 import { useSpinnerFullPage } from 'hooks'
-import Spinner from './Spinner'
 
-const SpinnerFullPage = () => {
+import { Spinner } from '../Spinner'
+
+export const SpinnerFullPage = () => {
     const { showSpinner, mounted } = useSpinnerFullPage()
 
     if (!mounted) {
@@ -39,5 +40,3 @@ const SpinnerFullPage = () => {
         </div>
     )
 }
-
-export default SpinnerFullPage

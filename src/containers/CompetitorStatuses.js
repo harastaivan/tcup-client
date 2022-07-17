@@ -4,7 +4,7 @@ import { Table, ButtonGroup, Button, Input, Label, Form, Row, Col, FormGroup } f
 import { useTranslation } from 'react-i18next'
 
 import { getCompetitionDays } from 'store/competitionDay/actions'
-import Spinner from 'components/Spinner'
+import { Spinner } from 'modules/ui'
 import {
     getCompetitorStatuses,
     updateCompetitorStatus,

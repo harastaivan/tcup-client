@@ -5,7 +5,7 @@ import {
     useGetRegistrationQuery,
     useUpdateRegistrationMutation,
 } from 'modules/registration/services/api'
-import Spinner from 'components/Spinner'
+import { Spinner } from 'modules/ui'
 import { transformFormValuesToRequest } from 'modules/registration/utils/transform'
 import type { User } from 'store/auth/types'
 

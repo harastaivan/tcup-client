@@ -32,7 +32,7 @@ import UsersList from 'containers/UsersList'
 
 import { Archive } from 'components/Archive'
 import TestMode from 'components/TestMode'
-import SpinnerFullPage from 'components/SpinnerFullPage'
+import { SpinnerFullPage } from 'modules/ui'
 import { Toaster } from 'modules/toast'
 import { useOnlineStatus, useBackendStatus } from 'hooks'
 
