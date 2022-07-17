@@ -1,1 +1,1 @@
-export * from './SpinnerFullPage';
+export * from './SpinnerFullPage'
