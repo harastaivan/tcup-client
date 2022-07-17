@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.3.11"></a>
+
+## 1.3.11 (2022-07-17)
+
+### Fixed
+
+-   🐛 Fix app version [[df1bcb0](https://github.com/harastaivan/tcup-client/commit/df1bcb0a8f4779cee8a31252f4b105fe0e827650)]
+
 <a name="1.3.10"></a>
 
 ## 1.3.10 (2022-07-17)
