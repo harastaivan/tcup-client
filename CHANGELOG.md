@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.3.10"></a>
+
+## 1.3.10 (2022-07-17)
+
+### Changed
+
+-   🎨 Fix format [[8fe08b4](https://github.com/harastaivan/tcup-client/commit/8fe08b45a94baf24a8f617fb007c311edca03d27)]
+
 <a name="1.3.9"></a>
 
 ## 1.3.9 (2022-07-17)
