@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.3.9"></a>
+
+## 1.3.9 (2022-07-17)
+
+### Changed
+
+-   ♻️ Refactor Spinner and SpinnerFullPage [[eee3780](https://github.com/harastaivan/tcup-client/commit/eee378005502caca373455551931ebb34f32b8c2)]
+
 <a name="1.3.8"></a>
 
 ## 1.3.8 (2022-07-14)
