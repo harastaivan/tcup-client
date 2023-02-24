@@ -1,5 +1,21 @@
 # Changelog
 
+<a name="1.4.0"></a>
+
+## 1.4.0 (2023-02-24)
+
+### Changed
+
+-   ⬆️ Upgrade react-scripts [[5bd8347](https://github.com/harastaivan/tcup-client/commit/5bd83479fa77a0e60ce0166482f65eaf9e2119a9)]
+-   ⬆️ Upgrade packages [[b906244](https://github.com/harastaivan/tcup-client/commit/b906244b527ac472649bc8d9b5140d0d061e27e7)]
+
+### Fixed
+
+-   💚 Fix lint [[15a186b](https://github.com/harastaivan/tcup-client/commit/15a186b3d119e825f657075c605d4844121ee500)]
+-   🎨 Fix prettier check [[ca7aaaf](https://github.com/harastaivan/tcup-client/commit/ca7aaafb8aca0773aa833e2a00c81695864ec003)]
+-   💚 Fix type errors [[df29501](https://github.com/harastaivan/tcup-client/commit/df29501dfe4f734151f8b266663c8244fbf62746)]
+-   🐛 Fix harastaivan link [[ec13702](https://github.com/harastaivan/tcup-client/commit/ec13702bc4c885661935c11a82507e2e77bd58b2)]
+
 <a name="1.3.11"></a>
 
 ## 1.3.11 (2022-07-17)
