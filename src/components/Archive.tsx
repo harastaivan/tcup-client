@@ -8,6 +8,9 @@ export const Archive = () => {
         <div>
             <h1>{t('archive.title')}</h1>
             <ListGroup>
+                <ListGroupItem tag="a" href="http://2022.tcup.cz">
+                    tcup 2022
+                </ListGroupItem>
                 <ListGroupItem tag="a" href="http://2021.tcup.cz">
                     tcup 2021
                 </ListGroupItem>
@@ -15,34 +18,34 @@ export const Archive = () => {
                     tcup 2020
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2019/tcup">
-                    TCUP 2019
+                    tcup 2019
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2018/tcup">
-                    TCUP 2018
+                    tcup 2018
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2017/tcup">
-                    TCUP 2017
+                    tcup 2017
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2016/tcup">
-                    TCUP 2016
+                    tcup 2016
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2015/tcup">
-                    TCUP 2015
+                    tcup 2015
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2014/tcup">
-                    TCUP 2014
+                    tcup 2014
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2013/tcup">
                     TCUP EUREGIO 2013
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2012/tcup">
-                    Toužim Cup 2012
+                    tcup 2012
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2011/tcup">
-                    T Cup 2011
+                    tcup 2011
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2009/tcup">
-                    T Cup 2009
+                    tcup 2009
                 </ListGroupItem>
             </ListGroup>
         </div>
