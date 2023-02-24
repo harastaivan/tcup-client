@@ -46,34 +46,35 @@ export const getNews = (): ThunkAction<void, AppState, null, GetNewsAction> => a
     })
 }
 
-export const addNews = (news: News): ThunkAction<void, AppState, null, AddNewsAction> => async (dispatch, getState) => {
-    try {
-        const res = await axios.post(`${API_ENDPOINT}/api/news`, news, tokenConfig(getState))
-        dispatch({
-            type: newsActionTypes.ADD_NEWS,
-            payload: res.data,
-        })
-        toast.success('news.add.success')
-    } catch (err) {
-        toast.apiError(err as AxiosError)
+export const addNews =
+    (news: News): ThunkAction<void, AppState, null, AddNewsAction> =>
+    async (dispatch, getState) => {
+        try {
+            const res = await axios.post(`${API_ENDPOINT}/api/news`, news, tokenConfig(getState))
+            dispatch({
+                type: newsActionTypes.ADD_NEWS,
+                payload: res.data,
+            })
+            toast.success('news.add.success')
+        } catch (err) {
+            toast.apiError(err as AxiosError)
+        }
     }
-}
 
-export const deleteNews = (id: NewsId): ThunkAction<void, AppState, null, DeleteNewsAction> => async (
-    dispatch,
-    getState
-) => {
-    try {
-        await axios.delete(`${API_ENDPOINT}/api/news/${id}`, tokenConfig(getState))
-        dispatch({
-            type: newsActionTypes.DELETE_NEWS,
-            payload: id,
-        })
-        toast.success('news.delete.success')
-    } catch (err) {
-        toast.apiError(err as AxiosError)
+export const deleteNews =
+    (id: NewsId): ThunkAction<void, AppState, null, DeleteNewsAction> =>
+    async (dispatch, getState) => {
+        try {
+            await axios.delete(`${API_ENDPOINT}/api/news/${id}`, tokenConfig(getState))
+            dispatch({
+                type: newsActionTypes.DELETE_NEWS,
+                payload: id,
+            })
+            toast.success('news.delete.success')
+        } catch (err) {
+            toast.apiError(err as AxiosError)
+        }
     }
-}
 
 export const setNewsLoading = (): NewsLoadingAction => {
     return {

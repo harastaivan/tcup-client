@@ -117,76 +117,77 @@ export const loadUser = (): ThunkAction<void, AppState, null, LoadUserAction> =>
     }
 }
 
-export const changeUserInfo = (body: UpdateUserBody): ThunkAction<void, AppState, null, ChangeUserInfoAction> => async (
-    dispatch,
-    getState
-) => {
-    try {
-        const user = await updateUser(body, tokenConfig(getState))
-        dispatch({ type: authActionTypes.USER_CHANGED, payload: user })
-        toast.success('changeUserInfo.success')
-    } catch (err) {
-        toast.apiError(err as AxiosError)
-        dispatch({ type: authActionTypes.USER_CHANGE_ERROR })
-    }
-}
-
-export const changePassword = (
-    body: ChangePasswordBody
-): ThunkAction<void, AppState, null, ChangePasswordAction> => async (dispatch, getState) => {
-    try {
-        const res = await changeUserPassword(body, tokenConfig(getState))
-        dispatch({ type: authActionTypes.USER_PASSWORD_CHANGED, payload: res })
-        toast.success('changePassword.success')
-    } catch (err) {
-        toast.apiError(err as AxiosError)
-        dispatch({ type: authActionTypes.USER_PASSWORD_CHANGE_ERROR })
-    }
-}
-
-export const register = (body: SignupBody): ThunkAction<void, AppState, null, RegisterUserAction> => async (
-    dispatch
-) => {
-    const config: AxiosRequestConfig = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
+export const changeUserInfo =
+    (body: UpdateUserBody): ThunkAction<void, AppState, null, ChangeUserInfoAction> =>
+    async (dispatch, getState) => {
+        try {
+            const user = await updateUser(body, tokenConfig(getState))
+            dispatch({ type: authActionTypes.USER_CHANGED, payload: user })
+            toast.success('changeUserInfo.success')
+        } catch (err) {
+            toast.apiError(err as AxiosError)
+            dispatch({ type: authActionTypes.USER_CHANGE_ERROR })
+        }
     }
 
-    try {
-        const res = await createUser(body, config)
-        dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: res })
-        toast.success('signup.success')
-    } catch (err) {
-        dispatch({
-            type: authActionTypes.REGISTER_FAIL,
-        })
-        toast.apiError(err as AxiosError)
+export const changePassword =
+    (body: ChangePasswordBody): ThunkAction<void, AppState, null, ChangePasswordAction> =>
+    async (dispatch, getState) => {
+        try {
+            const res = await changeUserPassword(body, tokenConfig(getState))
+            dispatch({ type: authActionTypes.USER_PASSWORD_CHANGED, payload: res })
+            toast.success('changePassword.success')
+        } catch (err) {
+            toast.apiError(err as AxiosError)
+            dispatch({ type: authActionTypes.USER_PASSWORD_CHANGE_ERROR })
+        }
     }
-}
 
-export const login = (body: LoginBody): ThunkAction<void, AppState, null, LoginAction> => async (dispatch) => {
-    // Headers
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
+export const register =
+    (body: SignupBody): ThunkAction<void, AppState, null, RegisterUserAction> =>
+    async (dispatch) => {
+        const config: AxiosRequestConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+
+        try {
+            const res = await createUser(body, config)
+            dispatch({ type: authActionTypes.REGISTER_SUCCESS, payload: res })
+            toast.success('signup.success')
+        } catch (err) {
+            dispatch({
+                type: authActionTypes.REGISTER_FAIL,
+            })
+            toast.apiError(err as AxiosError)
+        }
     }
-    dispatch({ type: authActionTypes.USER_LOADING })
-    try {
-        const res = await loginUser(body, config)
-        dispatch({ type: authActionTypes.LOGIN_SUCCESS, payload: res })
-        toast.success('login.success')
-        logoutTimer = setTimeout(() => {
-            dispatch({ type: authActionTypes.TIMEOUT_LOGOUT_SUCCESS })
-        }, 59 * 60 * 1000)
-    } catch (err) {
-        dispatch({
-            type: authActionTypes.LOGIN_FAIL,
-        })
-        toast.apiError(err as AxiosError)
+
+export const login =
+    (body: LoginBody): ThunkAction<void, AppState, null, LoginAction> =>
+    async (dispatch) => {
+        // Headers
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+        dispatch({ type: authActionTypes.USER_LOADING })
+        try {
+            const res = await loginUser(body, config)
+            dispatch({ type: authActionTypes.LOGIN_SUCCESS, payload: res })
+            toast.success('login.success')
+            logoutTimer = setTimeout(() => {
+                dispatch({ type: authActionTypes.TIMEOUT_LOGOUT_SUCCESS })
+            }, 59 * 60 * 1000)
+        } catch (err) {
+            dispatch({
+                type: authActionTypes.LOGIN_FAIL,
+            })
+            toast.apiError(err as AxiosError)
+        }
     }
-}
 
 export const logout = (error = false): LogoutAction => {
     if (logoutTimer) {
