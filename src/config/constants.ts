@@ -6,4 +6,4 @@ export const SPINNER_TIMEOUT =
 
 export const APP_TITLE = process.env.REACT_APP_TITLE
 export const APP_VERSION = process.env.REACT_APP_VERSION
-export const SIGNUP_DISABLED = false
+export const SIGNUP_DISABLED = true
