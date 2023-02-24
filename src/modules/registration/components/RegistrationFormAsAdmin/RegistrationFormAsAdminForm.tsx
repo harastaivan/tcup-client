@@ -34,7 +34,7 @@ export const RegistrationFormAsAdminForm = ({
         resolver,
         defaultValues,
     })
-
+    // @ts-expect-error
     const { filterSelectData } = useFilterSelectData(watch, resetField)
 
     const onSubmit = handleSubmit(async (data) => {

@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react'
-import { useController, UseControllerProps } from 'react-hook-form'
+import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 import { Label, Input, FormFeedback, FormGroup } from 'reactstrap'
 import type { InputType } from 'reactstrap/es/Input'
 
-export interface SwitchLabelInputProps<T> extends UseControllerProps<T> {
+export interface SwitchLabelInputProps<T extends FieldValues> extends UseControllerProps<T> {
     label: string
     type?: InputType
     children?: ReactNode

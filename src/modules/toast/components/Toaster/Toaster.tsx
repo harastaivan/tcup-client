@@ -23,6 +23,7 @@ export const Toaster = () => {
                 // Default options for specific types
                 success: {
                     duration: 3000,
+                    // @ts-expect-error
                     theme: {
                         primary: 'green',
                         secondary: 'black',

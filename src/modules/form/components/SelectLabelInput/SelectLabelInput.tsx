@@ -1,10 +1,11 @@
+import type { FieldValues } from 'react-hook-form'
 import { LabelInput, LabelInputProps } from '../LabelInput'
 
 interface BaseSelect {
     _id: string
 }
 
-interface SelectLabelInputProps<S, T> extends LabelInputProps<T> {
+interface SelectLabelInputProps<S, T extends FieldValues> extends LabelInputProps<T> {
     selectData: S[]
     translate: (s: S) => string
     emptyLabel?: string

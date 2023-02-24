@@ -43,7 +43,7 @@ export const useTopResults = (): TopResultsState => {
             setResults(results)
             setLoaded(true)
         } catch (err) {
-            setError(err)
+            setError(err as string)
         }
     }
 
@@ -69,7 +69,7 @@ export const useTotalResults = (classId: string): TotalResultsState => {
             setResults(results)
             setLoaded(true)
         } catch (err) {
-            setError(err)
+            setError(err as string)
         }
     }
 
@@ -105,7 +105,7 @@ export const useDailyResults = (classId: string): DailyResultsState => {
             setFilters(filters)
             setFiltersLoaded(true)
         } catch (err) {
-            setError(err)
+            setError(err as string)
         }
     }
 
@@ -119,7 +119,7 @@ export const useDailyResults = (classId: string): DailyResultsState => {
             setResults(results)
             setLoaded(true)
         } catch (err) {
-            setError(err)
+            setError(err as string)
         }
     }
 
