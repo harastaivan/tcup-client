@@ -1,5 +1,22 @@
 # Changelog
 
+<a name="1.4.1"></a>
+
+## 1.4.1 (2023-02-24)
+
+### Added
+
+-   ✨ Update Archive [[ac752c4](https://github.com/harastaivan/tcup-client/commit/ac752c462b0eeae7fa4d3da318c711dd0c4e9ac9)]
+
+### Changed
+
+-   🔧 Disable signup [[fa78be1](https://github.com/harastaivan/tcup-client/commit/fa78be1d85595d5142bd689570f5216928ba147c)]
+-   🔧 Setup for 2023 [[b4888d5](https://github.com/harastaivan/tcup-client/commit/b4888d5faceba9305f3f2136e9239a72a7d6ee9e)]
+
+### Miscellaneous
+
+-   👷 Setup for 2023 [[10c6f88](https://github.com/harastaivan/tcup-client/commit/10c6f88126b6c038c705e7ab8bdf5e97281d5a31)]
+
 <a name="1.4.0"></a>
 
 ## 1.4.0 (2023-02-24)
