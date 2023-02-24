@@ -21,7 +21,7 @@ export const Footer = () => {
                         <span style={{ marginRight: 6 }}>
                             Made with<span style={{ marginRight: 2 }}> ❤️ </span> by
                         </span>
-                        <a target="_blank" rel="noopener noreferrer" href="https://harasta.dev">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.harasta.dev">
                             @harastaivan
                         </a>
                     </p>
