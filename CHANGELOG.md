@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.4.2"></a>
+
+## 1.4.2 (2023-02-25)
+
+### Added
+
+-   ✨ Add signup disabled override with token [[09557e5](https://github.com/harastaivan/tcup-client/commit/09557e5f7a79311a527410aa272c35ec666dc64b)]
+-   ✨ Add nsa sponsor logo [[296c104](https://github.com/harastaivan/tcup-client/commit/296c104ce8f1f0c3b2159e227732b153332f0b5b)]
+
+### Changed
+
+-   🔧 Add signup disabled token [[11bdd49](https://github.com/harastaivan/tcup-client/commit/11bdd494dbe3af0383e21c3193daecd62993a47e)]
+
 <a name="1.4.1"></a>
 
 ## 1.4.1 (2023-02-24)
