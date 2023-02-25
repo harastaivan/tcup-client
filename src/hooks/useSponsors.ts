@@ -12,6 +12,11 @@ const getSponsors = (): Sponsor[] => {
             url: 'http://www.gradient.cc/',
         },
         {
+            name: 'Národní sportovní agentura',
+            image: 'assets/img/sponsors/nsa.png',
+            url: 'https://agenturasport.cz/',
+        },
+        {
             name: 'BLAŽEJ JAROSLAV - výroba strojů a zařízení s.r.o.',
             image: 'assets/img/sponsors/jaroslav_blazej.png',
         },

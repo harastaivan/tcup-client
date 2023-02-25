@@ -7,7 +7,7 @@ const Divider = styled.div`
     max-width: 250px;
     padding-bottom: 1em;
     margin-bottom: 1em;
-    border-bottom: 1px solid #00000049;
+    border-bottom: 1px solid #00000025;
 
     &:last-of-type {
         border: none;
