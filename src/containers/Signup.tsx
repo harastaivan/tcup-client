@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import { register } from 'store/auth/actions'
@@ -48,7 +48,7 @@ export const Signup = () => {
         if (isAuthenticated) {
             history.push('/')
         }
-    }, [isAuthenticated])
+    }, [history, isAuthenticated])
 
     return (
         <div>
@@ -114,8 +114,7 @@ export const Signup = () => {
                     color="dark"
                     style={{ marginTop: '2rem' }}
                     disabled={!name || !surname || !email || !password}
-                    block
-                >
+                    block>
                     {t('Registrovat se')}
                 </Button>
             </Form>
