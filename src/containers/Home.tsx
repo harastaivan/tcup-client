@@ -32,6 +32,7 @@ const Home = () => {
                             {t('homepage.sendIgc')}
                         </Button>
                     </div>
+                    <h2 className="sub-header-signup">{t('homepage.signup')}</h2>
                     <h2 className="sub-header-alert">
                         {t('homepage.subheader.alert.1')}
                         <br />

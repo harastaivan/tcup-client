@@ -52,7 +52,7 @@ export const Signup = () => {
 
     return (
         <div>
-            {signupDisabled && <Alert color="info">{t('V tuto chvíli není registrace možná.')}</Alert>}
+            {signupDisabled && <Alert color="info">{t('homepage.signup')}</Alert>}
             <h1>{t('Registrovat se')}</h1>
             <Form onSubmit={handleSubmit} autoComplete={'off'}>
                 <Row form>
