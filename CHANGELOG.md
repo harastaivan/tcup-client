@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.5.0"></a>
+
+## 1.5.0 (2023-03-25)
+
+### Added
+
+-   ✨ Add reserve registrations to starting list [[b42930d](https://github.com/harastaivan/tcup-client/commit/b42930d0ecde14c7c509524ea099fdd4788753c3)]
+-   ✨ Add signup will be enabled message [[f2fdc51](https://github.com/harastaivan/tcup-client/commit/f2fdc51a3365c86aecb1f29db52e725cc95ac1c2)]
+
+### Fixed
+
+-   💚 Fix build [[3a04461](https://github.com/harastaivan/tcup-client/commit/3a04461adf776d20540011c960c0ed6154755367)]
+
 <a name="1.4.2"></a>
 
 ## 1.4.2 (2023-02-25)
