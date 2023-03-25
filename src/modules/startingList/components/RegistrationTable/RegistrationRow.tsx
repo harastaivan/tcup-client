@@ -1,5 +1,5 @@
 import { NavLink as Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
+import { Badge, Button } from 'reactstrap'
 import type { StartingListRegistration } from '../../types'
 import { useSelector } from 'react-redux'
 import { getIsAdmin } from 'store/auth/selectors'
@@ -32,10 +32,10 @@ export const RegistrationRow = ({
         })
     }
 
-    const { paid, accepted } = registration
+    const { paid, accepted, isReserve } = registration
 
     return (
-        <tr key={_id}>
+        <tr key={_id} className={isReserve ? 'table-warning' : ''}>
             <td>{fullName}</td>
             <td>{aeroclub}</td>
             <td>{startNumber}</td>
@@ -52,6 +52,16 @@ export const RegistrationRow = ({
                             loading={isLoading}
                             size="sm">
                             {accepted ? t('zrušit') : t('schválit')}
+                        </LoadingButton>
+                    </td>
+                    <td>
+                        <LoadingButton
+                            color={isReserve ? 'success' : 'warning'}
+                            className="mb-1"
+                            onClick={onQuickAction(RegistrationQuickAction.isReserve)}
+                            loading={isLoading}
+                            size="sm">
+                            {isReserve ? t('není náhr.') : t('je náhr.')}
                         </LoadingButton>
                     </td>
                     <td>
@@ -75,6 +85,17 @@ export const RegistrationRow = ({
                             to={`/registration/${_id}`}>
                             {t('úprava')}
                         </Button>
+                    </td>
+                </>
+            )}
+            {!isAdmin && (
+                <>
+                    <td>
+                        {isReserve && (
+                            <Badge color="warning" className="ml-2">
+                                {t('náhradník')}
+                            </Badge>
+                        )}
                     </td>
                 </>
             )}

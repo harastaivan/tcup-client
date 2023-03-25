@@ -15,6 +15,9 @@ export const RegistrationTable = ({ registrations }: RegistrationTableProps) => 
     const { t } = useTranslation()
     const isAdmin = useSelector(getIsAdmin)
 
+    const nonReserveRegistrations = registrations.filter((registration) => !registration.isReserve)
+    const reserveRegistrations = registrations.filter((registration) => registration.isReserve)
+
     return (
         <div style={{ overflowX: 'scroll' }}>
             <Table striped responsive>
@@ -29,14 +32,15 @@ export const RegistrationTable = ({ registrations }: RegistrationTableProps) => 
                         {isAdmin && (
                             <>
                                 <th>schválit</th>
+                                <th>{t('náhradník')}</th>
                                 <th>placeno</th>
-                                <th> </th>
                             </>
                         )}
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {registrations.map((registration) => (
+                    {[...nonReserveRegistrations, ...reserveRegistrations].map((registration) => (
                         <RegistrationRow {...registration} />
                     ))}
                 </tbody>

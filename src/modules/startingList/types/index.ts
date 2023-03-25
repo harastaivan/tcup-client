@@ -10,6 +10,7 @@ export interface StartingListRegistration {
     registrationNumber: string
     paid: boolean
     accepted: boolean
+    isReserve: boolean
     registrationCompleted: boolean
     competitionClass: string
 }
