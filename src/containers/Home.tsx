@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Container, Button, Row, Col } from 'reactstrap'
 
 import Sponsors from 'components/Sponsors'
-import { APP_TITLE } from 'config/constants'
+import { APP_TITLE, SIGNUP_DISABLED } from 'config/constants'
 import { Footer } from 'modules/ui'
 
 import Tracking from './Tracking'
@@ -32,7 +32,9 @@ const Home = () => {
                             {t('homepage.sendIgc')}
                         </Button>
                     </div>
-                    <h2 className="sub-header-signup">{t('homepage.signup')}</h2>
+                    <h2 className="sub-header-signup">
+                        {SIGNUP_DISABLED ? t('homepage.signup.disabled') : t('homepage.signup.enabled')}
+                    </h2>
                     <h2 className="sub-header-alert">
                         {t('homepage.subheader.alert.1')}
                         <br />
