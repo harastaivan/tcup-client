@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="1.5.1"></a>
+
+## 1.5.1 (2023-04-01)
+
+### Changed
+
+-   🔧 Enable signup [[d182830](https://github.com/harastaivan/tcup-client/commit/d1828300db6aec98ce2c0e19b004031c682e26cf)]
+-   ♻️ Refactor signup disabled messages [[7a51fbe](https://github.com/harastaivan/tcup-client/commit/7a51fbe4382b08ff0557c9a1d7a71934971f4b57)]
+
 <a name="1.5.0"></a>
 
 ## 1.5.0 (2023-03-25)
