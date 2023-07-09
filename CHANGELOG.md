@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="1.6.0"></a>
+
+## 1.6.0 (2023-07-09)
+
+### Added
+
+-   ✨ Move Tracking to navigation [[3410d3a](https://github.com/harastaivan/tcup-client/commit/3410d3a5bd4217078d37cc35de72a8667137de95)]
+-   ✨ Move News to other navigation [[ac587b2](https://github.com/harastaivan/tcup-client/commit/ac587b27684ba4f2635f557472ca251a8d140c7a)]
+
 <a name="1.5.1"></a>
 
 ## 1.5.1 (2023-04-01)
