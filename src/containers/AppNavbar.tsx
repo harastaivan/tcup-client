@@ -87,11 +87,6 @@ const AppNavbar = () => {
                 <Collapse isOpen={open} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <NavLink tag={Link} to="/news" activeClassName="active">
-                                {t('Novinky')}
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
                             <NavLink tag={Link} to="/statuses" activeClassName="active">
                                 {t('Statusy soutěžících')}
                             </NavLink>
@@ -127,6 +122,11 @@ const AppNavbar = () => {
                                 {t('Další')}
                             </DropdownToggle>
                             <DropdownMenu right className="bg-light">
+                                <DropdownItem className="bg-light">
+                                    <NavLink tag={Link} to="/news" activeClassName="active">
+                                        {t('Novinky')}
+                                    </NavLink>
+                                </DropdownItem>
                                 <DropdownItem className="bg-light">
                                     <NavLink tag={Link} to="/documents" activeClassName="active">
                                         {t('Dokumenty')}
