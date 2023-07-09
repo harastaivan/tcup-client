@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { NavLink as Link } from 'react-router-dom'
 import {
     Badge,
@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next'
 import SelectLanguage from './SelectLanguage'
 import { getAuth } from 'store/auth/selectors'
 import { APP_TITLE, SOARING_SPOT_URL } from 'config/constants'
+import Tracking from './Tracking'
 
 const AppNavbar = () => {
     const [open, setOpen] = useState(false)
@@ -117,6 +118,7 @@ const AppNavbar = () => {
                                 {t('Odeslat IGC')}
                             </NavLink>
                         </NavItem>
+                        <Tracking />
                         <UncontrolledDropdown nav inNavbar className="mr-4">
                             <DropdownToggle nav caret>
                                 {t('Další')}

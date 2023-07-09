@@ -6,7 +6,6 @@ import Sponsors from 'components/Sponsors'
 import { APP_TITLE, SIGNUP_DISABLED } from 'config/constants'
 import { Footer } from 'modules/ui'
 
-import Tracking from './Tracking'
 import News from './News'
 
 const Home = () => {
@@ -47,7 +46,6 @@ const Home = () => {
                             <News />
                         </Col>
                         <Col md={4}>
-                            <Tracking />
                             <Sponsors />
                         </Col>
                     </Row>
