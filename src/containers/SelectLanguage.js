@@ -1,4 +1,3 @@
-import React from 'react'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavLink, NavItem } from 'reactstrap'
 import ReactCountryFlag from 'react-country-flag'
 import { useTranslation } from 'react-i18next'
@@ -10,12 +9,10 @@ const Flag = (props) => (
     <ReactCountryFlag
         countryCode={props.language}
         svg
-        cdnUrl="https://cdn.staticaly.com/gh/hjnilsson/country-flags/master/svg/"
-        cdnSuffix="svg"
         style={{
             height: 'auto',
             width: '1.5em',
-            border: '1px solid #222',
+            border: '1px solid #2228',
             borderRadius: '2px',
             objectFit: 'cover',
         }}
