@@ -1,5 +1,25 @@
 # Changelog
 
+<a name="1.7.0"></a>
+
+## 1.7.0 (2024-01-13)
+
+### Added
+
+-   ✨ Update Archive [[6e41e53](https://github.com/harastaivan/tcup-client/commit/6e41e534b0ade01c580de22747c5ad2d621f7c37)]
+
+### Changed
+
+-   🔧 Setup for 2024 [[1c2b294](https://github.com/harastaivan/tcup-client/commit/1c2b294a4afc3175c8cd3b2dc3250bfd9221d964)]
+
+### Fixed
+
+-   🐛 Fix SelectLanguage flag [[06b2081](https://github.com/harastaivan/tcup-client/commit/06b2081669df0f909667428d193dfb540eac85d1)]
+
+### Miscellaneous
+
+-   👷 Setup for 2024 [[e153b8d](https://github.com/harastaivan/tcup-client/commit/e153b8d10037daaf41d76c23f22ee054687af2f7)]
+
 <a name="1.6.0"></a>
 
 ## 1.6.0 (2023-07-09)
