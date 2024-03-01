@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.7.1"></a>
+
+## 1.7.1 (2024-03-01)
+
+### Changed
+
+-   🔧 Enable signup [[c68490d](https://github.com/harastaivan/tcup-client/commit/c68490db8d542304eabf9421f6ac84257f7f1248)]
+
+### Miscellaneous
+
+-   🌐 Update translations [[e5f5ef4](https://github.com/harastaivan/tcup-client/commit/e5f5ef442f0c7226fa823e6060bdb61b48f832cd)]
+-   🌐 Change signup disabled message [[9c365d7](https://github.com/harastaivan/tcup-client/commit/9c365d7a41bf2139ec03a58871ab046aca7e0dd3)]
+
 <a name="1.7.0"></a>
 
 ## 1.7.0 (2024-01-13)
