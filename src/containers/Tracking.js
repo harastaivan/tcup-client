@@ -8,7 +8,7 @@ import { getCompetitionDay } from 'utils/getCompetitionDay'
 import { getTrackings } from 'store/tracking/actions'
 import { translateDayName } from 'utils/translateDayName'
 
-const EXTERNAL_TRACKING = 'http://lkvp.alte.cz/tracking_v3/2023tcup/tracking.html'
+const EXTERNAL_TRACKING = 'http://lkvp.alte.cz/tracking/2024tcup/tracking.html'
 
 const Tracking = () => {
     const { t } = useTranslation()
