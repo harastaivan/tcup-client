@@ -4,7 +4,7 @@ import { Container, Button, Row, Col } from 'reactstrap'
 
 import Sponsors from 'components/Sponsors'
 import { APP_TITLE, SIGNUP_DISABLED } from 'config/constants'
-import { Footer } from 'modules/ui'
+import { Footer, Photogallery } from 'modules/ui'
 
 import News from './News'
 
@@ -24,10 +24,8 @@ const Home = () => {
                         {t('homepage.subheader.2')}.
                     </h2>
                     <div className="button-container">
-                        <Button outline color="secondary" size="lg" tag={'a'} href="https://lipty.rajce.idnes.cz">
-                            {t('homepage.photos')}
-                        </Button>{' '}
-                        <Button color="primary" size="lg" tag={NavLink} to="/igc">
+                        <Photogallery />
+                        <Button color="secondary" outline size="lg" tag={NavLink} to="/igc">
                             {t('homepage.sendIgc')}
                         </Button>
                     </div>
