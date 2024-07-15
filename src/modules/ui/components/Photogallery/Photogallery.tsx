@@ -24,6 +24,9 @@ export const Photogallery = () => {
                 <DropdownItem href="https://eu.zonerama.com/eraa/Album/11720304" target="_blank">
                     6. - 8. 7. 2024
                 </DropdownItem>
+                <DropdownItem href="https://eu.zonerama.com/eraa/Album/11741759" target="_blank">
+                    přílety pondělí
+                </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem href="https://lipty.rajce.idnes.cz" target="_blank">
                     tcup 2022-2018
