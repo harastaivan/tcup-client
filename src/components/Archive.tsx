@@ -8,6 +8,9 @@ export const Archive = () => {
         <div>
             <h1>{t('archive.title')}</h1>
             <ListGroup>
+                <ListGroupItem tag="a" href="http://2024.tcup.cz">
+                    tcup 2024
+                </ListGroupItem>
                 <ListGroupItem tag="a" href="http://2023.tcup.cz">
                     tcup 2023
                 </ListGroupItem>
