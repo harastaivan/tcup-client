@@ -1,5 +1,22 @@
 # Changelog
 
+<a name="1.7.2"></a>
+
+## 1.7.2 (2025-01-22)
+
+### Added
+
+-   ✨ Add more links to photogallery [[d097796](https://github.com/harastaivan/tcup-client/commit/d097796e22d95137f6eaff076fbe1d8f7bbbacac)]
+
+### Changed
+
+-   🔧 Add link to photogallery [[2ae0a36](https://github.com/harastaivan/tcup-client/commit/2ae0a365dd549f15a456b8f2744628fdedefc6d1)]
+-   🔧 Change external tracking url [[2ac7e7c](https://github.com/harastaivan/tcup-client/commit/2ac7e7c70f221dbf8e2cb959d5257e884d7e14fb)]
+
+### Miscellaneous
+
+-   🚀 Deploy 2025 [[e63138a](https://github.com/harastaivan/tcup-client/commit/e63138a00787868aa7e3b10da4e92b934caa3a8d)]
+
 <a name="1.7.1"></a>
 
 ## 1.7.1 (2024-03-01)
