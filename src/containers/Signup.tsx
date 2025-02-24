@@ -6,10 +6,9 @@ import { useTranslation } from 'react-i18next'
 
 import { register } from 'store/auth/actions'
 import { getAuth } from 'store/auth/selectors'
-import { SIGNUP_DISABLED, SIGNUP_DISABLED_TOKEN } from 'config/constants'
+import { SIGNUP_DISABLED as signupDisabled } from 'config/constants'
 
 import GdprConsent from './GdprConsent'
-import { useQuery } from 'hooks'
 
 export const Signup = () => {
     const { t } = useTranslation()
@@ -22,13 +21,6 @@ export const Signup = () => {
     const [surname, setSurname] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const query = useQuery()
-    console.log(query.get('token'))
-
-    const isSignupTokenMatch = SIGNUP_DISABLED_TOKEN && SIGNUP_DISABLED_TOKEN === query.get('token')
-
-    const signupDisabled = SIGNUP_DISABLED && !isSignupTokenMatch
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
