@@ -35,7 +35,7 @@ export const RegistrationRow = ({
     const { paid, accepted, isReserve } = registration
 
     return (
-        <tr key={_id} className={isReserve ? 'table-warning' : ''}>
+        <tr key={_id} className={isReserve && isAdmin ? 'table-warning' : ''}>
             <td>{fullName}</td>
             <td>{aeroclub}</td>
             <td>{startNumber}</td>
