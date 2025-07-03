@@ -20,6 +20,11 @@ const getSponsors = (): Sponsor[] => {
             name: 'BLAŽEJ JAROSLAV - výroba strojů a zařízení s.r.o.',
             image: 'assets/img/sponsors/jaroslav_blazej.png',
         },
+        {
+            name: 'La Lorraine',
+            image: 'assets/img/sponsors/la_lorraine.jpg',
+            url: 'https://www.lalorraine.com/cz-cs',
+        },
     ]
 }
 
