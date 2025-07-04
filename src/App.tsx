@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from 'react-router-dom'
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import { Container } from 'reactstrap'
@@ -35,12 +35,17 @@ import TestMode from 'components/TestMode'
 import { SpinnerFullPage } from 'modules/ui'
 import { Toaster } from 'modules/toast'
 import { useOnlineStatus, useBackendStatus } from 'hooks'
+import { APP_TITLE } from 'config/constants'
 
 const App = () => {
     const dispatch = useDispatch()
     const { token, isAdmin } = useSelector(getAuth)
     useOnlineStatus()
     useBackendStatus()
+
+    useEffect(() => {
+        document.title = APP_TITLE
+    }, [])
 
     useEffect(() => {
         if (token === null) return
