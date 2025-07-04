@@ -1,15 +1,19 @@
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Container, Button, Row, Col } from 'reactstrap'
+import moment from 'moment'
 
 import Sponsors from 'components/Sponsors'
 import { APP_TITLE, SIGNUP_DISABLED } from 'config/constants'
 import { Footer, Photogallery } from 'modules/ui'
 
 import News from './News'
+import { getConfig, isLatestYear } from 'config/domainConfig'
 
 const Home = () => {
     const { t } = useTranslation()
+
+    const { from, to, signupSince } = getConfig().competition
 
     return (
         <div className="homepage">
@@ -21,7 +25,11 @@ const Home = () => {
                     </h1>
                     <h2 className="sub-header">
                         {t('homepage.subheader.1')} <br />
-                        {t('homepage.subheader.2')}.
+                        {t('homepage.subheader.2', {
+                            from: moment(from).format('D. M.'),
+                            to: moment(to).format('D. M. YYYY'),
+                        })}
+                        .
                     </h2>
                     <div className="button-container">
                         <Photogallery />
@@ -29,9 +37,13 @@ const Home = () => {
                             {t('homepage.sendIgc')}
                         </Button>
                     </div>
-                    <h2 className="sub-header-signup">
-                        {SIGNUP_DISABLED ? t('homepage.signup.disabled') : t('homepage.signup.enabled')}
-                    </h2>
+                    {isLatestYear && (
+                        <h2 className="sub-header-signup">
+                            {SIGNUP_DISABLED
+                                ? t('homepage.signup.disabled', { at: moment(signupSince).format('D. M. YYYY HH:mm') })
+                                : t('homepage.signup.enabled')}
+                        </h2>
+                    )}
                     <h2 className="sub-header-alert">
                         {t('homepage.subheader.alert.1')}
                         <br />

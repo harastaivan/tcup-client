@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { getConfig } from './domainConfig'
 
 export const API_ENDPOINT = getConfig().apiEndpoint
@@ -7,4 +8,4 @@ export const SPINNER_TIMEOUT = 500
 
 export const APP_TITLE = getConfig().title
 export const APP_VERSION = process.env.REACT_APP_VERSION
-export const SIGNUP_DISABLED = false
+export const SIGNUP_DISABLED = moment(getConfig().competition.signupSince).isAfter(moment())

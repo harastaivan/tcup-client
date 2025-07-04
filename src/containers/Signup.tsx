@@ -3,12 +3,16 @@ import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstr
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import moment from 'moment'
 
 import { register } from 'store/auth/actions'
 import { getAuth } from 'store/auth/selectors'
-import { SIGNUP_DISABLED as signupDisabled } from 'config/constants'
+import { SIGNUP_DISABLED } from 'config/constants'
+import { getConfig, isLatestYear } from 'config/domainConfig'
 
 import GdprConsent from './GdprConsent'
+
+const signupDisabled = SIGNUP_DISABLED || !isLatestYear
 
 export const Signup = () => {
     const { t } = useTranslation()
@@ -44,7 +48,13 @@ export const Signup = () => {
 
     return (
         <div>
-            {signupDisabled && <Alert color="info">{t('homepage.signup.disabled')}</Alert>}
+            {isLatestYear && signupDisabled && (
+                <Alert color="info">
+                    {t('homepage.signup.disabled', {
+                        at: moment(getConfig().competition.signupSince).format('D. M. YYYY HH:mm'),
+                    })}
+                </Alert>
+            )}
             <h1>{t('Registrovat se')}</h1>
             <Form onSubmit={handleSubmit} autoComplete={'off'}>
                 <Row form>
