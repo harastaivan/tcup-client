@@ -1,5 +1,15 @@
 import { ListGroup, ListGroupItem } from 'reactstrap'
 import { useTranslation } from 'react-i18next'
+import { Domain, domainConfig } from 'config/domainConfig'
+
+const competitions = Object.values(Domain).map((domain) => ({
+    name: domainConfig[domain].title,
+    url: `https://${domain}`,
+}))
+const legacyCompetitions = [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2009].map((year) => ({
+    name: `tcup ${year}`,
+    url: `http://www.gliding.cz/souteze/${year}/tcup`,
+}))
 
 export const Archive = () => {
     const { t } = useTranslation()
@@ -8,51 +18,16 @@ export const Archive = () => {
         <div>
             <h1>{t('archive.title')}</h1>
             <ListGroup>
-                <ListGroupItem tag="a" href="http://2024.tcup.cz">
-                    tcup 2024
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://2023.tcup.cz">
-                    tcup 2023
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://2022.tcup.cz">
-                    tcup 2022
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://2021.tcup.cz">
-                    tcup 2021
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://2020.tcup.cz">
-                    tcup 2020
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2019/tcup">
-                    tcup 2019
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2018/tcup">
-                    tcup 2018
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2017/tcup">
-                    tcup 2017
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2016/tcup">
-                    tcup 2016
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2015/tcup">
-                    tcup 2015
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2014/tcup">
-                    tcup 2014
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2013/tcup">
-                    TCUP EUREGIO 2013
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2012/tcup">
-                    tcup 2012
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2011/tcup">
-                    tcup 2011
-                </ListGroupItem>
-                <ListGroupItem tag="a" href="http://www.gliding.cz/souteze/2009/tcup">
-                    tcup 2009
-                </ListGroupItem>
+                {competitions.map((competition) => (
+                    <ListGroupItem tag="a" href={competition.url} key={competition.name}>
+                        {competition.name}
+                    </ListGroupItem>
+                ))}
+                {legacyCompetitions.map((competition) => (
+                    <ListGroupItem tag="a" href={competition.url} key={competition.name}>
+                        {competition.name}
+                    </ListGroupItem>
+                ))}
             </ListGroup>
         </div>
     )
