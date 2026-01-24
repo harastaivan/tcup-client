@@ -41,7 +41,7 @@ export const RegistrationTable = ({ registrations }: RegistrationTableProps) => 
                 </thead>
                 <tbody>
                     {[...nonReserveRegistrations, ...reserveRegistrations].map((registration) => (
-                        <RegistrationRow {...registration} />
+                        <RegistrationRow {...registration} key={registration._id} />
                     ))}
                 </tbody>
             </Table>
