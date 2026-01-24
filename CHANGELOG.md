@@ -1,5 +1,38 @@
 # Changelog
 
+<a name="1.8.0"></a>
+
+## 1.8.0 (2026-01-24)
+
+### Added
+
+-   ✨ Rename kombi class type [[acdd107](https://github.com/harastaivan/tcup-client/commit/acdd107c1e2855a679e96e70bca6306c3b181ed2)]
+-   ✨ Domain specific translations and dates [[8ce80a6](https://github.com/harastaivan/tcup-client/commit/8ce80a662616e4f013f2f4ee69d254a2c8626a22)]
+-   ✨ Show reserves [[834a797](https://github.com/harastaivan/tcup-client/commit/834a7974d0a9e53f8043c6c885d5685c272db679)]
+
+### Changed
+
+-   ♻️ Refactor Archive [[552a306](https://github.com/harastaivan/tcup-client/commit/552a306bf536395f4c14bf9194221a2c9d735356)]
+-   🔧 Use config by domain [[d5c9854](https://github.com/harastaivan/tcup-client/commit/d5c9854f37c19f18dd5ae19be64502266e1beace)]
+-   💄 Add sponsor [[0c9d74f](https://github.com/harastaivan/tcup-client/commit/0c9d74fce739dcf7197d230db1cb8edabc86f7ab)]
+-   🔧 Enable signup [[665d4d6](https://github.com/harastaivan/tcup-client/commit/665d4d674cc3c46a3f293975cc1c8fa9d4195c5e)]
+
+### Removed
+
+-   🔥 Remove signup disabled token [[39677b9](https://github.com/harastaivan/tcup-client/commit/39677b93943fa05b36dd018d81ed6e8d2e23b82f)]
+
+### Fixed
+
+-   🐛 Fix registration table key [[5385bf1](https://github.com/harastaivan/tcup-client/commit/5385bf145541d73b8a20257c0a3e70b6290dd45e)]
+
+### Miscellaneous
+
+-   🚀 Deploy 2026 [[15f581c](https://github.com/harastaivan/tcup-client/commit/15f581caa89e0a7628a6166a7ea4d60f01c1a395)]
+-   📝 Add deploy checklist [[1a6e8f1](https://github.com/harastaivan/tcup-client/commit/1a6e8f140cea2142913f7849cd1e0ab4446495f4)]
+-   👷 Don&#x27;t deploy to heroku [[ed45a7f](https://github.com/harastaivan/tcup-client/commit/ed45a7f18b071e4ecdd82c8d6c35c564c21e1669)]
+-   👷 Try not use yarn cache [[eef2ca3](https://github.com/harastaivan/tcup-client/commit/eef2ca31257e390e772657ac7f734d07a5ad18d5)]
+-   🌐 Add reserves to starting list [[36e5e13](https://github.com/harastaivan/tcup-client/commit/36e5e13798669f56dec14a2fc6863fe1b9167a22)]
+
 <a name="1.7.2"></a>
 
 ## 1.7.2 (2025-01-22)
