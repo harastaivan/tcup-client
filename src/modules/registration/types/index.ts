@@ -7,7 +7,7 @@ export interface AccomodationType {
 
 enum CompetitionClassType {
     CLUB = 'club',
-    KOMBI = '18_meter',
+    KOMBI = '15_meter',
 }
 
 export interface CompetitionClass {
