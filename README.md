@@ -11,5 +11,5 @@ Client for tcup soaring competition website
 -   [x] DNS api.20xy.tcup.cz
 -   [x] uptime robot api.20xy.tcup.cz
 -   [x] deploy API
--   [ ] upravit frontend konfiguraci
--   [ ] deploy frontend
+-   [x] upravit frontend konfiguraci
+-   [x] deploy frontend

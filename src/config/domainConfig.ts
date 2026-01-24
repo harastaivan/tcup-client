@@ -1,5 +1,6 @@
 export enum Domain {
-    TCUP_2025 = 'tcup.cz',
+    TCUP_2026 = 'tcup.cz',
+    TCUP_2025 = '2025.tcup.cz',
     TCUP_2024 = '2024.tcup.cz',
     TCUP_2023 = '2023.tcup.cz',
     TCUP_2022 = '2022.tcup.cz',
@@ -7,9 +8,9 @@ export enum Domain {
     TCUP_2020 = '2020.tcup.cz',
 }
 
-export const domain = Object.values(Domain).find((d) => document.location.hostname === d) ?? Domain.TCUP_2025
+export const domain = Object.values(Domain).find((d) => document.location.hostname === d) ?? Domain.TCUP_2026
 
-export const isLatestYear = domain === Domain.TCUP_2025
+export const isLatestYear = domain === Domain.TCUP_2026
 
 console.log(domain)
 
@@ -24,7 +25,17 @@ interface DomainConfig {
     }
 }
 
-export const config: Record<Domain, DomainConfig> = {
+export const domainConfig: Record<Domain, DomainConfig> = {
+    [Domain.TCUP_2026]: {
+        title: 'tcup 2026',
+        apiEndpoint: 'https://api.2026.tcup.cz',
+        soaringSpotUrl: 'https://www.soaringspot.com/en_gb/tcup2026/results',
+        competition: {
+            from: '2026-07-11',
+            to: '2026-07-19',
+            signupSince: '2026-03-01T12:00:00+01:00',
+        },
+    },
     [Domain.TCUP_2025]: {
         title: 'tcup 2025',
         apiEndpoint: 'https://api.2025.tcup.cz',
@@ -87,4 +98,4 @@ export const config: Record<Domain, DomainConfig> = {
     },
 }
 
-export const getConfig = () => config[domain]
+export const getConfig = () => domainConfig[domain]
