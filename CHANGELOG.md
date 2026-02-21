@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="2.0.0"></a>
+
+## 2.0.0 (2026-02-21)
+
+### Added
+
+-   ✨ Ranked starting list [[6089316](https://github.com/harastaivan/tcup-client/commit/6089316f66825219535281c9e261211f4820515e)]
+
 <a name="1.8.0"></a>
 
 ## 1.8.0 (2026-01-24)
