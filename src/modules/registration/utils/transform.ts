@@ -31,6 +31,8 @@ export const transformResponseToAdminFormValues = (response: AdminRegistrationRe
     name: response.user.name,
     surname: response.user.surname,
     email: response.user.email,
+    isWildcard: response.isWildcard,
+    rankingPosition: response.rankingPosition,
 })
 
 export const transformFormValuesToRequest = (values: UserRegistrationFormValues): RegistrationRequestBody => ({
@@ -59,4 +61,6 @@ export const transformAdminFormValuesToRequest = (values: AdminFormValues): Admi
     ...transformFormValuesToRequest(values),
     registrationCompleted: values.registrationCompleted,
     igcId: values.igcId,
+    isWildcard: values.isWildcard,
+    rankingPosition: values.rankingPosition || null,
 })

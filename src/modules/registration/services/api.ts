@@ -2,7 +2,7 @@ import { toast } from 'modules/toast'
 import { api } from 'services/api'
 import { ApiTypes } from 'services/types'
 import type { AdminFormValues, UserRegistrationFormValues } from '../components'
-import { ApiTags, API_URLS } from '../constants'
+import { API_URLS } from '../constants'
 import type {
     FormDataResponse,
     RegistrationResponseBody,
@@ -13,29 +13,28 @@ import type {
     AdminRegistrationResponseBody,
 } from '../types'
 import { transformResponseToAdminFormValues, transformResponseToFormValues } from '../utils/transform'
+import { ApiTags } from 'services/apiTags'
 
-const apiWithTags = api.enhanceEndpoints({ addTagTypes: [ApiTags.FormData, ApiTags.Registration, ApiTags.Error] })
-
-export const registrationApi = apiWithTags.injectEndpoints({
+export const registrationApi = api.injectEndpoints({
     endpoints: (build) => ({
         getFormData: build.query<FormDataResponse, void>({
             query: () => ({
                 url: API_URLS.FORM_DATA,
             }),
-            providesTags: [ApiTags.FormData],
+            providesTags: [ApiTags.RegistrationFormData],
         }),
         getRegistration: build.query<UserRegistrationFormValues, void>({
             query: () => ({
                 url: API_URLS.REGISTRATION,
             }),
-            providesTags: (result) => (result ? [{ type: ApiTags.Registration, id: result?._id }] : [ApiTags.Error]),
+            providesTags: (result) => (result ? [{ type: ApiTags.Registration, id: result?._id }] : []),
             transformResponse: transformResponseToFormValues,
         }),
         getRegistrationAsAdmin: build.query<AdminFormValues, RegistrationAsAdminArgs>({
             query: ({ id }) => ({
                 url: API_URLS.REGISTRATION_BY_ID({ id }),
             }),
-            providesTags: (result, _, { id }) => (result ? [{ type: ApiTags.Registration, id }] : [ApiTags.Error]),
+            providesTags: (result, _, { id }) => (result ? [{ type: ApiTags.Registration, id }] : []),
             transformResponse: transformResponseToAdminFormValues,
         }),
         createRegistration: build.mutation<RegistrationResponseBody, CreateRegistrationArgs>({
@@ -45,13 +44,13 @@ export const registrationApi = apiWithTags.injectEndpoints({
                 body,
             }),
             invalidatesTags: (result, error) =>
-                error ? [ApiTags.Error] : [{ type: ApiTags.Registration, id: result?._id }],
+                error ? [] : [{ type: ApiTags.Registration, id: result?._id }, { type: ApiTags.StartingList }],
             onQueryStarted: async (_, { queryFulfilled }) => {
                 try {
                     await queryFulfilled
-                    toast.success('registration.submit.success')
+                    toast.success('registration.submit.success', { duration: 10000 })
                 } catch (err) {
-                    toast.error('registration.submit.error')
+                    toast.error('registration.submit.error', { duration: 10000 })
                 }
             },
         }),
@@ -62,13 +61,13 @@ export const registrationApi = apiWithTags.injectEndpoints({
                 body,
             }),
             invalidatesTags: (result, error) =>
-                error ? [ApiTags.Error] : [{ type: ApiTags.Registration, id: result?._id }],
+                error ? [] : [{ type: ApiTags.Registration, id: result?._id }, { type: ApiTags.StartingList }],
             onQueryStarted: async (_, { queryFulfilled }) => {
                 try {
                     await queryFulfilled
-                    toast.success('registration.update.success')
+                    toast.success('registration.update.success', { duration: 10000 })
                 } catch (err) {
-                    toast.error('registration.update.error')
+                    toast.error('registration.update.error', { duration: 10000 })
                 }
             },
         }),
@@ -79,13 +78,13 @@ export const registrationApi = apiWithTags.injectEndpoints({
                 body,
             }),
             invalidatesTags: (result, error) =>
-                error ? [ApiTags.Error] : [{ type: ApiTags.Registration, id: result?._id }],
+                error ? [] : [{ type: ApiTags.Registration, id: result?._id }, { type: ApiTags.StartingList }],
             onQueryStarted: async (_, { queryFulfilled }) => {
                 try {
                     await queryFulfilled
-                    toast.success('registration.update.success')
+                    toast.success('registration.update.success', { duration: 10000 })
                 } catch (err) {
-                    toast.error('registration.update.error')
+                    toast.error('registration.update.error', { duration: 10000 })
                 }
             },
         }),

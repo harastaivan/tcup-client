@@ -5,9 +5,3 @@ export const API_URLS = {
     REGISTRATION: '/api/registration',
     REGISTRATION_BY_ID: ({ id }: RegistrationAsAdminArgs) => `/api/registration/${id}`,
 } as const
-
-export enum ApiTags {
-    FormData = 'FormData',
-    Registration = 'Registration',
-    Error = 'Error',
-}

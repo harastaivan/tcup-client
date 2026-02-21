@@ -8,9 +8,10 @@ export interface StartingListRegistration {
     startNumber: string
     gliderType: string
     registrationNumber: string
+    igcId: number | null
+    isWildcard: boolean
     paid: boolean
-    accepted: boolean
-    isReserve: boolean
+    rankingPosition: number | null
     registrationCompleted: boolean
     competitionClass: string
 }

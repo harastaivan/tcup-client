@@ -71,6 +71,8 @@ export interface RegistrationResponseBody
 export interface AdminRegistrationResponseBody extends RegistrationResponseBody {
     igcId: number
     registrationCompleted: boolean
+    isWildcard: boolean
+    rankingPosition: number | null
 }
 
 export interface RegistrationRequestBody {
@@ -98,6 +100,8 @@ export interface RegistrationRequestBody {
 export interface AdminRegistrationRequestBody extends RegistrationRequestBody {
     igcId: number
     registrationCompleted: boolean
+    isWildcard: boolean
+    rankingPosition: number | null
 }
 
 export type RegistrationAsAdminArgs = {
@@ -117,15 +121,13 @@ export type UpdateRegistrationAsAdminArgs = {
 
 export enum RegistrationQuickAction {
     paid = 'paid',
-    accepted = 'accepted',
-    isReserve = 'isReserve',
+    isWildcard = 'isWildcard',
 }
 
 export type UpdateRegistrationQuickActionArgs = {
     id: string
     body: {
         [RegistrationQuickAction.paid]?: boolean
-        [RegistrationQuickAction.accepted]?: boolean
-        [RegistrationQuickAction.isReserve]?: boolean
+        [RegistrationQuickAction.isWildcard]?: boolean
     }
 }

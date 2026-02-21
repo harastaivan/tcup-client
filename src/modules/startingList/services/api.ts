@@ -2,26 +2,18 @@ import type { UpdateRegistrationQuickActionArgs } from 'modules/registration/typ
 import toast from 'react-hot-toast'
 import { api } from 'services/api'
 import { ApiTypes } from 'services/types'
-import { ApiTags, API_URLS } from '../constants'
 import type { SeeYouExportArgs, StartingListResponse } from '../types'
+import { API_URLS } from '../constants'
+import { ApiTags } from 'services/apiTags'
 
-const apiWithTags = api.enhanceEndpoints({
-    addTagTypes: [ApiTags.StartingList, ApiTags.StartingListAdmin, ApiTags.Error],
-})
-
-export const startingListApi = apiWithTags.injectEndpoints({
+export const startingListApi = api.injectEndpoints({
     endpoints: (build) => ({
-        getStartingList: build.query<StartingListResponse, void>({
-            query: () => ({
+        getStartingList: build.query<StartingListResponse, { isFinal: boolean }>({
+            query: ({ isFinal }) => ({
                 url: API_URLS.STARTING_LIST,
+                params: { isFinal },
             }),
-            providesTags: (result) => (result ? [ApiTags.StartingList] : [ApiTags.Error]),
-        }),
-        getStartingListAsAdmin: build.query<StartingListResponse, void>({
-            query: () => ({
-                url: API_URLS.STARTING_LIST_ADMIN,
-            }),
-            providesTags: (result) => (result ? [ApiTags.StartingListAdmin] : [ApiTags.Error]),
+            providesTags: (result) => (result ? [ApiTags.StartingList] : []),
         }),
         getStartingListExport: build.query<void, void>({
             query: () => ({
@@ -41,7 +33,8 @@ export const startingListApi = apiWithTags.injectEndpoints({
                 url: API_URLS.REGISTRATION_QUICK_ACTION({ id }),
                 body,
             }),
-            invalidatesTags: (result, error) => (error ? [ApiTags.Error] : [ApiTags.StartingListAdmin]),
+            invalidatesTags: (result, error, variables) =>
+                error ? [] : [{ type: ApiTags.Registration, id: variables.id }, { type: ApiTags.StartingList }],
             onQueryStarted: async (_, { queryFulfilled }) => {
                 try {
                     await queryFulfilled
@@ -56,7 +49,6 @@ export const startingListApi = apiWithTags.injectEndpoints({
 
 export const {
     useGetStartingListQuery,
-    useGetStartingListAsAdminQuery,
     useLazyGetStartingListExportQuery,
     useLazyGetStartingListSeeYouExportQuery,
     useUpdateRegistrationQuickActionMutation,

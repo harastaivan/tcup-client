@@ -1,13 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Spinner } from 'modules/ui'
 import { toast } from 'modules/toast'
 
 import { useGetStartingListQuery } from '../services/api'
 import { StartingListByClass } from './StartingListByClass'
+import { FinalStartingListToggle } from './FinalStartingListToggle'
+import { getConfig } from 'config/domainConfig'
+import moment from 'moment'
 
 export const StartingList = () => {
-    const { isLoading, error, isError, data: startingList } = useGetStartingListQuery()
+    const { finalStartingListSince } = getConfig().competition
+    const [isFinal, setIsFinal] = useState(() => moment(finalStartingListSince).isBefore(moment()))
+    const { isLoading, error, isError, data: startingList } = useGetStartingListQuery({ isFinal })
 
     useEffect(() => {
         if (isError) {
@@ -17,6 +22,8 @@ export const StartingList = () => {
 
     return (
         <>
+            <FinalStartingListToggle isFinal={isFinal} setIsFinal={setIsFinal} />
+
             {isLoading && <Spinner />}
             {startingList &&
                 startingList.map((competitionClass) => (

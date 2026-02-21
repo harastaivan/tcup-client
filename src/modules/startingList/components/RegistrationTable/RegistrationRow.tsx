@@ -18,6 +18,8 @@ export const RegistrationRow = ({
     startNumber,
     gliderType,
     registrationNumber,
+    rankingPosition,
+    igcId,
     ...registration
 }: RegistrationRowProps) => {
     const isAdmin = useSelector(getIsAdmin)
@@ -32,36 +34,51 @@ export const RegistrationRow = ({
         })
     }
 
-    const { paid, accepted, isReserve } = registration
+    const { paid, isWildcard } = registration
 
     return (
-        <tr key={_id} className={isReserve && isAdmin ? 'table-warning' : ''}>
+        <tr key={_id}>
             <td>{fullName}</td>
             <td>{aeroclub}</td>
             <td>{startNumber}</td>
             <td>{gliderType}</td>
             <td>{registrationNumber}</td>
-            {paid ? <td className="text-success">{t('ano')}</td> : <td className="text-danger">{t('ne')}</td>}
+            <td>
+                {rankingPosition ? (
+                    rankingPosition
+                ) : (
+                    <Badge color="warning" className="ml-2">
+                        {t('nedostupné')}
+                    </Badge>
+                )}
+            </td>
+            <td>
+                {!paid && (
+                    <Badge color="danger" className="ml-2">
+                        {t('nezaplaceno')}
+                    </Badge>
+                )}
+                {isWildcard && (
+                    <Badge color="warning" className="ml-2">
+                        {t('WC')}
+                    </Badge>
+                )}
+                {isAdmin && !igcId && (
+                    <Badge color="warning" className="ml-2">
+                        {t('Chybí IGC ID')}
+                    </Badge>
+                )}
+            </td>
             {isAdmin && (
                 <>
                     <td>
                         <LoadingButton
-                            color={accepted ? 'secondary' : 'success'}
+                            color={isWildcard ? 'secondary' : 'warning'}
                             className="mb-1"
-                            onClick={onQuickAction(RegistrationQuickAction.accepted)}
+                            onClick={onQuickAction(RegistrationQuickAction.isWildcard)}
                             loading={isLoading}
                             size="sm">
-                            {accepted ? t('zrušit') : t('schválit')}
-                        </LoadingButton>
-                    </td>
-                    <td>
-                        <LoadingButton
-                            color={isReserve ? 'success' : 'warning'}
-                            className="mb-1"
-                            onClick={onQuickAction(RegistrationQuickAction.isReserve)}
-                            loading={isLoading}
-                            size="sm">
-                            {isReserve ? t('není náhr.') : t('je náhr.')}
+                            {isWildcard ? t('zrušit WC') : t('nastavit WC')}
                         </LoadingButton>
                     </td>
                     <td>
@@ -71,7 +88,7 @@ export const RegistrationRow = ({
                             onClick={onQuickAction(RegistrationQuickAction.paid)}
                             loading={isLoading}
                             size="sm">
-                            {paid ? t('nezaplaceno') : t('zaplaceno')}
+                            {paid ? t('zrušit zaplaceno') : t('nastavit zaplaceno')}
                         </LoadingButton>
                     </td>
                     <td>
@@ -85,17 +102,6 @@ export const RegistrationRow = ({
                             to={`/registration/${_id}`}>
                             {t('úprava')}
                         </Button>
-                    </td>
-                </>
-            )}
-            {!isAdmin && (
-                <>
-                    <td>
-                        {isReserve && (
-                            <Badge color="warning" className="ml-2">
-                                {t('náhradník')}
-                            </Badge>
-                        )}
                     </td>
                 </>
             )}

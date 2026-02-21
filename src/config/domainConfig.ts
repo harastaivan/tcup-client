@@ -22,6 +22,7 @@ interface DomainConfig {
         from: string
         to: string
         signupSince: string
+        finalStartingListSince?: string
     }
 }
 
@@ -34,6 +35,7 @@ export const domainConfig: Record<Domain, DomainConfig> = {
             from: '2026-07-11',
             to: '2026-07-19',
             signupSince: '2026-03-01T12:00:00+01:00',
+            finalStartingListSince: '2026-04-15',
         },
     },
     [Domain.TCUP_2025]: {

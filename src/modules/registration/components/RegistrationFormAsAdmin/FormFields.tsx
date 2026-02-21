@@ -8,11 +8,15 @@ import { FormFields, FormValues } from '../RegistrationFormAsUser'
 export enum AdminValues {
     REGISTRATION_COMPLETED = 'registrationCompleted',
     IGC_ID = 'igcId',
+    IS_WILDCARD = 'isWildcard',
+    RANKING_POSITION = 'rankingPosition',
 }
 
 export interface AdminFormValues extends FormValues {
     [AdminValues.REGISTRATION_COMPLETED]: boolean
     [AdminValues.IGC_ID]: number
+    [AdminValues.IS_WILDCARD]: boolean
+    [AdminValues.RANKING_POSITION]: number | null
 }
 
 export interface AdminFormFieldsProps {
@@ -31,6 +35,22 @@ export const AdminFormFields = ({ control, selectData }: AdminFormFieldsProps) =
                     name={AdminValues.IGC_ID}
                     control={control}
                     label={t(`form.registration.${AdminValues.IGC_ID}.label` as const)}
+                    required
+                />
+            </Row>
+            <Row>
+                <LabelInput
+                    name={AdminValues.RANKING_POSITION}
+                    control={control}
+                    label={t(`form.registration.${AdminValues.RANKING_POSITION}.label` as const)}
+                    required
+                />
+            </Row>
+            <Row>
+                <SwitchLabelInput
+                    name={AdminValues.IS_WILDCARD}
+                    control={control}
+                    label={t(`form.registration.${AdminValues.IS_WILDCARD}.label` as const)}
                     required
                 />
             </Row>

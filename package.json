@@ -47,7 +47,7 @@
         "format": "npm run prettier -- --write",
         "format:check": "npm run prettier -- --list-different",
         "validate": "npm run format:check && npm run lint && npm run build",
-        "version": "yarn changelog && code CHANGELOG.md --wait && git add CHANGELOG.md",
+        "version": "yarn changelog && cursor CHANGELOG.md --wait && git add CHANGELOG.md",
         "changelog": "gitmoji-changelog",
         "cypress:open": "yarn run cypress open",
         "cypress:run": "yarn run cypress run"
