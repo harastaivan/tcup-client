@@ -1,1 +1,1 @@
-export * from './FinalStartingListToggle';
+export * from './FinalStartingListToggle'
