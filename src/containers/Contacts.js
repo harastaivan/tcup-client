@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const Contacts = () => {
@@ -22,7 +22,7 @@ const Contacts = () => {
         },
         {
             heading: t('Web a vyhodnocování'),
-            lines: ['Ivan Harašta ml.', 'E-mail: ivan@harasta.dev', 'Tel.: +420 775 412 486'],
+            lines: ['Ivan Harašta ml.', 'E-mail: ivan@harasta.dev', 'IGC: igc@tcup.cz', 'Tel.: +420 775 412 486'],
         },
     ]
 
