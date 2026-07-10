@@ -154,7 +154,7 @@ export const FormFields = ({ control, selectData }: FormFieldsProps) => {
                         label={t(`form.registration.${Values.GLIDER_TYPE}.label` as const)}
                         required
                         selectData={selectData.gliderTypes}
-                        translate={({ name, index }: GliderType) => `${name} (${index})`}
+                        translate={({ name, handicap }: GliderType) => `${name} (${handicap})`}
                     />
                 )}
             </Row>
